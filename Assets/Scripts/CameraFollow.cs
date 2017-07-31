@@ -8,13 +8,17 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
     public float speed = 0.1f;
     Camera mainCamera;
-    float mapWidth = 480; // @TODO : Fix by get real map width
-    float mapHeight = 320; // @TODO : Fix by get real map width
+    float mapWidth;
+    float mapHeight;
 
     // Use this for initialization
     void Start()
     {
         mainCamera = GetComponent<Camera>();
+		GameObject map = GameObject.Find ("Foret_des_Espoirs");
+		var tiledMap = map.GetComponentInParent<Tiled2Unity.TiledMap>();
+		mapWidth = tiledMap.GetMapWidthInPixelsScaled();
+		mapHeight = tiledMap.GetMapHeightInPixelsScaled();
     }
 
     // Update is called once per frame
