@@ -2,58 +2,73 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
     Rigidbody2D rbody;
     Animator anim;
     public float speed = 64;
-	float mapWidth;
-	float mapHeight;
+    Tiled2Unity.TiledMap tiledMap;
 
-	// Use this for initialization
-	void Start () {
+    float getRelativeX()
+    {
+        return rbody.position.x - tiledMap.transform.position.x;
+    }
+
+    float getRelativeY()
+    {
+        return rbody.position.y - tiledMap.transform.position.y;
+    }
+
+    // Use this for initialization
+    void Start()
+    {
 
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-		GameObject map = GameObject.Find ("Foret_des_Espoirs");
-		var tiledMap = map.GetComponentInParent<Tiled2Unity.TiledMap>();
-		mapWidth = tiledMap.GetMapWidthInPixelsScaled();
-		mapHeight = tiledMap.GetMapHeightInPixelsScaled();
+        GameObject map = GameObject.Find("Map");
+        tiledMap = map.GetComponentInParent<Tiled2Unity.TiledMap>();
+    }
 
-		Debug.Log (rbody.position.x);
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
 
         Vector2 movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-		bool isWalking = false;
+        bool isWalking = false;
 
-		if (movementVector != Vector2.zero) {
-			isWalking = true;
-			if (movementVector.x < 0 && rbody.position.x < 0) {
-				isWalking = false;
-			}
-			if (movementVector.y > 0 && rbody.position.y > 0) {
-				isWalking = false;
-			}
-			if (movementVector.x > 0 && rbody.position.x > mapWidth - 24) {
-				isWalking = false;
-			}
-			if (movementVector.y < 0 && rbody.position.y < -mapHeight + 16) {
-				isWalking = false;
-			}
-		}
+        if (movementVector != Vector2.zero)
+        {
+            isWalking = true;
+            if (movementVector.x < 0 && getRelativeX() < 8)
+            {
+                isWalking = false;
+            }
+            if (movementVector.y > 0 && getRelativeY() > 0)
+            {
+                isWalking = false;
+            }
+            if (movementVector.x > 0 && getRelativeX() > tiledMap.GetMapWidthInPixelsScaled() - 12)
+            {
+                isWalking = false;
+            }
+            if (movementVector.y < 0 && getRelativeY() < -tiledMap.GetMapHeightInPixelsScaled() + 16)
+            {
+                isWalking = false;
+            }
+        }
 
-		if (isWalking) {
-			anim.SetBool("is_walking", true);
-			anim.SetFloat("input_x", movementVector.x);
-			anim.SetFloat("input_y", movementVector.y);
-			rbody.MovePosition(rbody.position + speed * (movementVector * Time.deltaTime));
-		} else {
-			anim.SetBool ("is_walking", false);
-		}
+        if (isWalking)
+        {
+            anim.SetBool("is_walking", true);
+            anim.SetFloat("input_x", movementVector.x);
+            anim.SetFloat("input_y", movementVector.y);
+            rbody.MovePosition(rbody.position + speed * (movementVector * Time.deltaTime));
+        }
+        else
+        {
+            anim.SetBool("is_walking", false);
+        }
     }
 }
