@@ -108,6 +108,23 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &283498595 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1970651624053408, guid: f80dea2025240c44ebef66e501b4313e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1809716924}
+--- !u!114 &283498597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 283498595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952847ef778581b4eb4b85d699041e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapToLoad: {fileID: 102900000, guid: 1504c42a9339781469f52b779aaed705, type: 3}
 --- !u!1001 &412043140
 Prefab:
   m_ObjectHideFlags: 0
@@ -165,73 +182,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4510212064792298, guid: efef509b57ab3fe41a25d132fe29ccb6,
     type: 2}
   m_PrefabInternal: {fileID: 1498615854}
---- !u!1 &1024066529
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1024066530}
-  - component: {fileID: 1024066531}
-  - component: {fileID: 1024066532}
-  m_Layer: 0
-  m_Name: EntreeMaison1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1024066530
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1024066529}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 382, y: -218, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1024066531
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1024066529}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &1024066532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1024066529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952847ef778581b4eb4b85d699041e31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapToLoad: Maison1
 --- !u!1001 &1498615854
 Prefab:
   m_ObjectHideFlags: 0
@@ -359,6 +309,16 @@ Prefab:
     - target: {fileID: 1098370367395468, guid: f80dea2025240c44ebef66e501b4313e, type: 2}
       propertyPath: m_Name
       value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 61490563940027418, guid: f80dea2025240c44ebef66e501b4313e,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61490563940027418, guid: f80dea2025240c44ebef66e501b4313e,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f80dea2025240c44ebef66e501b4313e, type: 2}

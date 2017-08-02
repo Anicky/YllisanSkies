@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LoadMap : MonoBehaviour {
 
-    public string mapToLoad;
+    public UnityEngine.Object mapToLoad;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +20,7 @@ public class LoadMap : MonoBehaviour {
     {
         if(collision.gameObject.name == "Player")
         {
-            Application.LoadLevel(mapToLoad);
+            Application.LoadLevel(mapToLoad.name);
         }
     }
 }
