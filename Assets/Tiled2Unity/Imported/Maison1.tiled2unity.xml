@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 02/08/2017 14:03:48-->
+<!--Last exported: 03/08/2017 20:04:27-->
 <Tiled2Unity version="1.0.12.3">
   <AssignMaterial mesh="Maison1_mesh_0001" material="chipset12" />
   <AssignMaterial mesh="Maison1_mesh_0002" material="chipset12" />
@@ -21,11 +21,11 @@
       <TileLayer offsetX="0" offsetY="0" />
       <GameObject name="chipset12" mesh="Maison1_mesh_0004" sortingLayerName="" sortingOrder="2" opacity="1" />
     </GameObject>
-    <GameObject name="Teleporteurs" x="0" y="0" z="0">
+    <GameObject name="Teleports" x="0" y="0" z="0">
       <ObjectLayer offsetX="0" offsetY="0" color="#ff808080" />
-      <GameObject name="SortieMaison1" x="336" y="-304.333" rotation="0" layer="">
-        <RectangleObjectComponent tmx-object-id="3" tmx-object-name="SortieMaison1" tmx-object-type="" tmx-object-x="336" tmx-object-y="304.333" tmx-object-width="30.3333" tmx-object-height="18" tmx-object-rotation="0" />
-        <BoxCollider2D width="30.3333" height="18" />
+      <GameObject name="House_01_Exit" x="336.182" y="-309.606" rotation="0" layer="">
+        <RectangleObjectComponent tmx-object-id="3" tmx-object-name="House_01_Exit" tmx-object-type="" tmx-object-x="336.182" tmx-object-y="309.606" tmx-object-width="30.3333" tmx-object-height="10.1818" tmx-object-rotation="0" />
+        <BoxCollider2D width="30.3333" height="10.1818" />
       </GameObject>
     </GameObject>
   </Prefab>

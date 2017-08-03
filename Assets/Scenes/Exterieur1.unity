@@ -108,25 +108,6 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &283498595 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1970651624053408, guid: f80dea2025240c44ebef66e501b4313e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1809716924}
---- !u!114 &283498597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 283498595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952847ef778581b4eb4b85d699041e31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapToLoad: {fileID: 102900000, guid: 1504c42a9339781469f52b779aaed705, type: 3}
-  startingPoint: {fileID: 1996713707831562, guid: c98d55f68cf7d6e4e90889fb78f16017,
-    type: 2}
 --- !u!1001 &412043140
 Prefab:
   m_ObjectHideFlags: 0
@@ -175,6 +156,11 @@ Prefab:
         type: 2}
       propertyPath: alwaysCenteredToTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759602237206762, guid: 70f1c8cb8db4941479a207e988585b57,
+        type: 2}
+      propertyPath: speed
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70f1c8cb8db4941479a207e988585b57, type: 2}
@@ -322,6 +308,29 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 61876716803466076, guid: f80dea2025240c44ebef66e501b4313e,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f80dea2025240c44ebef66e501b4313e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1809716925 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1915373949470046, guid: f80dea2025240c44ebef66e501b4313e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1809716924}
+--- !u!114 &1809716926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1809716925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952847ef778581b4eb4b85d699041e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapToLoad: {fileID: 102900000, guid: 1504c42a9339781469f52b779aaed705, type: 3}
+  startingPoint: House_01_Exit

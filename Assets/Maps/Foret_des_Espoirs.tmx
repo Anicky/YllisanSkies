@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" nextobjectid="4">
+<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" nextobjectid="5">
  <tileset firstgid="1" source="../TileSet/Foret_01.tsx"/>
  <tileset firstgid="511" source="../TileSet/Collisions.tsx"/>
  <tileset firstgid="512" source="../TileSet/ExterieurMaison.tsx"/>
@@ -173,7 +173,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="Teleporteurs">
-  <object id="3" name="Maison1" x="397.455" y="192.182" width="18.9091" height="15.8182"/>
+ <objectgroup name="Teleports">
+  <object id="3" name="House_01_Entry" x="397.455" y="192.182" width="18.9091" height="5.0682"/>
  </objectgroup>
 </map>

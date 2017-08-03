@@ -45,12 +45,17 @@ public class CameraController : MonoBehaviour
     {
         GameObject map = GameObject.Find("Map");
         tiledMap = map.GetComponentInParent<Tiled2Unity.TiledMap>();
+        moveCamera(1);
     }
 
     // Update is called once per frame
     void Update()
     {
-        mainCamera.orthographicSize = Screen.height / 2f;
+        moveCamera(speed);
+    }
+
+    private void moveCamera(float movementSpeed)
+    {
         if (target)
         {
             float toX = target.position.x;
@@ -83,7 +88,7 @@ public class CameraController : MonoBehaviour
             transform.position = Vector3.Lerp(
                 new Vector3(transform.position.x, transform.position.y, transform.position.z),
                 new Vector3(toX, toY, transform.position.z)
-                , speed
+                , movementSpeed
                 );
         }
     }

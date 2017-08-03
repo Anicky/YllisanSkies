@@ -75,7 +75,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="Teleporteurs">
-  <object id="3" name="SortieMaison1" x="336" y="304.333" width="30.3333" height="18"/>
+ <objectgroup name="Teleports">
+  <object id="3" name="House_01_Exit" x="336.182" y="309.606" width="30.3333" height="10.1818"/>
  </objectgroup>
 </map>
