@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class CameraFollow : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
 
     public Transform target;
@@ -12,6 +11,7 @@ public class CameraFollow : MonoBehaviour
     float mapHeight;
     public bool alwaysCenteredToTarget = false;
     Tiled2Unity.TiledMap tiledMap;
+    private static bool cameraExists;
 
     float getRelativeX()
     {
@@ -27,6 +27,22 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         mainCamera = GetComponent<Camera>();
+        GameObject map = GameObject.Find("Map");
+        tiledMap = map.GetComponentInParent<Tiled2Unity.TiledMap>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        if (!cameraExists)
+        {
+            cameraExists = true;
+            DontDestroyOnLoad(transform.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
         GameObject map = GameObject.Find("Map");
         tiledMap = map.GetComponentInParent<Tiled2Unity.TiledMap>();
     }

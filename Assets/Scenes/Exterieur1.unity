@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapToLoad: {fileID: 102900000, guid: 1504c42a9339781469f52b779aaed705, type: 3}
+  startingPoint: {fileID: 1996713707831562, guid: c98d55f68cf7d6e4e90889fb78f16017,
+    type: 2}
 --- !u!1001 &412043140
 Prefab:
   m_ObjectHideFlags: 0
@@ -134,11 +136,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4700192175296326, guid: 70f1c8cb8db4941479a207e988585b57, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 542
+      value: 396.2
       objectReference: {fileID: 0}
     - target: {fileID: 4700192175296326, guid: 70f1c8cb8db4941479a207e988585b57, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -342.1
+      value: -256.3
       objectReference: {fileID: 0}
     - target: {fileID: 4700192175296326, guid: 70f1c8cb8db4941479a207e988585b57, type: 2}
       propertyPath: m_LocalPosition.z
@@ -191,11 +193,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4510212064792298, guid: efef509b57ab3fe41a25d132fe29ccb6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 504
+      value: 407.1
       objectReference: {fileID: 0}
     - target: {fileID: 4510212064792298, guid: efef509b57ab3fe41a25d132fe29ccb6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -324
+      value: -243.7
       objectReference: {fileID: 0}
     - target: {fileID: 4510212064792298, guid: efef509b57ab3fe41a25d132fe29ccb6, type: 2}
       propertyPath: m_LocalPosition.z

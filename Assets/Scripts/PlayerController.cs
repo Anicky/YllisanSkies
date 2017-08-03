@@ -1,14 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 
     Rigidbody2D rbody;
     Animator anim;
     public float speed = 64;
     Tiled2Unity.TiledMap tiledMap;
+    private static bool playerExists;
+    public Vector2 lastMove;
 
     float getRelativeX()
     {
@@ -23,11 +24,31 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        initialize();
+        if (!playerExists)
+        {
+            playerExists = true;
+            DontDestroyOnLoad(transform.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
+    }
+
+    private void initialize()
+    {
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         GameObject map = GameObject.Find("Map");
         tiledMap = map.GetComponentInParent<Tiled2Unity.TiledMap>();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        initialize();
     }
 
     // Update is called once per frame
@@ -65,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetFloat("input_x", movementVector.x);
             anim.SetFloat("input_y", movementVector.y);
             rbody.MovePosition(rbody.position + speed * (movementVector * Time.deltaTime));
+            lastMove = movementVector;
         }
         else
         {
