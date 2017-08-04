@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private static bool playerExists = false;
     private Vector2 lastMove;
     public string eventNameWherePlayerHasToBeTeleported;
+	private KeyCode keyCodeToBypassCollisions = KeyCode.RightControl;
 
     float getRelativeX()
     {
@@ -85,46 +86,62 @@ public class PlayerController : MonoBehaviour
         initialize();
     }
 
+	void checkBypassCollisions() {
+		if (Input.GetKeyDown(keyCodeToBypassCollisions)) {
+			Debug.Log("Collisions bypassed");
+			Physics2D.IgnoreLayerCollision(0,0);
+		}
+		if (Input.GetKeyUp(keyCodeToBypassCollisions)) {
+			Debug.Log("Collisions back to normal");
+			Physics2D.SetLayerCollisionMask(0,63);
+		}
+	}
+
+	void checkMovement() {
+		Vector2 movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+		bool isWalking = false;
+
+		if (movementVector != Vector2.zero)
+		{
+			isWalking = true;
+			if (movementVector.x < 0 && getRelativeX() < 8)
+			{
+				isWalking = false;
+			}
+			if (movementVector.y > 0 && getRelativeY() > 0)
+			{
+				isWalking = false;
+			}
+			if (movementVector.x > 0 && getRelativeX() > tiledMap.GetMapWidthInPixelsScaled() - 12)
+			{
+				isWalking = false;
+			}
+			if (movementVector.y < 0 && getRelativeY() < -tiledMap.GetMapHeightInPixelsScaled() + 16)
+			{
+				isWalking = false;
+			}
+		}
+
+		if (isWalking)
+		{
+			anim.SetBool("is_walking", true);
+			anim.SetFloat("input_x", movementVector.x);
+			anim.SetFloat("input_y", movementVector.y);
+			rbody.MovePosition(rbody.position + speed * (movementVector * Time.deltaTime));
+			lastMove = movementVector;
+		}
+		else
+		{
+			anim.SetBool("is_walking", false);
+		}
+	}
+		
+
     // Update is called once per frame
     void Update()
     {
-
-        Vector2 movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-        bool isWalking = false;
-
-        if (movementVector != Vector2.zero)
-        {
-            isWalking = true;
-            if (movementVector.x < 0 && getRelativeX() < 8)
-            {
-                isWalking = false;
-            }
-            if (movementVector.y > 0 && getRelativeY() > 0)
-            {
-                isWalking = false;
-            }
-            if (movementVector.x > 0 && getRelativeX() > tiledMap.GetMapWidthInPixelsScaled() - 12)
-            {
-                isWalking = false;
-            }
-            if (movementVector.y < 0 && getRelativeY() < -tiledMap.GetMapHeightInPixelsScaled() + 16)
-            {
-                isWalking = false;
-            }
-        }
-
-        if (isWalking)
-        {
-            anim.SetBool("is_walking", true);
-            anim.SetFloat("input_x", movementVector.x);
-            anim.SetFloat("input_y", movementVector.y);
-            rbody.MovePosition(rbody.position + speed * (movementVector * Time.deltaTime));
-            lastMove = movementVector;
-        }
-        else
-        {
-            anim.SetBool("is_walking", false);
-        }
+		checkBypassCollisions();
+		checkMovement();
     }
 }
