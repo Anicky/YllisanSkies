@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     public float speed = 64;
     Tiled2Unity.TiledMap tiledMap;
-    private static bool playerExists;
+    private static bool playerExists = false;
     private Vector2 lastMove;
     public string eventNameWherePlayerHasToBeTeleported;
 
