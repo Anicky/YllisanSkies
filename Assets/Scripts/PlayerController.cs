@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 lastMove;
     public string eventNameWherePlayerHasToBeTeleported;
 	private KeyCode keyCodeToBypassCollisions = KeyCode.RightControl;
+	private bool movementEnabled = true;
 
     float getRelativeX()
     {
@@ -142,6 +143,17 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 		checkBypassCollisions();
-		checkMovement();
+		if (movementEnabled) {
+			checkMovement ();
+		}
     }
+
+	public void disableMovement() {
+		movementEnabled = false;
+		anim.SetBool("is_walking", false);
+	}
+
+	public void enableMovement() {
+		movementEnabled = true;
+	}
 }

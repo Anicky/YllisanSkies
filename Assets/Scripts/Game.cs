@@ -5,6 +5,9 @@ using UnityEngine;
 public class Game : MonoBehaviour {
 
 	List<Hero> heroes;
+	public Canvas menu;
+	private KeyCode keyCodeToOpenMenu = KeyCode.Escape;
+	public bool isMenuOpened = false;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +23,24 @@ public class Game : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		checkMenu ();
+	}
+
+	void checkMenu() {
+
+		if (Input.GetKeyDown (keyCodeToOpenMenu)) {
+			isMenuOpened = !isMenuOpened;
+
+			if (isMenuOpened) {
+				menu.enabled = true;
+				var thePlayer = FindObjectOfType<PlayerController>();
+				thePlayer.disableMovement();
+			} else {
+				menu.enabled = false;
+				var thePlayer = FindObjectOfType<PlayerController>();
+				thePlayer.enableMovement();
+			}
+		}
+
 	}
 }

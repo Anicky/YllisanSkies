@@ -292,7 +292,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 761962741}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -423,6 +423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383e1d044e8ed5049ab6feddea84928d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menu: {fileID: 761962744}
+  isMenuOpened: 0
 --- !u!4 &1160351954
 Transform:
   m_ObjectHideFlags: 0
