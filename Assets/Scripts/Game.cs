@@ -33,11 +33,15 @@ public class Game : MonoBehaviour {
 
 			if (isMenuOpened) {
 				menu.enabled = true;
-				var thePlayer = FindObjectOfType<PlayerController>();
+                Animator anim = menu.GetComponent<Animator>();
+                anim.SetBool("is_opened", true);
+                var thePlayer = FindObjectOfType<PlayerController>();
 				thePlayer.disableMovement();
 			} else {
 				menu.enabled = false;
-				var thePlayer = FindObjectOfType<PlayerController>();
+                Animator anim = menu.GetComponent<Animator>();
+                anim.SetBool("is_opened", false);
+                var thePlayer = FindObjectOfType<PlayerController>();
 				thePlayer.enableMovement();
 			}
 		}

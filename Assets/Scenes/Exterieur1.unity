@@ -140,7 +140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450, y: -945}
+  m_AnchoredPosition: {x: 540, y: -945}
   m_SizeDelta: {x: 900, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &65931760
@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 761962745}
   - component: {fileID: 761962744}
   - component: {fileID: 761962743}
+  - component: {fileID: 761962742}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -265,6 +266,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &761962742
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 761962741}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e262784e808ede4f8d4c709954c2a92, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &761962743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,7 +378,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450, y: -405}
+  m_AnchoredPosition: {x: 540, y: -405}
   m_SizeDelta: {x: 900, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1026272171
@@ -470,7 +488,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450, y: -135}
+  m_AnchoredPosition: {x: 630, y: -135}
   m_SizeDelta: {x: 900, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1421668280
@@ -538,7 +556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450, y: -675}
+  m_AnchoredPosition: {x: 630, y: -675}
   m_SizeDelta: {x: 900, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1481532766
