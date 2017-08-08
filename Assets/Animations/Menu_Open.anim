@@ -35,7 +35,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_01
+    path: Hero_01_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -51,7 +51,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_01
+    path: Hero_01_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -73,7 +73,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_02
+    path: Hero_02_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -89,7 +89,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_02
+    path: Hero_02_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -111,7 +111,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_03
+    path: Hero_03_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -127,7 +127,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_03
+    path: Hero_03_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -149,7 +149,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_04
+    path: Hero_04_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -165,7 +165,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_04
+    path: Hero_04_Block
     classID: 224
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -217,7 +217,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_01
+    path: Hero_01_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -233,7 +233,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_01
+    path: Hero_01_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -255,7 +255,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_02
+    path: Hero_02_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -271,7 +271,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_02
+    path: Hero_02_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -293,7 +293,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_03
+    path: Hero_03_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -309,7 +309,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_03
+    path: Hero_03_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -331,7 +331,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_04
+    path: Hero_04_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -347,7 +347,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_04
+    path: Hero_04_Block
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []

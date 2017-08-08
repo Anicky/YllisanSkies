@@ -35,7 +35,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_01
+    path: Hero_01_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -51,18 +51,12 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_01
+    path: Hero_01_Block
     classID: 224
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 540
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
       - serializedVersion: 2
         time: 0.016666668
         value: 540
@@ -79,7 +73,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_02
+    path: Hero_02_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -95,18 +89,12 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_02
+    path: Hero_02_Block
     classID: 224
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 630
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
       - serializedVersion: 2
         time: 0.033333335
         value: 630
@@ -123,7 +111,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_03
+    path: Hero_03_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -139,18 +127,12 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_03
+    path: Hero_03_Block
     classID: 224
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 540
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
       - serializedVersion: 2
         time: 0.05
         value: 540
@@ -167,7 +149,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_04
+    path: Hero_04_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -183,7 +165,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_04
+    path: Hero_04_Block
     classID: 224
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -235,7 +217,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_01
+    path: Hero_01_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -251,18 +233,12 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_01
+    path: Hero_01_Block
     classID: 224
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 540
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
       - serializedVersion: 2
         time: 0.016666668
         value: 540
@@ -279,7 +255,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_02
+    path: Hero_02_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -295,18 +271,12 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_02
+    path: Hero_02_Block
     classID: 224
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 630
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
       - serializedVersion: 2
         time: 0.033333335
         value: 630
@@ -323,7 +293,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_03
+    path: Hero_03_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -339,18 +309,12 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_03
+    path: Hero_03_Block
     classID: 224
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 540
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
       - serializedVersion: 2
         time: 0.05
         value: 540
@@ -367,7 +331,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Cadre_Perso_04
+    path: Hero_04_Block
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -383,7 +347,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Cadre_Perso_04
+    path: Hero_04_Block
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []
