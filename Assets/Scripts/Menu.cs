@@ -56,6 +56,19 @@ public class Menu : MonoBehaviour
         foreach (Text blockStat in blockStats)
         {
             blockStat.enabled = enabled;
+            if (enabled)
+            {
+                if (blockStat.name == "Hero_0" + heroPosition + "_Lv_Stats")
+                {
+                    blockStat.text = hero.lv.ToString();
+                } else if (blockStat.name == "Hero_0" + heroPosition + "_Hp_Stats")
+                {
+                    blockStat.text = hero.hp.ToString() + "/" + hero.hpMax.ToString();
+                } else if (blockStat.name == "Hero_0" + heroPosition + "_Ap_Stats")
+                {
+                    blockStat.text = hero.ap.ToString() + "/" + hero.apMax.ToString();
+                }
+            }
         }
     }
 

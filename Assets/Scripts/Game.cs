@@ -15,8 +15,11 @@ public class Game : MonoBehaviour {
         heroes = new Hero[] { null, null, null, null};
 
 		Hero heroCyril = new Hero ("Cyril");
+        heroCyril.lv = 1;
 		heroCyril.hp = 540;
 		heroCyril.hpMax = 720;
+        heroCyril.ap = 120;
+        heroCyril.apMax = 140;
 
         heroes[0] = heroCyril;
         if (!gameExists)
