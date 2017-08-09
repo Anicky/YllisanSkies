@@ -53,6 +53,7 @@ public class Menu : MonoBehaviour
         Image blockImage = block.GetComponent<Image>();
         blockImage.enabled = enabled;
         Text[] blockStats = block.GetComponentsInChildren<Text>();
+        Image[] gauges = block.GetComponentsInChildren<Image>();
         foreach (Text blockStat in blockStats)
         {
             blockStat.enabled = enabled;
@@ -67,6 +68,20 @@ public class Menu : MonoBehaviour
                 } else if (blockStat.name == "Ap_Stats")
                 {
                     blockStat.text = hero.ap.ToString() + "/" + hero.apMax.ToString();
+                }
+            }
+        }
+        foreach (Image image in gauges)
+        {
+            image.enabled = enabled;
+            if (enabled)
+            {
+                if (image.name == "Hp_Gauge")
+                {
+                    image.fillAmount = (float) hero.hp / hero.hpMax;
+                } else if (image.name == "Ap_Gauge")
+                {
+                    image.fillAmount = (float) hero.ap / hero.apMax;
                 }
             }
         }

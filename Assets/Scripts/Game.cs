@@ -31,7 +31,7 @@ public class Game : MonoBehaviour
     {
         Hero heroCyril = new Hero("Cyril");
         heroCyril.lv = 1;
-        heroCyril.hp = 750;
+        heroCyril.hp = 200;
         heroCyril.hpMax = 750;
         heroCyril.ap = 80;
         heroCyril.apMax = 80;
