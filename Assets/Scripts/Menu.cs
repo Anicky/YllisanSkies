@@ -49,7 +49,7 @@ public class Menu : MonoBehaviour
             enabled = true;
         }
 
-        GameObject block = GameObject.Find("Menu/Hero_0" + heroPosition + "_Block");
+        GameObject block = GameObject.Find("Menu/Block_Hero" + heroPosition);
         Image blockImage = block.GetComponent<Image>();
         blockImage.enabled = enabled;
         Text[] blockStats = block.GetComponentsInChildren<Text>();
@@ -58,13 +58,13 @@ public class Menu : MonoBehaviour
             blockStat.enabled = enabled;
             if (enabled)
             {
-                if (blockStat.name == "Hero_0" + heroPosition + "_Lv_Stats")
+                if (blockStat.name == "Lv_Stats")
                 {
                     blockStat.text = hero.lv.ToString();
-                } else if (blockStat.name == "Hero_0" + heroPosition + "_Hp_Stats")
+                } else if (blockStat.name == "Hp_Stats")
                 {
                     blockStat.text = hero.hp.ToString() + "/" + hero.hpMax.ToString();
-                } else if (blockStat.name == "Hero_0" + heroPosition + "_Ap_Stats")
+                } else if (blockStat.name == "Ap_Stats")
                 {
                     blockStat.text = hero.ap.ToString() + "/" + hero.apMax.ToString();
                 }

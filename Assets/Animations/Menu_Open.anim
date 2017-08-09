@@ -21,13 +21,13 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: -540
+        value: -320
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
         time: 0.33333334
-        value: 630
+        value: 448
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -35,7 +35,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Hero_01_Block
+    path: Block_Hero1
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -43,7 +43,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: -135
+        value: -160
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -51,7 +51,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Hero_01_Block
+    path: Block_Hero1
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -59,13 +59,13 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0.016666668
-        value: -630
+        value: -384
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
         time: 0.35
-        value: 540
+        value: 384
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -73,23 +73,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Hero_02_Block
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0.016666668
-        value: -405
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.y
-    path: Hero_02_Block
+    path: Block_Hero2
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -97,13 +81,13 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0.033333335
-        value: -540
+        value: -320
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
         time: 0.36666667
-        value: 630
+        value: 448
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -111,7 +95,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Hero_03_Block
+    path: Block_Hero3
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -119,7 +103,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0.033333335
-        value: -675
+        value: -544
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -127,7 +111,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Hero_03_Block
+    path: Block_Hero3
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -135,13 +119,13 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0.05
-        value: -630
+        value: -384
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
         time: 0.38333333
-        value: 540
+        value: 384
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -149,7 +133,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Hero_04_Block
+    path: Block_Hero4
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -157,7 +141,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0.05
-        value: -945
+        value: -736
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -165,7 +149,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Hero_04_Block
+    path: Block_Hero4
     classID: 224
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -203,13 +187,13 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: -540
+        value: -320
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
         time: 0.33333334
-        value: 630
+        value: 448
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -217,7 +201,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Hero_01_Block
+    path: Block_Hero1
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -225,7 +209,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: -135
+        value: -160
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -233,7 +217,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Hero_01_Block
+    path: Block_Hero1
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -241,13 +225,13 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0.016666668
-        value: -630
+        value: -384
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
         time: 0.35
-        value: 540
+        value: 384
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -255,23 +239,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Hero_02_Block
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0.016666668
-        value: -405
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.y
-    path: Hero_02_Block
+    path: Block_Hero2
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -279,13 +247,13 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0.033333335
-        value: -540
+        value: -320
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
         time: 0.36666667
-        value: 630
+        value: 448
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -293,7 +261,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Hero_03_Block
+    path: Block_Hero3
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -301,7 +269,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0.033333335
-        value: -675
+        value: -544
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -309,7 +277,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Hero_03_Block
+    path: Block_Hero3
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -317,13 +285,13 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0.05
-        value: -630
+        value: -384
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
         time: 0.38333333
-        value: 540
+        value: 384
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -331,7 +299,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Hero_04_Block
+    path: Block_Hero4
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -339,7 +307,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0.05
-        value: -945
+        value: -736
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -347,7 +315,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Hero_04_Block
+    path: Block_Hero4
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []
