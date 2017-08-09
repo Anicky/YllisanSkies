@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadMap : MonoBehaviour {
 
-    public Object mapToLoad;
+    public string mapToLoad;
     public string startingPoint;
 
 	// Use this for initialization
@@ -22,7 +22,7 @@ public class LoadMap : MonoBehaviour {
         {
             var thePlayer = FindObjectOfType<Player>();
             thePlayer.eventNameWherePlayerHasToBeTeleported = startingPoint;
-            SceneManager.LoadScene(mapToLoad.name);
+            SceneManager.LoadScene(mapToLoad);
         }
     }
 }

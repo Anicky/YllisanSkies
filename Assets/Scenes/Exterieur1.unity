@@ -599,6 +599,21 @@ Prefab:
       propertyPath: orthographic size
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 20472095652392238, guid: 70f1c8cb8db4941479a207e988585b57,
+        type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20472095652392238, guid: 70f1c8cb8db4941479a207e988585b57,
+        type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20472095652392238, guid: 70f1c8cb8db4941479a207e988585b57,
+        type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70f1c8cb8db4941479a207e988585b57, type: 2}
   m_IsPrefabParent: 0
@@ -984,6 +999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpened: 0
+  player: {fileID: 2050645760}
 --- !u!1 &828509886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1978,5 +1994,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 952847ef778581b4eb4b85d699041e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapToLoad: {fileID: 102900000, guid: 1504c42a9339781469f52b779aaed705, type: 3}
+  mapToLoad: Maison1
   startingPoint: House_01_Exit
+--- !u!114 &2050645760 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114801262212156032, guid: efef509b57ab3fe41a25d132fe29ccb6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1498615854}
+  m_Script: {fileID: 11500000, guid: 30a6de1937a26104db319887a0c48308, type: 3}
