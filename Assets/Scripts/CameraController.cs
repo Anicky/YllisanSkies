@@ -30,15 +30,6 @@ public class CameraController : MonoBehaviour
         GameObject map = GameObject.Find("Map");
         tiledMap = map.GetComponentInParent<Tiled2Unity.TiledMap>();
         SceneManager.sceneLoaded += OnSceneLoaded;
-        if (!cameraExists)
-        {
-            cameraExists = true;
-            DontDestroyOnLoad(transform.gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

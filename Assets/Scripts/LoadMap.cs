@@ -20,7 +20,7 @@ public class LoadMap : MonoBehaviour {
     {
         if(collision.gameObject.name == "Player")
         {
-            var thePlayer = FindObjectOfType<PlayerController>();
+            var thePlayer = FindObjectOfType<Player>();
             thePlayer.eventNameWherePlayerHasToBeTeleported = startingPoint;
             SceneManager.LoadScene(mapToLoad.name);
         }

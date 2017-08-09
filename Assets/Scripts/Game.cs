@@ -6,6 +6,7 @@ public class Game : MonoBehaviour {
 	List<Hero> heroes;
 	public Menu menu;
 	private KeyCode keyCodeToOpenMenu = KeyCode.Escape;
+    private static bool gameExists = false;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +18,16 @@ public class Game : MonoBehaviour {
 		heroCyril.hpMax = 720;
 
 		heroes.Add(heroCyril);
-	}
+        if (!gameExists)
+        {
+            gameExists = true;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {

@@ -6,6 +6,7 @@ public class Menu : MonoBehaviour
 
     public bool isOpened = false;
     private Canvas canvas;
+    public Player player;
 
     // Use this for initialization
     void Start()
@@ -31,8 +32,7 @@ public class Menu : MonoBehaviour
 
     IEnumerator openMenu()
     {
-        var thePlayer = FindObjectOfType<PlayerController>();
-        thePlayer.disableMovement();
+        player.disableMovement();
         canvas.enabled = true;
         Animation anim = GetComponent<Animation>();
         anim.Play("Menu_Open");
@@ -53,8 +53,7 @@ public class Menu : MonoBehaviour
         } while (anim.isPlaying);
         isOpened = false;
         canvas.enabled = false;
-        var thePlayer = FindObjectOfType<PlayerController>();
-        thePlayer.enableMovement();
+        player.enableMovement();
     }
 
 }

@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
 
     Rigidbody2D rbody;
     Animator anim;
     public float speed = 64;
     Tiled2Unity.TiledMap tiledMap;
-    private static bool playerExists = false;
     private Vector2 lastMove;
     public string eventNameWherePlayerHasToBeTeleported;
 	private KeyCode keyCodeToBypassCollisions = KeyCode.RightControl;
@@ -29,16 +28,6 @@ public class PlayerController : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         initialize();
-        if (!playerExists)
-        {
-            playerExists = true;
-            DontDestroyOnLoad(transform.gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
     }
 
     private void initialize()
