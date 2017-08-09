@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
 
     public bool isOpened = false;
     private Canvas canvas;
-    public Player player;
+    public Game game;
 
     // Use this for initialization
     void Start()
@@ -22,6 +23,7 @@ public class Menu : MonoBehaviour
 
     public void open()
     {
+        showHeroesStats();
         StartCoroutine(openMenu());
     }
 
@@ -30,9 +32,36 @@ public class Menu : MonoBehaviour
         StartCoroutine(closeMenu());
     }
 
+    private void showHeroesStats()
+    {
+        for(int i = 0; i < game.heroes.Length; i++)
+        {
+            Hero hero = game.heroes[i];
+            handleHeroBlock(i+1, hero);
+        }
+    }
+
+    private void handleHeroBlock(int heroPosition, Hero hero)
+    {
+        bool enabled = false;
+        if (hero != null)
+        {
+            enabled = true;
+        }
+
+        GameObject block = GameObject.Find("Menu/Hero_0" + heroPosition + "_Block");
+        Image blockImage = block.GetComponent<Image>();
+        blockImage.enabled = enabled;
+        Text[] blockStats = block.GetComponentsInChildren<Text>();
+        foreach (Text blockStat in blockStats)
+        {
+            blockStat.enabled = enabled;
+        }
+    }
+
     IEnumerator openMenu()
     {
-        player.disableMovement();
+        game.player.disableMovement();
         canvas.enabled = true;
         Animation anim = GetComponent<Animation>();
         anim.Play("Menu_Open");
@@ -53,7 +82,7 @@ public class Menu : MonoBehaviour
         } while (anim.isPlaying);
         isOpened = false;
         canvas.enabled = false;
-        player.enableMovement();
+        game.player.enableMovement();
     }
 
 }

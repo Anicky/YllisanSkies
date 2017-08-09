@@ -3,21 +3,22 @@ using UnityEngine;
 
 public class Game : MonoBehaviour {
 
-	List<Hero> heroes;
+	public Hero[] heroes;
 	public Menu menu;
 	private KeyCode keyCodeToOpenMenu = KeyCode.Escape;
     private static bool gameExists = false;
+    public Player player;
 
 	// Use this for initialization
 	void Start () {
-
-        heroes = new List<Hero>();
+        menu.game = this;
+        heroes = new Hero[] { null, null, null, null};
 
 		Hero heroCyril = new Hero ("Cyril");
 		heroCyril.hp = 540;
 		heroCyril.hpMax = 720;
 
-		heroes.Add(heroCyril);
+        heroes[0] = heroCyril;
         if (!gameExists)
         {
             gameExists = true;
