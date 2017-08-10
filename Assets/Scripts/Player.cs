@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     Tiled2Unity.TiledMap tiledMap;
     private Vector2 lastMove;
     public string eventNameWherePlayerHasToBeTeleported;
-	private KeyCode keyCodeToBypassCollisions = KeyCode.RightControl;
 	private bool movementEnabled = true;
 
     float getRelativeX()
@@ -77,11 +76,11 @@ public class Player : MonoBehaviour
     }
 
 	void checkBypassCollisions() {
-		if (Input.GetKeyDown(keyCodeToBypassCollisions)) {
+		if (Input.GetButtonDown("Bypass Collisions")) {
 			Debug.Log("Collisions bypassed");
 			Physics2D.IgnoreLayerCollision(0,0);
 		}
-		if (Input.GetKeyUp(keyCodeToBypassCollisions)) {
+		if (Input.GetButtonUp("Bypass Collisions")) {
 			Debug.Log("Collisions back to normal");
 			Physics2D.SetLayerCollisionMask(0,63);
 		}

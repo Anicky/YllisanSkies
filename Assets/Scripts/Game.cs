@@ -6,7 +6,6 @@ public class Game : MonoBehaviour
 
     public Hero[] heroes;
     public Menu menu;
-    private KeyCode keyCodeToOpenMenu = KeyCode.Escape;
     private static bool gameExists = false;
     public Player player;
 
