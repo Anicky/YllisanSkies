@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class Menu : MonoBehaviour
 {
@@ -50,38 +51,54 @@ public class Menu : MonoBehaviour
         }
 
         GameObject block = GameObject.Find("Menu/Block_Hero" + heroPosition);
-        Image blockImage = block.GetComponent<Image>();
-        blockImage.enabled = enabled;
-        Text[] blockStats = block.GetComponentsInChildren<Text>();
-        Image[] gauges = block.GetComponentsInChildren<Image>();
-        foreach (Text blockStat in blockStats)
+        Image blockRootImage = block.GetComponent<Image>();
+        blockRootImage.enabled = enabled;
+        Text[] blockTexts = block.GetComponentsInChildren<Text>();
+        Image[] blockImages = block.GetComponentsInChildren<Image>();
+        RawImage[] rawImages = block.GetComponentsInChildren<RawImage>();
+        foreach (Text blockText in blockTexts)
         {
-            blockStat.enabled = enabled;
+            blockText.enabled = enabled;
             if (enabled)
             {
-                if (blockStat.name == "Lv_Stats")
+                if (blockText.name == "Name")
                 {
-                    blockStat.text = hero.lv.ToString();
-                } else if (blockStat.name == "Hp_Stats")
+                    blockText.text = hero.name;
+                }
+                else if (blockText.name == "Lv_Stats")
                 {
-                    blockStat.text = hero.hp.ToString() + "/" + hero.hpMax.ToString();
-                } else if (blockStat.name == "Ap_Stats")
+                    blockText.text = hero.lv.ToString();
+                } else if (blockText.name == "Hp_Stats")
                 {
-                    blockStat.text = hero.ap.ToString() + "/" + hero.apMax.ToString();
+                    blockText.text = hero.hp.ToString() + "/" + hero.hpMax.ToString();
+                } else if (blockText.name == "Ap_Stats")
+                {
+                    blockText.text = hero.ap.ToString() + "/" + hero.apMax.ToString();
                 }
             }
         }
-        foreach (Image image in gauges)
+        foreach (Image blockImage in blockImages)
         {
-            image.enabled = enabled;
+            blockImage.enabled = enabled;
             if (enabled)
             {
-                if (image.name == "Hp_Gauge")
+                if (blockImage.name == "Hp_Gauge")
                 {
-                    image.fillAmount = (float) hero.hp / hero.hpMax;
-                } else if (image.name == "Ap_Gauge")
+                    blockImage.fillAmount = (float) hero.hp / hero.hpMax;
+                } else if (blockImage.name == "Ap_Gauge")
                 {
-                    image.fillAmount = (float) hero.ap / hero.apMax;
+                    blockImage.fillAmount = (float) hero.ap / hero.apMax;
+                }
+            }
+        }
+        foreach(RawImage rawImage in rawImages)
+        {
+            rawImage.enabled = enabled;
+            if (enabled)
+            {
+                if (rawImage.name == "Sprite")
+                {
+                    rawImage.texture = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/UI/Sprite_Hero_" + hero.name + ".png", typeof(Texture2D));
                 }
             }
         }
