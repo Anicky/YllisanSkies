@@ -104,7 +104,7 @@ public class Menu : MonoBehaviour
         }
     }
 
-    IEnumerator openMenu()
+    private IEnumerator openMenu()
     {
         game.player.disableMovement();
         canvas.enabled = true;
@@ -117,7 +117,7 @@ public class Menu : MonoBehaviour
         isOpened = true;
     }
 
-    IEnumerator closeMenu()
+    private IEnumerator closeMenu()
     {
         Animation anim = GetComponent<Animation>();
         anim.Play("Menu_Close");

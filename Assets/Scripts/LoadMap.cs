@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LoadMap : MonoBehaviour {
 
@@ -22,7 +23,32 @@ public class LoadMap : MonoBehaviour {
         {
             var thePlayer = FindObjectOfType<Player>();
             thePlayer.eventNameWherePlayerHasToBeTeleported = startingPoint;
-            SceneManager.LoadScene(mapToLoad);
+            StartCoroutine(fadeOut());
         }
     }
+
+    private IEnumerator fadeIn()
+    {
+        GameObject game = GameObject.Find("Game");
+        Animation anim = game.GetComponent<Animation>();
+        anim.Play("Overlay_FadeIn");
+        do
+        {
+            yield return null;
+        } while (anim.isPlaying);
+    }
+
+    private IEnumerator fadeOut()
+    {
+        GameObject game = GameObject.Find("Game");
+        Animation anim = game.GetComponent<Animation>();
+        anim.Play("Overlay_FadeOut");
+        do
+        {
+            yield return null;
+        } while (anim.isPlaying);
+        SceneManager.LoadScene(mapToLoad);
+        StartCoroutine(fadeIn());
+    }
+
 }
