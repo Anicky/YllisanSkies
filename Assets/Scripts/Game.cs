@@ -55,7 +55,7 @@ public class Game : MonoBehaviour
 
     void checkMenu()
     {
-        if (Input.GetKeyDown(keyCodeToOpenMenu))
+        if (Input.GetButton("Cancel"))
         {
             if (menu.isOpened)
             {
