@@ -7,17 +7,17 @@ public class LoadMap : MonoBehaviour {
     public string mapToLoad;
     public string startingPoint;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    private void Start () {
 		
 	}
 
-    void OnTriggerEnter2D(Collider2D collision)
+    // Update is called once per frame
+    private void Update () {
+		
+	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.name == "Player")
         {

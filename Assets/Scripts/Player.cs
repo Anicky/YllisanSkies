@@ -4,26 +4,26 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
 
-    Rigidbody2D rbody;
-    Animator anim;
+    private Rigidbody2D rbody;
+    private Animator anim;
     public float speed = 64;
-    Tiled2Unity.TiledMap tiledMap;
+    private Tiled2Unity.TiledMap tiledMap;
     private Vector2 lastMove;
     public string eventNameWherePlayerHasToBeTeleported;
 	private bool movementEnabled = true;
 
-    float getRelativeX()
+    private float getRelativeX()
     {
         return rbody.position.x - tiledMap.transform.position.x;
     }
 
-    float getRelativeY()
+    private float getRelativeY()
     {
         return rbody.position.y - tiledMap.transform.position.y;
     }
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         initialize();
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
         initialize();
     }
 
-	void checkBypassCollisions() {
+    private void checkBypassCollisions() {
 		if (Input.GetButtonDown("Bypass Collisions")) {
 			Debug.Log("Collisions bypassed");
 			Physics2D.IgnoreLayerCollision(0,0);
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	void checkMovement() {
+    private void checkMovement() {
 		Vector2 movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
 		bool isWalking = false;
@@ -125,10 +125,10 @@ public class Player : MonoBehaviour
 			anim.SetBool("is_walking", false);
 		}
 	}
-		
+
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
 		checkBypassCollisions();
 		if (movementEnabled) {

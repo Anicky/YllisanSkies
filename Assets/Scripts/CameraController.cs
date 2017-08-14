@@ -6,25 +6,25 @@ public class CameraController : MonoBehaviour
 
     public Transform target;
     public float speed = 0.1f;
-    Camera mainCamera;
-    float mapWidth;
-    float mapHeight;
+    private Camera mainCamera;
+    private float mapWidth;
+    private float mapHeight;
     public bool alwaysCenteredToTarget = false;
-    Tiled2Unity.TiledMap tiledMap;
+    private Tiled2Unity.TiledMap tiledMap;
     private static bool cameraExists;
 
-    float getRelativeX()
+    private float getRelativeX()
     {
         return target.position.x - tiledMap.transform.position.x;
     }
 
-    float getRelativeY()
+    private float getRelativeY()
     {
         return target.position.y - tiledMap.transform.position.y;
     }
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         mainCamera = GetComponent<Camera>();
         GameObject map = GameObject.Find("Map");
@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         moveCamera(speed);
     }

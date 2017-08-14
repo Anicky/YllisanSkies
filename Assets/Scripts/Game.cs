@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
@@ -7,10 +8,15 @@ public class Game : MonoBehaviour
     public Menu menu;
     private static bool gameExists = false;
     public Player player;
+    private string language;
+    private IniFileHandler translationsFileHandler;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
+        language = "francais";
+        translationsFileHandler = new IniFileHandler("Assets/Translations/" + language + ".ini");
+        loadTranslationsTexts();
         menu.game = this;
         heroes = new Hero[] { null, null, null, null };
         initGame();
@@ -25,7 +31,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    void initGame()
+    private void initGame()
     {
         Hero heroCyril = new Hero("Cyril");
         heroCyril.lv = 1;
@@ -45,13 +51,26 @@ public class Game : MonoBehaviour
         heroes[1] = heroMax;
     }
 
+    private void loadTranslationsTexts()
+    {
+        for (int i = 1; i <= 4; i++)
+        {
+            Text Menu_Lv_Title = GameObject.Find("Menu/Main/Block_Hero" + i + "/Lv_Title").GetComponent<Text>();
+            Menu_Lv_Title.text = translationsFileHandler.IniReadValue("General", "Lv");
+            Text Menu_Hp_Title = GameObject.Find("Menu/Main/Block_Hero" + i + "/Hp_Title").GetComponent<Text>();
+            Menu_Hp_Title.text = translationsFileHandler.IniReadValue("General", "Hp");
+            Text Menu_Ap_Title = GameObject.Find("Menu/Main/Block_Hero" + i + "/Ap_Title").GetComponent<Text>();
+            Menu_Ap_Title.text = translationsFileHandler.IniReadValue("General", "Ap");
+        }
+    }
+
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         checkMenu();
     }
 
-    void checkMenu()
+    private void checkMenu()
     {
         if (Input.GetButton("Cancel"))
         {
