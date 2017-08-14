@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 71677845}
   - component: {fileID: 71677844}
   m_Layer: 5
-  m_Name: Name
+  m_Name: Hero_Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 92668398}
   - component: {fileID: 92668397}
   m_Layer: 5
-  m_Name: Sprite
+  m_Name: Hero_Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 163373756}
   - component: {fileID: 163373755}
   m_Layer: 5
-  m_Name: Name
+  m_Name: Hero_Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -662,7 +662,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pa
+  m_Text: Ap
 --- !u!222 &317799641
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -835,7 +835,7 @@ GameObject:
   - component: {fileID: 477017556}
   - component: {fileID: 477017555}
   m_Layer: 5
-  m_Name: Sprite
+  m_Name: Hero_Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -959,7 +959,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pv
+  m_Text: Hp
 --- !u!222 &591418312
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1062,7 +1062,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Nv
+  m_Text: Lv
 --- !u!222 &634416619
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1219,7 +1219,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pv
+  m_Text: Hp
 --- !u!222 &709091345
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1381,10 +1381,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 439980485}
-  - {fileID: 1421668279}
-  - {fileID: 811837379}
-  - {fileID: 1173229783}
-  - {fileID: 1177815881}
+  - {fileID: 1111417274}
   m_Father: {fileID: 1160351954}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1537,8 +1534,8 @@ RectTransform:
   - {fileID: 819341937}
   - {fileID: 1889063919}
   - {fileID: 1773007197}
-  m_Father: {fileID: 761962745}
-  m_RootOrder: 2
+  m_Father: {fileID: 1111417274}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1660,7 +1657,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pa
+  m_Text: Ap
 --- !u!222 &819341940
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1831,6 +1828,43 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1065031176}
+--- !u!1 &1111417273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1111417274}
+  m_Layer: 5
+  m_Name: Main
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1111417274
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1111417273}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1421668279}
+  - {fileID: 811837379}
+  - {fileID: 1173229783}
+  - {fileID: 1177815881}
+  m_Father: {fileID: 761962745}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1160351952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1906,7 +1940,7 @@ GameObject:
   - component: {fileID: 1168251275}
   - component: {fileID: 1168251274}
   m_Layer: 5
-  m_Name: Name
+  m_Name: Hero_Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2020,8 +2054,8 @@ RectTransform:
   - {fileID: 1528316538}
   - {fileID: 1224049260}
   - {fileID: 1881697422}
-  m_Father: {fileID: 761962745}
-  m_RootOrder: 3
+  m_Father: {fileID: 1111417274}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2098,8 +2132,8 @@ RectTransform:
   - {fileID: 2131107888}
   - {fileID: 1220795795}
   - {fileID: 1042733071}
-  m_Father: {fileID: 761962745}
-  m_RootOrder: 4
+  m_Father: {fileID: 1111417274}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2221,7 +2255,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Nv
+  m_Text: Lv
 --- !u!222 &1187652048
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2310,7 +2344,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pv
+  m_Text: Hp
 --- !u!222 &1218154326
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2704,7 +2738,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1421668278}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2718,8 +2752,8 @@ RectTransform:
   - {fileID: 317799638}
   - {fileID: 2111194929}
   - {fileID: 251012277}
-  m_Father: {fileID: 761962745}
-  m_RootOrder: 1
+  m_Father: {fileID: 1111417274}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2932,7 +2966,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Nv
+  m_Text: Lv
 --- !u!222 &1465074131
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3131,7 +3165,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pa
+  m_Text: Ap
 --- !u!222 &1528316541
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3220,7 +3254,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pv
+  m_Text: Hp
 --- !u!222 &1585059503
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3306,7 +3340,7 @@ GameObject:
   - component: {fileID: 1719269390}
   - component: {fileID: 1719269389}
   m_Layer: 5
-  m_Name: Sprite
+  m_Name: Hero_Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3938,7 +3972,7 @@ GameObject:
   - component: {fileID: 1944690442}
   - component: {fileID: 1944690441}
   m_Layer: 5
-  m_Name: Sprite
+  m_Name: Hero_Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4012,7 +4046,7 @@ GameObject:
   - component: {fileID: 2068905024}
   - component: {fileID: 2068905023}
   m_Layer: 5
-  m_Name: Name
+  m_Name: Hero_Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4444,7 +4478,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pa
+  m_Text: Ap
 --- !u!222 &2131107891
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4533,7 +4567,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Nv
+  m_Text: Lv
 --- !u!222 &2142114327
 CanvasRenderer:
   m_ObjectHideFlags: 0

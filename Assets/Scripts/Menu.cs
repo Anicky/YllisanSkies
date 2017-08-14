@@ -50,7 +50,7 @@ public class Menu : MonoBehaviour
             enabled = true;
         }
 
-        GameObject block = GameObject.Find("Menu/Block_Hero" + heroPosition);
+        GameObject block = GameObject.Find("Menu/Main/Block_Hero" + heroPosition);
         Image blockRootImage = block.GetComponent<Image>();
         blockRootImage.enabled = enabled;
         Text[] blockTexts = block.GetComponentsInChildren<Text>();
@@ -61,7 +61,7 @@ public class Menu : MonoBehaviour
             blockText.enabled = enabled;
             if (enabled)
             {
-                if (blockText.name == "Name")
+                if (blockText.name == "Hero_Name")
                 {
                     blockText.text = hero.name;
                 }
@@ -96,7 +96,7 @@ public class Menu : MonoBehaviour
             rawImage.enabled = enabled;
             if (enabled)
             {
-                if (rawImage.name == "Sprite")
+                if (rawImage.name == "Hero_Sprite")
                 {
                     rawImage.texture = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/UI/Sprite_Hero_" + hero.name + ".png", typeof(Texture2D));
                 }
