@@ -107,7 +107,7 @@ public class Menu : MonoBehaviour
     private IEnumerator openMenu()
     {
         game.player.disableMovement();
-        canvas.enabled = true;
+        GameObject.Find("Menu/Main").GetComponent<Canvas>().enabled = true;
         Animation anim = GetComponent<Animation>();
         anim.Play("Menu_Open");
         do
@@ -126,7 +126,7 @@ public class Menu : MonoBehaviour
             yield return null;
         } while (anim.isPlaying);
         isOpened = false;
-        canvas.enabled = false;
+        GameObject.Find("Menu/Main").GetComponent<Canvas>().enabled = false;
         game.player.enableMovement();
     }
 
