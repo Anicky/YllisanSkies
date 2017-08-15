@@ -2,28 +2,45 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class LoadMap : MonoBehaviour {
+public class LoadMap : MonoBehaviour
+{
 
     public string mapToLoad;
     public string startingPoint;
+    private bool isTriggered = false;
+    public bool needsSubmitButton = false;
 
     // Use this for initialization
-    private void Start () {
-		
-	}
+    private void Start()
+    {
+
+    }
 
     // Update is called once per frame
-    private void Update () {
-		
-	}
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        if(collision.gameObject.name == "Player")
+        if ((isTriggered) && ((!needsSubmitButton) || (needsSubmitButton && Input.GetButton("Submit"))))
         {
+            isTriggered = false;
             var thePlayer = FindObjectOfType<Player>();
             thePlayer.eventNameWherePlayerHasToBeTeleported = startingPoint;
             StartCoroutine(fadeIn());
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            isTriggered = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            isTriggered = false;
         }
     }
 

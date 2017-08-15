@@ -4823,6 +4823,54 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 61876716803466076, guid: f80dea2025240c44ebef66e501b4313e,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61876716803466076, guid: f80dea2025240c44ebef66e501b4313e,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 61876716803466076, guid: f80dea2025240c44ebef66e501b4313e,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61876716803466076, guid: f80dea2025240c44ebef66e501b4313e,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023266489713226, guid: f80dea2025240c44ebef66e501b4313e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -186.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023266489713226, guid: f80dea2025240c44ebef66e501b4313e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 408.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114429467373571544, guid: f80dea2025240c44ebef66e501b4313e,
+        type: 2}
+      propertyPath: TmxPosition.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 114429467373571544, guid: f80dea2025240c44ebef66e501b4313e,
+        type: 2}
+      propertyPath: TmxPosition.y
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 114429467373571544, guid: f80dea2025240c44ebef66e501b4313e,
+        type: 2}
+      propertyPath: TmxSize.x
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 114429467373571544, guid: f80dea2025240c44ebef66e501b4313e,
+        type: 2}
+      propertyPath: TmxSize.y
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f80dea2025240c44ebef66e501b4313e, type: 2}
   m_IsPrefabParent: 0
@@ -4844,6 +4892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapToLoad: Maison1
   startingPoint: House_01_Exit
+  needsSubmitButton: 1
 --- !u!1 &1818857873
 GameObject:
   m_ObjectHideFlags: 0
