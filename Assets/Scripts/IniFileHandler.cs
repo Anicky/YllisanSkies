@@ -96,8 +96,12 @@ public class IniFileHandler
         if (!isInitialized)
             firstRead();
         if (iniDictionary.ContainsKey(section))
+        {
             if (iniDictionary[section].ContainsKey(key))
+            {
                 return iniDictionary[section][key];
+            }
+        }
         return null;
     }
 }

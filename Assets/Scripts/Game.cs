@@ -55,13 +55,19 @@ public class Game : MonoBehaviour
     {
         for (int i = 1; i <= 4; i++)
         {
-            Text Menu_Lv_Title = GameObject.Find("Menu/Main/Block_Hero" + i + "/Lv_Title").GetComponent<Text>();
-            Menu_Lv_Title.text = translationsFileHandler.IniReadValue("General", "Lv");
-            Text Menu_Hp_Title = GameObject.Find("Menu/Main/Block_Hero" + i + "/Hp_Title").GetComponent<Text>();
-            Menu_Hp_Title.text = translationsFileHandler.IniReadValue("General", "Hp");
-            Text Menu_Ap_Title = GameObject.Find("Menu/Main/Block_Hero" + i + "/Ap_Title").GetComponent<Text>();
-            Menu_Ap_Title.text = translationsFileHandler.IniReadValue("General", "Ap");
+            GameObject.Find("Menu/Main/Block_Hero" + i + "/Lv_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("General", "Lv");
+            GameObject.Find("Menu/Main/Block_Hero" + i + "/Hp_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("General", "Hp");
+            GameObject.Find("Menu/Main/Block_Hero" + i + "/Ap_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("General", "Ap");
         }
+        GameObject.Find("Menu/Main/Section_01/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Items");
+        GameObject.Find("Menu/Main/Section_02/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Status");
+        GameObject.Find("Menu/Main/Section_03/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Equipment");
+        GameObject.Find("Menu/Main/Section_04/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Abilities");
+        GameObject.Find("Menu/Main/Section_05/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Airship");
+        GameObject.Find("Menu/Main/Section_06/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Journal");
+        GameObject.Find("Menu/Main/Section_07/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Options");
+        GameObject.Find("Menu/Main/Section_08/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Save");
+        GameObject.Find("Menu/Main/Section_09/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Quit");
     }
 
     // Update is called once per frame
