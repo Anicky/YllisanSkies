@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     public bool alwaysCenteredToTarget = false;
     private Tiled2Unity.TiledMap tiledMap;
     private static bool cameraExists;
+    public bool isSceneChanging = false;
 
     private float getRelativeX()
     {
@@ -36,17 +37,25 @@ public class CameraController : MonoBehaviour
     {
         GameObject map = GameObject.Find("Map");
         tiledMap = map.GetComponentInParent<Tiled2Unity.TiledMap>();
-        moveCamera(1);
+        isSceneChanging = true;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        moveCamera(speed);
+        if(isSceneChanging)
+        {
+            moveCamera(1);
+            isSceneChanging = false;
+        } else
+        {
+            moveCamera(speed);
+        }
     }
 
-    private void moveCamera(float movementSpeed)
+    private Vector3 getTargetPosition()
     {
+        Vector3 targetPosition = new Vector3();
         if (target)
         {
             float toX = target.position.x;
@@ -76,11 +85,22 @@ public class CameraController : MonoBehaviour
                     toY = tiledMap.transform.position.y + cameraDownLimitToFollowTarget;
                 }
             }
+            targetPosition = new Vector3(toX, toY, transform.position.z);
+        }
+        return targetPosition;
+    }
+
+    public void moveCamera(float movementSpeed)
+    {
+        if (target)
+        {
+            Vector3 targetPosition = getTargetPosition();
             transform.position = Vector3.Lerp(
                 new Vector3(transform.position.x, transform.position.y, transform.position.z),
-                new Vector3(toX, toY, transform.position.z)
-                , movementSpeed
-                );
+                targetPosition,
+                movementSpeed
+            );
         }
     }
+
 }
