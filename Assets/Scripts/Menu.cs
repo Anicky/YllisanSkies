@@ -14,7 +14,7 @@ public class Menu : MonoBehaviour
     private int currentSectionIndex = 1;
     private int numberOfSections = 9;
     private bool cursorEnabled = false;
-    private int currentCursorIndex = 1;
+    private int currentCursorIndex = 0;
     private bool isAxisInUse = false;
 
     // Use this for initialization
@@ -78,21 +78,38 @@ public class Menu : MonoBehaviour
     {
         if (Input.GetAxisRaw("Vertical") < 0)
         {
+            moveCursorDown();
+
+        }
+        else if (Input.GetAxisRaw("Vertical") > 0)
+        {
+            moveCursorUp();
+        }
+        displayBlockSelectionAtCurrentCursorPosition();
+    }
+
+    private void moveCursorDown()
+    {
+        do
+        {
             currentCursorIndex++;
-            if (currentCursorIndex > game.getNumberOfHeroes())
+            if (currentCursorIndex > 4)
             {
                 currentCursorIndex = 1;
             }
-        }
-        else if (Input.GetAxisRaw("Vertical") > 0)
+        } while (game.heroes[currentCursorIndex - 1] == null);
+    }
+
+    private void moveCursorUp()
+    {
+        do
         {
             currentCursorIndex--;
             if (currentCursorIndex < 1)
             {
-                currentCursorIndex = game.getNumberOfHeroes();
+                currentCursorIndex = 4;
             }
-        }
-        displayBlockSelectionAtCurrentCursorPosition();
+        } while (game.heroes[currentCursorIndex - 1] == null);
     }
 
     private void checkIfCursorOrAction()
@@ -137,7 +154,8 @@ public class Menu : MonoBehaviour
 
     private void enableCursor()
     {
-        currentCursorIndex = 1;
+        currentCursorIndex = 0;
+        moveCursorDown();
         displayBlockSelectionAtCurrentCursorPosition();
         GameObject.Find("Menu/Main/Block_Selection").GetComponent<Canvas>().enabled = true;
         cursorEnabled = true;
