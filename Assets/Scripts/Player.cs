@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     public float speed = 64;
     private Tiled2Unity.TiledMap tiledMap;
-    private Vector2 lastMove;
+    public Vector2 lastMove;
     public string eventNameWherePlayerHasToBeTeleported;
 	private bool movementEnabled = true;
 
@@ -25,14 +25,14 @@ public class Player : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+        rbody = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         SceneManager.sceneLoaded += OnSceneLoaded;
         initialize();
     }
 
     private void initialize()
     {
-        rbody = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
         GameObject map = GameObject.Find("Map");
         tiledMap = map.GetComponentInParent<Tiled2Unity.TiledMap>();
         if (eventNameWherePlayerHasToBeTeleported != "")

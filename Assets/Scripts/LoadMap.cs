@@ -8,24 +8,47 @@ public class LoadMap : MonoBehaviour
     public string mapToLoad;
     public string startingPoint;
     private bool isTriggered = false;
-    public bool needsSubmitButton = false;
+    public bool submitButtonNeeded = false;
+    public Vector2 playerDirectionNeeded;
+    private Player player;
+    private bool inTransition = false;
 
     // Use this for initialization
     private void Start()
     {
-
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if ((isTriggered) && ((!needsSubmitButton) || (needsSubmitButton && Input.GetButton("Submit"))))
+        if (isTriggered && checkSubmitButton() && checkDirection())
         {
             isTriggered = false;
-            var thePlayer = FindObjectOfType<Player>();
-            thePlayer.eventNameWherePlayerHasToBeTeleported = startingPoint;
-            StartCoroutine(fadeIn());
+            StartCoroutine(changeScene());
         }
+    }
+
+    private bool checkSubmitButton()
+    {
+        return (!submitButtonNeeded || (submitButtonNeeded && Input.GetButton("Submit")));
+    }
+
+    private bool checkDirection()
+    {
+        if (playerDirectionNeeded == new Vector2(0, 0))
+        {
+            return true;
+        }
+        else if ((playerDirectionNeeded.x != 0) && (player.lastMove.x == playerDirectionNeeded.x))
+        {
+            return true;
+        }
+        else if ((playerDirectionNeeded.y != 0) && (player.lastMove.y == playerDirectionNeeded.y))
+        {
+            return true;
+        }
+        return false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,28 +67,29 @@ public class LoadMap : MonoBehaviour
         }
     }
 
-    private IEnumerator fadeIn()
+    private IEnumerator changeScene()
     {
-        GameObject game = GameObject.Find("Game");
-        Animation anim = game.GetComponent<Animation>();
-        anim.Play("Overlay_FadeIn");
+        StartCoroutine(transition("Overlay_FadeIn"));
         do
         {
             yield return null;
-        } while (anim.isPlaying);
+        } while (inTransition);
         SceneManager.LoadScene(mapToLoad);
-        StartCoroutine(fadeOut());
+        player.eventNameWherePlayerHasToBeTeleported = startingPoint;
+        StartCoroutine(transition("Overlay_FadeOut"));
     }
 
-    private IEnumerator fadeOut()
+    private IEnumerator transition(string transition)
     {
+        inTransition = true;
         GameObject game = GameObject.Find("Game");
         Animation anim = game.GetComponent<Animation>();
-        anim.Play("Overlay_FadeOut");
+        anim.Play(transition);
         do
         {
             yield return null;
         } while (anim.isPlaying);
+        inTransition = false;
     }
 
 }

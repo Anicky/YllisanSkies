@@ -171,6 +171,34 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 61119510922735996, guid: 4c96b0f04849a6d4a9d77aa1f52c0bb8,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61119510922735996, guid: 4c96b0f04849a6d4a9d77aa1f52c0bb8,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61119510922735996, guid: 4c96b0f04849a6d4a9d77aa1f52c0bb8,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 61119510922735996, guid: 4c96b0f04849a6d4a9d77aa1f52c0bb8,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089179554035962, guid: 4c96b0f04849a6d4a9d77aa1f52c0bb8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 351.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089179554035962, guid: 4c96b0f04849a6d4a9d77aa1f52c0bb8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -312.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c96b0f04849a6d4a9d77aa1f52c0bb8, type: 2}
   m_IsPrefabParent: 0
@@ -192,3 +220,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapToLoad: Exterieur1
   startingPoint: House_01_Entry
+  submitButtonNeeded: 0
+  playerDirectionNeeded: {x: 0, y: -1}

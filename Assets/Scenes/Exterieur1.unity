@@ -4910,7 +4910,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapToLoad: Maison1
   startingPoint: House_01_Exit
-  needsSubmitButton: 1
+  submitButtonNeeded: 1
+  playerDirectionNeeded: {x: 0, y: 1}
 --- !u!1 &1818857873
 GameObject:
   m_ObjectHideFlags: 0
