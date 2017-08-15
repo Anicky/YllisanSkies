@@ -1709,6 +1709,7 @@ GameObject:
   - component: {fileID: 761962745}
   - component: {fileID: 761962744}
   - component: {fileID: 761962743}
+  - component: {fileID: 761962742}
   m_Layer: 5
   m_Name: Main
   m_TagString: Untagged
@@ -1716,6 +1717,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!111 &761962742
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 761962741}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 651ffeffab48b3f44b49b5846de2e721, type: 2}
+  - {fileID: 7400000, guid: ea39824d1205f424fb9de02de583eba2, type: 2}
+  - {fileID: 7400000, guid: 940dda6187135324d9119668f9085741, type: 2}
+  - {fileID: 7400000, guid: f55f0922585d8624aa328b46c1aae15e, type: 2}
+  - {fileID: 7400000, guid: e16927ffcc60e6d40b129df103c54a73, type: 2}
+  - {fileID: 7400000, guid: 784bee96581dd3a4cb8e9e3578835785, type: 2}
+  - {fileID: 7400000, guid: 3b925dc8c5a4744408113a8e63a0da5c, type: 2}
+  - {fileID: 7400000, guid: a26a6958ede5cad4e9ac06f7a7e016a1, type: 2}
+  - {fileID: 7400000, guid: f4ec6edb6e0a45649805f09b7a0c9e46, type: 2}
+  - {fileID: 7400000, guid: 9e1de75bb338c9148ad8494ed5a3984a, type: 2}
+  - {fileID: 7400000, guid: 4442a80d61feeea4ca3e43b9e9fbd642, type: 2}
+  - {fileID: 7400000, guid: b7fb350665fa47e41af97e5327244934, type: 2}
+  - {fileID: 7400000, guid: a62776e134a0e14479c2655c4e0380e5, type: 2}
+  - {fileID: 7400000, guid: 73c52b7da383ade449733456a9c921d2, type: 2}
+  - {fileID: 7400000, guid: bbfe341b4189f4c4f8395bc5250203b9, type: 2}
+  - {fileID: 7400000, guid: d56d9757067272549885abb8517ccc31, type: 2}
+  - {fileID: 7400000, guid: 3d9f0d387962c194090bae855dd8b615, type: 2}
+  - {fileID: 7400000, guid: 7f64dd1d87b75894cae0ad5685485bfe, type: 2}
+  - {fileID: 7400000, guid: b1172418f3deef84c849b8b3d014a1cc, type: 2}
+  - {fileID: 7400000, guid: 1c6927776a505d744998ab69525da366, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &761962743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2514,7 +2549,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1111417274}
   - component: {fileID: 1111417275}
-  - component: {fileID: 1111417276}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -2555,22 +2589,6 @@ MonoBehaviour:
   isOpened: 0
   game: {fileID: 1160351953}
   inTransition: 0
---- !u!111 &1111417276
-Animation:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1111417273}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: 651ffeffab48b3f44b49b5846de2e721, type: 2}
-  - {fileID: 7400000, guid: ea39824d1205f424fb9de02de583eba2, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &1130265127
 GameObject:
   m_ObjectHideFlags: 0
