@@ -6,6 +6,7 @@ public class Game : MonoBehaviour
 
     public Hero[] heroes;
     public Menu menu;
+    public Options options;
     private static bool gameExists = false;
     public Player player;
     private string language;
@@ -19,6 +20,7 @@ public class Game : MonoBehaviour
         translationsFileHandler = new IniFileHandler("Assets/Translations/" + language + ".ini");
         loadTranslationsTexts();
         menu.game = this;
+        options = new Options();
         heroes = new Hero[] { null, null, null, null };
         initGame();
         if (!gameExists)

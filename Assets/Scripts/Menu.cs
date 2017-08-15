@@ -16,6 +16,7 @@ public class Menu : MonoBehaviour
     private bool cursorEnabled = false;
     private int currentCursorIndex = 0;
     private bool isAxisInUse = false;
+    private bool isMenuOpeningOrClosing = false;
 
     // Use this for initialization
     private void Start()
@@ -66,6 +67,15 @@ public class Menu : MonoBehaviour
                     close();
                 }
             }
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (isMenuOpeningOrClosing && currentSectionIndex != 1)
+        {
+            GameObject.Find("Menu/Main/Section_01").transform.position += new Vector3(29, 0, 0);
+            GameObject.Find("Menu/Main/Section_0" + currentSectionIndex).transform.position -= new Vector3(29, 0, 0);
         }
     }
 
@@ -169,7 +179,10 @@ public class Menu : MonoBehaviour
 
     public void open()
     {
-        currentSectionIndex = 1;
+        if (!game.options.menuMemorizeSectionIndex)
+        {
+            currentSectionIndex = 1;
+        }
         disableCursor();
         showHeroesStats();
         StartCoroutine(openMenu());
@@ -257,6 +270,7 @@ public class Menu : MonoBehaviour
     private IEnumerator openMenu()
     {
         inTransition = true;
+        isMenuOpeningOrClosing = true;
         game.player.disableMovement();
         GameObject.Find("Menu/Main").GetComponent<Canvas>().enabled = true;
         Animation anim = GameObject.Find("Menu/Main").GetComponent<Animation>();
@@ -266,12 +280,14 @@ public class Menu : MonoBehaviour
             yield return null;
         } while (anim.isPlaying);
         isOpened = true;
+        isMenuOpeningOrClosing = false;
         inTransition = false;
     }
 
     private IEnumerator closeMenu()
     {
         inTransition = true;
+        isMenuOpeningOrClosing = true;
         Animation anim = GameObject.Find("Menu/Main").GetComponent<Animation>();
         anim.Play("Menu_Close");
         do
@@ -281,14 +297,15 @@ public class Menu : MonoBehaviour
         isOpened = false;
         GameObject.Find("Menu/Main").GetComponent<Canvas>().enabled = false;
         game.player.enableMovement();
+        isMenuOpeningOrClosing = false;
         inTransition = false;
     }
 
-    private IEnumerator changeSection(float axe)
+    private IEnumerator changeSection(float axis)
     {
         inTransition = true;
         int previousSectionIndex = 0;
-        if (axe < 0)
+        if (axis < 0)
         {
             previousSectionIndex = currentSectionIndex - 1;
             if (currentSectionIndex == 1)
@@ -296,7 +313,7 @@ public class Menu : MonoBehaviour
                 previousSectionIndex = numberOfSections;
             }
         }
-        else if (axe > 0)
+        else if (axis > 0)
         {
             previousSectionIndex = currentSectionIndex + 1;
             if (currentSectionIndex == numberOfSections)
