@@ -23,7 +23,7 @@ public class LoadMap : MonoBehaviour {
         {
             var thePlayer = FindObjectOfType<Player>();
             thePlayer.eventNameWherePlayerHasToBeTeleported = startingPoint;
-            StartCoroutine(fadeOut());
+            StartCoroutine(fadeIn());
         }
     }
 
@@ -36,6 +36,8 @@ public class LoadMap : MonoBehaviour {
         {
             yield return null;
         } while (anim.isPlaying);
+        SceneManager.LoadScene(mapToLoad);
+        StartCoroutine(fadeOut());
     }
 
     private IEnumerator fadeOut()
@@ -47,8 +49,6 @@ public class LoadMap : MonoBehaviour {
         {
             yield return null;
         } while (anim.isPlaying);
-        SceneManager.LoadScene(mapToLoad);
-        StartCoroutine(fadeIn());
     }
 
 }
