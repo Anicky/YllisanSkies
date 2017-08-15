@@ -72,7 +72,7 @@ public class Game : MonoBehaviour
 
     private void checkMenu()
     {
-        if (Input.GetButton("Cancel"))
+        if ((Input.GetButton("Cancel")) && (!menu.inTransition))
         {
             if (menu.isOpened)
             {

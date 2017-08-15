@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour
     public bool isOpened = false;
     private Canvas canvas;
     public Game game;
+    public bool inTransition = false;
 
     // Use this for initialization
     void Start()
@@ -35,10 +36,10 @@ public class Menu : MonoBehaviour
 
     private void showHeroesStats()
     {
-        for(int i = 0; i < game.heroes.Length; i++)
+        for (int i = 0; i < game.heroes.Length; i++)
         {
             Hero hero = game.heroes[i];
-            handleHeroBlock(i+1, hero);
+            handleHeroBlock(i + 1, hero);
         }
     }
 
@@ -68,10 +69,12 @@ public class Menu : MonoBehaviour
                 else if (blockText.name == "Lv_Stats")
                 {
                     blockText.text = hero.lv.ToString();
-                } else if (blockText.name == "Hp_Stats")
+                }
+                else if (blockText.name == "Hp_Stats")
                 {
                     blockText.text = hero.hp.ToString() + "/" + hero.hpMax.ToString();
-                } else if (blockText.name == "Ap_Stats")
+                }
+                else if (blockText.name == "Ap_Stats")
                 {
                     blockText.text = hero.ap.ToString() + "/" + hero.apMax.ToString();
                 }
@@ -84,14 +87,15 @@ public class Menu : MonoBehaviour
             {
                 if (blockImage.name == "Hp_Gauge")
                 {
-                    blockImage.fillAmount = (float) hero.hp / hero.hpMax;
-                } else if (blockImage.name == "Ap_Gauge")
+                    blockImage.fillAmount = (float)hero.hp / hero.hpMax;
+                }
+                else if (blockImage.name == "Ap_Gauge")
                 {
-                    blockImage.fillAmount = (float) hero.ap / hero.apMax;
+                    blockImage.fillAmount = (float)hero.ap / hero.apMax;
                 }
             }
         }
-        foreach(RawImage rawImage in rawImages)
+        foreach (RawImage rawImage in rawImages)
         {
             rawImage.enabled = enabled;
             if (enabled)
@@ -106,6 +110,7 @@ public class Menu : MonoBehaviour
 
     private IEnumerator openMenu()
     {
+        inTransition = true;
         game.player.disableMovement();
         GameObject.Find("Menu/Main").GetComponent<Canvas>().enabled = true;
         Animation anim = GetComponent<Animation>();
@@ -115,10 +120,12 @@ public class Menu : MonoBehaviour
             yield return null;
         } while (anim.isPlaying);
         isOpened = true;
+        inTransition = false;
     }
 
     private IEnumerator closeMenu()
     {
+        inTransition = true;
         Animation anim = GetComponent<Animation>();
         anim.Play("Menu_Close");
         do
@@ -128,6 +135,7 @@ public class Menu : MonoBehaviour
         isOpened = false;
         GameObject.Find("Menu/Main").GetComponent<Canvas>().enabled = false;
         game.player.enableMovement();
+        inTransition = false;
     }
 
 }
