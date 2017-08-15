@@ -219,6 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapToLoad: Exterieur1
-  startingPoint: House_01_Entry
+  playerStartingPoint: {x: 408, y: -200, z: 0}
   submitButtonNeeded: 0
   playerDirectionNeeded: {x: 0, y: -1}

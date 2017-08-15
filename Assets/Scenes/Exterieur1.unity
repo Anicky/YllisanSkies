@@ -4909,7 +4909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapToLoad: Maison1
-  startingPoint: House_01_Exit
+  playerStartingPoint: {x: 351, y: -280, z: 0}
   submitButtonNeeded: 1
   playerDirectionNeeded: {x: 0, y: 1}
 --- !u!1 &1818857873

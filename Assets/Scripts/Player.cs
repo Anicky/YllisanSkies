@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     public float speed = 64;
     private Tiled2Unity.TiledMap tiledMap;
     public Vector2 lastMove;
-    public string eventNameWherePlayerHasToBeTeleported;
 	private bool movementEnabled = true;
 
     private float getRelativeX()
@@ -35,39 +34,6 @@ public class Player : MonoBehaviour
     {
         GameObject map = GameObject.Find("Map");
         tiledMap = map.GetComponentInParent<Tiled2Unity.TiledMap>();
-        if (eventNameWherePlayerHasToBeTeleported != "")
-        {
-            GameObject entryPoint = GameObject.Find(eventNameWherePlayerHasToBeTeleported);
-
-            float positionAdjustX = 0;
-            float positionAdjustY = 0;
-
-            if (lastMove.x == -1)
-            {
-                positionAdjustX = -16;
-                positionAdjustY = 0;
-            }
-            if (lastMove.x == 1)
-            {
-                positionAdjustX = 16;
-                positionAdjustY = 0;
-            }
-            if (lastMove.y == -1)
-            {
-                positionAdjustX = 8;
-                positionAdjustY = -16;
-            }
-            if (lastMove.y == 1)
-            {
-                positionAdjustX = 16;
-                positionAdjustY = 16;
-            }
-
-            transform.position = new Vector3(entryPoint.transform.position.x + positionAdjustX, entryPoint.transform.position.y + positionAdjustY, transform.position.z);
-            var theCamera = FindObjectOfType<CameraController>();
-            theCamera.transform.position = new Vector3(entryPoint.transform.position.x, entryPoint.transform.position.y, theCamera.transform.position.z);
-            eventNameWherePlayerHasToBeTeleported = "";
-        }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

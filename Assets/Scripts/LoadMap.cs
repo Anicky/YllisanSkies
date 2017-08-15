@@ -6,7 +6,7 @@ public class LoadMap : MonoBehaviour
 {
 
     public string mapToLoad;
-    public string startingPoint;
+    public Vector3 playerStartingPoint;
     private bool isTriggered = false;
     public bool submitButtonNeeded = false;
     public Vector2 playerDirectionNeeded;
@@ -75,7 +75,7 @@ public class LoadMap : MonoBehaviour
             yield return null;
         } while (inTransition);
         SceneManager.LoadScene(mapToLoad);
-        player.eventNameWherePlayerHasToBeTeleported = startingPoint;
+        player.transform.position = playerStartingPoint;
         StartCoroutine(transition("Overlay_FadeOut"));
     }
 
