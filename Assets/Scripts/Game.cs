@@ -10,6 +10,7 @@ public class Game : MonoBehaviour
     public Player player;
     private string language;
     private IniFileHandler translationsFileHandler;
+    private bool menuEnabled = true;
 
     // Use this for initialization
     private void Start()
@@ -78,16 +79,22 @@ public class Game : MonoBehaviour
 
     private void checkMenu()
     {
-        if ((Input.GetButton("Cancel")) && (!menu.inTransition))
+        if ((Input.GetButtonDown("Cancel")) && (menuEnabled) && (!menu.isOpened))
         {
-            if (menu.isOpened)
+            menu.open();
+        }
+    }
+
+    public int getNumberOfHeroes()
+    {
+        int numberOfHeroes = 0;
+        for(int i = 0; i < heroes.Length; i++)
+        {
+            if (heroes[i] != null)
             {
-                menu.close();
-            }
-            else
-            {
-                menu.open();
+                numberOfHeroes++;
             }
         }
+        return numberOfHeroes;
     }
 }

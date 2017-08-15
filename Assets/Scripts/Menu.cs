@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using System.Collections.Generic;
 
 public class Menu : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class Menu : MonoBehaviour
     public bool inTransition = false;
     private int currentSectionIndex = 1;
     private int numberOfSections = 9;
+    private bool cursorEnabled = false;
+    private int currentCursorIndex = 1;
+    private bool isAxisInUse = false;
 
     // Use this for initialization
     private void Start()
@@ -24,33 +28,131 @@ public class Menu : MonoBehaviour
     {
         if (isOpened && !inTransition)
         {
-            if (Input.GetAxisRaw("Vertical") != 0)
+            if (cursorEnabled)
             {
-                if (Input.GetAxisRaw("Vertical") < 0)
+                if (Input.GetAxisRaw("Vertical") != 0)
                 {
-                    currentSectionIndex++;
-                    if (currentSectionIndex > numberOfSections)
+                    if (!isAxisInUse)
                     {
-                        currentSectionIndex = 1;
+                        moveCursor();
+                        isAxisInUse = true;
                     }
                 }
-                else if (Input.GetAxisRaw("Vertical") > 0)
+                else if (Input.GetButtonDown("Submit"))
                 {
-                    currentSectionIndex--;
-                    if (currentSectionIndex < 1)
-                    {
-                        currentSectionIndex = numberOfSections;
-                    }
-
+                    enterSection();
                 }
-                StartCoroutine(changeSection(Input.GetAxisRaw("Vertical")));
+                else if (Input.GetButtonDown("Cancel"))
+                {
+                    disableCursor();
+                }
+                if (Input.GetAxisRaw("Vertical") == 0)
+                {
+                    isAxisInUse = false;
+                }
+            }
+            else
+            {
+                if (Input.GetAxisRaw("Vertical") != 0)
+                {
+                    moveSection();
+                }
+                else if (Input.GetButtonDown("Submit"))
+                {
+                    checkIfCursorOrAction();
+                }
+                else if (Input.GetButtonDown("Cancel"))
+                {
+                    close();
+                }
             }
         }
+    }
+
+    private void enterSection()
+    {
+        // @TODO
+    }
+
+    private void moveCursor()
+    {
+        if (Input.GetAxisRaw("Vertical") < 0)
+        {
+            currentCursorIndex++;
+            if (currentCursorIndex > game.getNumberOfHeroes())
+            {
+                currentCursorIndex = 1;
+            }
+        }
+        else if (Input.GetAxisRaw("Vertical") > 0)
+        {
+            currentCursorIndex--;
+            if (currentCursorIndex < 1)
+            {
+                currentCursorIndex = game.getNumberOfHeroes();
+            }
+        }
+        displayBlockSelectionAtCurrentCursorPosition();
+    }
+
+    private void checkIfCursorOrAction()
+    {
+        List<int> sectionsWithCursor = new List<int> { 2, 3, 4 };
+        if (sectionsWithCursor.Contains(currentSectionIndex))
+        {
+            enableCursor();
+        }
+        else
+        {
+            enterSection();
+        }
+    }
+
+    private void moveSection()
+    {
+        if (Input.GetAxisRaw("Vertical") < 0)
+        {
+            currentSectionIndex++;
+            if (currentSectionIndex > numberOfSections)
+            {
+                currentSectionIndex = 1;
+            }
+        }
+        else if (Input.GetAxisRaw("Vertical") > 0)
+        {
+            currentSectionIndex--;
+            if (currentSectionIndex < 1)
+            {
+                currentSectionIndex = numberOfSections;
+            }
+
+        }
+        StartCoroutine(changeSection(Input.GetAxisRaw("Vertical")));
+    }
+
+    private void displayBlockSelectionAtCurrentCursorPosition()
+    {
+        GameObject.Find("Menu/Main/Block_Selection").transform.position = GameObject.Find("Menu/Main/Block_Hero" + currentCursorIndex).transform.position;
+    }
+
+    private void enableCursor()
+    {
+        currentCursorIndex = 1;
+        displayBlockSelectionAtCurrentCursorPosition();
+        GameObject.Find("Menu/Main/Block_Selection").GetComponent<Canvas>().enabled = true;
+        cursorEnabled = true;
+    }
+
+    private void disableCursor()
+    {
+        GameObject.Find("Menu/Main/Block_Selection").GetComponent<Canvas>().enabled = false;
+        cursorEnabled = false;
     }
 
     public void open()
     {
         currentSectionIndex = 1;
+        disableCursor();
         showHeroesStats();
         StartCoroutine(openMenu());
     }
