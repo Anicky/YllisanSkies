@@ -982,6 +982,11 @@ Prefab:
       propertyPath: m_BackGroundColor.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 92498643972474952, guid: 70f1c8cb8db4941479a207e988585b57,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70f1c8cb8db4941479a207e988585b57, type: 2}
   m_IsPrefabParent: 0
@@ -2827,6 +2832,7 @@ GameObject:
   - component: {fileID: 1131018283}
   - component: {fileID: 1131018285}
   - component: {fileID: 1131018284}
+  - component: {fileID: 1131018286}
   m_Layer: 5
   m_Name: Cursor
   m_TagString: Untagged
@@ -2849,7 +2855,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 12, y: 0}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1131018284
@@ -2885,6 +2891,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1131018282}
+--- !u!111 &1131018286
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1131018282}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 1c15e74b7cf3a224b99ba5ae3f2917e6, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 1c15e74b7cf3a224b99ba5ae3f2917e6, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1139137115
 GameObject:
   m_ObjectHideFlags: 0
