@@ -2,94 +2,63 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class LoadMap : MonoBehaviour
+public class LoadMap : Event
 {
+
+    public enum TransitionsEffects { None, Fade };
 
     public string mapToLoad;
     public Vector3 playerStartingPoint;
-    private bool isTriggered = false;
-    public bool submitButtonNeeded = false;
-    public Vector2 playerDirectionNeeded;
-    private Player player;
     private bool inTransition = false;
+    public TransitionsEffects transitionEffectIn = TransitionsEffects.Fade;
+    public TransitionsEffects transitionEffectOut = TransitionsEffects.Fade;
+    private Canvas canvas;
 
-    // Use this for initialization
-    private void Start()
+    private new void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        base.Start();
+        canvas = GameObject.Find("Game/Canvas").GetComponent<Canvas>();
     }
 
-    // Update is called once per frame
-    private void Update()
+    protected override void doActionWhenTriggered()
     {
-        if (isTriggered && checkSubmitButton() && checkDirection())
-        {
-            isTriggered = false;
-            StartCoroutine(changeScene());
-        }
-    }
-
-    private bool checkSubmitButton()
-    {
-        return (!submitButtonNeeded || (submitButtonNeeded && Input.GetButton("Submit")));
-    }
-
-    private bool checkDirection()
-    {
-        if (playerDirectionNeeded == new Vector2(0, 0))
-        {
-            return true;
-        }
-        else if ((playerDirectionNeeded.x != 0) && (player.lastMove.x == playerDirectionNeeded.x))
-        {
-            return true;
-        }
-        else if ((playerDirectionNeeded.y != 0) && (player.lastMove.y == playerDirectionNeeded.y))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Player")
-        {
-            isTriggered = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Player")
-        {
-            isTriggered = false;
-        }
+        StartCoroutine(changeScene());
     }
 
     private IEnumerator changeScene()
     {
-        StartCoroutine(transition("Overlay_FadeIn"));
+        StartCoroutine(transition(transitionEffectIn, "In"));
         do
         {
             yield return null;
         } while (inTransition);
         SceneManager.LoadScene(mapToLoad);
         player.transform.position = playerStartingPoint;
-        StartCoroutine(transition("Overlay_FadeOut"));
+        StartCoroutine(transition(transitionEffectOut, "Out"));
     }
 
-    private IEnumerator transition(string transition)
+    private IEnumerator transition(TransitionsEffects transitionEffect, string transitionType)
     {
-        inTransition = true;
-        GameObject game = GameObject.Find("Game");
-        Animation anim = game.GetComponent<Animation>();
-        anim.Play(transition);
-        do
+        if (transitionType == "In")
         {
-            yield return null;
-        } while (anim.isPlaying);
+            canvas.enabled = true;
+        }
+        inTransition = true;
+        if (transitionEffect != TransitionsEffects.None)
+        {
+            GameObject game = GameObject.Find("Game");
+            Animation anim = game.GetComponent<Animation>();
+            anim.Play("Overlay_" + transitionEffect + transitionType);
+            do
+            {
+                yield return null;
+            } while (anim.isPlaying);
+        }
         inTransition = false;
+        if (transitionType == "Out")
+        {
+            canvas.enabled = false;
+        }
     }
 
 }

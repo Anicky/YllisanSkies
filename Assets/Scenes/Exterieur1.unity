@@ -5182,10 +5182,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 952847ef778581b4eb4b85d699041e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapToLoad: Maison1
-  playerStartingPoint: {x: 351, y: -280, z: 0}
   submitButtonNeeded: 1
   playerDirectionNeeded: {x: 0, y: 1}
+  mapToLoad: Maison1
+  playerStartingPoint: {x: 351, y: -280, z: 0}
+  transitionEffectIn: 1
+  transitionEffectOut: 1
 --- !u!1 &1818857873
 GameObject:
   m_ObjectHideFlags: 0
