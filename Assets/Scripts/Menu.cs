@@ -8,7 +8,6 @@ public class Menu : MonoBehaviour
 {
 
     public bool isOpened = false;
-    private Canvas canvas;
     public Game game;
     public bool inTransition = false;
     private int currentSectionIndex = 1;
@@ -21,7 +20,7 @@ public class Menu : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        canvas = this.GetComponent<Canvas>();
+
     }
 
     // Update is called once per frame
