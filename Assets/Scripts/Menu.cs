@@ -26,6 +26,10 @@ public class Menu : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (isOpened)
+        {
+            displayTime();
+        }
         if (isOpened && !inTransition)
         {
             if (cursorEnabled)
