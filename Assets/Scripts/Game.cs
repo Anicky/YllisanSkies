@@ -12,6 +12,8 @@ public class Game : MonoBehaviour
     private string language;
     private IniFileHandler translationsFileHandler;
     private bool menuEnabled = true;
+    public int moneyCollected = 0;
+    public int currentMoney = 0;
 
     // Use this for initialization
     private void Start()
@@ -52,6 +54,8 @@ public class Game : MonoBehaviour
 
         heroes[0] = heroCyril;
         heroes[1] = heroMax;
+
+        currentMoney = 1200;
     }
 
     private void loadTranslationsTexts()
@@ -71,6 +75,8 @@ public class Game : MonoBehaviour
         GameObject.Find("Menu/Main/Section_07/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Options");
         GameObject.Find("Menu/Main/Section_08/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Save");
         GameObject.Find("Menu/Main/Section_09/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Quit");
+        GameObject.Find("Menu/Main/Block_Money/Money_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Money");
+        GameObject.Find("Menu/Main/Block_Time/Time_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Time");
     }
 
     // Update is called once per frame

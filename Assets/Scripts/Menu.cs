@@ -183,7 +183,9 @@ public class Menu : MonoBehaviour
             currentSectionIndex = 1;
         }
         disableCursor();
-        showHeroesStats();
+        displayHeroes();
+        displayMoney();
+        displayTime();
         StartCoroutine(openMenu());
     }
 
@@ -192,7 +194,38 @@ public class Menu : MonoBehaviour
         StartCoroutine(closeMenu());
     }
 
-    private void showHeroesStats()
+    private void displayMoney()
+    {
+        GameObject.Find("Menu/Main/Block_Money/Money_Stats").GetComponent<Text>().text = game.currentMoney.ToString();
+    }
+
+    private void displayTime()
+    {
+        int time = (int)Time.time;
+        int hours = time / (60 * 60);
+        int minutes = time / 60;
+        int seconds = time % 60;
+
+        string hoursToString = hours.ToString();
+        if (hours < 10)
+        {
+            hoursToString = "0" + hoursToString;
+        }
+        string minutesToString = minutes.ToString();
+        if (minutes < 10)
+        {
+            minutesToString = "0" + minutesToString;
+        }
+        string secondsToString = seconds.ToString();
+        if (seconds < 10)
+        {
+            secondsToString = "0" + secondsToString;
+        }
+
+        GameObject.Find("Menu/Main/Block_Time/Time_Stats").GetComponent<Text>().text = hoursToString + ":" + minutesToString + ":" + secondsToString;
+    }
+
+    private void displayHeroes()
     {
         for (int i = 0; i < game.heroes.Length; i++)
         {
