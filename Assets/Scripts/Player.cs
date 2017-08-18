@@ -7,18 +7,19 @@ public class Player : MonoBehaviour
     private Rigidbody2D rbody;
     private Animator anim;
     public float speed = 64;
-    private Tiled2Unity.TiledMap tiledMap;
+    private Tiled2Unity.TiledMap map;
     public Vector2 lastMove;
 	private bool movementEnabled = true;
+    private bool firstInit = true;
 
     private float getRelativeX()
     {
-        return rbody.position.x - tiledMap.transform.position.x;
+        return rbody.position.x - map.transform.position.x;
     }
 
     private float getRelativeY()
     {
-        return rbody.position.y - tiledMap.transform.position.y;
+        return rbody.position.y - map.transform.position.y;
     }
 
     // Use this for initialization
@@ -27,18 +28,25 @@ public class Player : MonoBehaviour
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         SceneManager.sceneLoaded += OnSceneLoaded;
-        initialize();
     }
 
     private void initialize()
     {
-        GameObject map = GameObject.Find("Map");
-        tiledMap = map.GetComponentInParent<Tiled2Unity.TiledMap>();
+        map = GameObject.Find("Map").GetComponentInParent<Tiled2Unity.TiledMap>();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         initialize();
+        if(firstInit)
+        {
+            GameObject playerStartingPoint = GameObject.Find("PlayerStartingPoint");
+            if (playerStartingPoint != null)
+            {
+                transform.position = playerStartingPoint.transform.position;
+            }
+            firstInit = false;
+        }
     }
 
     private void checkBypassCollisions() {
@@ -68,11 +76,11 @@ public class Player : MonoBehaviour
 			{
 				isWalking = false;
 			}
-			if (movementVector.x > 0 && getRelativeX() > tiledMap.GetMapWidthInPixelsScaled() - 12)
+			if (movementVector.x > 0 && getRelativeX() > map.GetMapWidthInPixelsScaled() - 12)
 			{
 				isWalking = false;
 			}
-			if (movementVector.y < 0 && getRelativeY() < -tiledMap.GetMapHeightInPixelsScaled() + 16)
+			if (movementVector.y < 0 && getRelativeY() < -map.GetMapHeightInPixelsScaled() + 16)
 			{
 				isWalking = false;
 			}

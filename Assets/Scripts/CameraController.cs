@@ -10,34 +10,37 @@ public class CameraController : MonoBehaviour
     private float mapWidth;
     private float mapHeight;
     public bool alwaysCenteredToTarget = false;
-    private Tiled2Unity.TiledMap tiledMap;
+    private Tiled2Unity.TiledMap map;
     private static bool cameraExists;
     public bool isSceneChanging = false;
 
     private float getRelativeX()
     {
-        return target.position.x - tiledMap.transform.position.x;
+        return target.position.x - map.transform.position.x;
     }
 
     private float getRelativeY()
     {
-        return target.position.y - tiledMap.transform.position.y;
+        return target.position.y - map.transform.position.y;
     }
 
     // Use this for initialization
     private void Start()
     {
         mainCamera = GetComponent<Camera>();
-        GameObject map = GameObject.Find("Map");
-        tiledMap = map.GetComponentInParent<Tiled2Unity.TiledMap>();
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void initialize()
+    {
+        GameObject map = GameObject.Find("Map");
+        this.map = GameObject.Find("Map").GetComponentInParent<Tiled2Unity.TiledMap>();
+        isSceneChanging = true;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        GameObject map = GameObject.Find("Map");
-        tiledMap = map.GetComponentInParent<Tiled2Unity.TiledMap>();
-        isSceneChanging = true;
+        initialize();
     }
 
     // Update is called once per frame
@@ -60,29 +63,29 @@ public class CameraController : MonoBehaviour
         {
             float toX = target.position.x;
             float toY = target.position.y;
-            if (!alwaysCenteredToTarget)
+            if (!alwaysCenteredToTarget && map)
             {
                 float cameraHeight = 2f * mainCamera.orthographicSize;
                 float cameraWidth = cameraHeight * mainCamera.aspect;
                 float cameraLeftLimitToFollowTarget = (cameraWidth / 2);
-                float cameraRightLimitToFollowTarget = tiledMap.GetMapWidthInPixelsScaled() - (cameraWidth / 2);
+                float cameraRightLimitToFollowTarget = map.GetMapWidthInPixelsScaled() - (cameraWidth / 2);
                 float cameraUpLimitToFollowTarget = -(cameraHeight / 2);
-                float cameraDownLimitToFollowTarget = -tiledMap.GetMapHeightInPixelsScaled() + (cameraHeight / 2);
+                float cameraDownLimitToFollowTarget = -map.GetMapHeightInPixelsScaled() + (cameraHeight / 2);
                 if (getRelativeX() < cameraLeftLimitToFollowTarget)
                 {
-                    toX = tiledMap.transform.position.x + cameraLeftLimitToFollowTarget;
+                    toX = map.transform.position.x + cameraLeftLimitToFollowTarget;
                 }
                 else if (getRelativeX() > cameraRightLimitToFollowTarget)
                 {
-                    toX = tiledMap.transform.position.x + cameraRightLimitToFollowTarget;
+                    toX = map.transform.position.x + cameraRightLimitToFollowTarget;
                 }
                 if (getRelativeY() > cameraUpLimitToFollowTarget)
                 {
-                    toY = tiledMap.transform.position.y + cameraUpLimitToFollowTarget;
+                    toY = map.transform.position.y + cameraUpLimitToFollowTarget;
                 }
                 else if (getRelativeY() < cameraDownLimitToFollowTarget)
                 {
-                    toY = tiledMap.transform.position.y + cameraDownLimitToFollowTarget;
+                    toY = map.transform.position.y + cameraDownLimitToFollowTarget;
                 }
             }
             targetPosition = new Vector3(toX, toY, transform.position.z);

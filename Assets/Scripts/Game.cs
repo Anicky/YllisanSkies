@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -58,6 +59,11 @@ public class Game : MonoBehaviour
         currentMoney = 1200;
     }
 
+    public void setStartingMap(string mapName)
+    {
+        SceneManager.LoadScene(mapName);
+    }
+
     private void loadTranslationsTexts()
     {
         for (int i = 1; i <= 4; i++)
@@ -96,7 +102,7 @@ public class Game : MonoBehaviour
     public int getNumberOfHeroes()
     {
         int numberOfHeroes = 0;
-        for(int i = 0; i < heroes.Length; i++)
+        for (int i = 0; i < heroes.Length; i++)
         {
             if (heroes[i] != null)
             {
