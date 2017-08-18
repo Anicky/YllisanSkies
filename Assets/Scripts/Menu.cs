@@ -16,8 +16,9 @@ public class Menu : MonoBehaviour
     private int currentCursorIndex = 0;
     private bool isAxisInUse = false;
     private bool isMenuOpeningOrClosing = false;
+    private Sections currentSectionOpened = Sections.None;
 
-    private enum Sections { Items = 1, Status = 2, Equipment = 3, Abilities = 4, Airship = 5, Journal = 6, Options = 7, Save = 8, Quit = 9 }
+    private enum Sections { None, Items, Status, Equipment, Abilities, Airship, Journal, Options, Save, Quit }
 
     // Use this for initialization
     private void Start()
@@ -42,7 +43,13 @@ public class Menu : MonoBehaviour
         }
         if (isOpened && !inTransition)
         {
-            if (cursorEnabled)
+            if (currentSectionOpened != Sections.None)
+            {
+                if (Input.GetButtonDown("Cancel"))
+                {
+                    quitSection();
+                }
+            } else if (cursorEnabled)
             {
                 if (Input.GetAxisRaw("Vertical") != 0)
                 {
@@ -54,7 +61,7 @@ public class Menu : MonoBehaviour
                 }
                 else if (Input.GetButtonDown("Submit"))
                 {
-                    enterSection();
+                    submitSection();
                 }
                 else if (Input.GetButtonDown("Cancel"))
                 {
@@ -92,30 +99,18 @@ public class Menu : MonoBehaviour
         }
     }
 
-    private void enterSection()
+    private void submitSection()
     {
         switch (currentSectionIndex)
         {
             case (int)Sections.Items:
-                // @TODO
-                break;
             case (int)Sections.Status:
-                // @TODO
-                break;
             case (int)Sections.Equipment:
-                // @TODO
-                break;
             case (int)Sections.Abilities:
-                // @TODO
-                break;
             case (int)Sections.Airship:
-                // @TODO
-                break;
             case (int)Sections.Journal:
-                // @TODO
-                break;
             case (int)Sections.Options:
-                // @TODO
+                enterSection((Sections)currentSectionIndex);
                 break;
             case (int)Sections.Save:
                 if (game.isSaveAllowed)
@@ -131,6 +126,21 @@ public class Menu : MonoBehaviour
                 // @TODO
                 break;
         }
+    }
+
+    private void enterSection(Sections section)
+    {
+        GameObject.Find("Menu/Main").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("Menu/" + section).GetComponent<Canvas>().enabled = true;
+        currentSectionOpened = section;
+    }
+
+    private void quitSection()
+    {
+        disableCursor();
+        GameObject.Find("Menu/" + currentSectionOpened).GetComponent<Canvas>().enabled = false;
+        GameObject.Find("Menu/Main").GetComponent<Canvas>().enabled = true;
+        currentSectionOpened = Sections.None;
     }
 
     private void moveCursor()
@@ -180,7 +190,7 @@ public class Menu : MonoBehaviour
         }
         else
         {
-            enterSection();
+            submitSection();
         }
     }
 
