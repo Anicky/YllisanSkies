@@ -370,7 +370,7 @@ public class Menu : MonoBehaviour
             {
                 if (rawImage.name == "Hero_Sprite")
                 {
-                    rawImage.texture = (Texture2D)Resources.Load("Sprite_Hero_" + hero.name, typeof(Texture2D));
+                    rawImage.texture = Resources.Load<Texture>("UI/Sprite_Hero_" + hero.name);
                 }
             }
         }
