@@ -17,11 +17,20 @@ public class Menu : MonoBehaviour
     private bool isAxisInUse = false;
     private bool isMenuOpeningOrClosing = false;
 
+    private enum Sections { Items = 1, Status = 2, Equipment = 3, Abilities = 4, Airship = 5, Journal = 6, Options = 7, Save = 8, Quit = 9 }
+
     // Use this for initialization
     private void Start()
     {
         GameObject.Find("Menu/Main").GetComponent<Canvas>().enabled = false;
-        GameObject.Find("Menu/Main/Block_Selection").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("Menu/Items").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("Menu/Status").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("Menu/Equipment").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("Menu/Abilities").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("Menu/Airship").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("Menu/Journal").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("Menu/Options").GetComponent<Canvas>().enabled = false;
+        disableCursor();
     }
 
     // Update is called once per frame
@@ -85,7 +94,43 @@ public class Menu : MonoBehaviour
 
     private void enterSection()
     {
-        // @TODO
+        switch (currentSectionIndex)
+        {
+            case (int)Sections.Items:
+                // @TODO
+                break;
+            case (int)Sections.Status:
+                // @TODO
+                break;
+            case (int)Sections.Equipment:
+                // @TODO
+                break;
+            case (int)Sections.Abilities:
+                // @TODO
+                break;
+            case (int)Sections.Airship:
+                // @TODO
+                break;
+            case (int)Sections.Journal:
+                // @TODO
+                break;
+            case (int)Sections.Options:
+                // @TODO
+                break;
+            case (int)Sections.Save:
+                if (game.isSaveAllowed)
+                {
+                    // @TODO
+                }
+                else
+                {
+                    // @TODO : play Error sound
+                }
+                break;
+            case (int)Sections.Quit:
+                // @TODO
+                break;
+        }
     }
 
     private void moveCursor()
@@ -192,6 +237,7 @@ public class Menu : MonoBehaviour
         displayMoney();
         displayTime();
         displayLocation();
+        displaySave();
         StartCoroutine(openMenu());
     }
 
@@ -234,6 +280,16 @@ public class Menu : MonoBehaviour
     private void displayLocation()
     {
         GameObject.Find("Menu/Main/Block_Location/Location_Title").GetComponent<Text>().text = game.getTranslation("Location", "Forest of Hopes");
+    }
+
+    private void displaySave()
+    {
+        Color saveColor = Color.white;
+        if (!game.isSaveAllowed)
+        {
+            saveColor = Color.gray;
+        }
+        GameObject.Find("Menu/Main/Section_08/Section_Title").GetComponent<Text>().color = saveColor;
     }
 
     private void displayHeroes()

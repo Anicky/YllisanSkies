@@ -16,6 +16,7 @@ public class Game : MonoBehaviour
     public int moneyCollected = 0;
     public int currentMoney = 0;
     public string currentLocation;
+    public bool isSaveAllowed = false;
 
     // Use this for initialization
     private void Start()
