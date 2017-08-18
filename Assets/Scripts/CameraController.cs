@@ -33,7 +33,11 @@ public class CameraController : MonoBehaviour
 
     private void initialize()
     {
-        this.map = GameObject.Find("Map").GetComponentInParent<Tiled2Unity.TiledMap>();
+        GameObject mapObject = GameObject.Find("Map");
+        if (mapObject)
+        {
+            map = mapObject.GetComponentInParent<Tiled2Unity.TiledMap>();
+        }
         isSceneChanging = true;
     }
 
