@@ -4361,6 +4361,7 @@ MonoBehaviour:
   currentMoney: 0
   currentLocation: 
   isSaveAllowed: 0
+  startingMapName: Exterieur1
 --- !u!4 &964542216
 Transform:
   m_ObjectHideFlags: 0

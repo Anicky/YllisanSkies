@@ -17,6 +17,7 @@ public class Game : MonoBehaviour
     public int currentMoney = 0;
     public string currentLocation;
     public bool isSaveAllowed = false;
+    public string startingMapName;
 
     // Use this for initialization
     private void Start()
@@ -37,6 +38,7 @@ public class Game : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        setStartingMap(startingMapName);
     }
 
     private void initGame()
