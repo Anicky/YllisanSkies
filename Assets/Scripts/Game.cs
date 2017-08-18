@@ -15,6 +15,7 @@ public class Game : MonoBehaviour
     private bool menuEnabled = true;
     public int moneyCollected = 0;
     public int currentMoney = 0;
+    public string currentLocation;
 
     // Use this for initialization
     private void Start()
@@ -57,6 +58,7 @@ public class Game : MonoBehaviour
         heroes[1] = heroMax;
 
         currentMoney = 1200;
+        currentLocation = "Forest of Hopes";
     }
 
     public void setStartingMap(string mapName)
@@ -68,21 +70,26 @@ public class Game : MonoBehaviour
     {
         for (int i = 1; i <= 4; i++)
         {
-            GameObject.Find("Menu/Main/Block_Hero" + i + "/Lv_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("General", "Lv");
-            GameObject.Find("Menu/Main/Block_Hero" + i + "/Hp_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("General", "Hp");
-            GameObject.Find("Menu/Main/Block_Hero" + i + "/Ap_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("General", "Ap");
+            GameObject.Find("Menu/Main/Block_Hero" + i + "/Lv_Title").GetComponent<Text>().text = getTranslation("General", "Lv");
+            GameObject.Find("Menu/Main/Block_Hero" + i + "/Hp_Title").GetComponent<Text>().text = getTranslation("General", "Hp");
+            GameObject.Find("Menu/Main/Block_Hero" + i + "/Ap_Title").GetComponent<Text>().text = getTranslation("General", "Ap");
         }
-        GameObject.Find("Menu/Main/Section_01/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Items");
-        GameObject.Find("Menu/Main/Section_02/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Status");
-        GameObject.Find("Menu/Main/Section_03/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Equipment");
-        GameObject.Find("Menu/Main/Section_04/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Abilities");
-        GameObject.Find("Menu/Main/Section_05/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Airship");
-        GameObject.Find("Menu/Main/Section_06/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Journal");
-        GameObject.Find("Menu/Main/Section_07/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Options");
-        GameObject.Find("Menu/Main/Section_08/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Save");
-        GameObject.Find("Menu/Main/Section_09/Section_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Quit");
-        GameObject.Find("Menu/Main/Block_Money/Money_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Money");
-        GameObject.Find("Menu/Main/Block_Time/Time_Title").GetComponent<Text>().text = translationsFileHandler.IniReadValue("Menu", "Time");
+        GameObject.Find("Menu/Main/Section_01/Section_Title").GetComponent<Text>().text = getTranslation("Menu", "Items");
+        GameObject.Find("Menu/Main/Section_02/Section_Title").GetComponent<Text>().text = getTranslation("Menu", "Status");
+        GameObject.Find("Menu/Main/Section_03/Section_Title").GetComponent<Text>().text = getTranslation("Menu", "Equipment");
+        GameObject.Find("Menu/Main/Section_04/Section_Title").GetComponent<Text>().text = getTranslation("Menu", "Abilities");
+        GameObject.Find("Menu/Main/Section_05/Section_Title").GetComponent<Text>().text = getTranslation("Menu", "Airship");
+        GameObject.Find("Menu/Main/Section_06/Section_Title").GetComponent<Text>().text = getTranslation("Menu", "Journal");
+        GameObject.Find("Menu/Main/Section_07/Section_Title").GetComponent<Text>().text = getTranslation("Menu", "Options");
+        GameObject.Find("Menu/Main/Section_08/Section_Title").GetComponent<Text>().text = getTranslation("Menu", "Save");
+        GameObject.Find("Menu/Main/Section_09/Section_Title").GetComponent<Text>().text = getTranslation("Menu", "Quit");
+        GameObject.Find("Menu/Main/Block_Money/Money_Title").GetComponent<Text>().text = getTranslation("Menu", "Money");
+        GameObject.Find("Menu/Main/Block_Time/Time_Title").GetComponent<Text>().text = getTranslation("Menu", "Time");
+    }
+
+    public string getTranslation(string type, string text)
+    {
+        return translationsFileHandler.IniReadValue(type, text);
     }
 
     // Update is called once per frame

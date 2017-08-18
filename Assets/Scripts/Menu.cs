@@ -191,6 +191,7 @@ public class Menu : MonoBehaviour
         displayHeroes();
         displayMoney();
         displayTime();
+        displayLocation();
         StartCoroutine(openMenu());
     }
 
@@ -228,6 +229,11 @@ public class Menu : MonoBehaviour
         }
 
         GameObject.Find("Menu/Main/Block_Time/Time_Stats").GetComponent<Text>().text = hoursToString + ":" + minutesToString + ":" + secondsToString;
+    }
+
+    private void displayLocation()
+    {
+        GameObject.Find("Menu/Main/Block_Location/Location_Title").GetComponent<Text>().text = game.getTranslation("Location", "Forest of Hopes");
     }
 
     private void displayHeroes()
