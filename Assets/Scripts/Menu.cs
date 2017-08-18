@@ -382,7 +382,7 @@ public class Menu : MonoBehaviour
         isMenuOpeningOrClosing = true;
         game.player.disableMovement();
         GameObject.Find("Menu/Main").GetComponent<Canvas>().enabled = true;
-        Animation anim = GameObject.Find("Menu/Main").GetComponent<Animation>();
+        Animation anim = GameObject.Find("Menu").GetComponent<Animation>();
         anim.Play("Menu_Open");
         do
         {
@@ -397,7 +397,7 @@ public class Menu : MonoBehaviour
     {
         inTransition = true;
         isMenuOpeningOrClosing = true;
-        Animation anim = GameObject.Find("Menu/Main").GetComponent<Animation>();
+        Animation anim = GameObject.Find("Menu").GetComponent<Animation>();
         anim.Play("Menu_Close");
         do
         {
