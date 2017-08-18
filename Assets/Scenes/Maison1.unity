@@ -193,11 +193,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4089179554035962, guid: 4c96b0f04849a6d4a9d77aa1f52c0bb8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 351.4
+      value: 352
       objectReference: {fileID: 0}
     - target: {fileID: 4089179554035962, guid: 4c96b0f04849a6d4a9d77aa1f52c0bb8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -312.2
+      value: -312
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c96b0f04849a6d4a9d77aa1f52c0bb8, type: 2}
@@ -218,7 +218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 952847ef778581b4eb4b85d699041e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapToLoad: Exterieur1
-  playerStartingPoint: {x: 408, y: -200, z: 0}
   submitButtonNeeded: 0
   playerDirectionNeeded: {x: 0, y: -1}
+  mapToLoad: Exterieur1
+  playerStartingPoint: {x: 408, y: -200, z: 0}
+  transitionEffectIn: 1
+  transitionEffectOut: 1
