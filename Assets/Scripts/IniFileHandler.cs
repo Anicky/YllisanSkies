@@ -1,6 +1,8 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 using System;
+using UnityEngine;
+using System.Text.RegularExpressions;
 
 public class IniFileHandler
 {
@@ -15,31 +17,29 @@ public class IniFileHandler
 
     private bool firstRead()
     {
-        if (File.Exists(path))
+        TextAsset textAsset = Resources.Load<TextAsset>(path);
+        if (textAsset != null)
         {
-            using (StreamReader sr = new StreamReader(path))
+            string[] lines = Regex.Split(textAsset.text, "\n|\r|\r\n");
+            string section = "";
+            string key = "";
+            string value = "";
+            foreach (string line in lines)
             {
-                string line;
-                string section = "";
-                string key = "";
-                string value = "";
-                while (!string.IsNullOrEmpty(line = sr.ReadLine()))
+                line.Trim();
+                if (line.StartsWith("[") && line.EndsWith("]"))
                 {
-                    line.Trim();
-                    if (line.StartsWith("[") && line.EndsWith("]"))
-                    {
-                        section = line.Substring(1, line.Length - 2);
-                    }
-                    else
-                    {
-                        string[] ln = line.Split(new char[] { '=' });
-                        key = ln[0].Trim();
-                        value = ln[1].Trim();
-                    }
-                    if (section == "" || key == "" || value == "")
-                        continue;
-                    populateIni(section, key, value);
+                    section = line.Substring(1, line.Length - 2);
                 }
+                else if (line != "")
+                {
+                    string[] ln = line.Split(new char[] { '=' });
+                    key = ln[0].Trim();
+                    value = ln[1].Trim();
+                }
+                if (section == "" || key == "" || value == "")
+                    continue;
+                populateIni(section, key, value);
             }
         }
         return true;

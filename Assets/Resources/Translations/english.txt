@@ -13,6 +13,6 @@ Options = Options
 Save = Save
 Quit = Quit
 Money = Kin's
-Time = Temps
+Time = Time
 [Location]
 Forest of Hopes = Forest of Hopes

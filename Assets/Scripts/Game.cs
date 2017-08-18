@@ -23,7 +23,7 @@ public class Game : MonoBehaviour
     private void Start()
     {
         language = "francais";
-        translationsFileHandler = new IniFileHandler("Assets/Translations/" + language + ".ini");
+        translationsFileHandler = new IniFileHandler("Translations/" + language);
         loadTranslationsTexts();
         menu.game = this;
         options = new Options();
