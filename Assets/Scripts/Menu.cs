@@ -78,8 +78,8 @@ public class Menu : MonoBehaviour
     {
         if (isMenuOpeningOrClosing && currentSectionIndex != 1)
         {
-            GameObject.Find("Menu/Main/Section_01").transform.position += new Vector3(29, 0, 0);
-            GameObject.Find("Menu/Main/Section_0" + currentSectionIndex).transform.position -= new Vector3(29, 0, 0);
+            GameObject.Find("Menu/Main/Section_01").transform.localPosition += new Vector3(64, 0, 0);
+            GameObject.Find("Menu/Main/Section_0" + currentSectionIndex).transform.localPosition -= new Vector3(64, 0, 0);
         }
     }
 
