@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
-using UnityEngine.SceneManagement;
 
 [InitializeOnLoad]
 public class SceneAutoLoader : MonoBehaviour
@@ -43,7 +42,7 @@ public class SceneAutoLoader : MonoBehaviour
         string masterScene = EditorUtility.OpenFilePanel("Select Master Scene", Application.dataPath, "unity");
         if (!string.IsNullOrEmpty(masterScene))
         {
-            Scene MasterScene = SceneManager.GetSceneByName(masterScene);
+            SceneAutoLoader.masterScene = masterScene;
             isMasterLoadedOnPlay = true;
         }
     }
