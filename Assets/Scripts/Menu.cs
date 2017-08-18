@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
 using System.Collections.Generic;
 
 public class Menu : MonoBehaviour
@@ -49,7 +48,8 @@ public class Menu : MonoBehaviour
                 {
                     quitSection();
                 }
-            } else if (cursorEnabled)
+            }
+            else if (cursorEnabled)
             {
                 if (Input.GetAxisRaw("Vertical") != 0)
                 {
@@ -370,7 +370,7 @@ public class Menu : MonoBehaviour
             {
                 if (rawImage.name == "Hero_Sprite")
                 {
-                    rawImage.texture = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/UI/Sprite_Hero_" + hero.name + ".png", typeof(Texture2D));
+                    rawImage.texture = (Texture2D)Resources.Load("Sprite_Hero_" + hero.name, typeof(Texture2D));
                 }
             }
         }
