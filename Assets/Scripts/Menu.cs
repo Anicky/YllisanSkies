@@ -20,7 +20,8 @@ public class Menu : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-
+        GameObject.Find("Menu/Main").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("Menu/Main/Block_Selection").GetComponent<Canvas>().enabled = false;
     }
 
     // Update is called once per frame
