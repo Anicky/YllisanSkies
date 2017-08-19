@@ -16,6 +16,10 @@ public class Menu : MonoBehaviour
     private bool isAxisInUse = false;
     private bool isMenuOpeningOrClosing = false;
     private Sections currentSectionOpened = Sections.None;
+    public AudioClip soundCursor;
+    public AudioClip soundSubmit;
+    public AudioClip soundError;
+    public AudioClip soundCancel;
 
     private enum Sections { None, Items, Status, Equipment, Abilities, Airship, Journal, Options, Save, Quit }
 
@@ -46,6 +50,7 @@ public class Menu : MonoBehaviour
             {
                 if (Input.GetButtonDown("Cancel"))
                 {
+                    playSoundCancel();
                     quitSection();
                 }
             }
@@ -55,6 +60,7 @@ public class Menu : MonoBehaviour
                 {
                     if (!isAxisInUse)
                     {
+                        playSoundCursor();
                         moveCursor();
                         isAxisInUse = true;
                     }
@@ -65,6 +71,7 @@ public class Menu : MonoBehaviour
                 }
                 else if (Input.GetButtonDown("Cancel"))
                 {
+                    playSoundCancel();
                     disableCursor();
                 }
                 if (Input.GetAxisRaw("Vertical") == 0)
@@ -76,6 +83,7 @@ public class Menu : MonoBehaviour
             {
                 if (Input.GetAxisRaw("Vertical") != 0)
                 {
+                    playSoundCursor();
                     moveSection();
                 }
                 else if (Input.GetButtonDown("Submit"))
@@ -88,6 +96,26 @@ public class Menu : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void playSoundCursor()
+    {
+        GetComponent<AudioSource>().PlayOneShot(soundCursor);
+    }
+
+    private void playSoundSubmit()
+    {
+        GetComponent<AudioSource>().PlayOneShot(soundSubmit);
+    }
+
+    private void playSoundError()
+    {
+        GetComponent<AudioSource>().PlayOneShot(soundError);
+    }
+
+    private void playSoundCancel()
+    {
+        GetComponent<AudioSource>().PlayOneShot(soundCancel);
     }
 
     private void LateUpdate()
@@ -110,20 +138,24 @@ public class Menu : MonoBehaviour
             case (int)Sections.Airship:
             case (int)Sections.Journal:
             case (int)Sections.Options:
+                playSoundSubmit();
                 enterSection((Sections)currentSectionIndex);
                 break;
             case (int)Sections.Save:
                 if (game.isSaveAllowed)
                 {
+                    playSoundSubmit();
                     // @TODO
                 }
                 else
                 {
+                    playSoundError();
                     // @TODO : play Error sound
                 }
                 break;
             case (int)Sections.Quit:
                 // @TODO
+                playSoundSubmit();
                 break;
         }
     }
@@ -148,7 +180,6 @@ public class Menu : MonoBehaviour
         if (Input.GetAxisRaw("Vertical") < 0)
         {
             moveCursorDown();
-
         }
         else if (Input.GetAxisRaw("Vertical") > 0)
         {
@@ -186,6 +217,7 @@ public class Menu : MonoBehaviour
         List<int> sectionsWithCursor = new List<int> { 2, 3, 4 };
         if (sectionsWithCursor.Contains(currentSectionIndex))
         {
+            playSoundSubmit();
             enableCursor();
         }
         else
@@ -238,6 +270,7 @@ public class Menu : MonoBehaviour
 
     public void open()
     {
+        playSoundCancel();
         if (!game.options.menuMemorizeSectionIndex)
         {
             currentSectionIndex = 1;
@@ -253,6 +286,7 @@ public class Menu : MonoBehaviour
 
     public void close()
     {
+        playSoundCancel();
         StartCoroutine(closeMenu());
     }
 
