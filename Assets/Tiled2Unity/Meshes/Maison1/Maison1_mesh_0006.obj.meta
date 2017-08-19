@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 86f6b59b99e3b0c48ab058ca2ad8858a
-timeCreated: 1501604430
+guid: f70531446d6cfc44d8d848997910f1e4
+timeCreated: 1503148099
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: Foret_des_Espoirs_mesh_0008
+    100000: Maison1_mesh_0006
     100002: //RootNode
-    400000: Foret_des_Espoirs_mesh_0008
+    400000: Maison1_mesh_0006
     400002: //RootNode
-    2300000: Foret_des_Espoirs_mesh_0008
-    3300000: Foret_des_Espoirs_mesh_0008
-    4300000: Foret_des_Espoirs_mesh_0008
+    2300000: Maison1_mesh_0006
+    3300000: Maison1_mesh_0006
+    4300000: Maison1_mesh_0006
   materials:
     importMaterials: 0
     materialName: 0
