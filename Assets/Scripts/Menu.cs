@@ -442,6 +442,7 @@ public class Menu : MonoBehaviour
         game.player.enableMovement();
         isMenuOpeningOrClosing = false;
         inTransition = false;
+        game.stopEvents = false;
     }
 
     private IEnumerator changeSection(float axis)

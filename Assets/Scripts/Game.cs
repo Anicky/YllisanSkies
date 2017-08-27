@@ -18,6 +18,7 @@ public class Game : MonoBehaviour
     public string currentLocation;
     public bool isSaveAllowed = false;
     public string startingMapName;
+    public bool stopEvents = false;
 
     // Use this for initialization
     private void Start()
@@ -112,6 +113,7 @@ public class Game : MonoBehaviour
     {
         if ((Input.GetButtonDown("Cancel")) && (menuEnabled) && (!menu.isOpened) && (!menu.inTransition))
         {
+            stopEvents = true;
             menu.open();
         }
     }
