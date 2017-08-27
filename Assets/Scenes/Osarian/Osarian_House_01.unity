@@ -131,7 +131,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282493134}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 328, y: -360, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 289517967}
@@ -275,7 +275,7 @@ MonoBehaviour:
   submitButtonNeeded: 0
   playerDirectionNeeded: {x: 0, y: -1}
   mapToLoad: Osarian_Outside_01
-  playerStartingPoint: {x: 342, y: -370, z: 0}
+  playerStartingPoint: {x: 330, y: -382, z: 0}
   transitionEffectIn: 1
   transitionEffectOut: 1
 --- !u!1 &901871975
@@ -301,7 +301,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 901871975}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 328, y: -360, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 289517967}
