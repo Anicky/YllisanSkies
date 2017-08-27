@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/GamePrepare.unity
+    path: Assets/Scenes/Game.unity
     guid: bb360f8705fea4d4cb73866990279757
   - enabled: 1
-    path: Assets/Scenes/Exterieur1.unity
+    path: Assets/Scenes/Osarian/Osarian_Outside_01.unity
     guid: d0c561746516c874d8145aaca05beed9
   - enabled: 1
-    path: Assets/Scenes/Maison1.unity
+    path: Assets/Scenes/Osarian/Osarian_House_01.unity
     guid: 1504c42a9339781469f52b779aaed705

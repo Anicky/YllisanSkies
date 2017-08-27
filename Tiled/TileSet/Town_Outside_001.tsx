@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset name="Town_Outside_001" tilewidth="16" tileheight="16" tilecount="480" columns="30">
- <image source="Town_Outside_001.png" width="480" height="256"/>
+ <image source="Town_Outside_001.png" trans="ff8cb4" width="480" height="256"/>
  <tile id="162">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="15.9375" height="16"/>

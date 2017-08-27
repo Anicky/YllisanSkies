@@ -3567,7 +3567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a6de1937a26104db319887a0c48308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 64
+  speed: 80
   lastMove: {x: 0, y: 0}
 --- !u!61 &805787735
 BoxCollider2D:
@@ -3666,7 +3666,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 200
   m_Sprite: {fileID: 21300046, guid: 725a5dc4fe5121f42ba480ffaddd83e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4388,7 +4388,7 @@ MonoBehaviour:
   currentMoney: 0
   currentLocation: 
   isSaveAllowed: 0
-  startingMapName: Exterieur1
+  startingMapName: Osarian_Outside_01
 --- !u!4 &964542216
 Transform:
   m_ObjectHideFlags: 0
@@ -7148,7 +7148,7 @@ Camera:
   m_GameObject: {fileID: 1619664583}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
