@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 19/08/2017 15:08:08-->
+<!--Last exported: 27/08/2017 10:36:13-->
 <Tiled2Unity version="1.0.12.3">
   <AssignMaterial mesh="Foret_des_Espoirs_mesh_0001" material="Maison_Exterieur_022" />
   <AssignMaterial mesh="Foret_des_Espoirs_mesh_0002" material="Maison_Exterieur_022" />
   <AssignMaterial mesh="Foret_des_Espoirs_mesh_0003" material="Maison_Exterieur_022" />
   <AssignMaterial mesh="Foret_des_Espoirs_mesh_0004" material="Maison_Exterieur_022" />
   <AssignMaterial mesh="Foret_des_Espoirs_mesh_0005" material="Collisions" />
-  <Prefab name="Foret_des_Espoirs" orientation="Orthogonal" staggerAxis="Y" staggerIndex="Odd" hexSideLength="0" numLayers="17" numTilesWide="40" numTilesHigh="30" tileWidth="16" tileHeight="16" exportScale="1" mapWidthInPixels="640" mapHeightInPixels="480" backgroundColor="#808080">
+  <Prefab name="Foret_des_Espoirs" orientation="Orthogonal" staggerAxis="Y" staggerIndex="Odd" hexSideLength="0" numLayers="6" numTilesWide="40" numTilesHigh="30" tileWidth="16" tileHeight="16" exportScale="1" mapWidthInPixels="640" mapHeightInPixels="480" backgroundColor="#808080">
     <GameObject name="Lower 1" x="0" y="0" z="0">
       <TileLayer offsetX="0" offsetY="0" />
       <GameObject name="Maison_Exterieur_022" mesh="Foret_des_Espoirs_mesh_0001" sortingLayerName="" sortingOrder="0" opacity="1" />
@@ -34,46 +34,13 @@
       <TileLayer offsetX="0" offsetY="0" />
       <GameObject name="Maison_Exterieur_022" mesh="Foret_des_Espoirs_mesh_0003" sortingLayerName="" sortingOrder="3" opacity="1" />
     </GameObject>
-    <GameObject name="Lower 5" x="0" y="0" z="0">
-      <TileLayer offsetX="0" offsetY="0" />
-    </GameObject>
-    <GameObject name="Lower 6" x="0" y="0" z="0">
-      <TileLayer offsetX="0" offsetY="0" />
-    </GameObject>
-    <GameObject name="Lower 7" x="0" y="0" z="0">
-      <TileLayer offsetX="0" offsetY="0" />
-    </GameObject>
-    <GameObject name="Lower 8" x="0" y="0" z="0">
-      <TileLayer offsetX="0" offsetY="0" />
-    </GameObject>
     <GameObject name="Top 1" x="0" y="0" z="0">
       <TileLayer offsetX="0" offsetY="0" />
-      <GameObject name="Maison_Exterieur_022" mesh="Foret_des_Espoirs_mesh_0004" sortingLayerName="" sortingOrder="8" opacity="1" />
-    </GameObject>
-    <GameObject name="Top 2" x="0" y="0" z="0">
-      <TileLayer offsetX="0" offsetY="0" />
-    </GameObject>
-    <GameObject name="Top 3" x="0" y="0" z="0">
-      <TileLayer offsetX="0" offsetY="0" />
-    </GameObject>
-    <GameObject name="Top 4" x="0" y="0" z="0">
-      <TileLayer offsetX="0" offsetY="0" />
-    </GameObject>
-    <GameObject name="Top 5" x="0" y="0" z="0">
-      <TileLayer offsetX="0" offsetY="0" />
-    </GameObject>
-    <GameObject name="Top 6" x="0" y="0" z="0">
-      <TileLayer offsetX="0" offsetY="0" />
-    </GameObject>
-    <GameObject name="Top 7" x="0" y="0" z="0">
-      <TileLayer offsetX="0" offsetY="0" />
-    </GameObject>
-    <GameObject name="Top 8" x="0" y="0" z="0">
-      <TileLayer offsetX="0" offsetY="0" />
+      <GameObject name="Maison_Exterieur_022" mesh="Foret_des_Espoirs_mesh_0004" sortingLayerName="" sortingOrder="4" opacity="1" />
     </GameObject>
     <GameObject name="Collisions" x="0" y="0" z="0">
       <TileLayer offsetX="0" offsetY="0" />
-      <GameObject name="Collisions" mesh="Foret_des_Espoirs_mesh_0005" sortingLayerName="" sortingOrder="16" opacity="1" />
+      <GameObject name="Collisions" mesh="Foret_des_Espoirs_mesh_0005" sortingLayerName="" sortingOrder="5" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
           <Path>448,-192 448,-64 336,-64 336,-192</Path>
