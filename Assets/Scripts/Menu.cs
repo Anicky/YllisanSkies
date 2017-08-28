@@ -100,22 +100,22 @@ public class Menu : MonoBehaviour
 
     private void playSoundCursor()
     {
-        GetComponent<AudioSource>().PlayOneShot(soundCursor);
+        game.GetComponent<AudioSource>().PlayOneShot(soundCursor);
     }
 
     private void playSoundSubmit()
     {
-        GetComponent<AudioSource>().PlayOneShot(soundSubmit);
+        game.GetComponent<AudioSource>().PlayOneShot(soundSubmit);
     }
 
     private void playSoundError()
     {
-        GetComponent<AudioSource>().PlayOneShot(soundError);
+        game.GetComponent<AudioSource>().PlayOneShot(soundError);
     }
 
     private void playSoundCancel()
     {
-        GetComponent<AudioSource>().PlayOneShot(soundCancel);
+        game.GetComponent<AudioSource>().PlayOneShot(soundCancel);
     }
 
     private void LateUpdate()
