@@ -3,271 +3,270 @@ using UnityEngine;
 public class Node
 {
 
-    public bool BadNode;
+    public bool isBadNode;
 
     //Grid coordinates
-    public int X;
-    public int Y;
+    public int x;
+    public int y;
 
     //world position
-    public Vector2 Position;
+    public Vector2 position;
 
     //our 8 connection points
-    public NodeConnection Top;
-    public NodeConnection Left;
-    public NodeConnection Bottom;
-    public NodeConnection Right;
-    public NodeConnection TopLeft;
-    public NodeConnection TopRight;
-    public NodeConnection BottomLeft;
-    public NodeConnection BottomRight;
+    public NodeConnection nodeAtTopLeft;
+    public NodeConnection nodeAtTop;
+    public NodeConnection nodeAtTopRight;
+    public NodeConnection nodeAtLeft;
+    public NodeConnection nodeAtRight;
+    public NodeConnection nodeAtBottomLeft;
+    public NodeConnection nodeAtBottom;
+    public NodeConnection nodeAtBottomRight;
 
-    GameObject Debug;
+    //debug
+    GameObject nodeDebug;
 
     public Node(float x, float y, Vector2 position, Grid grid)
     {
-        Initialize(x, y, position, grid);
+        initialize(x, y, position, grid);
     }
 
-    public void Initialize(float x, float y, Vector2 position, Grid grid)
+    public void initialize(float x, float y, Vector2 position, Grid grid)
     {
-        X = (int)x;
-        Y = (int)y;
+        this.x = (int)x;
+        this.y = (int)y;
 
-        Position = position;
+        this.position = position;
 
         //check if coords inside our grid area
-        if (Position.x < grid.transform.position.x || -Position.y < grid.transform.position.y)
+        if (this.position.x < grid.transform.position.x || -this.position.y < grid.transform.position.y)
         {
-            DisableConnections();
-            BadNode = true;
+            disableConnections();
+            isBadNode = true;
         }
-        if (Position.x > grid.transform.position.x + grid.map.MapWidthInPixels)
+        if (this.position.x > grid.transform.position.x + grid.map.MapWidthInPixels)
         {
-            DisableConnections();
-            BadNode = true;
+            disableConnections();
+            isBadNode = true;
         }
-        if (-Position.y > grid.transform.position.y + grid.map.MapHeightInPixels)
+        if (-this.position.y > grid.transform.position.y + grid.map.MapHeightInPixels)
         {
-            DisableConnections();
-            BadNode = true;
+            disableConnections();
+            isBadNode = true;
         }
 
         if (grid.debugPathFinding)
         {
-            Debug = GameObject.Instantiate(Resources.Load("Node")) as GameObject;
-            Debug.transform.position = Position;
-            Debug.GetComponent<PathFindingDebug>().X = X;
-            Debug.GetComponent<PathFindingDebug>().Y = Y;
+            nodeDebug = GameObject.Instantiate(Resources.Load("Pathfinding/Node")) as GameObject;
+            nodeDebug.transform.position = this.position;
         }
     }
 
-    public void SetColor(Color color)
+    public void setColor(Color color)
     {
-        Debug.transform.GetComponent<SpriteRenderer>().color = color;
+        nodeDebug.transform.GetComponent<SpriteRenderer>().color = color;
     }
 
     //Cull nodes if they don't have enough valid connection points (3)
-    public void CheckConnectionsPass1(Grid grid)
+    public void checkConnectionsPass1(Grid grid)
     {
-        if (!BadNode)
+        if (!isBadNode)
         {
 
             int clearCount = 0;
 
-            if (Top != null && Top.Valid)
+            if (nodeAtTop != null && nodeAtTop.isValid)
                 clearCount++;
-            if (Bottom != null && Bottom.Valid)
+            if (nodeAtBottom != null && nodeAtBottom.isValid)
                 clearCount++;
-            if (Left != null && Left.Valid)
+            if (nodeAtLeft != null && nodeAtLeft.isValid)
                 clearCount++;
-            if (Right != null && Right.Valid)
+            if (nodeAtRight != null && nodeAtRight.isValid)
                 clearCount++;
-            if (TopLeft != null && TopLeft.Valid)
+            if (nodeAtTopLeft != null && nodeAtTopLeft.isValid)
                 clearCount++;
-            if (TopRight != null && TopRight.Valid)
+            if (nodeAtTopRight != null && nodeAtTopRight.isValid)
                 clearCount++;
-            if (BottomLeft != null && BottomLeft.Valid)
+            if (nodeAtBottomLeft != null && nodeAtBottomLeft.isValid)
                 clearCount++;
-            if (BottomRight != null && BottomRight.Valid)
+            if (nodeAtBottomRight != null && nodeAtBottomRight.isValid)
                 clearCount++;
 
             //If not at least 1 valid connection point - disable node
             if (clearCount < 1)
             {
-                BadNode = true;
-                DisableConnections();
+                isBadNode = true;
+                disableConnections();
             }
         }
 
         if (grid.debugPathFinding)
         {
-            if (!BadNode)
-                SetColor(Color.yellow);
+            if (!isBadNode)
+                setColor(Color.yellow);
             else
-                SetColor(Color.red);
+                setColor(Color.red);
         }
     }
 
     //Remove connections that connect to bad nodes
-    public void CheckConnectionsPass2()
+    public void checkConnectionsPass2()
     {
-        if (Top != null && Top.Node != null && Top.Node.BadNode)
-            Top.Valid = false;
-        if (Bottom != null && Bottom.Node != null && Bottom.Node.BadNode)
-            Bottom.Valid = false;
-        if (Left != null && Left.Node != null && Left.Node.BadNode)
-            Left.Valid = false;
-        if (Right != null && Right.Node != null && Right.Node.BadNode)
-            Right.Valid = false;
-        if (TopLeft != null && TopLeft.Node != null && TopLeft.Node.BadNode)
-            TopLeft.Valid = false;
-        if (TopRight != null && TopRight.Node != null && TopRight.Node.BadNode)
-            TopRight.Valid = false;
-        if (BottomLeft != null && BottomLeft.Node != null && BottomLeft.Node.BadNode)
-            BottomLeft.Valid = false;
-        if (BottomRight != null && BottomRight.Node != null && BottomRight.Node.BadNode)
-            BottomRight.Valid = false;
+        if (nodeAtTop != null && nodeAtTop.node != null && nodeAtTop.node.isBadNode)
+            nodeAtTop.isValid = false;
+        if (nodeAtBottom != null && nodeAtBottom.node != null && nodeAtBottom.node.isBadNode)
+            nodeAtBottom.isValid = false;
+        if (nodeAtLeft != null && nodeAtLeft.node != null && nodeAtLeft.node.isBadNode)
+            nodeAtLeft.isValid = false;
+        if (nodeAtRight != null && nodeAtRight.node != null && nodeAtRight.node.isBadNode)
+            nodeAtRight.isValid = false;
+        if (nodeAtTopLeft != null && nodeAtTopLeft.node != null && nodeAtTopLeft.node.isBadNode)
+            nodeAtTopLeft.isValid = false;
+        if (nodeAtTopRight != null && nodeAtTopRight.node != null && nodeAtTopRight.node.isBadNode)
+            nodeAtTopRight.isValid = false;
+        if (nodeAtBottomLeft != null && nodeAtBottomLeft.node != null && nodeAtBottomLeft.node.isBadNode)
+            nodeAtBottomLeft.isValid = false;
+        if (nodeAtBottomRight != null && nodeAtBottomRight.node != null && nodeAtBottomRight.node.isBadNode)
+            nodeAtBottomRight.isValid = false;
     }
 
     //Disable all connections going from this this
-    public void DisableConnections()
+    public void disableConnections()
     {
-        if (Top != null)
+        if (nodeAtTop != null)
         {
-            Top.Valid = false;
+            nodeAtTop.isValid = false;
         }
-        if (Bottom != null)
+        if (nodeAtBottom != null)
         {
-            Bottom.Valid = false;
+            nodeAtBottom.isValid = false;
         }
-        if (Left != null)
+        if (nodeAtLeft != null)
         {
-            Left.Valid = false;
+            nodeAtLeft.isValid = false;
         }
-        if (Right != null)
+        if (nodeAtRight != null)
         {
-            Right.Valid = false;
+            nodeAtRight.isValid = false;
         }
-        if (BottomLeft != null)
+        if (nodeAtBottomLeft != null)
         {
-            BottomLeft.Valid = false;
+            nodeAtBottomLeft.isValid = false;
         }
-        if (BottomRight != null)
+        if (nodeAtBottomRight != null)
         {
-            BottomRight.Valid = false;
+            nodeAtBottomRight.isValid = false;
         }
-        if (TopRight != null)
+        if (nodeAtTopRight != null)
         {
-            TopRight.Valid = false;
+            nodeAtTopRight.isValid = false;
         }
-        if (TopLeft != null)
+        if (nodeAtTopLeft != null)
         {
-            TopLeft.Valid = false;
+            nodeAtTopLeft.isValid = false;
         }
     }
 
     //Raycast in all 8 directions to determine valid routes
-    public void InitializeConnections(Grid grid)
+    public void initializeConnections(Grid grid)
     {
         bool valid = true;
         RaycastHit2D hit;
         float diagonalDistance = Mathf.Sqrt(Mathf.Pow(grid.widthBetweenPoints / 2f, 2) + Mathf.Pow(grid.heightBetweenPoints / 2f, 2));
 
-        if (X > 1)
+        if (x > 1)
         {
             //Left
             valid = true;
-            hit = Physics2D.Raycast(Position, new Vector2(-1, 0), grid.widthBetweenPoints);
+            hit = Physics2D.Raycast(position, new Vector2(-1, 0), grid.widthBetweenPoints);
             if (hit.collider != null && hit.collider.tag != "Player")
             {
                 valid = false;
             }
-            Left = new NodeConnection(this, grid.Nodes[X - 2, Y], valid);
+            nodeAtLeft = new NodeConnection(this, grid.Nodes[x - 2, y], valid);
 
             //TopLeft
-            if (Y > 0)
+            if (y > 0)
             {
                 valid = true;
-                hit = Physics2D.Raycast(Position, new Vector2(-1, 1), diagonalDistance);
+                hit = Physics2D.Raycast(position, new Vector2(-1, 1), diagonalDistance);
                 if (hit.collider != null && hit.collider.tag != "Player")
                 {
                     valid = false;
                 }
-                TopLeft = new NodeConnection(this, grid.Nodes[X - 1, Y - 1], valid);
+                nodeAtTopLeft = new NodeConnection(this, grid.Nodes[x - 1, y - 1], valid);
             }
 
             //BottomLeft
-            if (Y < grid.Height - 1)
+            if (y < grid.Height - 1)
             {
                 valid = true;
-                hit = Physics2D.Raycast(Position, new Vector2(-1, -1), diagonalDistance);
+                hit = Physics2D.Raycast(position, new Vector2(-1, -1), diagonalDistance);
                 if (hit.collider != null && hit.collider.tag != "Player")
                 {
                     valid = false;
                 }
-                BottomLeft = new NodeConnection(this, grid.Nodes[X - 1, Y + 1], valid);
+                nodeAtBottomLeft = new NodeConnection(this, grid.Nodes[x - 1, y + 1], valid);
             }
         }
 
 
-        if (X < grid.Width - 2)
+        if (x < grid.Width - 2)
         {
             valid = true;
-            hit = Physics2D.Raycast(Position, new Vector2(1, 0), grid.widthBetweenPoints);
+            hit = Physics2D.Raycast(position, new Vector2(1, 0), grid.widthBetweenPoints);
             if (hit.collider != null && hit.collider.tag != "Player")
             {
                 valid = false;
             }
-            Right = new NodeConnection(this, grid.Nodes[X + 2, Y], valid);
+            nodeAtRight = new NodeConnection(this, grid.Nodes[x + 2, y], valid);
 
             //TopRight
-            if (Y > 0)
+            if (y > 0)
             {
                 valid = true;
-                hit = Physics2D.Raycast(Position, new Vector2(1, 1), diagonalDistance);
+                hit = Physics2D.Raycast(position, new Vector2(1, 1), diagonalDistance);
                 if (hit.collider != null && hit.collider.tag != "Player")
                 {
                     valid = false;
                 }
-                TopRight = new NodeConnection(this, grid.Nodes[X + 1, Y - 1], valid);
+                nodeAtTopRight = new NodeConnection(this, grid.Nodes[x + 1, y - 1], valid);
             }
 
             //BottomRight
-            if (Y < grid.Height - 1)
+            if (y < grid.Height - 1)
             {
                 valid = true;
-                hit = Physics2D.Raycast(Position, new Vector2(1, -1), diagonalDistance);
+                hit = Physics2D.Raycast(position, new Vector2(1, -1), diagonalDistance);
                 if (hit.collider != null && hit.collider.tag != "Player")
                 {
                     valid = false;
                 }
-                BottomRight = new NodeConnection(this, grid.Nodes[X + 1, Y + 1], valid);
+                nodeAtBottomRight = new NodeConnection(this, grid.Nodes[x + 1, y + 1], valid);
             }
 
         }
 
-        if (Y - 1 > 0)
+        if (y - 1 > 0)
         {
             valid = true;
-            hit = Physics2D.Raycast(Position, new Vector2(0, 1), grid.heightBetweenPoints);
+            hit = Physics2D.Raycast(position, new Vector2(0, 1), grid.heightBetweenPoints);
             if (hit.collider != null && hit.collider.tag != "Player")
             {
                 valid = false;
             }
-            Top = new NodeConnection(this, grid.Nodes[X, Y - 2], valid);
+            nodeAtTop = new NodeConnection(this, grid.Nodes[x, y - 2], valid);
         }
 
 
-        if (Y < grid.Height - 2)
+        if (y < grid.Height - 2)
         {
             valid = true;
-            hit = Physics2D.Raycast(Position, new Vector2(0, -1), grid.heightBetweenPoints);
+            hit = Physics2D.Raycast(position, new Vector2(0, -1), grid.heightBetweenPoints);
             if (hit.collider != null && hit.collider.tag != "Player")
             {
                 valid = false;
             }
-            Bottom = new NodeConnection(this, grid.Nodes[X, Y + 2], valid);
+            nodeAtBottom = new NodeConnection(this, grid.Nodes[x, y + 2], valid);
         }
     }
 

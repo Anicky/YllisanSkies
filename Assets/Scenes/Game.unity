@@ -3666,9 +3666,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 200
+  m_SortingLayerID: 960467849
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300168, guid: 725a5dc4fe5121f42ba480ffaddd83e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3722,9 +3722,9 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1000
+  m_SortingLayerID: 1415290015
+  m_SortingLayer: 4
+  m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -4477,7 +4477,7 @@ MonoBehaviour:
   currentMoney: 0
   currentLocation: 
   isSaveAllowed: 0
-  startingMapName: Osarian_House_01
+  startingMapName: Osarian_Outside_01
   stopEvents: 0
 --- !u!4 &964542216
 Transform:

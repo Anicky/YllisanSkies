@@ -169,64 +169,65 @@ public class Player : MonoBehaviour
 
     private void prepareNextMove()
     {
-        Debug.Log("player:" + transform.position.x + "-" + transform.position.y + "/ target:" + nextPointToMove.x + "-" + nextPointToMove.y);
         float numberOfPixelsToMoveLeftForThisFrame = numberOfPixelsToMoveInOneFrame();
-        if (!arrivedToNextPoint)
+        while (numberOfPixelsToMoveLeftForThisFrame > 0)
         {
-            int targetPositionX = (int)nextPointToMove.x;
-            int targetPositionY = (int)nextPointToMove.y;
-            int currentPositionX = (int)transform.position.x;
-            int currentPositionY = (int)transform.position.y;
-            if ((currentPositionX >= targetPositionX - 2) && (currentPositionX <= targetPositionX + 2) && (currentPositionY >= targetPositionY - 2) && (currentPositionY <= targetPositionY + 2))
+            if (!arrivedToNextPoint)
             {
-                arrivedToNextPoint = true;
-            }
-            else
-            {
-                int movementVectorX = 0;
-                int movementVectorY = 0;
-                if (currentPositionX < targetPositionX)
+                int targetPositionX = (int)nextPointToMove.x;
+                int targetPositionY = (int)nextPointToMove.y;
+                int currentPositionX = (int)transform.position.x;
+                int currentPositionY = (int)transform.position.y;
+                if ((currentPositionX >= targetPositionX - 1) && (currentPositionX <= targetPositionX + 1) && (currentPositionY >= targetPositionY - 1) && (currentPositionY <= targetPositionY + 1))
                 {
-                    movementVectorX = 1;
-                }
-                else if (currentPositionX > targetPositionX)
-                {
-                    movementVectorX = -1;
-                }
-                if (currentPositionY < targetPositionY)
-                {
-                    movementVectorY = 1;
-                }
-                else if (currentPositionY > targetPositionY)
-                {
-                    movementVectorY = -1;
-                }
-
-                float distanceToNextPoint = Vector2.Distance(new Vector2(currentPositionX, currentPositionY), new Vector2(targetPositionX, targetPositionY));
-
-                if (distanceToNextPoint > numberOfPixelsToMoveLeftForThisFrame)
-                {
-                    move(new Vector2(movementVectorX, movementVectorY), numberOfPixelsToMoveLeftForThisFrame);
+                    arrivedToNextPoint = true;
                 }
                 else
                 {
-                    move(new Vector2(movementVectorX, movementVectorY), distanceToNextPoint);
+                    int movementVectorX = 0;
+                    int movementVectorY = 0;
+                    if (currentPositionX < targetPositionX - 1)
+                    {
+                        movementVectorX = 1;
+                    }
+                    else if (currentPositionX > targetPositionX + 1)
+                    {
+                        movementVectorX = -1;
+                    }
+                    if (currentPositionY < targetPositionY - 1)
+                    {
+                        movementVectorY = 1;
+                    }
+                    else if (currentPositionY > targetPositionY + 1)
+                    {
+                        movementVectorY = -1;
+                    }
+
+                    float distanceToNextPoint = Vector2.Distance(new Vector2(currentPositionX, currentPositionY), new Vector2(targetPositionX, targetPositionY));
+
+                    if (distanceToNextPoint > numberOfPixelsToMoveLeftForThisFrame)
+                    {
+                        move(new Vector2(movementVectorX, movementVectorY), numberOfPixelsToMoveLeftForThisFrame);
+                        numberOfPixelsToMoveLeftForThisFrame = 0;
+                    }
+                    else
+                    {
+                        move(new Vector2(movementVectorX, movementVectorY), distanceToNextPoint);
+                        numberOfPixelsToMoveLeftForThisFrame -= distanceToNextPoint;
+                    }
                 }
-
-
+            }
+            else if (pointsToMove.Count > 0)
+            {
+                nextPointToMove = pointsToMove[0];
+                pointsToMove.RemoveAt(0);
+                arrivedToNextPoint = false;
+            }
+            else
+            {
+                numberOfPixelsToMoveLeftForThisFrame = 0;
+                isMovingToPosition = false;
             }
         }
-        else if (pointsToMove.Count > 0)
-        {
-            nextPointToMove = pointsToMove[0];
-            pointsToMove.RemoveAt(0);
-            arrivedToNextPoint = false;
-        }
-        else
-        {
-            isMovingToPosition = false;
-        }
-
-
     }
 }

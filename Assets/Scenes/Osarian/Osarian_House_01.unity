@@ -166,9 +166,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingLayerID: 619134335
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8370c75ca8af41f45b427af17c7c4502, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -248,6 +248,11 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: -544
       objectReference: {fileID: 0}
+    - target: {fileID: 23908315389812276, guid: acc9a4f6fa3ec194f81cf7f7298d1e16,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acc9a4f6fa3ec194f81cf7f7298d1e16, type: 2}
   m_IsPrefabParent: 0
@@ -272,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b81ce7b4d660a749a1bd8c0fe70a08f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugPathFinding: 1
+  debugPathFinding: 0
   map: {fileID: 0}
   Width: 0
   Height: 0
@@ -336,9 +341,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 300
+  m_SortingLayerID: 1263792345
+  m_SortingLayer: 3
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e69b2ef7457457e4fb2c61c9502957b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -422,7 +427,7 @@ MonoBehaviour:
   submitButtonNeeded: 0
   playerDirectionNeeded: {x: 0, y: -1}
   mapToLoad: Osarian_Outside_01
-  playerStartingPoint: {x: 330, y: -382, z: 0}
+  playerStartingPoint: {x: 344, y: -380, z: 0}
   transitionEffectIn: 1
   transitionEffectOut: 1
 --- !u!95 &1863162463

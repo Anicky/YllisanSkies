@@ -2,9 +2,9 @@
 
 public static class PathFinder
 {     
-	public static BreadCrumb FindPath(Grid world, Point start, Point end)
+	public static BreadCrumb findPath(Grid world, Point start, Point end)
 	{        
-	    BreadCrumb bc = FindPathReversed(world, start, end);
+	    BreadCrumb bc = findPathReversed(world, start, end);
         BreadCrumb[] temp = new BreadCrumb[256];
 
         if (bc != null)
@@ -36,7 +36,7 @@ public static class PathFinder
         }
 	}
 	
-	private static BreadCrumb FindPathReversed(Grid world, Point start, Point end)
+	private static BreadCrumb findPathReversed(Grid world, Point start, Point end)
 	{
 	    MinHeap<BreadCrumb> openList = new MinHeap<BreadCrumb>(256);
 	    BreadCrumb[,] brWorld = new BreadCrumb[world.Right, world.Top];
@@ -49,7 +49,7 @@ public static class PathFinder
 	    current.cost = 0;
 	
 	    BreadCrumb finish = new BreadCrumb(end);
-	    brWorld[current.position.X, current.position.Y] = current;
+	    brWorld[current.position.x, current.position.y] = current;
 	    openList.Add(current);
 	
 	    while (openList.Count > 0)
@@ -61,36 +61,36 @@ public static class PathFinder
 	        //Find neighbours
 	        for (int i = 0; i < surrounding.Length; i++)
 	        {
-                tmp = new Point(current.position.X + surrounding[i].X, current.position.Y + surrounding[i].Y);
+                tmp = new Point(current.position.x + surrounding[i].x, current.position.y + surrounding[i].y);
 
-                if (!world.ConnectionIsValid(current.position, tmp)) 
+                if (!world.isConnectionValid(current.position, tmp)) 
                     continue;                				                  
 
                 //Check if we've already examined a neighbour, if not create a new node for it.
-                if (brWorld[tmp.X, tmp.Y] == null)
+                if (brWorld[tmp.x, tmp.y] == null)
                 {
                     node = new BreadCrumb(tmp);
-                    brWorld[tmp.X, tmp.Y] = node;
+                    brWorld[tmp.x, tmp.y] = node;
                 }
                 else
                 {
-                    node = brWorld[tmp.X, tmp.Y];
+                    node = brWorld[tmp.x, tmp.y];
                 }
 
                 //If the node is not on the 'closedList' check it's new score, keep the best
                 if (!node.onClosedList)
                 {
                     diff = 0;
-                    if (current.position.X != node.position.X)
+                    if (current.position.x != node.position.x)
                     {
                         diff += 1;
                     }
-                    if (current.position.Y != node.position.Y)
+                    if (current.position.y != node.position.y)
                     {
                         diff += 1;
                     }
 
-					int distance = (int)Mathf.Pow(Mathf.Max(Mathf.Abs (end.X - node.position.X), Mathf.Abs(end.Y - node.position.Y)), 2);
+					int distance = (int)Mathf.Pow(Mathf.Max(Mathf.Abs (end.x - node.position.x), Mathf.Abs(end.y - node.position.y)), 2);
                     cost = current.cost + diff + distance;
 
                     if (cost < node.cost)
