@@ -179,7 +179,7 @@ public class Node
             //Left
             valid = true;
             hit = Physics2D.Raycast(Position, new Vector2(-1, 0), grid.widthBetweenPoints);
-            if (hit.collider != null)
+            if (hit.collider != null && hit.collider.tag != "Player")
             {
                 valid = false;
             }
@@ -190,7 +190,7 @@ public class Node
             {
                 valid = true;
                 hit = Physics2D.Raycast(Position, new Vector2(-1, 1), diagonalDistance);
-                if (hit.collider != null)
+                if (hit.collider != null && hit.collider.tag != "Player")
                 {
                     valid = false;
                 }
@@ -202,7 +202,7 @@ public class Node
             {
                 valid = true;
                 hit = Physics2D.Raycast(Position, new Vector2(-1, -1), diagonalDistance);
-                if (hit.collider != null)
+                if (hit.collider != null && hit.collider.tag != "Player")
                 {
                     valid = false;
                 }
@@ -215,7 +215,7 @@ public class Node
         {
             valid = true;
             hit = Physics2D.Raycast(Position, new Vector2(1, 0), grid.widthBetweenPoints);
-            if (hit.collider != null)
+            if (hit.collider != null && hit.collider.tag != "Player")
             {
                 valid = false;
             }
@@ -226,7 +226,7 @@ public class Node
             {
                 valid = true;
                 hit = Physics2D.Raycast(Position, new Vector2(1, 1), diagonalDistance);
-                if (hit.collider != null)
+                if (hit.collider != null && hit.collider.tag != "Player")
                 {
                     valid = false;
                 }
@@ -238,7 +238,7 @@ public class Node
             {
                 valid = true;
                 hit = Physics2D.Raycast(Position, new Vector2(1, -1), diagonalDistance);
-                if (hit.collider != null)
+                if (hit.collider != null && hit.collider.tag != "Player")
                 {
                     valid = false;
                 }
@@ -251,7 +251,7 @@ public class Node
         {
             valid = true;
             hit = Physics2D.Raycast(Position, new Vector2(0, 1), grid.heightBetweenPoints);
-            if (hit.collider != null)
+            if (hit.collider != null && hit.collider.tag != "Player")
             {
                 valid = false;
             }
@@ -263,7 +263,7 @@ public class Node
         {
             valid = true;
             hit = Physics2D.Raycast(Position, new Vector2(0, -1), grid.heightBetweenPoints);
-            if (hit.collider != null)
+            if (hit.collider != null && hit.collider.tag != "Player")
             {
                 valid = false;
             }
