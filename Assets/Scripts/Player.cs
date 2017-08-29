@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
@@ -12,7 +13,9 @@ public class Player : MonoBehaviour
     private bool movementEnabled = true;
     private bool firstInit = true;
     public bool isMovingToPosition = false;
-    private Vector3 positionToMove;
+    private List<Vector2> pointsToMove;
+    private Vector2 nextPointToMove;
+    private bool arrivedToNextPoint = false;
 
     private float getRelativeX()
     {
@@ -151,43 +154,59 @@ public class Player : MonoBehaviour
         movementEnabled = true;
     }
 
-    public void moveToPosition(Vector3 position)
+    public void moveToPosition(List<Vector2> points)
     {
-        positionToMove = position;
+        pointsToMove = points;
+        nextPointToMove = pointsToMove[0];
+        pointsToMove.RemoveAt(0);
+        arrivedToNextPoint = false;
         isMovingToPosition = true;
     }
 
     private void prepareNextMove()
     {
-        int targetPositionX = (int)positionToMove.x;
-        int targetPositionY = (int)positionToMove.y;
-        int currentPositionX = (int)transform.position.x;
-        int currentPositionY = (int)transform.position.y;
-        if ((currentPositionX > targetPositionX - 2) && (currentPositionX < targetPositionX + 2) && (currentPositionY > targetPositionY - 2) && (currentPositionY < targetPositionY + 2))
+        if (!arrivedToNextPoint)
+        {
+            int targetPositionX = (int)nextPointToMove.x;
+            int targetPositionY = (int)nextPointToMove.y;
+            int currentPositionX = (int)transform.position.x;
+            int currentPositionY = (int)transform.position.y;
+            if ((currentPositionX > targetPositionX - 2) && (currentPositionX < targetPositionX + 2) && (currentPositionY > targetPositionY - 2) && (currentPositionY < targetPositionY + 2))
+            {
+                arrivedToNextPoint = true;
+            }
+            else
+            {
+                int movementVectorX = 0;
+                int movementVectorY = 0;
+                if (currentPositionX < targetPositionX)
+                {
+                    movementVectorX = 1;
+                }
+                else if (currentPositionX > targetPositionX)
+                {
+                    movementVectorX = -1;
+                }
+                if (currentPositionY < targetPositionY)
+                {
+                    movementVectorY = 1;
+                }
+                else if (currentPositionY > targetPositionY)
+                {
+                    movementVectorY = -1;
+                }
+                move(new Vector2(movementVectorX, movementVectorY));
+            }
+        } else if (pointsToMove.Count > 0)
+        {
+            nextPointToMove = pointsToMove[0];
+            pointsToMove.RemoveAt(0);
+            arrivedToNextPoint = false;
+        } else
         {
             isMovingToPosition = false;
         }
-        else
-        {
-            int movementVectorX = 0;
-            int movementVectorY = 0;
-            if (currentPositionX < targetPositionX)
-            {
-                movementVectorX = 1;
-            }
-            else if (currentPositionX > targetPositionX)
-            {
-                movementVectorX = -1;
-            }
-            if (currentPositionY < targetPositionY)
-            {
-                movementVectorY = 1;
-            }
-            else if (currentPositionY > targetPositionY)
-            {
-                movementVectorY = -1;
-            }
-            move(new Vector2(movementVectorX, movementVectorY));
-        }
+
+
     }
 }

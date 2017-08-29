@@ -165,6 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 130942956}
   - component: {fileID: 247805930}
+  - component: {fileID: 247805931}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -197,6 +198,20 @@ MonoBehaviour:
   MapWidthInPixels: 2080
   MapHeightInPixels: 1760
   BackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+--- !u!114 &247805931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 247805929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b81ce7b4d660a749a1bd8c0fe70a08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  map: {fileID: 0}
+  Width: 0
+  Height: 0
 --- !u!1 &432464519
 GameObject:
   m_ObjectHideFlags: 0

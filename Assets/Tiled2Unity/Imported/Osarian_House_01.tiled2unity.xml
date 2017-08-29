@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 27/08/2017 12:59:33-->
+<!--Last exported: 29/08/2017 15:04:28-->
 <Tiled2Unity version="1.0.12.3">
   <AssignMaterial mesh="Osarian_House_01_mesh_0008" material="Collisions" />
   <Prefab name="Osarian_House_01" orientation="Orthogonal" staggerAxis="Y" staggerIndex="Odd" hexSideLength="0" numLayers="1" numTilesWide="41" numTilesHigh="45" tileWidth="16" tileHeight="16" exportScale="1" mapWidthInPixels="656" mapHeightInPixels="720" backgroundColor="#808080">
@@ -46,13 +46,6 @@
           <Path>256,-544 176,-544 176,-560 256,-560</Path>
           <Path>320,-560 304,-560 304,-576 320,-576</Path>
         </PolygonCollider2D>
-      </GameObject>
-    </GameObject>
-    <GameObject name="Teleports" x="0" y="0" z="0">
-      <ObjectLayer offsetX="0" offsetY="0" color="#ff808080" />
-      <GameObject name="House_01_Exit" x="304.061" y="-545.5" rotation="0" layer="">
-        <RectangleObjectComponent tmx-object-id="3" tmx-object-name="House_01_Exit" tmx-object-type="" tmx-object-x="304.061" tmx-object-y="545.5" tmx-object-width="16.0606" tmx-object-height="10.1818" tmx-object-rotation="0" />
-        <BoxCollider2D width="16.0606" height="10.1818" />
       </GameObject>
     </GameObject>
   </Prefab>

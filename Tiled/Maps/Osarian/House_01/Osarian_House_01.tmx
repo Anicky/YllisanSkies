@@ -396,7 +396,4 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="Teleports">
-  <object id="3" name="House_01_Exit" x="304.061" y="545.5" width="16.0606" height="10.1818"/>
- </objectgroup>
 </map>

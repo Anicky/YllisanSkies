@@ -20,7 +20,7 @@ public class LoadMapOpeningDoor : LoadMap
         {
             if (child.name == "Block")
             {
-                player.moveToPosition(child.transform.position);
+                //player.moveToPosition(child.transform.position);
                 child.GetComponent<BoxCollider2D>().enabled = false;
             }
         }
