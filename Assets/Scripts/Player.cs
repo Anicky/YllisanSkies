@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private List<Vector2> pointsToMove;
     private Vector2 nextPointToMove;
     private bool arrivedToNextPoint = false;
+    private Game game;
 
     private float getRelativeX()
     {
@@ -42,6 +43,11 @@ public class Player : MonoBehaviour
         if (mapObject)
         {
             map = mapObject.GetComponentInParent<Tiled2Unity.TiledMap>();
+        }
+        GameObject gameObject = GameObject.Find("Game");
+        if (gameObject)
+        {
+            game = gameObject.GetComponentInParent<Game>();
         }
     }
 
@@ -130,7 +136,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (map)
+        if (map && !game.stopEvents)
         {
             if (isMovingToPosition)
             {
