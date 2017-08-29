@@ -43,8 +43,8 @@ public class Grid : MonoBehaviour
 
         map = GetComponent<TiledMap>();
 
-        heightBetweenPoints = map.TileHeight / 2;
-        widthBetweenPoints = map.TileWidth / 2;
+        heightBetweenPoints = map.TileHeight;
+        widthBetweenPoints = map.TileWidth;
 
         Width = (int)(((map.NumTilesWide * 2) * (map.TileWidth / widthBetweenPoints)) + 2);
         Height = (int)(((map.NumTilesHigh * 2) * (map.TileHeight / heightBetweenPoints)) + 2);
@@ -117,13 +117,13 @@ public class Grid : MonoBehaviour
 
         //adjust to our nearest integer
         float rx = gridPosition.x % widthBetweenPoints;
-        if (rx < 8f)
+        if (rx < (widthBetweenPoints / 2))
             gridPosition.x = gridPosition.x - rx;
         else
             gridPosition.x = gridPosition.x + (widthBetweenPoints - rx);
 
         float ry = gridPosition.y % heightBetweenPoints;
-        if (ry < 8f)
+        if (ry < (heightBetweenPoints / 2))
             gridPosition.y = gridPosition.y - ry;
         else
             gridPosition.y = gridPosition.y + (heightBetweenPoints - ry);
@@ -316,7 +316,7 @@ public class Grid : MonoBehaviour
 
                     LineRenderer lr = Player.GetComponent<LineRenderer>();
                     lr.SetVertexCount(100);  //Need a higher number than 2, or crashes out
-                    lr.SetWidth(4f, 4f);
+                    lr.SetWidth(1f, 1f);
                     lr.SetColors(Color.yellow, Color.yellow);
                     int count = 0;
                     //Draw out our path

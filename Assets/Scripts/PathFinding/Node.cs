@@ -92,8 +92,8 @@ public class Node
             if (BottomRight != null && BottomRight.Valid)
                 clearCount++;
 
-            //If not at least 3 valid connection points - disable node
-            if (clearCount < 3)
+            //If not at least 1 valid connection point - disable node
+            if (clearCount < 1)
             {
                 BadNode = true;
                 DisableConnections();

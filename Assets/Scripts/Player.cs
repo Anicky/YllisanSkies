@@ -79,11 +79,10 @@ public class Player : MonoBehaviour
 
     private void checkMovement()
     {
-        Vector2 movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        move(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+        move(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")), numberOfPixelsToMoveInOneFrame());
     }
 
-    private void move(Vector2 movementVector)
+    private void move(Vector2 movementVector, float numberOfPixelsToMove)
     {
         bool isWalking = false;
 
@@ -113,13 +112,18 @@ public class Player : MonoBehaviour
             anim.SetBool("is_walking", true);
             anim.SetFloat("input_x", movementVector.x);
             anim.SetFloat("input_y", movementVector.y);
-            rbody.MovePosition(rbody.position + speed * (movementVector * Time.deltaTime));
+            rbody.MovePosition(rbody.position + numberOfPixelsToMove * movementVector);
             lastMove = movementVector;
         }
         else
         {
             anim.SetBool("is_walking", false);
         }
+    }
+
+    private float numberOfPixelsToMoveInOneFrame()
+    {
+        return speed * Time.deltaTime;
     }
 
 
@@ -165,13 +169,15 @@ public class Player : MonoBehaviour
 
     private void prepareNextMove()
     {
+        Debug.Log("player:" + transform.position.x + "-" + transform.position.y + "/ target:" + nextPointToMove.x + "-" + nextPointToMove.y);
+        float numberOfPixelsToMoveLeftForThisFrame = numberOfPixelsToMoveInOneFrame();
         if (!arrivedToNextPoint)
         {
             int targetPositionX = (int)nextPointToMove.x;
             int targetPositionY = (int)nextPointToMove.y;
             int currentPositionX = (int)transform.position.x;
             int currentPositionY = (int)transform.position.y;
-            if ((currentPositionX > targetPositionX - 2) && (currentPositionX < targetPositionX + 2) && (currentPositionY > targetPositionY - 2) && (currentPositionY < targetPositionY + 2))
+            if ((currentPositionX >= targetPositionX - 2) && (currentPositionX <= targetPositionX + 2) && (currentPositionY >= targetPositionY - 2) && (currentPositionY <= targetPositionY + 2))
             {
                 arrivedToNextPoint = true;
             }
@@ -195,14 +201,28 @@ public class Player : MonoBehaviour
                 {
                     movementVectorY = -1;
                 }
-                move(new Vector2(movementVectorX, movementVectorY));
+
+                float distanceToNextPoint = Vector2.Distance(new Vector2(currentPositionX, currentPositionY), new Vector2(targetPositionX, targetPositionY));
+
+                if (distanceToNextPoint > numberOfPixelsToMoveLeftForThisFrame)
+                {
+                    move(new Vector2(movementVectorX, movementVectorY), numberOfPixelsToMoveLeftForThisFrame);
+                }
+                else
+                {
+                    move(new Vector2(movementVectorX, movementVectorY), distanceToNextPoint);
+                }
+
+
             }
-        } else if (pointsToMove.Count > 0)
+        }
+        else if (pointsToMove.Count > 0)
         {
             nextPointToMove = pointsToMove[0];
             pointsToMove.RemoveAt(0);
             arrivedToNextPoint = false;
-        } else
+        }
+        else
         {
             isMovingToPosition = false;
         }

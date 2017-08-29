@@ -3584,10 +3584,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 12, y: 8}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.3}
     oldSize: {x: 24, y: 32}
     newSize: {x: 24, y: 32}
     adaptiveTilingThreshold: 0.5
@@ -3595,7 +3595,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 12, y: 10}
+  m_Size: {x: 12, y: 12}
   m_EdgeRadius: 0
 --- !u!50 &805787736
 Rigidbody2D:
@@ -4477,7 +4477,7 @@ MonoBehaviour:
   currentMoney: 0
   currentLocation: 
   isSaveAllowed: 0
-  startingMapName: Osarian_Outside_01
+  startingMapName: Osarian_House_01
   stopEvents: 0
 --- !u!4 &964542216
 Transform:
