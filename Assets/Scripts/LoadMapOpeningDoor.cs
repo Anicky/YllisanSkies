@@ -9,7 +9,7 @@ public class LoadMapOpeningDoor : LoadMap
     {
         if (doorSound)
         {
-            GameObject.Find("Game").GetComponent<AudioSource>().PlayOneShot(doorSound, 0.5f);
+            GameObject.Find("Game").GetComponent<AudioSource>().PlayOneShot(doorSound);
         }
         Animator anim = GetComponent<Animator>();
         if (anim)
