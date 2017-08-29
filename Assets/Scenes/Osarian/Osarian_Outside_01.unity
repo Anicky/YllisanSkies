@@ -1122,7 +1122,7 @@ MonoBehaviour:
   playerStartingPoint: {x: 300, y: -540, z: 0}
   transitionEffectIn: 1
   transitionEffectOut: 1
-  doorSound: {fileID: 0}
+  doorSound: {fileID: 8300000, guid: dd80ebce1b9673b49815ad13b2c117db, type: 3}
 --- !u!95 &1829973291
 Animator:
   serializedVersion: 3

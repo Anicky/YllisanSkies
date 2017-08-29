@@ -7,6 +7,10 @@ public class LoadMapOpeningDoor : LoadMap
 
     protected override void doActionWhenTriggered()
     {
+        if (doorSound)
+        {
+            GameObject.Find("Game").GetComponent<AudioSource>().PlayOneShot(doorSound, 0.5f);
+        }
         Animator anim = GetComponent<Animator>();
         if (anim)
         {
