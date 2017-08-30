@@ -284,17 +284,9 @@ public class Player : MonoBehaviour
                     }
 
                     float distanceToNextPoint = Vector2.Distance(new Vector2(currentPositionX, currentPositionY), new Vector2(targetPositionX, targetPositionY));
-
-                    if (distanceToNextPoint > numberOfPixelsToMoveLeftForThisFrame)
-                    {
-                        move(new Vector2(movementVectorX, movementVectorY), numberOfPixelsToMoveLeftForThisFrame);
-                        numberOfPixelsToMoveLeftForThisFrame = 0;
-                    }
-                    else
-                    {
-                        move(new Vector2(movementVectorX, movementVectorY), distanceToNextPoint);
-                        numberOfPixelsToMoveLeftForThisFrame -= distanceToNextPoint;
-                    }
+                    float distanceForThisFrame = Mathf.Min(distanceToNextPoint, numberOfPixelsToMoveLeftForThisFrame);
+                    move(new Vector2(movementVectorX, movementVectorY), distanceForThisFrame);
+                    numberOfPixelsToMoveLeftForThisFrame -= distanceForThisFrame;
                 }
             }
             else if (pointsToMove.Count > 0)
