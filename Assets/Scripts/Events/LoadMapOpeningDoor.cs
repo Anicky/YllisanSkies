@@ -17,14 +17,9 @@ public class LoadMapOpeningDoor : LoadMap
         {
             anim.SetTrigger("Open");
         }
-        foreach (Transform child in transform)
-        {
-            if (child.name == "Block")
-            {
-                player.moveToPosition(child.transform.position);
-                child.GetComponent<BoxCollider2D>().enabled = false;
-            }
-        }
+        transform.parent.GetComponent<BoxCollider2D>().enabled = false;
+        GameObject.Find("Map").GetComponent<Grid>().checkNodesConnections();
+        player.moveToPosition(transform.position);
     }
 
     protected void DoorOpenFinished()
