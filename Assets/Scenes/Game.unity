@@ -3568,7 +3568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a6de1937a26104db319887a0c48308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 80
+  speed: 100
   lastMove: {x: 0, y: 0}
   isMovingToPosition: 0
 --- !u!61 &805787735
@@ -4473,12 +4473,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 978301302}
   player: {fileID: 805787734}
+  menuAllowed: 1
   moneyCollected: 0
   currentMoney: 0
   currentLocation: 
   isSaveAllowed: 0
   startingMapName: Osarian_Outside_01
   stopEvents: 0
+  debugMode: 0
 --- !u!4 &964542216
 Transform:
   m_ObjectHideFlags: 0
