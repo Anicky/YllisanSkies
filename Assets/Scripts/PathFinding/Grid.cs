@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Tiled2Unity;
+using System.Collections.Generic;
 
 public enum Direction
 {
@@ -83,6 +84,31 @@ public class Grid : MonoBehaviour
         checkNodesConnections();
     }
 
+    public void recheckNodeConnection(Point point)
+    {
+        Node node = Nodes[point.x, point.y];
+
+        List<Node> nodes = new List<Node>();
+        nodes.Add(node);
+        nodes.Add(node.nodeAtTopLeft.node);
+        nodes.Add(node.nodeAtTop.node);
+        nodes.Add(node.nodeAtTopRight.node);
+        nodes.Add(node.nodeAtLeft.node);
+        nodes.Add(node.nodeAtRight.node);
+        nodes.Add(node.nodeAtBottomLeft.node);
+        nodes.Add(node.nodeAtBottom.node);
+        nodes.Add(node.nodeAtBottomRight.node);
+
+        foreach (Node n in nodes)
+        {
+            n.isBadNode = false;
+            n.initializeConnections(this);
+            n.checkConnectionsPass1();
+            n.checkConnectionsPass2();
+            setNodeColor(n);
+        }
+    }
+
     public void checkNodesConnections()
     {
         for (int x = 0; x < Width; x++)
@@ -112,7 +138,7 @@ public class Grid : MonoBehaviour
                 if (Nodes[x, y] == null)
                     continue;
 
-                Nodes[x, y].checkConnectionsPass1(this);
+                Nodes[x, y].checkConnectionsPass1();
             }
         }
 
@@ -125,11 +151,27 @@ public class Grid : MonoBehaviour
                     continue;
 
                 Nodes[x, y].checkConnectionsPass2();
+                setNodeColor(Nodes[x, y]);
             }
         }
     }
 
-    public Point worldToGrid(Vector2 worldPosition)
+    private void setNodeColor(Node node)
+    {
+        if (debugPathFinding)
+        {
+            if (!node.isBadNode)
+            {
+                node.setColor(Grid.colorPathFindingWalkable);
+            }
+            else
+            {
+                node.setColor(Grid.colorPathFindingNotWalkable);
+            }
+        }
+    }
+
+    public Point worldToGrid(Vector2 worldPosition, bool checkIfBadNode = true)
     {
         Vector2 gridPosition = new Vector2((worldPosition.x * 2f), -(worldPosition.y * 2f) + heightBetweenPoints);
 
@@ -160,7 +202,7 @@ public class Grid : MonoBehaviour
             float mag = 100;
 
 
-            if (x < Width && !Nodes[x + 1, y].isBadNode)
+            if (x < Width && (!checkIfBadNode || !Nodes[x + 1, y].isBadNode))
             {
                 float mag1 = (Nodes[x + 1, y].position - worldPosition).magnitude;
                 if (mag1 < mag)
@@ -169,7 +211,7 @@ public class Grid : MonoBehaviour
                     node = Nodes[x + 1, y];
                 }
             }
-            if (y < Height - 1 && !Nodes[x, y + 1].isBadNode)
+            if (y < Height - 1 && (!checkIfBadNode || !Nodes[x, y + 1].isBadNode))
             {
                 float mag1 = (Nodes[x, y + 1].position - worldPosition).magnitude;
                 if (mag1 < mag)
@@ -178,7 +220,7 @@ public class Grid : MonoBehaviour
                     node = Nodes[x, y + 1];
                 }
             }
-            if (x > 0 && !Nodes[x - 1, y].isBadNode)
+            if (x > 0 && (!checkIfBadNode || !Nodes[x - 1, y].isBadNode))
             {
                 float mag1 = (Nodes[x - 1, y].position - worldPosition).magnitude;
                 if (mag1 < mag)
@@ -187,7 +229,7 @@ public class Grid : MonoBehaviour
                     node = Nodes[x - 1, y];
                 }
             }
-            if (y > 0 && !Nodes[x, y - 1].isBadNode)
+            if (y > 0 && (!checkIfBadNode || !Nodes[x, y - 1].isBadNode))
             {
                 float mag1 = (Nodes[x, y - 1].position - worldPosition).magnitude;
                 if (mag1 < mag)

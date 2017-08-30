@@ -76,7 +76,7 @@ public class Node
     }
 
     //Cull nodes if they don't have enough valid connection points (3)
-    public void checkConnectionsPass1(Grid grid)
+    public void checkConnectionsPass1()
     {
         if (!isBadNode)
         {
@@ -106,14 +106,6 @@ public class Node
                 isBadNode = true;
                 disableConnections();
             }
-        }
-
-        if (grid.debugPathFinding)
-        {
-            if (!isBadNode)
-                setColor(Grid.colorPathFindingWalkable);
-            else
-                setColor(Grid.colorPathFindingNotWalkable);
         }
     }
 

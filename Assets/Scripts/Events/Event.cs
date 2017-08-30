@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using Tiled2Unity;
 public abstract class Event : MonoBehaviour
 {
 
@@ -8,12 +8,16 @@ public abstract class Event : MonoBehaviour
     public Vector2 playerDirectionNeeded;
     protected Player player;
     protected Game game;
+    protected TiledMap map;
+    protected Grid grid;
 
     // Use this for initialization
     protected void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         game = GameObject.Find("Game").GetComponent<Game>();
+        map = GameObject.Find("Map").GetComponent<TiledMap>();
+        grid = map.GetComponent<Grid>();
     }
 
     // Update is called once per frame

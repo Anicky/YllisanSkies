@@ -10,7 +10,7 @@ public class LoadMapOpeningDoor : LoadMap
         game.menuAllowed = false;
         if (doorSound)
         {
-            GameObject.Find("Game").GetComponent<AudioSource>().PlayOneShot(doorSound);
+            game.GetComponent<AudioSource>().PlayOneShot(doorSound);
         }
         Animator anim = GetComponent<Animator>();
         if (anim)
@@ -18,7 +18,7 @@ public class LoadMapOpeningDoor : LoadMap
             anim.SetTrigger("Open");
         }
         transform.parent.GetComponent<BoxCollider2D>().enabled = false;
-        GameObject.Find("Map").GetComponent<Grid>().checkNodesConnections();
+        grid.recheckNodeConnection(grid.worldToGrid(transform.position, false));
         player.moveToPosition(transform.position);
     }
 

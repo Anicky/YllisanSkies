@@ -39,11 +39,16 @@ public class Player : MonoBehaviour
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         SceneManager.sceneLoaded += OnSceneLoaded;
+        GameObject gameObject = GameObject.Find("Game");
+        if (gameObject)
+        {
+            game = gameObject.GetComponentInParent<Game>();
+        }
+        lineRenderer = GetComponent<LineRenderer>();
     }
 
     private void initialize()
     {
-        lineRenderer = GetComponent<LineRenderer>();
         GameObject mapObject = GameObject.Find("Map");
         if (mapObject)
         {
@@ -51,11 +56,6 @@ public class Player : MonoBehaviour
             grid = map.GetComponent<Grid>();
             pointsToMove = new List<Vector2>();
             nodesToDrawForDirectPath = new List<Node>();
-        }
-        GameObject gameObject = GameObject.Find("Game");
-        if (gameObject)
-        {
-            game = gameObject.GetComponentInParent<Game>();
         }
     }
 
