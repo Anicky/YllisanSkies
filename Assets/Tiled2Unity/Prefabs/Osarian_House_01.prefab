@@ -13,13 +13,15 @@ Prefab:
   m_IsPrefabParent: 1
 --- !u!1 &1636091530688226
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4520628104897798}
-  - component: {fileID: 114754366162666428}
+  - component: {fileID: 33865254882478450}
+  - component: {fileID: 23694345792856908}
+  - component: {fileID: 114771861843076008}
   m_Layer: 0
   m_Name: Collisions
   m_TagString: Untagged
@@ -43,17 +45,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1835685853582506
+--- !u!1 &1884238754489358
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4494547067626142}
-  - component: {fileID: 33563353593776678}
-  - component: {fileID: 23908315389812276}
-  - component: {fileID: 114314062069628754}
+  - component: {fileID: 4989929805526290}
+  - component: {fileID: 114145854483483788}
   m_Layer: 0
   m_Name: Collisions
   m_TagString: Untagged
@@ -87,21 +87,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4520628104897798}
+  - {fileID: 4989929805526290}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4494547067626142
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1835685853582506}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4520628104897798}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4503901077885790
@@ -114,7 +101,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4520628104897798}
+  m_Father: {fileID: 4989929805526290}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4520628104897798
@@ -126,18 +113,31 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4989929805526290}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4989929805526290
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1884238754489358}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4494547067626142}
+  - {fileID: 4520628104897798}
   - {fileID: 4503901077885790}
   m_Father: {fileID: 4089221503357784}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23908315389812276
+--- !u!23 &23694345792856908
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1835685853582506}
+  m_GameObject: {fileID: 1636091530688226}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -164,12 +164,12 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33563353593776678
+--- !u!33 &33865254882478450
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1835685853582506}
+  m_GameObject: {fileID: 1636091530688226}
   m_Mesh: {fileID: 4300000, guid: 848c1969c03070b49a44246c1ffb7d7e, type: 3}
 --- !u!60 &60897271601023996
 PolygonCollider2D:
@@ -231,13 +231,13 @@ PolygonCollider2D:
       - {x: 384, y: -208}
       - {x: 384, y: -224}
       - {x: 416, y: -224}
-    - - {x: 208, y: -208}
+    - - {x: 192, y: -208}
       - {x: 176, y: -208}
       - {x: 176, y: -224}
-      - {x: 208, y: -224}
+      - {x: 192, y: -224}
     - - {x: 288, y: -208}
-      - {x: 224, y: -208}
-      - {x: 224, y: -224}
+      - {x: 240, y: -208}
+      - {x: 240, y: -224}
       - {x: 288, y: -224}
     - - {x: 480, y: -240}
       - {x: 432, y: -240}
@@ -249,10 +249,10 @@ PolygonCollider2D:
       - {x: 160, y: -224}
       - {x: 160, y: -256}
       - {x: 176, y: -256}
-    - - {x: 224, y: -224}
-      - {x: 208, y: -224}
-      - {x: 208, y: -240}
-      - {x: 224, y: -240}
+    - - {x: 240, y: -224}
+      - {x: 192, y: -224}
+      - {x: 192, y: -240}
+      - {x: 240, y: -240}
     - - {x: 320, y: -224}
       - {x: 288, y: -224}
       - {x: 288, y: -240}
@@ -261,10 +261,10 @@ PolygonCollider2D:
       - {x: 480, y: -256}
       - {x: 480, y: -304}
       - {x: 496, y: -304}
-    - - {x: 192, y: -352}
+    - - {x: 192, y: -368}
       - {x: 192, y: -256}
       - {x: 176, y: -256}
-      - {x: 176, y: -352}
+      - {x: 176, y: -368}
     - - {x: 240, y: -272}
       - {x: 272, y: -272}
       - {x: 272, y: -288}
@@ -287,17 +287,17 @@ PolygonCollider2D:
       - {x: 464, y: -304}
       - {x: 464, y: -320}
       - {x: 416, y: -320}
-    - - {x: 176, y: -352}
-      - {x: 160, y: -352}
-      - {x: 160, y: -400}
-      - {x: 176, y: -400}
     - - {x: 496, y: -368}
       - {x: 480, y: -368}
       - {x: 480, y: -400}
       - {x: 496, y: -400}
+    - - {x: 176, y: -368}
+      - {x: 160, y: -368}
+      - {x: 160, y: -400}
+      - {x: 176, y: -400}
     - - {x: 336, y: -448}
-      - {x: 480, y: -448}
-      - {x: 480, y: -432}
+      - {x: 352, y: -448}
+      - {x: 352, y: -432}
       - {x: 336, y: -432}
       - {x: 336, y: -416}
       - {x: 480, y: -416}
@@ -333,10 +333,18 @@ PolygonCollider2D:
       - {x: 480, y: -416}
       - {x: 480, y: -432}
       - {x: 496, y: -432}
+    - - {x: 480, y: -432}
+      - {x: 400, y: -432}
+      - {x: 400, y: -448}
+      - {x: 480, y: -448}
     - - {x: 496, y: -448}
       - {x: 480, y: -448}
       - {x: 480, y: -464}
       - {x: 496, y: -464}
+    - - {x: 400, y: -448}
+      - {x: 352, y: -448}
+      - {x: 352, y: -464}
+      - {x: 400, y: -464}
     - - {x: 208, y: -448}
       - {x: 176, y: -448}
       - {x: 176, y: -464}
@@ -395,17 +403,18 @@ PolygonCollider2D:
       - {x: 304, y: -560}
       - {x: 304, y: -576}
       - {x: 320, y: -576}
---- !u!114 &114314062069628754
+--- !u!114 &114145854483483788
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1835685853582506}
+  m_GameObject: {fileID: 1884238754489358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1874989c5e2da094ea00112c6a895694, type: 3}
+  m_Script: {fileID: 11500000, guid: 36f478cbe2fdbeb43a1a2ec45e99ca69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Offset: {x: 0, y: 0}
 --- !u!114 &114726647047167778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -430,7 +439,7 @@ MonoBehaviour:
   MapWidthInPixels: 656
   MapHeightInPixels: 720
   BackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
---- !u!114 &114754366162666428
+--- !u!114 &114771861843076008
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -438,7 +447,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1636091530688226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36f478cbe2fdbeb43a1a2ec45e99ca69, type: 3}
+  m_Script: {fileID: 11500000, guid: 1874989c5e2da094ea00112c6a895694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Offset: {x: 0, y: 0}
