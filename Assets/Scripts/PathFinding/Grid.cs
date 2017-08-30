@@ -40,6 +40,11 @@ public class Grid : MonoBehaviour
 
     void Awake()
     {
+        initialize();
+    }
+
+    private void initialize()
+    {
         player = GameObject.Find("Player");
 
         map = GetComponent<TiledMap>();
@@ -73,6 +78,19 @@ public class Grid : MonoBehaviour
                 }
 
                 Nodes[x * 2 + offsetx, y] = new Node(x * 2 + offsetx, y, new Vector2(ptx, pty), this);
+            }
+        }
+        checkNodesConnections();
+    }
+
+    public void checkNodesConnections()
+    {
+        for (int x = 0; x < Width; x++)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                if (Nodes[x, y] == null) continue;
+                Nodes[x, y].isBadNode = false;
             }
         }
 
@@ -110,7 +128,6 @@ public class Grid : MonoBehaviour
             }
         }
     }
-
 
     public Point worldToGrid(Vector2 worldPosition)
     {
