@@ -29,6 +29,7 @@ public class Game : MonoBehaviour
     private RawImage fadeOverlay;
     private bool inMapChange = false;
     private LoadMap.TransitionsEffects transitionEffectOut;
+    private Vector3 playerStartingPoint;
 
     // Use this for initialization
     private void Start()
@@ -172,15 +173,16 @@ public class Game : MonoBehaviour
         {
             yield return null;
         } while (inTransition);
+        this.playerStartingPoint = playerStartingPoint;
         this.transitionEffectOut = transitionEffectOut;
         SceneManager.LoadScene(mapToLoad);
-        player.transform.position = playerStartingPoint;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (inMapChange)
         {
+            player.transform.position = playerStartingPoint;
             StartCoroutine(transition(transitionEffectOut, "Out"));
         }
     }
