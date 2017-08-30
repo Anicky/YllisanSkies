@@ -284,67 +284,6 @@ public class Grid : MonoBehaviour
         }
     }
 
-
-    void Update()
-    {
-
-        if (debugPathFinding && Input.GetMouseButtonDown(1))
-        {
-            //Convert mouse click point to grid coordinates
-            Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Point gridPos = worldToGrid(worldPos);
-
-            if (gridPos != null)
-            {
-
-                if (gridPos.x > 0 && gridPos.y > 0 && gridPos.x < Width && gridPos.y < Height)
-                {
-
-                    //Convert player point to grid coordinates
-                    Point playerPos = worldToGrid(player.transform.position);
-                    if (debugPathFinding)
-                    {
-                        Nodes[playerPos.x, playerPos.y].setColor(Color.blue);
-                    }
-
-                    //Find path from player to clicked position
-                    BreadCrumb bc = PathFinder.findPath(this, playerPos, gridPos);
-
-                    //  Draw line
-                    LineRenderer lr = player.GetComponent<LineRenderer>();
-                    lr.positionCount = 100;
-                    lr.startWidth = 1;
-                    lr.endWidth = 1;
-                    lr.startColor = Color.yellow;
-                    lr.endColor = Color.yellow;
-                    int count = 0;
-                    //Draw out our path
-                    while (bc != null)
-                    {
-                        lr.SetPosition(count, gridToWorld(bc.position));
-                        bc = bc.next;
-                        count += 1;
-                    }
-                    lr.positionCount = count;
-
-                    // Move player
-                    List<Vector2> points = new List<Vector2>();
-                    BreadCrumb breadcrumb = PathFinder.findPath(this, playerPos, gridPos);
-                    while (breadcrumb != null)
-                    {
-                        points.Add(gridToWorld(breadcrumb.position));
-                        breadcrumb = breadcrumb.next;
-                    }
-                    if (points.Count > 0)
-                    {
-                        player.GetComponent<Player>().moveToPosition(points);
-                    }
-
-                }
-            }
-        }
-    }
-
 }
 
 

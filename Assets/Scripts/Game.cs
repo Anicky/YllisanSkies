@@ -13,16 +13,19 @@ public class Game : MonoBehaviour
     private string language;
     private IniFileHandler translationsFileHandler;
     private bool menuEnabled = true;
+    public bool menuAllowed = true;
     public int moneyCollected = 0;
     public int currentMoney = 0;
     public string currentLocation;
     public bool isSaveAllowed = false;
     public string startingMapName;
     public bool stopEvents = false;
+    public bool debugMode = false;
 
     // Use this for initialization
     private void Start()
     {
+        debugMode = Debug.isDebugBuild;
         language = "francais";
         translationsFileHandler = new IniFileHandler("Translations/" + language);
         loadTranslationsTexts();
@@ -110,8 +113,8 @@ public class Game : MonoBehaviour
     }
 
     private void checkMenu()
-    {
-        if ((Input.GetButtonDown("Cancel")) && (menuEnabled) && (!menu.isOpened) && (!menu.inTransition))
+    {   
+        if ((Input.GetButtonDown("Cancel")) && (menuEnabled) && (menuAllowed) && (!menu.isOpened) && (!menu.inTransition))
         {
             stopEvents = true;
             menu.open();

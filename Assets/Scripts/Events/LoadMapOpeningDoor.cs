@@ -7,6 +7,7 @@ public class LoadMapOpeningDoor : LoadMap
 
     protected override void doActionWhenTriggered()
     {
+        game.menuAllowed = false;
         if (doorSound)
         {
             GameObject.Find("Game").GetComponent<AudioSource>().PlayOneShot(doorSound);
@@ -20,7 +21,7 @@ public class LoadMapOpeningDoor : LoadMap
         {
             if (child.name == "Block")
             {
-                //player.moveToPosition(child.transform.position);
+                player.moveToPosition(child.transform.position);
                 child.GetComponent<BoxCollider2D>().enabled = false;
             }
         }

@@ -7,11 +7,13 @@ public abstract class Event : MonoBehaviour
     public bool submitButtonNeeded = false;
     public Vector2 playerDirectionNeeded;
     protected Player player;
+    protected Game game;
 
     // Use this for initialization
     protected void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+        game = GameObject.Find("Game").GetComponent<Game>();
     }
 
     // Update is called once per frame

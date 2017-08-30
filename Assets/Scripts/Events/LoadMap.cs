@@ -41,6 +41,7 @@ public class LoadMap : Event
     {
         if (transitionType == "In")
         {
+            game.menuAllowed = false;
             canvas.enabled = true;
         }
         inTransition = true;
@@ -58,6 +59,7 @@ public class LoadMap : Event
         if (transitionType == "Out")
         {
             canvas.enabled = false;
+            game.menuAllowed = true;
         }
     }
 

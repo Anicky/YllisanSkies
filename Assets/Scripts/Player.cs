@@ -56,12 +56,12 @@ public class Player : MonoBehaviour
         initialize();
         if (firstInit)
         {
-            if (map)
+            if (this && map)
             {
                 GetComponent<SpriteRenderer>().enabled = true;
             }
             GameObject playerStartingPoint = GameObject.Find("PlayerStartingPoint");
-            if (playerStartingPoint != null)
+            if (this && playerStartingPoint != null)
             {
                 transform.position = playerStartingPoint.transform.position;
             }
@@ -136,13 +136,18 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (game && game.debugMode && Input.GetMouseButtonDown(1))
+        {
+            moveToPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+
         if (map && !game.stopEvents)
         {
             if (isMovingToPosition)
             {
                 prepareNextMove();
             }
-            else
+            else if (game.debugMode)
             {
                 checkBypassCollisions();
                 if (movementEnabled)
@@ -164,13 +169,76 @@ public class Player : MonoBehaviour
         movementEnabled = true;
     }
 
-    public void moveToPosition(List<Vector2> points)
+    public void moveToPosition(Vector2 position, bool usePathfinding = true)
     {
-        pointsToMove = points;
-        nextPointToMove = pointsToMove[0];
-        pointsToMove.RemoveAt(0);
-        arrivedToNextPoint = false;
-        isMovingToPosition = true;
+        Grid grid = map.GetComponent<Grid>();
+        Point gridPos = grid.worldToGrid(position);
+        if (gridPos != null)
+        {
+            if (gridPos.x > 0 && gridPos.y > 0 && gridPos.x < grid.Width && gridPos.y < grid.Height)
+            {
+                Point playerPos = grid.worldToGrid(transform.position);
+                int count = 0;
+                LineRenderer lr = GetComponent<LineRenderer>();
+
+                if (game.debugMode)
+                {
+                    if (grid.debugPathFinding)
+                    {
+                        grid.Nodes[playerPos.x, playerPos.y].setColor(Color.blue);
+                    }
+                    lr.positionCount = 100;
+                    lr.startWidth = 1;
+                    lr.endWidth = 1;
+                    lr.startColor = Color.yellow;
+                    lr.endColor = Color.yellow;
+                }
+
+                pointsToMove = new List<Vector2>();
+
+                if (usePathfinding)
+                {
+                    BreadCrumb breadcrumb = PathFinder.findPath(grid, playerPos, gridPos);
+                    while (breadcrumb != null)
+                    {
+                        Vector2 point = grid.gridToWorld(breadcrumb.position);
+                        pointsToMove.Add(point);
+                        if (game.debugMode)
+                        {
+                            lr.SetPosition(count, point);
+                            count += 1;
+                        }
+                        breadcrumb = breadcrumb.next;
+                    }
+                }
+                else
+                {
+                    Vector2 point = grid.gridToWorld(gridPos);
+                    pointsToMove.Add(point);
+                    if (game.debugMode)
+                    {
+                        Vector2 startingPoint = grid.gridToWorld(playerPos);
+                        lr.SetPosition(count, startingPoint);
+                        count += 1;
+                        lr.SetPosition(count, point);
+                        count += 1;
+                    }
+                }
+
+                if (game.debugMode)
+                {
+                    lr.positionCount = count;
+                }
+
+                if (pointsToMove.Count > 0)
+                {
+                    nextPointToMove = pointsToMove[0];
+                    pointsToMove.RemoveAt(0);
+                    arrivedToNextPoint = false;
+                    isMovingToPosition = true;
+                }
+            }
+        }
     }
 
     private void prepareNextMove()
