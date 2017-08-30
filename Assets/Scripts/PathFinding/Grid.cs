@@ -114,7 +114,7 @@ public class Grid : MonoBehaviour
 
     public Point worldToGrid(Vector2 worldPosition)
     {
-        Vector2 gridPosition = new Vector2((worldPosition.x * 2f), -(worldPosition.y * 2f) + 1);
+        Vector2 gridPosition = new Vector2((worldPosition.x * 2f), -(worldPosition.y * 2f) + heightBetweenPoints);
 
         //adjust to our nearest integer
         float rx = gridPosition.x % widthBetweenPoints;
@@ -176,7 +176,7 @@ public class Grid : MonoBehaviour
                 if (mag1 < mag)
                 {
                     mag = mag1;
-                    node = Nodes[x, y - 1 + 1];
+                    node = Nodes[x, y - 1];
                 }
             }
         }
