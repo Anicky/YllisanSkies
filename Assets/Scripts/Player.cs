@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     private Game game;
     private Node initialNodeBeforeMovement;
     private Grid grid;
+    private LineRenderer lineRenderer;
+    private List<Node> nodesToDrawForDirectPath;
 
     private float getRelativeX()
     {
@@ -41,11 +43,14 @@ public class Player : MonoBehaviour
 
     private void initialize()
     {
+        lineRenderer = GetComponent<LineRenderer>();
         GameObject mapObject = GameObject.Find("Map");
         if (mapObject)
         {
             map = mapObject.GetComponentInParent<Tiled2Unity.TiledMap>();
             grid = map.GetComponent<Grid>();
+            pointsToMove = new List<Vector2>();
+            nodesToDrawForDirectPath = new List<Node>();
         }
         GameObject gameObject = GameObject.Find("Game");
         if (gameObject)
@@ -146,7 +151,39 @@ public class Player : MonoBehaviour
                 checkBypassCollisions();
                 if (Input.GetMouseButtonDown(1))
                 {
-                    moveToPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                    if (!isMovingToPosition && pointsToMove.Count > 0)
+                    {
+                        initLineRenderer(false);
+                        Point playerPos = grid.worldToGrid(transform.position);
+                        int count = 0;
+                        Vector2 startingPoint = grid.gridToWorld(playerPos);
+                        lineRenderer.SetPosition(count, startingPoint);
+                        count += 1;
+                        foreach (Vector2 point in pointsToMove)
+                        {
+                            lineRenderer.SetPosition(count, point);
+                            count += 1;
+                        }
+                        lineRenderer.positionCount = count;
+                        initMovement();
+                    }
+                    else
+                    {
+                        Vector2 mousePosition = getPositionFromMouse();
+                        Debug.Log(mousePosition);
+                        moveToPosition(mousePosition);
+                    }
+                }
+                else if (Input.GetMouseButtonDown(0))
+                {
+                    Vector2 mousePosition = getPositionFromMouse();
+                    Debug.Log(mousePosition);
+                    Point gridPos = grid.worldToGrid(mousePosition);
+                    Vector2 nodePos = grid.gridToWorld(gridPos);
+                    Node node = new Node(gridPos.x, gridPos.y, nodePos, grid);
+                    node.draw(true);
+                    nodesToDrawForDirectPath.Add(node);
+                    pointsToMove.Add(nodePos);
                 }
             }
             if (isMovingToPosition)
@@ -160,6 +197,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    private Vector2 getPositionFromMouse()
+    {
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
+
     public void disableMovement()
     {
         movementEnabled = false;
@@ -171,11 +213,28 @@ public class Player : MonoBehaviour
         movementEnabled = true;
     }
 
+    private void initLineRenderer(bool isPathFinding = true)
+    {
+        lineRenderer.positionCount = 100;
+        lineRenderer.startWidth = 1;
+        lineRenderer.endWidth = 1;
+        if (isPathFinding)
+        {
+            lineRenderer.startColor = Grid.colorPathFindingWalkable;
+            lineRenderer.endColor = Grid.colorPathFindingWalkable;
+        }
+        else
+        {
+            lineRenderer.startColor = Grid.colorDirectPath;
+            lineRenderer.endColor = Grid.colorDirectPath;
+        }
+    }
+
     public void moveToPosition(Vector2 position, bool usePathfinding = true)
     {
         if (grid.debugPathFinding && initialNodeBeforeMovement != null)
         {
-            initialNodeBeforeMovement.setColor(Color.yellow);
+            initialNodeBeforeMovement.setColor(Grid.colorPathFindingWalkable);
         }
         Point gridPos = grid.worldToGrid(position);
         if (gridPos != null)
@@ -184,7 +243,6 @@ public class Player : MonoBehaviour
             {
                 Point playerPos = grid.worldToGrid(transform.position);
                 int count = 0;
-                LineRenderer lr = GetComponent<LineRenderer>();
 
                 if (game.debugMode)
                 {
@@ -193,11 +251,7 @@ public class Player : MonoBehaviour
                         initialNodeBeforeMovement = grid.Nodes[playerPos.x, playerPos.y];
                         initialNodeBeforeMovement.setColor(Color.blue);
                     }
-                    lr.positionCount = 100;
-                    lr.startWidth = 1;
-                    lr.endWidth = 1;
-                    lr.startColor = Color.yellow;
-                    lr.endColor = Color.yellow;
+                    initLineRenderer();
                 }
 
                 pointsToMove = new List<Vector2>();
@@ -211,7 +265,7 @@ public class Player : MonoBehaviour
                         pointsToMove.Add(point);
                         if (game.debugMode)
                         {
-                            lr.SetPosition(count, point);
+                            lineRenderer.SetPosition(count, point);
                             count += 1;
                         }
                         breadcrumb = breadcrumb.next;
@@ -224,26 +278,31 @@ public class Player : MonoBehaviour
                     if (game.debugMode)
                     {
                         Vector2 startingPoint = grid.gridToWorld(playerPos);
-                        lr.SetPosition(count, startingPoint);
+                        lineRenderer.SetPosition(count, startingPoint);
                         count += 1;
-                        lr.SetPosition(count, point);
+                        lineRenderer.SetPosition(count, point);
                         count += 1;
                     }
                 }
 
                 if (game.debugMode)
                 {
-                    lr.positionCount = count;
+                    lineRenderer.positionCount = count;
                 }
 
-                if (pointsToMove.Count > 0)
-                {
-                    nextPointToMove = pointsToMove[0];
-                    pointsToMove.RemoveAt(0);
-                    arrivedToNextPoint = false;
-                    isMovingToPosition = true;
-                }
+                initMovement();
             }
+        }
+    }
+
+    private void initMovement()
+    {
+        if (pointsToMove.Count > 0)
+        {
+            nextPointToMove = pointsToMove[0];
+            pointsToMove.RemoveAt(0);
+            arrivedToNextPoint = false;
+            isMovingToPosition = true;
         }
     }
 
@@ -301,12 +360,16 @@ public class Player : MonoBehaviour
                 isMovingToPosition = false;
                 if (game.debugMode)
                 {
-                    LineRenderer lr = GetComponent<LineRenderer>();
-                    lr.positionCount = 0;
+                    lineRenderer.positionCount = 0;
+                    foreach(Node node in nodesToDrawForDirectPath)
+                    {
+                        Destroy(node.nodeDebug);
+                    }
+                    nodesToDrawForDirectPath = new List<Node>();
                 }
                 if (grid.debugPathFinding)
                 {
-                    initialNodeBeforeMovement.setColor(Color.yellow);
+                    initialNodeBeforeMovement.setColor(Grid.colorPathFindingWalkable);
                 }
             }
         }

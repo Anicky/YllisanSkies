@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using Tiled2Unity;
-using System.Collections.Generic;
 
 public enum Direction
 {
@@ -32,6 +31,10 @@ public class Grid : MonoBehaviour
 
     public float heightBetweenPoints;
     public float widthBetweenPoints;
+
+    public static Color colorPathFindingWalkable = Color.yellow;
+    public static Color colorPathFindingNotWalkable = Color.red;
+    public static Color colorDirectPath = Color.black;
 
     GameObject player;
 

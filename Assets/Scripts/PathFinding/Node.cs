@@ -23,7 +23,7 @@ public class Node
     public NodeConnection nodeAtBottomRight;
 
     //debug
-    GameObject nodeDebug;
+    public GameObject nodeDebug;
 
     public Node(float x, float y, Vector2 position, Grid grid)
     {
@@ -56,8 +56,17 @@ public class Node
 
         if (grid.debugPathFinding)
         {
-            nodeDebug = GameObject.Instantiate(Resources.Load("Pathfinding/Node")) as GameObject;
-            nodeDebug.transform.position = this.position;
+            draw();
+        }
+    }
+
+    public void draw(bool isDirectPath = false)
+    {
+        nodeDebug = GameObject.Instantiate(Resources.Load("Pathfinding/Node")) as GameObject;
+        nodeDebug.transform.position = this.position;
+        if (isDirectPath)
+        {
+            setColor(Grid.colorDirectPath);
         }
     }
 
@@ -102,9 +111,9 @@ public class Node
         if (grid.debugPathFinding)
         {
             if (!isBadNode)
-                setColor(Color.yellow);
+                setColor(Grid.colorPathFindingWalkable);
             else
-                setColor(Color.red);
+                setColor(Grid.colorPathFindingNotWalkable);
         }
     }
 
