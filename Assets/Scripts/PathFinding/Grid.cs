@@ -37,8 +37,6 @@ public class Grid : MonoBehaviour
     public static Color colorPathFindingNotWalkable = Color.red;
     public static Color colorDirectPath = Color.black;
 
-    GameObject player;
-
     void Awake()
     {
         initialize();
@@ -46,7 +44,6 @@ public class Grid : MonoBehaviour
 
     private void initialize()
     {
-        player = GameObject.Find("Player");
 
         map = GetComponent<TiledMap>();
 

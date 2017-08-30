@@ -7,7 +7,6 @@ public class LoadMap : Event
 
     public string mapToLoad;
     public Vector3 playerStartingPoint;
-    private bool inTransition = false;
     public TransitionsEffects transitionEffectIn = TransitionsEffects.Fade;
     public TransitionsEffects transitionEffectOut = TransitionsEffects.Fade;
 

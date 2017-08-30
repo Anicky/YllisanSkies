@@ -27,6 +27,8 @@ public class Game : MonoBehaviour
     private bool inTransition = false;
     private Canvas canvas;
     private RawImage fadeOverlay;
+    private bool inMapChange = false;
+    private LoadMap.TransitionsEffects transitionEffectOut;
 
     // Use this for initialization
     private void Start()
@@ -53,6 +55,7 @@ public class Game : MonoBehaviour
         }
         setStartingMap(startingMapName);
         Camera.onPostRender += GamePostRender;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void initGame()
@@ -153,36 +156,49 @@ public class Game : MonoBehaviour
             screenshot.Apply();
             takeScreen = false;
             fadeOverlay.texture = screenshot;
-            fadeOverlay.enabled = true;
+            canvas.enabled = true;
         }
     }
 
     public IEnumerator changeScene(string mapToLoad, Vector3 playerStartingPoint, LoadMap.TransitionsEffects transitionEffectIn, LoadMap.TransitionsEffects transitionEffectOut)
     {
-        StartCoroutine(transition(transitionEffectIn, "In"));
+        bool needScreenshot = false;
+        if (transitionEffectIn == LoadMap.TransitionsEffects.None && transitionEffectOut != LoadMap.TransitionsEffects.None)
+        {
+            needScreenshot = true;
+        }
+        StartCoroutine(transition(transitionEffectIn, "In", needScreenshot));
         do
         {
             yield return null;
         } while (inTransition);
+        this.transitionEffectOut = transitionEffectOut;
         SceneManager.LoadScene(mapToLoad);
         player.transform.position = playerStartingPoint;
-        StartCoroutine(transition(transitionEffectOut, "Out"));
     }
 
-    private IEnumerator transition(LoadMap.TransitionsEffects transitionEffect, string transitionType)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (inMapChange)
+        {
+            StartCoroutine(transition(transitionEffectOut, "Out"));
+        }
+    }
+
+    private IEnumerator transition(LoadMap.TransitionsEffects transitionEffect, string transitionType, bool needScreenshot = false)
     {
         if (transitionType == "In")
         {
+            inMapChange = true;
             menuAllowed = false;
-            canvas.enabled = true;
-            if (transitionEffect == LoadMap.TransitionsEffects.None)
+            if (needScreenshot)
             {
                 takeScreen = true;
             }
-            else
-            if (transitionEffect == LoadMap.TransitionsEffects.Fade)
+            if (transitionEffect != LoadMap.TransitionsEffects.None)
             {
                 fadeOverlay.texture = Resources.Load<Texture>("Black");
+                canvas.enabled = true;
             }
         }
         inTransition = true;
@@ -200,6 +216,7 @@ public class Game : MonoBehaviour
         {
             canvas.enabled = false;
             menuAllowed = true;
+            inMapChange = false;
         }
     }
 }
