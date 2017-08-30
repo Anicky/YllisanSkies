@@ -139,24 +139,23 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (game && game.debugMode && Input.GetMouseButtonDown(1))
-        {
-            moveToPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
-
         if (map && !game.stopEvents)
         {
+            if (game.debugMode)
+            {
+                checkBypassCollisions();
+                if (Input.GetMouseButtonDown(1))
+                {
+                    moveToPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                }
+            }
             if (isMovingToPosition)
             {
                 prepareNextMove();
             }
-            else if (game.debugMode)
+            else if (movementEnabled)
             {
-                checkBypassCollisions();
-                if (movementEnabled)
-                {
-                    checkMovement();
-                }
+                checkMovement();
             }
         }
     }
