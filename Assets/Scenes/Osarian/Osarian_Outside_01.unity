@@ -401,7 +401,7 @@ MonoBehaviour:
   playerDirectionNeeded: {x: 0, y: 1}
   mapToLoad: Osarian_House_01
   playerStartingPoint: {x: 312, y: -540, z: 0}
-  transitionEffectIn: 1
+  transitionEffectIn: 0
   transitionEffectOut: 1
   doorSound: {fileID: 8300000, guid: dd80ebce1b9673b49815ad13b2c117db, type: 3}
 --- !u!95 &1088933287

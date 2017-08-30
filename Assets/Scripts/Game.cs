@@ -23,13 +23,17 @@ public class Game : MonoBehaviour
     public bool stopEvents = false;
     public bool debugMode = false;
     private bool takeScreen = false;
+    Texture2D screenshot;
     private bool inTransition = false;
     private Canvas canvas;
+    private RawImage fadeOverlay;
 
     // Use this for initialization
     private void Start()
     {
         canvas = GameObject.Find("Game/Canvas").GetComponent<Canvas>();
+        fadeOverlay = GameObject.Find("Game/Canvas/FadeOverlay").GetComponent<RawImage>();
+        canvas.enabled = false;
         debugMode = Debug.isDebugBuild;
         language = "francais";
         translationsFileHandler = new IniFileHandler("Translations/" + language);
@@ -48,6 +52,7 @@ public class Game : MonoBehaviour
             Destroy(gameObject);
         }
         setStartingMap(startingMapName);
+        Camera.onPostRender += GamePostRender;
     }
 
     private void initGame()
@@ -139,20 +144,21 @@ public class Game : MonoBehaviour
         return numberOfHeroes;
     }
 
-    private void OnPostRender()
+    public void GamePostRender(Camera currentCamera)
     {
         if (takeScreen)
         {
-            Texture2D screenShot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-            screenShot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-            screenShot.Apply();
+            screenshot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+            screenshot.ReadPixels(currentCamera.pixelRect, 0, 0);
+            screenshot.Apply();
             takeScreen = false;
+            fadeOverlay.texture = screenshot;
+            fadeOverlay.enabled = true;
         }
     }
 
     public IEnumerator changeScene(string mapToLoad, Vector3 playerStartingPoint, LoadMap.TransitionsEffects transitionEffectIn, LoadMap.TransitionsEffects transitionEffectOut)
     {
-        //takeScreen = true;
         StartCoroutine(transition(transitionEffectIn, "In"));
         do
         {
@@ -169,12 +175,20 @@ public class Game : MonoBehaviour
         {
             menuAllowed = false;
             canvas.enabled = true;
+            if (transitionEffect == LoadMap.TransitionsEffects.None)
+            {
+                takeScreen = true;
+            }
+            else
+            if (transitionEffect == LoadMap.TransitionsEffects.Fade)
+            {
+                fadeOverlay.texture = Resources.Load<Texture>("Black");
+            }
         }
         inTransition = true;
         if (transitionEffect != LoadMap.TransitionsEffects.None)
         {
-            GameObject game = GameObject.Find("Game");
-            Animation anim = game.GetComponent<Animation>();
+            Animation anim = GetComponent<Animation>();
             anim.Play("Overlay_" + transitionEffect + transitionType);
             do
             {
