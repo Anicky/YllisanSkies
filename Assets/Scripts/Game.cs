@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Game : MonoBehaviour
 {
@@ -21,10 +22,14 @@ public class Game : MonoBehaviour
     public string startingMapName;
     public bool stopEvents = false;
     public bool debugMode = false;
+    private bool takeScreen = false;
+    private bool inTransition = false;
+    private Canvas canvas;
 
     // Use this for initialization
     private void Start()
     {
+        canvas = GameObject.Find("Game/Canvas").GetComponent<Canvas>();
         debugMode = Debug.isDebugBuild;
         language = "francais";
         translationsFileHandler = new IniFileHandler("Translations/" + language);
@@ -113,7 +118,7 @@ public class Game : MonoBehaviour
     }
 
     private void checkMenu()
-    {   
+    {
         if ((Input.GetButtonDown("Cancel")) && (menuEnabled) && (menuAllowed) && (!menu.isOpened) && (!menu.inTransition))
         {
             stopEvents = true;
@@ -132,5 +137,55 @@ public class Game : MonoBehaviour
             }
         }
         return numberOfHeroes;
+    }
+
+    private void OnPostRender()
+    {
+        if (takeScreen)
+        {
+            Texture2D screenShot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+            screenShot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            screenShot.Apply();
+            takeScreen = false;
+        }
+    }
+
+    public IEnumerator changeScene(string mapToLoad, Vector3 playerStartingPoint, LoadMap.TransitionsEffects transitionEffectIn, LoadMap.TransitionsEffects transitionEffectOut)
+    {
+        //takeScreen = true;
+        StartCoroutine(transition(transitionEffectIn, "In"));
+        do
+        {
+            yield return null;
+        } while (inTransition);
+        SceneManager.LoadScene(mapToLoad);
+        player.transform.position = playerStartingPoint;
+        StartCoroutine(transition(transitionEffectOut, "Out"));
+    }
+
+    private IEnumerator transition(LoadMap.TransitionsEffects transitionEffect, string transitionType)
+    {
+        if (transitionType == "In")
+        {
+            menuAllowed = false;
+            canvas.enabled = true;
+        }
+        inTransition = true;
+        if (transitionEffect != LoadMap.TransitionsEffects.None)
+        {
+            GameObject game = GameObject.Find("Game");
+            Animation anim = game.GetComponent<Animation>();
+            anim.Play("Overlay_" + transitionEffect + transitionType);
+            do
+            {
+                yield return null;
+            } while (anim.isPlaying);
+        }
+        inTransition = false;
+        if (transitionType == "Out")
+        {
+            canvas.enabled = false;
+            menuAllowed = true;
+        }
     }
 }
