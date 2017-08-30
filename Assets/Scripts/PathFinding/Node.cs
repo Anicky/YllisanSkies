@@ -54,7 +54,7 @@ public class Node
             isBadNode = true;
         }
 
-        if (grid.debugPathFinding)
+        if (grid.debugMode)
         {
             draw();
         }

@@ -17,7 +17,8 @@ public enum Direction
 public class Grid : MonoBehaviour
 {
 
-    public bool debugPathFinding = false;
+    public bool debugMode = false;
+    public bool showPathLines = false;
     public TiledMap map;
 
     public int Width;
@@ -155,7 +156,7 @@ public class Grid : MonoBehaviour
 
     private void setNodeColor(Node node)
     {
-        if (debugPathFinding)
+        if (debugMode)
         {
             if (!node.isBadNode)
             {
