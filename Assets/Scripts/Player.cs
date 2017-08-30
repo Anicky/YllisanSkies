@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     private Vector2 nextPointToMove;
     private bool arrivedToNextPoint = false;
     private Game game;
+    private Node initialNodeBeforeMovement;
+    private Grid grid;
 
     private float getRelativeX()
     {
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour
         if (mapObject)
         {
             map = mapObject.GetComponentInParent<Tiled2Unity.TiledMap>();
+            grid = map.GetComponent<Grid>();
         }
         GameObject gameObject = GameObject.Find("Game");
         if (gameObject)
@@ -171,7 +174,10 @@ public class Player : MonoBehaviour
 
     public void moveToPosition(Vector2 position, bool usePathfinding = true)
     {
-        Grid grid = map.GetComponent<Grid>();
+        if (grid.debugPathFinding && initialNodeBeforeMovement != null)
+        {
+            initialNodeBeforeMovement.setColor(Color.yellow);
+        }
         Point gridPos = grid.worldToGrid(position);
         if (gridPos != null)
         {
@@ -185,7 +191,8 @@ public class Player : MonoBehaviour
                 {
                     if (grid.debugPathFinding)
                     {
-                        grid.Nodes[playerPos.x, playerPos.y].setColor(Color.blue);
+                        initialNodeBeforeMovement = grid.Nodes[playerPos.x, playerPos.y];
+                        initialNodeBeforeMovement.setColor(Color.blue);
                     }
                     lr.positionCount = 100;
                     lr.startWidth = 1;
@@ -301,6 +308,15 @@ public class Player : MonoBehaviour
             {
                 numberOfPixelsToMoveLeftForThisFrame = 0;
                 isMovingToPosition = false;
+                if (game.debugMode)
+                {
+                    LineRenderer lr = GetComponent<LineRenderer>();
+                    lr.positionCount = 0;
+                }
+                if (grid.debugPathFinding)
+                {
+                    initialNodeBeforeMovement.setColor(Color.yellow);
+                }
             }
         }
     }
