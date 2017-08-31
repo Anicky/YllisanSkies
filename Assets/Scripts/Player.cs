@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
             grid = map.GetComponent<Grid>();
             pointsToMove = new List<Vector2>();
             nodesToDrawForDirectPath = new List<Node>();
+            initialNodeBeforeMovement = null;
         }
     }
 
