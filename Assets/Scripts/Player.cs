@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = false;
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.activeSceneChanged += OnSceneChange;
         GameObject gameObject = GameObject.Find("Game");
         if (gameObject)
         {
@@ -47,22 +47,24 @@ public class Player : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
     }
 
-    private void initialize()
+    private void initialize(GameObject[] gameObjects)
     {
-        GameObject mapObject = GameObject.Find("Map");
-        if (mapObject)
+        foreach (GameObject gameObject in gameObjects)
         {
-            map = mapObject.GetComponentInParent<Tiled2Unity.TiledMap>();
-            grid = map.GetComponent<Grid>();
-            pointsToMove = new List<Vector2>();
-            nodesToDrawForDirectPath = new List<Node>();
-            initialNodeBeforeMovement = null;
+            if (gameObject.name == "Map")
+            {
+                map = gameObject.GetComponentInParent<Tiled2Unity.TiledMap>();
+                grid = map.GetComponent<Grid>();
+                pointsToMove = new List<Vector2>();
+                nodesToDrawForDirectPath = new List<Node>();
+                initialNodeBeforeMovement = null;
+            }
         }
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneChange(Scene scene1, Scene scene2)
     {
-        initialize();
+        initialize(scene2.GetRootGameObjects());
         if (firstInit)
         {
             if (this && map)
@@ -184,7 +186,7 @@ public class Player : MonoBehaviour
                     Point gridPos = grid.worldToGrid(mousePosition);
                     Vector2 nodePos = grid.gridToWorld(gridPos);
                     Node node = new Node(gridPos.x, gridPos.y, nodePos, grid);
-                    node.draw(true);
+                    node.draw(grid, true);
                     nodesToDrawForDirectPath.Add(node);
                     pointsToMove.Add(nodePos);
                 }

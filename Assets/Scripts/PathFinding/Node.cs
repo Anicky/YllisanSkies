@@ -56,13 +56,13 @@ public class Node
 
         if (grid.debugMode)
         {
-            draw();
+            draw(grid);
         }
     }
 
-    public void draw(bool isDirectPath = false)
+    public void draw(Grid grid, bool isDirectPath = false)
     {
-        nodeDebug = GameObject.Instantiate(Resources.Load("Pathfinding/Node")) as GameObject;
+        nodeDebug = GameObject.Instantiate(Resources.Load("Pathfinding/Node"), grid.transform) as GameObject;
         nodeDebug.transform.position = this.position;
         if (isDirectPath)
         {

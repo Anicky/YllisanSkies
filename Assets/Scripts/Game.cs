@@ -163,6 +163,7 @@ public class Game : MonoBehaviour
 
     public IEnumerator changeScene(string mapToLoad, Vector3 playerStartingPoint, LoadMap.TransitionsEffects transitionEffectIn, LoadMap.TransitionsEffects transitionEffectOut)
     {
+        string currentScene = SceneManager.GetActiveScene().name;
         bool needScreenshot = false;
         if (transitionEffectIn == LoadMap.TransitionsEffects.None && transitionEffectOut != LoadMap.TransitionsEffects.None)
         {
@@ -175,7 +176,15 @@ public class Game : MonoBehaviour
         } while (inTransition);
         this.playerStartingPoint = playerStartingPoint;
         this.transitionEffectOut = transitionEffectOut;
-        SceneManager.LoadScene(mapToLoad);
+        StartCoroutine(loadScene(currentScene, mapToLoad));
+    }
+
+    private IEnumerator loadScene(string currentScene, string sceneToLoad)
+    {
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
+        asyncOperation.allowSceneActivation = true;
+        yield return asyncOperation;
+        SceneManager.UnloadSceneAsync(currentScene);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -191,6 +200,7 @@ public class Game : MonoBehaviour
     {
         if (transitionType == "In")
         {
+            stopEvents = true;
             inMapChange = true;
             menuAllowed = false;
             if (needScreenshot)
@@ -219,6 +229,7 @@ public class Game : MonoBehaviour
             canvas.enabled = false;
             menuAllowed = true;
             inMapChange = false;
+            stopEvents = false;
         }
     }
 }
