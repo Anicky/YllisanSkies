@@ -722,6 +722,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23511881198886692, guid: 80d78429de291e04d86a2badd56c6891,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80d78429de291e04d86a2badd56c6891, type: 2}
   m_IsPrefabParent: 0
@@ -746,7 +751,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b81ce7b4d660a749a1bd8c0fe70a08f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugPathFinding: 0
+  debugMode: 0
+  showPathLines: 0
   map: {fileID: 0}
   Width: 0
   Height: 0
