@@ -4,11 +4,21 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
+    // Game
+    private Game game;
 
+    // Map
+    private Tiled2Unity.TiledMap map;
+    private Grid grid;
+
+    // Object components
+    private SpriteRenderer spriteRenderer;
     private Rigidbody2D rbody;
     private Animator anim;
+    private LineRenderer lineRenderer;
+
+    // Movement
     public float speed = 64;
-    private Tiled2Unity.TiledMap map;
     public Vector2 lastMove;
     private bool movementEnabled = true;
     public bool firstInit = true;
@@ -16,11 +26,14 @@ public class Player : MonoBehaviour
     private List<Vector2> pointsToMove;
     private Vector2 nextPointToMove;
     private bool arrivedToNextPoint = false;
-    private Game game;
     private Node initialNodeBeforeMovement;
-    private Grid grid;
-    private LineRenderer lineRenderer;
     private List<Node> nodesToDrawForDirectPath;
+
+    // Adjusting parameters
+    private const float spriteOffsetBeforeCollidingScreenEdgeLeft = 12;
+    private const float spriteOffsetBeforeCollidingScreenEdgeRight = -12;
+    private const float spriteOffsetBeforeCollidingScreenEdgeTop = -12;
+    private const float spriteOffsetBeforeCollidingScreenEdgeBottom = -12;
 
     private float getRelativeX()
     {
@@ -32,19 +45,15 @@ public class Player : MonoBehaviour
         return rbody.position.y - map.transform.position.y;
     }
 
-    // Use this for initialization
     private void Start()
     {
-        GetComponent<SpriteRenderer>().enabled = false;
+        game = GameObject.Find("Game").GetComponent<Game>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        SceneManager.activeSceneChanged += OnSceneChange;
-        GameObject gameObject = GameObject.Find("Game");
-        if (gameObject)
-        {
-            game = gameObject.GetComponentInParent<Game>();
-        }
         lineRenderer = GetComponent<LineRenderer>();
+        spriteRenderer.enabled = false;
+        SceneManager.activeSceneChanged += OnSceneChange;
     }
 
     private void initialize(GameObject[] gameObjects)
@@ -63,14 +72,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnSceneChange(Scene scene1, Scene scene2)
+    private void OnSceneChange(Scene previousScene, Scene currentScene)
     {
-        initialize(scene2.GetRootGameObjects());
+        initialize(currentScene.GetRootGameObjects());
         if (firstInit)
         {
             if (this && map)
             {
-                GetComponent<SpriteRenderer>().enabled = true;
+                spriteRenderer.enabled = true;
             }
             GameObject playerStartingPoint = GameObject.Find("PlayerStartingPoint");
             if (this && playerStartingPoint != null)
@@ -107,19 +116,19 @@ public class Player : MonoBehaviour
         if (movementVector != Vector2.zero)
         {
             isWalking = true;
-            if (movementVector.x < 0 && getRelativeX() < 8)
+            if ((movementVector.x < 0) && (getRelativeX() < (0 + spriteOffsetBeforeCollidingScreenEdgeLeft)))
             {
                 isWalking = false;
             }
-            if (movementVector.y > 0 && getRelativeY() > 0)
+            if ((movementVector.y > 0) && (getRelativeY() > (0 + spriteOffsetBeforeCollidingScreenEdgeTop)))
             {
                 isWalking = false;
             }
-            if (movementVector.x > 0 && getRelativeX() > map.GetMapWidthInPixelsScaled() - 12)
+            if ((movementVector.x > 0) && (getRelativeX() > (map.GetMapWidthInPixelsScaled() + spriteOffsetBeforeCollidingScreenEdgeRight)))
             {
                 isWalking = false;
             }
-            if (movementVector.y < 0 && getRelativeY() < -map.GetMapHeightInPixelsScaled() + 16)
+            if ((movementVector.y < 0) && (getRelativeY() < -(map.GetMapHeightInPixelsScaled() + spriteOffsetBeforeCollidingScreenEdgeBottom)))
             {
                 isWalking = false;
             }
@@ -144,8 +153,6 @@ public class Player : MonoBehaviour
         return speed * Time.deltaTime;
     }
 
-
-    // Update is called once per frame
     private void FixedUpdate()
     {
         if (map && !game.stopEvents)
@@ -153,7 +160,7 @@ public class Player : MonoBehaviour
             if (game.debugMode)
             {
                 checkBypassCollisions();
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetMouseButtonDown(MouseUtils.INPUT_CLICK_RIGHT))
                 {
                     if (!isMovingToPosition && pointsToMove.Count > 0)
                     {
@@ -175,14 +182,14 @@ public class Player : MonoBehaviour
                     else
                     {
                         grid.showPathLines = true;
-                        Vector2 mousePosition = getPositionFromMouse();
+                        Vector2 mousePosition = MouseUtils.getPositionFromMouse();
                         Debug.Log(mousePosition);
                         moveToPosition(mousePosition);
                     }
                 }
-                else if (Input.GetMouseButtonDown(0))
+                else if (Input.GetMouseButtonDown(MouseUtils.INPUT_CLICK_LEFT))
                 {
-                    Vector2 mousePosition = getPositionFromMouse();
+                    Vector2 mousePosition = MouseUtils.getPositionFromMouse();
                     Debug.Log(mousePosition);
                     Point gridPos = grid.worldToGrid(mousePosition);
                     Vector2 nodePos = grid.gridToWorld(gridPos);
@@ -201,11 +208,6 @@ public class Player : MonoBehaviour
                 checkMovement();
             }
         }
-    }
-
-    private Vector2 getPositionFromMouse()
-    {
-        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     public void disableMovement()
@@ -236,7 +238,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void moveToPosition(Vector2 position, bool usePathfinding = true)
+    public void moveToPositionWithoutPathfinding(Vector2 position)
+    {
+        prepareMove(position, false);
+    }
+
+    public void moveToPosition(Vector2 position)
+    {
+        prepareMove(position);
+    }
+
+    private void prepareMove(Vector2 position, bool usePathfinding = true)
     {
         if (grid.debugMode && initialNodeBeforeMovement != null)
         {
