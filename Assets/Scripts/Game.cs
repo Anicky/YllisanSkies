@@ -86,6 +86,8 @@ public class Game : MonoBehaviour
 
     public void setStartingMap(string mapName)
     {
+        player.firstInit = true;
+        firstMap = true;
         SceneManager.LoadScene(mapName);
     }
 

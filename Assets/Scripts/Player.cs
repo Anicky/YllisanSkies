@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private Tiled2Unity.TiledMap map;
     public Vector2 lastMove;
     private bool movementEnabled = true;
-    private bool firstInit = true;
+    public bool firstInit = true;
     public bool isMovingToPosition = false;
     private List<Vector2> pointsToMove;
     private Vector2 nextPointToMove;

@@ -58,13 +58,13 @@ public class Node
 
         if (grid.debugMode)
         {
-            createDebugNode();
             draw();
         }
     }
 
     public void draw(bool isDirectPath = false)
     {
+        createDebugNode();
         nodeDebug.transform.position = this.position;
         if (isDirectPath)
         {
