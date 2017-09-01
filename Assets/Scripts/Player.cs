@@ -53,11 +53,12 @@ public class Player : MonoBehaviour
         {
             if (gameObject.name == "Map")
             {
-                map = gameObject.GetComponentInParent<Tiled2Unity.TiledMap>();
+                map = gameObject.GetComponent<Tiled2Unity.TiledMap>();
                 grid = map.GetComponent<Grid>();
                 pointsToMove = new List<Vector2>();
                 nodesToDrawForDirectPath = new List<Node>();
                 initialNodeBeforeMovement = null;
+                break;
             }
         }
     }
@@ -186,7 +187,7 @@ public class Player : MonoBehaviour
                     Point gridPos = grid.worldToGrid(mousePosition);
                     Vector2 nodePos = grid.gridToWorld(gridPos);
                     Node node = new Node(gridPos.x, gridPos.y, nodePos, grid);
-                    node.draw(grid, true);
+                    node.draw(true);
                     nodesToDrawForDirectPath.Add(node);
                     pointsToMove.Add(nodePos);
                 }

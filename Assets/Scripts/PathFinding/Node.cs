@@ -6,6 +6,7 @@ public class Node
     public bool isBadNode;
 
     //Grid coordinates
+    public Grid grid;
     public int x;
     public int y;
 
@@ -36,6 +37,7 @@ public class Node
         this.y = (int)y;
 
         this.position = position;
+        this.grid = grid;
 
         //check if coords inside our grid area
         if (this.position.x < grid.transform.position.x || -this.position.y < grid.transform.position.y)
@@ -56,18 +58,23 @@ public class Node
 
         if (grid.debugMode)
         {
-            draw(grid);
+            createDebugNode();
+            draw();
         }
     }
 
-    public void draw(Grid grid, bool isDirectPath = false)
+    public void draw(bool isDirectPath = false)
     {
-        nodeDebug = GameObject.Instantiate(Resources.Load("Pathfinding/Node"), grid.transform) as GameObject;
         nodeDebug.transform.position = this.position;
         if (isDirectPath)
         {
             setColor(Grid.colorDirectPath);
         }
+    }
+
+    public void createDebugNode()
+    {
+        nodeDebug = GameObject.Instantiate(Resources.Load("Pathfinding/Node"), grid.transform) as GameObject;
     }
 
     public void setColor(Color color)
