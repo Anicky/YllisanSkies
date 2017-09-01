@@ -38,14 +38,8 @@ public class Grid : MonoBehaviour
     public static Color colorPathFindingNotWalkable = Color.red;
     public static Color colorDirectPath = Color.black;
 
-    void Awake()
+    public void initialize()
     {
-        initialize();
-    }
-
-    private void initialize()
-    {
-
         map = GetComponent<TiledMap>();
 
         heightBetweenPoints = map.TileHeight;

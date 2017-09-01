@@ -30,6 +30,7 @@ public class Game : MonoBehaviour
     private bool inMapChange = false;
     private LoadMap.TransitionsEffects transitionEffectOut;
     private Vector3 playerStartingPoint;
+    private bool firstMap = true;
 
     // Use this for initialization
     private void Start()
@@ -57,6 +58,7 @@ public class Game : MonoBehaviour
         setStartingMap(startingMapName);
         Camera.onPostRender += GamePostRender;
         SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     private void initGame()
@@ -189,10 +191,32 @@ public class Game : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (firstMap)
+        {
+            initGrid();
+            firstMap = false;
+        }
         if (inMapChange)
         {
             player.transform.position = playerStartingPoint;
             StartCoroutine(transition(transitionEffectOut, "Out"));
+        }
+    }
+
+    private void OnSceneUnloaded(Scene scene)
+    {
+        if (!firstMap)
+        {
+            initGrid();
+        }
+    }
+
+    private void initGrid()
+    {
+        GameObject mapObject = GameObject.Find("Map");
+        if (mapObject)
+        {
+            mapObject.GetComponent<Grid>().initialize();
         }
     }
 
