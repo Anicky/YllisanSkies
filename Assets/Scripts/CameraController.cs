@@ -7,11 +7,8 @@ public class CameraController : MonoBehaviour
     public Transform target;
     public float speed = 0.1f;
     private Camera mainCamera;
-    private float mapWidth;
-    private float mapHeight;
     public bool alwaysCenteredToTarget = false;
     private Tiled2Unity.TiledMap map;
-    private static bool cameraExists;
     public bool isSceneChanging = false;
 
     private float getRelativeX()
@@ -49,11 +46,12 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(isSceneChanging)
+        if (isSceneChanging)
         {
             moveCamera(1);
             isSceneChanging = false;
-        } else
+        }
+        else
         {
             moveCamera(speed);
         }
