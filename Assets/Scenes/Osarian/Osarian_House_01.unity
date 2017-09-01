@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b81ce7b4d660a749a1bd8c0fe70a08f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 1
+  debugMode: 0
   showPathLines: 0
   map: {fileID: 0}
   Width: 0
