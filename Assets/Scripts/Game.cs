@@ -229,6 +229,7 @@ public class Game : MonoBehaviour
             stopEvents = true;
             inMapChange = true;
             menuAllowed = false;
+            player.disableMovement();
             if (needScreenshot)
             {
                 takeScreen = true;
@@ -256,6 +257,7 @@ public class Game : MonoBehaviour
             menuAllowed = true;
             inMapChange = false;
             stopEvents = false;
+            player.enableMovement();
         }
     }
 }

@@ -7,6 +7,7 @@ public class LoadMapOpeningDoor : LoadMap
 
     protected override void doActionWhenTriggered()
     {
+        player.disableMovement();
         game.menuAllowed = false;
         if (doorSound)
         {
