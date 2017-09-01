@@ -2,18 +2,24 @@
 
 public class MoveBackground : MonoBehaviour
 {
+    // Game
+    private Game game;
 
+    // Object components
+    private Renderer backgroundRenderer;
+
+    // Attributes
     public float scrollSpeedX;
     public float scrollSpeedY;
 
-    private float count;
-
-    private Game game;
+    // Utils
+    private int frameCounter;
 
     // Use this for initialization
     void Start()
     {
         game = GameObject.Find("Game").GetComponent<Game>();
+        backgroundRenderer = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -21,10 +27,8 @@ public class MoveBackground : MonoBehaviour
     {
         if (!game.stopEvents)
         {
-            Vector2 offset = new Vector2(count * (scrollSpeedX / 100), count * (scrollSpeedY / 100));
-            Renderer rend = GetComponent<Renderer>();
-            rend.material.mainTextureOffset = offset;
-            count += 0.01f;
+            backgroundRenderer.material.mainTextureOffset = new Vector2(frameCounter * scrollSpeedX * Time.deltaTime, frameCounter * scrollSpeedY * Time.deltaTime);
+            frameCounter++;
         }
     }
 }
