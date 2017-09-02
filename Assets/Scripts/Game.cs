@@ -64,23 +64,8 @@ public class Game : MonoBehaviour
 
     private void initGame()
     {
-        Hero heroCyril = new Hero("Cyril");
-        heroCyril.lv = 1;
-        heroCyril.hp = 750;
-        heroCyril.hpMax = 750;
-        heroCyril.ap = 80;
-        heroCyril.apMax = 80;
-
-        Hero heroMax = new Hero("Max");
-        heroMax.lv = 2;
-        heroMax.hp = 830;
-        heroMax.hpMax = 830;
-        heroMax.ap = 60;
-        heroMax.apMax = 60;
-
-        heroes[0] = heroCyril;
-        heroes[1] = heroMax;
-
+        heroes[0] = new Hero("Cyril", 1, 750, 750, 80, 80);
+        heroes[1] = new Hero("Max", 2, 830, 830, 60, 60);
         currentMoney = 1200;
         currentLocation = "Forest of Hopes";
     }

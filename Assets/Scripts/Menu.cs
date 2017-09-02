@@ -370,15 +370,15 @@ public class Menu : MonoBehaviour
                 }
                 else if (blockText.name == "Lv_Stats")
                 {
-                    blockText.text = hero.lv.ToString();
+                    blockText.text = hero.getLv().ToString();
                 }
                 else if (blockText.name == "Hp_Stats")
                 {
-                    blockText.text = hero.hp.ToString() + "/" + hero.hpMax.ToString();
+                    blockText.text = hero.getHp().ToString() + "/" + hero.getHpMax().ToString();
                 }
                 else if (blockText.name == "Ap_Stats")
                 {
-                    blockText.text = hero.ap.ToString() + "/" + hero.apMax.ToString();
+                    blockText.text = hero.getAp().ToString() + "/" + hero.getApMax().ToString();
                 }
             }
         }
@@ -389,11 +389,11 @@ public class Menu : MonoBehaviour
             {
                 if (blockImage.name == "Hp_Gauge")
                 {
-                    blockImage.fillAmount = (float)hero.hp / hero.hpMax;
+                    blockImage.fillAmount = (float)hero.getHp() / hero.getHpMax();
                 }
                 else if (blockImage.name == "Ap_Gauge")
                 {
-                    blockImage.fillAmount = (float)hero.ap / hero.apMax;
+                    blockImage.fillAmount = (float)hero.getAp() / hero.getApMax();
                 }
             }
         }
