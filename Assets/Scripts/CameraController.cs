@@ -38,36 +38,32 @@ public class CameraController : MonoBehaviour
         if (game.inBattle)
         {
             target = null;
-            foreach (GameObject gameObject in gameObjects)
+            GameObject targetObject = GameObjectUtils.searchByNameInList(gameObjects, "CameraTarget");
+            if (targetObject)
             {
-                if (gameObject.name == "CameraTarget")
-                {
-                    target = gameObject.transform;
-                }
-                else if (gameObject.name == "Background")
-                {
-                    inMap = true;
-                    mapPosition = gameObject.transform.position;
-                    Vector2 mapDimensions = gameObject.GetComponent<SpriteRenderer>().bounds.size;
-                    mapWidth = mapDimensions.x;
-                    mapHeight = mapDimensions.y;
-                }
+                target = targetObject.transform;
+            }
+            GameObject mapObject = GameObjectUtils.searchByNameInList(gameObjects, "Background");
+            if (mapObject)
+            {
+                inMap = true;
+                mapPosition = mapObject.transform.position;
+                Vector2 mapDimensions = mapObject.GetComponent<SpriteRenderer>().bounds.size;
+                mapWidth = mapDimensions.x;
+                mapHeight = mapDimensions.y;
             }
         }
         else
         {
             target = GameObject.Find("Player").transform;
-            foreach (GameObject gameObject in gameObjects)
+            GameObject mapObject = GameObjectUtils.searchByNameInList(gameObjects, "Map");
+            if (mapObject)
             {
-                if (gameObject.name == "Map")
-                {
-                    inMap = true;
-                    Tiled2Unity.TiledMap map = gameObject.GetComponent<Tiled2Unity.TiledMap>();
-                    mapPosition = map.transform.position;
-                    mapWidth = map.GetMapWidthInPixelsScaled();
-                    mapHeight = map.GetMapHeightInPixelsScaled();
-                    break;
-                }
+                inMap = true;
+                Tiled2Unity.TiledMap map = mapObject.GetComponent<Tiled2Unity.TiledMap>();
+                mapPosition = map.transform.position;
+                mapWidth = map.GetMapWidthInPixelsScaled();
+                mapHeight = map.GetMapHeightInPixelsScaled();
             }
         }
         isSceneChanging = true;
