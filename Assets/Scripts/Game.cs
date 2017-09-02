@@ -31,6 +31,7 @@ public class Game : MonoBehaviour
     private LoadMap.TransitionsEffects transitionEffectOut;
     private Vector3 playerStartingPoint;
     private bool firstMap = true;
+    public bool inBattle = false;
 
     // Use this for initialization
     private void Start()
