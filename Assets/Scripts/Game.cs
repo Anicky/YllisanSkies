@@ -118,7 +118,7 @@ public class Game : MonoBehaviour
 
     private void checkMenu()
     {
-        if ((Input.GetButtonDown("Cancel")) && (menuEnabled) && (menuAllowed) && (!menu.isOpened) && (!menu.inTransition))
+        if ((Input.GetButtonDown("Cancel")) && (!inBattle) && (menuEnabled) && (menuAllowed) && (!menu.isOpened) && (!menu.inTransition))
         {
             stopEvents = true;
             menu.open();
