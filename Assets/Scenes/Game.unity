@@ -3570,6 +3570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   lastMove: {x: 0, y: 0}
+  firstInit: 1
   isMovingToPosition: 0
 --- !u!61 &805787735
 BoxCollider2D:
@@ -7249,7 +7250,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 128
+  orthographic size: 125
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
