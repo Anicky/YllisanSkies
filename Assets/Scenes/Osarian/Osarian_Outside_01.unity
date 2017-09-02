@@ -510,8 +510,8 @@ MonoBehaviour:
   playerDirectionNeeded: {x: 0, y: 0}
   mapToLoad: Battles
   playerStartingPoint: {x: 0, y: 0, z: 0}
-  transitionEffectIn: 1
-  transitionEffectOut: 1
+  transitionEffectIn: 2
+  transitionEffectOut: 2
 --- !u!212 &1145108964
 SpriteRenderer:
   m_ObjectHideFlags: 0

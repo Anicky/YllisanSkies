@@ -3,7 +3,7 @@
 public class LoadMap : Event
 {
 
-    public enum TransitionsEffects { None, Fade };
+    public enum TransitionsEffects { None, Fade, Battle_01 };
 
     public string mapToLoad;
     public Vector3 playerStartingPoint;

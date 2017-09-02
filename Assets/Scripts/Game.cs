@@ -222,7 +222,7 @@ public class Game : MonoBehaviour
             }
             if (transitionEffect != LoadMap.TransitionsEffects.None)
             {
-                fadeOverlay.texture = Resources.Load<Texture>("Black");
+                fadeOverlay.texture = Resources.Load<Texture>("Transitions/" + transitionEffect);
                 canvas.enabled = true;
             }
         }
@@ -230,7 +230,7 @@ public class Game : MonoBehaviour
         if (transitionEffect != LoadMap.TransitionsEffects.None)
         {
             Animation anim = GetComponent<Animation>();
-            anim.Play("Overlay_" + transitionEffect + transitionType);
+            anim.Play("Transition_" + transitionEffect + "_" + transitionType);
             do
             {
                 yield return null;
