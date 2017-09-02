@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: bb360f8705fea4d4cb73866990279757
   - enabled: 1
+    path: Assets/Scenes/Battles.unity
+    guid: 45ca37d378fe5a84196ee07c093f2eef
+  - enabled: 1
     path: Assets/Scenes/Osarian/Osarian_Outside_01.unity
     guid: d0c561746516c874d8145aaca05beed9
   - enabled: 1
