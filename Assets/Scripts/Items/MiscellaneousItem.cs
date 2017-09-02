@@ -1,4 +1,7 @@
-﻿public class Miscellaneous : Item
+﻿namespace RaverSoft.YllisanSkies.Items
 {
+    public class Miscellaneous : Item
+    {
 
+    }
 }

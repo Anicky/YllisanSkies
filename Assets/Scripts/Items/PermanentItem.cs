@@ -1,4 +1,7 @@
-﻿public class PermanentItem : StatItem
+﻿namespace RaverSoft.YllisanSkies.Items
 {
+    public class PermanentItem : StatItem
+    {
 
+    }
 }

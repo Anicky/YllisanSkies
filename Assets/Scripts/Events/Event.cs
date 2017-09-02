@@ -1,73 +1,79 @@
 ﻿using UnityEngine;
 using Tiled2Unity;
-public abstract class Event : MonoBehaviour
+using RaverSoft.YllisanSkies.Pathfinding;
+
+namespace RaverSoft.YllisanSkies.Events
 {
-
-    protected bool isTriggered = false;
-    public bool submitButtonNeeded = false;
-    public Vector2 playerDirectionNeeded;
-    protected Player player;
-    protected Game game;
-    protected TiledMap map;
-    protected Grid grid;
-
-    // Use this for initialization
-    protected void Start()
+    public abstract class Event : MonoBehaviour
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
-        game = GameObject.Find("Game").GetComponent<Game>();
-        map = GameObject.Find("Map").GetComponent<TiledMap>();
-        grid = map.GetComponent<Grid>();
-    }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        if (isTriggered && checkSubmitButton() && checkDirection())
-        {
-            isTriggered = false;
-            doActionWhenTriggered();
-        }
-    }
+        protected bool isTriggered = false;
+        public bool submitButtonNeeded = false;
+        public Vector2 playerDirectionNeeded;
+        protected Player player;
+        protected Game game;
+        protected TiledMap map;
+        protected Grid grid;
 
-    protected abstract void doActionWhenTriggered();
+        // Use this for initialization
+        protected void Start()
+        {
+            player = GameObject.Find("Player").GetComponent<Player>();
+            game = GameObject.Find("Game").GetComponent<Game>();
+            map = GameObject.Find("Map").GetComponent<TiledMap>();
+            grid = map.GetComponent<Grid>();
+        }
 
-    private bool checkSubmitButton()
-    {
-        return (!submitButtonNeeded || (submitButtonNeeded && Input.GetButton("Submit")));
-    }
+        // Update is called once per frame
+        private void Update()
+        {
+            if (isTriggered && checkSubmitButton() && checkDirection())
+            {
+                isTriggered = false;
+                doActionWhenTriggered();
+            }
+        }
 
-    private bool checkDirection()
-    {
-        if (playerDirectionNeeded == new Vector2(0, 0))
-        {
-            return true;
-        }
-        else if ((playerDirectionNeeded.x != 0) && (player.lastMove.x == playerDirectionNeeded.x))
-        {
-            return true;
-        }
-        else if ((playerDirectionNeeded.y != 0) && (player.lastMove.y == playerDirectionNeeded.y))
-        {
-            return true;
-        }
-        return false;
-    }
+        protected abstract void doActionWhenTriggered();
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Player")
+        private bool checkSubmitButton()
         {
-            isTriggered = true;
+            return (!submitButtonNeeded || (submitButtonNeeded && Input.GetButton("Submit")));
         }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Player")
+        private bool checkDirection()
         {
-            isTriggered = false;
+            if (playerDirectionNeeded == new Vector2(0, 0))
+            {
+                return true;
+            }
+            else if ((playerDirectionNeeded.x != 0) && (player.lastMove.x == playerDirectionNeeded.x))
+            {
+                return true;
+            }
+            else if ((playerDirectionNeeded.y != 0) && (player.lastMove.y == playerDirectionNeeded.y))
+            {
+                return true;
+            }
+            return false;
         }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.name == "Player")
+            {
+                isTriggered = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.name == "Player")
+            {
+                isTriggered = false;
+            }
+        }
+
     }
 
 }

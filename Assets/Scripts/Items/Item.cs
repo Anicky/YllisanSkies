@@ -1,4 +1,7 @@
-﻿public class Item
+﻿namespace RaverSoft.YllisanSkies.Items
 {
-    public string name;
+    public class Item
+    {
+        public string name;
+    }
 }

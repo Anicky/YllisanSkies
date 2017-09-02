@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
-public class MouseUtils
+namespace RaverSoft.YllisanSkies.Utils
 {
-    public const int INPUT_CLICK_LEFT = 0;
-    public const int INPUT_CLICK_RIGHT = 1;
-    public const int INPUT_CLICK_MIDDLE = 2;
-
-    public static Vector2 getPositionFromMouse()
+    public class MouseUtils
     {
-        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        public const int INPUT_CLICK_LEFT = 0;
+        public const int INPUT_CLICK_RIGHT = 1;
+        public const int INPUT_CLICK_MIDDLE = 2;
+
+        public static Vector2 getPositionFromMouse()
+        {
+            return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
     }
 }

@@ -1,4 +1,7 @@
-﻿public class Options
+﻿namespace RaverSoft.YllisanSkies
 {
-    public bool menuMemorizeSectionIndex = true;
+    public class Options
+    {
+        public bool menuMemorizeSectionIndex = true;
+    }
 }

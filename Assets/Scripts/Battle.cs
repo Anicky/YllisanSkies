@@ -1,10 +1,13 @@
-﻿public class Battle
+﻿namespace RaverSoft.YllisanSkies
 {
-    public Enemy[] enemies;
-
-    public Battle(Enemy[] enemies)
+    public class Battle
     {
-        this.enemies = enemies;
-    }
+        public Enemy[] enemies;
 
+        public Battle(Enemy[] enemies)
+        {
+            this.enemies = enemies;
+        }
+
+    }
 }

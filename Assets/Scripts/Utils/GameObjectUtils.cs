@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Linq;
 
-public class GameObjectUtils
+namespace RaverSoft.YllisanSkies.Utils
 {
-
-    public static GameObject searchByNameInList(GameObject[] list, string name)
+    public class GameObjectUtils
     {
-        return list.Where(obj => obj.name == name).SingleOrDefault();
+
+        public static GameObject searchByNameInList(GameObject[] list, string name)
+        {
+            return list.Where(obj => obj.name == name).SingleOrDefault();
+        }
     }
 }

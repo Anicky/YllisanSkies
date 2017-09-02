@@ -1,4 +1,7 @@
-﻿public class Protectiontem : EquipmentItem
+﻿namespace RaverSoft.YllisanSkies.Items
 {
+    public class Protectiontem : EquipmentItem
+    {
 
+    }
 }

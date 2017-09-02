@@ -1,34 +1,37 @@
 ﻿using UnityEngine;
 
-public class MoveBackground : MonoBehaviour
+namespace RaverSoft.YllisanSkies
 {
-    // Game
-    private Game game;
-
-    // Object components
-    private Renderer backgroundRenderer;
-
-    // Attributes
-    public float scrollSpeedX;
-    public float scrollSpeedY;
-
-    // Utils
-    private int frameCounter;
-
-    // Use this for initialization
-    void Start()
+    public class MoveBackground : MonoBehaviour
     {
-        game = GameObject.Find("Game").GetComponent<Game>();
-        backgroundRenderer = GetComponent<Renderer>();
-    }
+        // Game
+        private Game game;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!game.stopEvents)
+        // Object components
+        private Renderer backgroundRenderer;
+
+        // Attributes
+        public float scrollSpeedX;
+        public float scrollSpeedY;
+
+        // Utils
+        private int frameCounter;
+
+        // Use this for initialization
+        void Start()
         {
-            backgroundRenderer.material.mainTextureOffset = new Vector2(frameCounter * scrollSpeedX * Time.deltaTime, frameCounter * scrollSpeedY * Time.deltaTime);
-            frameCounter++;
+            game = GameObject.Find("Game").GetComponent<Game>();
+            backgroundRenderer = GetComponent<Renderer>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (!game.stopEvents)
+            {
+                backgroundRenderer.material.mainTextureOffset = new Vector2(frameCounter * scrollSpeedX * Time.deltaTime, frameCounter * scrollSpeedY * Time.deltaTime);
+                frameCounter++;
+            }
         }
     }
 }

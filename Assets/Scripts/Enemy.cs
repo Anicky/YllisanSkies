@@ -1,4 +1,7 @@
-﻿public class Enemy : Character
+﻿namespace RaverSoft.YllisanSkies
 {
+    public class Enemy : Character
+    {
 
+    }
 }

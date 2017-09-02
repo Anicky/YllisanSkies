@@ -1,8 +1,11 @@
-﻿public class MedicineItem : Item
+﻿namespace RaverSoft.YllisanSkies.Items
 {
-    public bool usableInMenu = true;
-    private int hpToRestore = 0;
-    private int hpPercentageToRestore = 0;
-    private int apToRestore = 0;
-    private int apPercentageToRestore = 0;
+    public class MedicineItem : Item
+    {
+        public bool usableInMenu = true;
+        private int hpToRestore = 0;
+        private int hpPercentageToRestore = 0;
+        private int apToRestore = 0;
+        private int apPercentageToRestore = 0;
+    }
 }

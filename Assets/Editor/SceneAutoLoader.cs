@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using RaverSoft.YllisanSkies;
 
 [InitializeOnLoad]
 public class SceneAutoLoader : MonoBehaviour

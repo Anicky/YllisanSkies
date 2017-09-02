@@ -1,9 +1,11 @@
-﻿public class TestBattle : LoadMap
+﻿namespace RaverSoft.YllisanSkies.Events
 {
-
-    protected override void doActionWhenTriggered()
+    public class TestBattle : LoadMap
     {
-        game.currentBattle = new Battle(new Enemy[] { new Enemy(), new Enemy(), new Enemy(), new Enemy() });
-        base.doActionWhenTriggered();
+        protected override void doActionWhenTriggered()
+        {
+            game.currentBattle = new Battle(new Enemy[] { new Enemy(), new Enemy(), new Enemy(), new Enemy() });
+            base.doActionWhenTriggered();
+        }
     }
 }

@@ -1,39 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LoadMapOpeningDoor : LoadMap
+namespace RaverSoft.YllisanSkies.Events
 {
-    public AudioClip doorSound;
-
-    protected override void doActionWhenTriggered()
+    public class LoadMapOpeningDoor : LoadMap
     {
-        player.disableMovement();
-        game.menuAllowed = false;
-        if (doorSound)
+        public AudioClip doorSound;
+
+        protected override void doActionWhenTriggered()
         {
-            game.GetComponent<AudioSource>().PlayOneShot(doorSound);
+            player.disableMovement();
+            game.menuAllowed = false;
+            if (doorSound)
+            {
+                game.GetComponent<AudioSource>().PlayOneShot(doorSound);
+            }
+            Animator anim = GetComponent<Animator>();
+            if (anim)
+            {
+                anim.SetTrigger("Open");
+            }
+            transform.parent.GetComponent<BoxCollider2D>().enabled = false;
+            grid.recheckNodeConnection(grid.worldToGrid(transform.position, false));
+            player.moveToPosition(transform.position);
         }
-        Animator anim = GetComponent<Animator>();
-        if (anim)
+
+        protected void DoorOpenFinished()
         {
-            anim.SetTrigger("Open");
+            StartCoroutine(waitForPlayerToMove());
         }
-        transform.parent.GetComponent<BoxCollider2D>().enabled = false;
-        grid.recheckNodeConnection(grid.worldToGrid(transform.position, false));
-        player.moveToPosition(transform.position);
-    }
 
-    protected void DoorOpenFinished()
-    {
-        StartCoroutine(waitForPlayerToMove());
-    }
-
-    private IEnumerator waitForPlayerToMove()
-    {
-        do
+        private IEnumerator waitForPlayerToMove()
         {
-            yield return null;
-        } while (player.isMovingToPosition);
-        base.doActionWhenTriggered();
+            do
+            {
+                yield return null;
+            } while (player.isMovingToPosition);
+            base.doActionWhenTriggered();
+        }
     }
 }
