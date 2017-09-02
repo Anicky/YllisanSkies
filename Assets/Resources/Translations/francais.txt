@@ -1,7 +1,25 @@
-[General]
+[Stats]
 Lv = Nv
 Hp = Pv
 Ap = Pa
+Strength = Force
+Resistance = Résistance
+Potential = Potentiel
+Spirit = Esprit
+Agility = Agilité
+Cp = Pc
+Xp = Xp
+Next lv = Nv suivant
+
+[Elements]
+Fire = Feu
+Air = Air
+Lightning = Foudre
+Light = Lumière
+Water = Eau
+Earth = Terre
+Nature = Nature
+Darkness = Ténèbres
 
 [Menu]
 Items = Inventaire
@@ -15,6 +33,36 @@ Save = Sauvegarder
 Quit = Quitter
 Money = Kin's
 Time = Temps
+
+[Status effects]
+Confusion = Confusion
+Silence = Mutisme
+Paralysis = Paralysie
+Blindness = Cécité
+Tiredness = Fatigue
+Sleep = Sommeil
+Poison = Poison
+K.O. = K.O.
+
+[Items]
+Medicine = Médecine
+Permanent = Permanents
+Weapons = Armes
+Protections = Protections
+Accessories = Accessoires
+Materials = Matériaux
+Battles = Combats
+Miscellaneous = Divers
+
+[Equipment]
+Weapon = Arme
+Protection = Protection
+Accessory = Accessoire
+
+[Abilities]
+Skills = Techniques
+Magic = Magies
+Passive = Passives
 
 [Location]
 Forest of Hopes = Forêt des Espoirs
