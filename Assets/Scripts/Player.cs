@@ -58,17 +58,14 @@ public class Player : MonoBehaviour
 
     private void initialize(GameObject[] gameObjects)
     {
-        foreach (GameObject gameObject in gameObjects)
+        GameObject mapObject = GameObjectUtils.searchByNameInList(gameObjects, "Map");
+        if (mapObject)
         {
-            if (gameObject.name == "Map")
-            {
-                map = gameObject.GetComponent<Tiled2Unity.TiledMap>();
-                grid = map.GetComponent<Grid>();
-                pointsToMove = new List<Vector2>();
-                nodesToDrawForDirectPath = new List<Node>();
-                initialNodeBeforeMovement = null;
-                break;
-            }
+            map = mapObject.GetComponent<Tiled2Unity.TiledMap>();
+            grid = map.GetComponent<Grid>();
+            pointsToMove = new List<Vector2>();
+            nodesToDrawForDirectPath = new List<Node>();
+            initialNodeBeforeMovement = null;
         }
     }
 
