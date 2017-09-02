@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
     private void initialize(GameObject[] gameObjects)
     {
         inMap = false;
-        if (game.inBattle)
+        if (game.currentBattle != null)
         {
             target = null;
             GameObject targetObject = GameObjectUtils.searchByNameInList(gameObjects, "CameraTarget");

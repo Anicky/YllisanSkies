@@ -1,58 +1,21 @@
 ﻿using UnityEngine;
 
-public class Hero
+public class Hero : Character
 {
-    public string name;
-
     // Level
     private int lv = 1;
     private int xpTotal = 0;
     private int xpToNextLv;
     private int xpSlopeToIncreaseLevel = 1;
     private int xpVerticalInterceptToIncreaseLevel = 1;
+    public int pointsAttributesToAdd = 0;
+    public int pointsElementsToAdd = 0;
+
     // Equipment
     private WeaponItem weapon;
     private Protectiontem protection;
     private AccessoryItem accessory1;
     private AccessoryItem accessory2;
-
-    // Attributes
-    public int pointsAttributesToAdd = 0;
-    private int hp;
-    private int hpMax;
-    private int ap;
-    private int apMax;
-    private int strength;
-    private int strengthMax;
-    private int resistance;
-    private int resistanceMax;
-    private int potential;
-    private int potentialMax;
-    private int spirit;
-    private int spiritMax;
-    private int agility;
-    private int agilityMax;
-    private int cp;
-    private int cpMax;
-
-    // Elements
-    public int pointsElementsToAdd = 0;
-    private int elementFire;
-    private int elementFireMax;
-    private int elementAir;
-    private int elementAirMax;
-    private int elementLightning;
-    private int elementLightningMax;
-    private int elementLight;
-    private int elementLightMax;
-    private int elementWater;
-    private int elementWaterMax;
-    private int elementEarth;
-    private int elementEarthMax;
-    private int elementNature;
-    private int elementNatureMax;
-    private int elementDarkness;
-    private int elementDarknessMax;
 
     // Adjusting parameters
     private const int POINTS_ATTRIBUTES_TO_ADD_FOR_EACH_LV = 10;

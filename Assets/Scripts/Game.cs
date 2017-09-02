@@ -31,7 +31,7 @@ public class Game : MonoBehaviour
     private LoadMap.TransitionsEffects transitionEffectOut;
     private Vector3 playerStartingPoint;
     private bool firstMap = true;
-    public bool inBattle = false;
+    public Battle currentBattle;
 
     // Use this for initialization
     private void Start()
@@ -118,7 +118,7 @@ public class Game : MonoBehaviour
 
     private void checkMenu()
     {
-        if ((Input.GetButtonDown("Cancel")) && (!inBattle) && (menuEnabled) && (menuAllowed) && (!menu.isOpened) && (!menu.inTransition))
+        if ((Input.GetButtonDown("Cancel")) && (currentBattle == null) && (menuEnabled) && (menuAllowed) && (!menu.isOpened) && (!menu.inTransition))
         {
             stopEvents = true;
             menu.open();
