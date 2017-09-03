@@ -15,7 +15,6 @@ namespace RaverSoft.YllisanSkies
         public Options options;
         private static bool gameExists = false;
         public Player player;
-        private string language;
         private IniFileHandler translationsFileHandler;
         private bool menuEnabled = true;
         public bool menuAllowed = true;
@@ -36,16 +35,21 @@ namespace RaverSoft.YllisanSkies
         private Vector3 playerStartingPoint;
         private bool firstMap = true;
         public Battle currentBattle;
+        private Language defaultLanguage;
+        private Language currentLanguage;
 
         // Use this for initialization
         private void Start()
         {
+            Language languageEnglish = new Language("english", "English");
+            Language languageFrench = new Language("french", "Français");
+            defaultLanguage = languageEnglish;
+            currentLanguage = languageFrench;
             canvas = GameObject.Find("Game/Canvas").GetComponent<Canvas>();
             fadeOverlay = GameObject.Find("Game/Canvas/FadeOverlay").GetComponent<RawImage>();
             canvas.enabled = false;
             debugMode = Debug.isDebugBuild;
-            language = "francais";
-            translationsFileHandler = new IniFileHandler("Translations/" + language);
+            translationsFileHandler = new IniFileHandler("Translations/" + currentLanguage.id);
             loadTranslationsTexts();
             menu.game = this;
             options = new Options();
@@ -111,7 +115,12 @@ namespace RaverSoft.YllisanSkies
 
         public string getTranslation(string type, string text)
         {
-            return translationsFileHandler.IniReadValue(type, text);
+            string translation = text;
+            if (currentLanguage != defaultLanguage)
+            {
+                translation = translationsFileHandler.IniReadValue(type, text);
+            }
+            return translation;
         }
 
         // Update is called once per frame
