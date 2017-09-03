@@ -1,16 +1,16 @@
-﻿namespace RaverSoft.YllisanSkies
+﻿namespace RaverSoft.YllisanSkies.Characters
 {
-    public enum LocationList
+    public enum BehaviourList
     {
-        ForestOfHopes,
-        Osarian
+        Cruel,
+        Rancorous
     }
 
-    public class Location
+    public class Behaviour
     {
         private string name;
 
-        public Location(string name)
+        public Behaviour(string name)
         {
             this.name = name;
         }

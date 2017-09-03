@@ -1,6 +1,11 @@
 ﻿namespace RaverSoft.YllisanSkies.Items
 {
-    public class Item
+    public enum ItemList
+    {
+
+    }
+
+    public abstract class Item
     {
         public string name;
     }

@@ -1,8 +1,8 @@
-id;name;lv;xpSlopeToIncreaseLevel;xpVerticalInterceptToIncreaseLevel;hp;ap
-Cyril;Cyril;1;152;50;750;80
-Max;Max;2;140;66;830;60
-Yuna;Yuna;7;148;57;0;0
-Leonard;Leonard;12;145;65;0;0
-Shiro;Shiro;16;150;50;0;0
-Ashley;Ashley;20;150;50;0;0
-Natsuky;Natsuky;22;150;50;0;0
+id;name;lv;xpSlopeToIncreaseLevel;xpVerticalInterceptToIncreaseLevel;hp;ap;strength;resistance;potential;spirit;agility;cp;elementFire;elementAir;elementLightning;elementLight;elementWater;elementEarth;elementNature;elementDarkness
+Cyril;Cyril;1;152;50;750;80;70;85;70;80;50;100;10;10;10;10;10;10;10;10
+Max;Max;2;140;66;830;60;80;95;75;85;60;100;10;10;10;10;10;10;10;10
+Yuna;Yuna;7;148;57;640;92;60;85;65;80;50;100;10;10;10;10;10;10;10;10
+Leonard;Leonard;12;145;65;1250;85;60;85;65;80;50;100;10;10;10;10;10;10;10;10
+Shiro;Shiro;16;150;50;1000;100;60;85;65;80;50;100;10;10;10;10;10;10;10;10
+Ashley;Ashley;20;150;50;1000;100;60;85;65;80;50;100;10;10;10;10;10;10;10;10
+Natsuky;Natsuky;22;150;50;1000;100;60;85;65;80;50;100;10;10;10;10;10;10;10;10

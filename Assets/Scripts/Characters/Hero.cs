@@ -4,7 +4,7 @@ using RaverSoft.YllisanSkies.Items;
 namespace RaverSoft.YllisanSkies.Characters
 {
 
-    public enum Heroes
+    public enum HeroList
     {
         Cyril,
         Max,
@@ -36,16 +36,12 @@ namespace RaverSoft.YllisanSkies.Characters
         private const int POINTS_ATTRIBUTES_TO_ADD_FOR_EACH_LV = 10;
         private const int POINTS_ELEMENTS_TO_ADD_FOR_EACH_LV = 10;
 
-        public Hero(string name, int lv, int xpSlopeToIncreaseLevel, int xpVerticalInterceptToIncreaseLevel, int hpMax, int apMax)
+        public Hero(string name, int lv, int xpSlopeToIncreaseLevel, int xpVerticalInterceptToIncreaseLevel, int hp, int ap, int strength, int resistance, int potential, int spirit, int agility, int cp, int elementFire, int elementAir, int elementLightning, int elementLight, int elementWater, int elementEarth, int elementNature, int elementDarkness) :
+            base(name, hp, ap, strength, resistance, potential, spirit, agility, cp, elementFire, elementAir, elementLightning, elementLight, elementWater, elementEarth, elementNature, elementDarkness)
         {
-            this.name = name;
             this.lv = lv;
             this.xpSlopeToIncreaseLevel = xpSlopeToIncreaseLevel;
             this.xpVerticalInterceptToIncreaseLevel = xpVerticalInterceptToIncreaseLevel;
-            hp = hpMax;
-            this.hpMax = hpMax;
-            ap = apMax;
-            this.apMax = apMax;
             xpToNextLv = getXpNeededToNextLevel();
         }
 

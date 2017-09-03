@@ -64,6 +64,14 @@ Skills = Techniques
 Magic = Magies
 Passive = Passives
 
-[Location]
+[Locations]
 Forest of Hopes = Forêt des Espoirs
 Osarian = Osarian
+
+[Enemies]
+Royal eagle = Aigle royal
+Lone wolf = Loup solitaire
+
+[Behaviours]
+Cruel = Cruel
+Rancorous = Rancunier

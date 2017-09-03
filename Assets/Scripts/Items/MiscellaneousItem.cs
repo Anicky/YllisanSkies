@@ -1,6 +1,6 @@
 ﻿namespace RaverSoft.YllisanSkies.Items
 {
-    public class Miscellaneous : Item
+    public class MiscellaneousItem : Item
     {
 
     }

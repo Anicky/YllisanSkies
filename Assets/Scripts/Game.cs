@@ -43,8 +43,8 @@ namespace RaverSoft.YllisanSkies
         {
             database = new Database();
             database.load();
-            defaultLanguage = database.getLanguageById(Languages.English);
-            currentLanguage = database.getLanguageById(Languages.French);
+            defaultLanguage = database.getLanguageById(LanguageList.English);
+            currentLanguage = database.getLanguageById(LanguageList.French);
             canvas = GameObject.Find("Game/Canvas").GetComponent<Canvas>();
             fadeOverlay = GameObject.Find("Game/Canvas/FadeOverlay").GetComponent<RawImage>();
             canvas.enabled = false;
@@ -72,10 +72,10 @@ namespace RaverSoft.YllisanSkies
 
         private void initGame()
         {
-            party.addHero(database.getHeroById(Heroes.Cyril));
-            party.addHero(database.getHeroById(Heroes.Max));
+            party.addHero(database.getHeroById(HeroList.Cyril));
+            party.addHero(database.getHeroById(HeroList.Max));
             party.addMoney(1200);
-            party.changeLocation(database.getLocationById(Locations.Osarian));
+            party.changeLocation(database.getLocationById(LocationList.Osarian));
         }
 
         public void setStartingMap(string mapName)

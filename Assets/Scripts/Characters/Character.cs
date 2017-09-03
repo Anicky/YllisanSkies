@@ -1,6 +1,6 @@
 ﻿namespace RaverSoft.YllisanSkies.Characters
 {
-    public class Character
+    public abstract class Character
     {
         public string name;
 
@@ -39,5 +39,43 @@
         protected int elementNatureMax;
         protected int elementDarkness;
         protected int elementDarknessMax;
+
+        public Character(string name, int hp, int ap, int strength, int resistance, int potential, int spirit, int agility, int cp, int elementFire, int elementAir, int elementLightning, int elementLight, int elementWater, int elementEarth, int elementNature, int elementDarkness)
+        {
+            this.name = name;
+            hpMax = hp;
+            apMax = ap;
+            strengthMax = strength;
+            resistanceMax = resistance;
+            potentialMax = potential;
+            spiritMax = spirit;
+            agilityMax = agility;
+            cpMax = cp;
+            elementFireMax = elementFire;
+            elementAirMax = elementAir;
+            elementLightningMax = elementLightning;
+            elementLightMax = elementLight;
+            elementWaterMax = elementWater;
+            elementEarthMax = elementEarth;
+            elementNatureMax = elementNature;
+            elementDarknessMax = elementDarkness;
+
+            this.hp = hp;
+            this.ap = ap;
+            this.strength = strength;
+            this.resistance = resistance;
+            this.potential = potential;
+            this.spirit = spirit;
+            this.agility = agility;
+            this.cp = cp;
+            this.elementFire = elementFire;
+            this.elementAir = elementAir;
+            this.elementLightning = elementLightning;
+            this.elementLight = elementLight;
+            this.elementWater = elementWater;
+            this.elementEarth = elementEarth;
+            this.elementNature = elementNature;
+            this.elementDarkness = elementDarkness;
+        }
     }
 }

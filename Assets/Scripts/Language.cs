@@ -1,6 +1,6 @@
 ﻿namespace RaverSoft.YllisanSkies
 {
-    public enum Languages
+    public enum LanguageList
     {
         English,
         French

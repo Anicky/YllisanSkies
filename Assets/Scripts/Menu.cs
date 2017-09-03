@@ -326,7 +326,7 @@ namespace RaverSoft.YllisanSkies
 
         private void displayLocation()
         {
-            GameObject.Find("Menu/Main/Block_Location/Location_Title").GetComponent<Text>().text = game.getTranslation("Location", game.party.getCurrentLocation().getName());
+            GameObject.Find("Menu/Main/Block_Location/Location_Title").GetComponent<Text>().text = game.getTranslation("Locations", game.party.getCurrentLocation().getName());
         }
 
         private void displaySave()
