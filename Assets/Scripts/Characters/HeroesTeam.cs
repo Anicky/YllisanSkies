@@ -1,10 +1,9 @@
-﻿using RaverSoft.YllisanSkies.Characters;
-using RaverSoft.YllisanSkies.Items;
+﻿using RaverSoft.YllisanSkies.Items;
 using System.Collections.Generic;
 
-namespace RaverSoft.YllisanSkies
+namespace RaverSoft.YllisanSkies.Characters
 {
-    public class Party
+    public class HeroesTeam
     {
         private List<Hero> heroes;
         private int moneyCollected = 0;
@@ -14,7 +13,7 @@ namespace RaverSoft.YllisanSkies
 
         public const int MAXIMUM_NUMBER_OF_HEROES = 4;
 
-        public Party()
+        public HeroesTeam()
         {
             heroes = new List<Hero>();
             items = new List<Item>();
@@ -77,6 +76,14 @@ namespace RaverSoft.YllisanSkies
         public void changeLocation(Location location)
         {
             currentLocation = location;
+        }
+
+        public void initBattle()
+        {
+            foreach (Hero hero in heroes)
+            {
+                hero.initBattle();
+            }
         }
     }
 }

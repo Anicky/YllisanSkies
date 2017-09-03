@@ -1,10 +1,14 @@
-﻿namespace RaverSoft.YllisanSkies.Events
+﻿using RaverSoft.YllisanSkies.Characters;
+
+namespace RaverSoft.YllisanSkies.Events
 {
     public class TestBattle : LoadMap
     {
         protected override void doActionWhenTriggered()
         {
-            game.currentBattle = new Battle(new Enemy[] { new Enemy(), new Enemy(), new Enemy(), new Enemy() });
+            game.inBattle = true;
+            game.enemiesTeam.addEnemy(game.getDatabase().getEnemyById(EnemyList.RoyalEagle));
+            game.enemiesTeam.addEnemy(game.getDatabase().getEnemyById(EnemyList.LoneWolf));
             base.doActionWhenTriggered();
         }
     }

@@ -12,7 +12,8 @@ namespace RaverSoft.YllisanSkies
     public class Game : MonoBehaviour
     {
         private Database database;
-        public Party party;
+        public HeroesTeam heroesTeam;
+        public EnemiesTeam enemiesTeam;
         public Menu menu;
         public Options options;
         private static bool gameExists = false;
@@ -34,7 +35,7 @@ namespace RaverSoft.YllisanSkies
         private LoadMap.TransitionsEffects transitionEffectOut;
         private Vector3 playerStartingPoint;
         private bool firstMap = true;
-        public Battle currentBattle;
+        public bool inBattle = false;
         private Language defaultLanguage;
         private Language currentLanguage;
 
@@ -53,7 +54,8 @@ namespace RaverSoft.YllisanSkies
             loadTranslationsTexts();
             menu.game = this;
             options = new Options();
-            party = new Party();
+            heroesTeam = new HeroesTeam();
+            enemiesTeam = new EnemiesTeam();
             initGame();
             if (!gameExists)
             {
@@ -70,12 +72,17 @@ namespace RaverSoft.YllisanSkies
             SceneManager.sceneUnloaded += OnSceneUnloaded;
         }
 
+        public Database getDatabase()
+        {
+            return database;
+        }
+
         private void initGame()
         {
-            party.addHero(database.getHeroById(HeroList.Cyril));
-            party.addHero(database.getHeroById(HeroList.Max));
-            party.addMoney(1200);
-            party.changeLocation(database.getLocationById(LocationList.Osarian));
+            heroesTeam.addHero(database.getHeroById(HeroList.Cyril));
+            heroesTeam.addHero(database.getHeroById(HeroList.Max));
+            heroesTeam.addMoney(1200);
+            heroesTeam.changeLocation(database.getLocationById(LocationList.Osarian));
         }
 
         public void setStartingMap(string mapName)
@@ -131,7 +138,7 @@ namespace RaverSoft.YllisanSkies
 
         private void checkMenu()
         {
-            if ((Input.GetButtonDown("Cancel")) && (currentBattle == null) && (menuEnabled) && (menuAllowed) && (!menu.isOpened) && (!menu.inTransition))
+            if ((Input.GetButtonDown("Cancel")) && (!inBattle) && (menuEnabled) && (menuAllowed) && (!menu.isOpened) && (!menu.inTransition))
             {
                 stopEvents = true;
                 menu.open();

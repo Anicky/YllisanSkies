@@ -32,9 +32,13 @@ namespace RaverSoft.YllisanSkies.Characters
         private AccessoryItem accessory1;
         private AccessoryItem accessory2;
 
+        // Battles
+        private int attackPoints = 0;
+
         // Adjusting parameters
         private const int POINTS_ATTRIBUTES_TO_ADD_FOR_EACH_LV = 10;
         private const int POINTS_ELEMENTS_TO_ADD_FOR_EACH_LV = 10;
+        public const int BATTLE_MAX_ATTACK_POINTS = 8;
 
         public Hero(string name, int lv, int xpSlopeToIncreaseLevel, int xpVerticalInterceptToIncreaseLevel, int hp, int ap, int strength, int resistance, int potential, int spirit, int agility, int cp, int elementFire, int elementAir, int elementLightning, int elementLight, int elementWater, int elementEarth, int elementNature, int elementDarkness) :
             base(name, hp, ap, strength, resistance, potential, spirit, agility, cp, elementFire, elementAir, elementLightning, elementLight, elementWater, elementEarth, elementNature, elementDarkness)
@@ -43,6 +47,34 @@ namespace RaverSoft.YllisanSkies.Characters
             this.xpSlopeToIncreaseLevel = xpSlopeToIncreaseLevel;
             this.xpVerticalInterceptToIncreaseLevel = xpVerticalInterceptToIncreaseLevel;
             xpToNextLv = getXpNeededToNextLevel();
+        }
+
+        public void initBattle()
+        {
+            attackPoints = 0;
+        }
+
+        public int getAttackPoints()
+        {
+            return attackPoints;
+        }
+
+        public void addAttackPoints(int attackPoints)
+        {
+            this.attackPoints += attackPoints;
+            if (this.attackPoints > BATTLE_MAX_ATTACK_POINTS)
+            {
+                this.attackPoints = BATTLE_MAX_ATTACK_POINTS;
+            }
+        }
+
+        public void removeAttackPoints(int attackPoints)
+        {
+            this.attackPoints -= attackPoints;
+            if (this.attackPoints < 0)
+            {
+                this.attackPoints = 0;
+            }
         }
 
         public int getLv()
@@ -89,96 +121,6 @@ namespace RaverSoft.YllisanSkies.Characters
         private int getXpNeededToNextLevel()
         {
             return (lv * xpSlopeToIncreaseLevel) + xpVerticalInterceptToIncreaseLevel;
-        }
-
-        public int getHp()
-        {
-            return hp;
-        }
-
-        public int getHpMax()
-        {
-            return hpMax;
-        }
-
-        public int getAp()
-        {
-            return ap;
-        }
-
-        public int getApMax()
-        {
-            return apMax;
-        }
-
-        private int changeStat(int currentValue, int max, int points, int multiplier)
-        {
-            currentValue += points * multiplier;
-            if (currentValue < 0)
-            {
-                currentValue = 0;
-            }
-            else if (currentValue > max)
-            {
-                currentValue = max;
-            }
-            return currentValue;
-        }
-
-        public void addHpMax(int hpMaxToAdd)
-        {
-            hpMax += hpMaxToAdd;
-            if (hp > 0)
-            {
-                hp += hpMaxToAdd;
-            }
-        }
-
-        public void addApMax(int apMaxToAdd)
-        {
-            apMax += apMaxToAdd;
-            if (ap > 0)
-            {
-                ap += apMaxToAdd;
-            }
-        }
-
-        public void removeHpMax(int hpMaxToRemove)
-        {
-            hpMax -= hpMaxToRemove;
-            if (hp > hpMax)
-            {
-                hp = hpMax;
-            }
-        }
-
-        public void removeApMax(int apMaxToRemove)
-        {
-            apMax -= apMaxToRemove;
-            if (ap > apMax)
-            {
-                ap += apMaxToRemove;
-            }
-        }
-
-        public void addHp(int hpToAdd)
-        {
-            hp = changeStat(hp, hpMax, hpToAdd, 1);
-        }
-
-        public void removeHp(int hpToRemove)
-        {
-            hp = changeStat(hp, hpMax, hpToRemove, -1);
-        }
-
-        public void addAp(int apToAdd)
-        {
-            ap = changeStat(ap, apMax, apToAdd, 1);
-        }
-
-        public void removeAp(int apToAdd)
-        {
-            ap = changeStat(ap, apMax, apToAdd, -1);
         }
 
         public WeaponItem getWeapon()
@@ -247,55 +189,6 @@ namespace RaverSoft.YllisanSkies.Characters
         {
             unequipStatItem(accessory2);
             accessory2 = null;
-        }
-
-        private void equipStatItem(StatItem statItem)
-        {
-            changeStatsFromStatItem(statItem, 1);
-        }
-
-        private void unequipStatItem(StatItem statItem)
-        {
-            changeStatsFromStatItem(statItem, -1);
-        }
-
-        private void changeStatsFromStatItem(StatItem statItem, int multiplier)
-        {
-            // Attributes
-            hp += statItem.hpMaxToIncrease * multiplier;
-            hpMax += statItem.hpMaxToIncrease * multiplier;
-            ap += statItem.apMaxToIncrease * multiplier;
-            apMax += statItem.apMaxToIncrease * multiplier;
-            strength += statItem.strengthMaxToIncrease * multiplier;
-            strengthMax += statItem.strengthMaxToIncrease * multiplier;
-            resistance += statItem.resistanceMaxToIncrease * multiplier;
-            resistanceMax += statItem.resistanceMaxToIncrease * multiplier;
-            potential += statItem.potentialMaxToIncrease * multiplier;
-            potentialMax += statItem.potentialMaxToIncrease * multiplier;
-            spirit += statItem.spiritMaxToIncrease * multiplier;
-            spiritMax += statItem.spiritMaxToIncrease * multiplier;
-            agility += statItem.agilityMaxToIncrease * multiplier;
-            agilityMax += statItem.agilityMaxToIncrease * multiplier;
-            cp += statItem.cpMaxToIncrease * multiplier;
-            cpMax += statItem.cpMaxToIncrease * multiplier;
-
-            // Elements
-            elementFire += statItem.elementFireMaxToIncrease * multiplier;
-            elementFireMax += statItem.elementFireMaxToIncrease * multiplier;
-            elementAir += statItem.elementAirMaxToIncrease * multiplier;
-            elementAirMax += statItem.elementAirMaxToIncrease * multiplier;
-            elementLightning += statItem.elementLightningMaxToIncrease * multiplier;
-            elementLightningMax += statItem.elementLightningMaxToIncrease * multiplier;
-            elementLight += statItem.elementLightMaxToIncrease * multiplier;
-            elementLightMax += statItem.elementLightMaxToIncrease * multiplier;
-            elementWater += statItem.elementWaterMaxToIncrease * multiplier;
-            elementWaterMax += statItem.elementWaterMaxToIncrease * multiplier;
-            elementEarth += statItem.elementEarthMaxToIncrease * multiplier;
-            elementEarthMax += statItem.elementEarthMaxToIncrease * multiplier;
-            elementNature += statItem.elementNatureMaxToIncrease * multiplier;
-            elementNatureMax += statItem.elementNatureMaxToIncrease * multiplier;
-            elementDarkness += statItem.elementDarknessMaxToIncrease * multiplier;
-            elementDarknessMax += statItem.elementDarknessMaxToIncrease * multiplier;
         }
 
     }

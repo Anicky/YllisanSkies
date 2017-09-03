@@ -200,7 +200,7 @@ namespace RaverSoft.YllisanSkies
                 {
                     currentCursorIndex = 1;
                 }
-            } while (game.party.getHeroByIndex(currentCursorIndex - 1) == null);
+            } while (game.heroesTeam.getHeroByIndex(currentCursorIndex - 1) == null);
         }
 
         private void moveCursorUp()
@@ -212,7 +212,7 @@ namespace RaverSoft.YllisanSkies
                 {
                     currentCursorIndex = 4;
                 }
-            } while (game.party.getHeroByIndex(currentCursorIndex - 1) == null);
+            } while (game.heroesTeam.getHeroByIndex(currentCursorIndex - 1) == null);
         }
 
         private void checkIfCursorOrAction()
@@ -295,7 +295,7 @@ namespace RaverSoft.YllisanSkies
 
         private void displayMoney()
         {
-            GameObject.Find("Menu/Main/Block_Money/Money_Stats").GetComponent<Text>().text = game.party.getCurrentMoney().ToString();
+            GameObject.Find("Menu/Main/Block_Money/Money_Stats").GetComponent<Text>().text = game.heroesTeam.getCurrentMoney().ToString();
         }
 
         private void displayTime()
@@ -326,7 +326,7 @@ namespace RaverSoft.YllisanSkies
 
         private void displayLocation()
         {
-            GameObject.Find("Menu/Main/Block_Location/Location_Title").GetComponent<Text>().text = game.getTranslation("Locations", game.party.getCurrentLocation().getName());
+            GameObject.Find("Menu/Main/Block_Location/Location_Title").GetComponent<Text>().text = game.getTranslation("Locations", game.heroesTeam.getCurrentLocation().getName());
         }
 
         private void displaySave()
@@ -341,9 +341,9 @@ namespace RaverSoft.YllisanSkies
 
         private void displayHeroes()
         {
-            for (int i = 0; i < Party.MAXIMUM_NUMBER_OF_HEROES; i++)
+            for (int i = 0; i < HeroesTeam.MAXIMUM_NUMBER_OF_HEROES; i++)
             {
-                handleHeroBlock(i + 1, game.party.getHeroByIndex(i));
+                handleHeroBlock(i + 1, game.heroesTeam.getHeroByIndex(i));
             }
         }
 

@@ -38,7 +38,7 @@ namespace RaverSoft.YllisanSkies
         private void initialize(GameObject[] gameObjects)
         {
             inMap = false;
-            if (game.currentBattle != null)
+            if (game.inBattle)
             {
                 target = null;
                 GameObject targetObject = GameObjectUtils.searchByNameInList(gameObjects, "CameraTarget");
