@@ -1,5 +1,11 @@
 ﻿namespace RaverSoft.YllisanSkies
 {
+    public enum Locations
+    {
+        ForestOfHopes,
+        Osarian
+    }
+
     public class Location
     {
         private string name;

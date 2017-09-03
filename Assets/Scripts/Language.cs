@@ -1,5 +1,11 @@
 ﻿namespace RaverSoft.YllisanSkies
 {
+    public enum Languages
+    {
+        English,
+        French
+    }
+
     public class Language
     {
         public string id;

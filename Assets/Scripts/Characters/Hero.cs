@@ -4,6 +4,17 @@ using RaverSoft.YllisanSkies.Items;
 namespace RaverSoft.YllisanSkies.Characters
 {
 
+    public enum Heroes
+    {
+        Cyril,
+        Max,
+        Yuna,
+        Leonard,
+        Shiro,
+        Ashley,
+        Natsuky
+    }
+
     public class Hero : Character
     {
         // Level

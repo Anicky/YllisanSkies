@@ -1,20 +1,21 @@
 ﻿using System.Collections.Generic;
 using RaverSoft.YllisanSkies.Characters;
 using RaverSoft.YllisanSkies.Utils;
+using System;
 
 namespace RaverSoft.YllisanSkies
 {
     public class Database
     {
-        private Dictionary<string, Language> languages;
-        private Dictionary<string, Hero> heroes;
-        private Dictionary<string, Location> locations;
+        private Dictionary<Languages, Language> languages;
+        private Dictionary<Heroes, Hero> heroes;
+        private Dictionary<Locations, Location> locations;
 
         public Database()
         {
-            languages = new Dictionary<string, Language>();
-            heroes = new Dictionary<string, Hero>();
-            locations = new Dictionary<string, Location>();
+            languages = new Dictionary<Languages, Language>();
+            heroes = new Dictionary<Heroes, Hero>();
+            locations = new Dictionary<Locations, Location>();
         }
 
         public void load()
@@ -33,7 +34,7 @@ namespace RaverSoft.YllisanSkies
         {
             foreach (Dictionary<string, string> info in getCSVinfo("Heroes"))
             {
-                heroes.Add(info["id"], new Hero(
+                heroes.Add((Heroes)Enum.Parse(typeof(Heroes), info["id"]), new Hero(
                     info["name"],
                     int.Parse(info["lv"]),
                     int.Parse(info["xpSlopeToIncreaseLevel"]),
@@ -48,7 +49,7 @@ namespace RaverSoft.YllisanSkies
         {
             foreach (Dictionary<string, string> info in getCSVinfo("Languages"))
             {
-                languages.Add(info["id"], new Language(
+                languages.Add((Languages)Enum.Parse(typeof(Languages), info["id"]), new Language(
                     info["id"],
                     info["name"]
                 ));
@@ -59,23 +60,23 @@ namespace RaverSoft.YllisanSkies
         {
             foreach (Dictionary<string, string> info in getCSVinfo("Locations"))
             {
-                locations.Add(info["id"], new Location(
+                locations.Add((Locations)Enum.Parse(typeof(Locations), info["id"]), new Location(
                     info["name"]
                 ));
             }
         }
 
-        public Hero getHeroById(string id)
+        public Hero getHeroById(Heroes id)
         {
             return heroes[id];
         }
 
-        public Language getLanguageById(string id)
+        public Language getLanguageById(Languages id)
         {
             return languages[id];
         }
 
-        public Location getLocationById(string id)
+        public Location getLocationById(Locations id)
         {
             return locations[id];
         }

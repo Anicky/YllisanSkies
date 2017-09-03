@@ -6,39 +6,34 @@ namespace RaverSoft.YllisanSkies
 {
     public class Party
     {
-        private Hero[] heroes;
+        private List<Hero> heroes;
         private int moneyCollected = 0;
         private int currentMoney = 0;
         private List<Item> items;
         private Location currentLocation;
 
+        public const int MAXIMUM_NUMBER_OF_HEROES = 4;
+
         public Party()
         {
-            heroes = new Hero[] { null, null, null, null };
+            heroes = new List<Hero>();
+            items = new List<Item>();
         }
 
-        public Hero[] getHeroes()
+        public List<Hero> getHeroes()
         {
             return heroes;
         }
 
         public int getNumberOfHeroes()
         {
-            int numberOfHeroes = 0;
-            for (int i = 0; i < heroes.Length; i++)
-            {
-                if (heroes[i] != null)
-                {
-                    numberOfHeroes++;
-                }
-            }
-            return numberOfHeroes;
+            return heroes.Count;
         }
 
         public Hero getHeroByIndex(int i)
         {
             Hero hero = null;
-            if (i >= 0 && i < heroes.Length)
+            if (i >= 0 && i < heroes.Count)
             {
                 hero = heroes[i];
             }
@@ -47,19 +42,9 @@ namespace RaverSoft.YllisanSkies
 
         public void addHero(Hero hero)
         {
-            bool heroAdded = false;
-            for (int i = 0; i < heroes.Length; i++)
+            if (heroes.Count < MAXIMUM_NUMBER_OF_HEROES)
             {
-                if (heroes[i] == null)
-                {
-                    heroes[i] = hero;
-                    heroAdded = true;
-                    break;
-                }
-            }
-            if (!heroAdded)
-            {
-                // @TODO : Throw exception
+                heroes.Add(hero);
             }
         }
 

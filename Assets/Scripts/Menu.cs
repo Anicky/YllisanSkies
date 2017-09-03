@@ -341,11 +341,9 @@ namespace RaverSoft.YllisanSkies
 
         private void displayHeroes()
         {
-            Hero[] heroes = game.party.getHeroes();
-            for (int i = 0; i < heroes.Length; i++)
+            for (int i = 0; i < Party.MAXIMUM_NUMBER_OF_HEROES; i++)
             {
-                Hero hero = heroes[i];
-                handleHeroBlock(i + 1, hero);
+                handleHeroBlock(i + 1, game.party.getHeroByIndex(i));
             }
         }
 
