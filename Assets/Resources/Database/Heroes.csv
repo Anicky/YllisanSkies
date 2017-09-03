@@ -1,8 +1,8 @@
 id;name;lv;xpSlopeToIncreaseLevel;xpVerticalInterceptToIncreaseLevel;hp;ap
-cyril;Cyril;1;152;50;750;80
-max;Max;2;140;66;830;60
-yuna;Yuna;7;148;57;0;0
-leonard;Leonard;12;145;65;0;0
-shiro;Shiro;16;150;50;0;0
-ashley;Ashley;20;150;50;0;0
-natsuky;Natsuky;22;150;50;0;0
+Cyril;Cyril;1;152;50;750;80
+Max;Max;2;140;66;830;60
+Yuna;Yuna;7;148;57;0;0
+Leonard;Leonard;12;145;65;0;0
+Shiro;Shiro;16;150;50;0;0
+Ashley;Ashley;20;150;50;0;0
+Natsuky;Natsuky;22;150;50;0;0

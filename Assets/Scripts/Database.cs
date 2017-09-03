@@ -8,17 +8,20 @@ namespace RaverSoft.YllisanSkies
     {
         private Dictionary<string, Language> languages;
         private Dictionary<string, Hero> heroes;
+        private Dictionary<string, Location> locations;
 
         public Database()
         {
             languages = new Dictionary<string, Language>();
             heroes = new Dictionary<string, Hero>();
+            locations = new Dictionary<string, Location>();
         }
 
         public void load()
         {
             loadLanguages();
             loadHeroes();
+            loadLocations();
         }
 
         private List<Dictionary<string, string>> getCSVinfo(string type)
@@ -52,6 +55,16 @@ namespace RaverSoft.YllisanSkies
             }
         }
 
+        private void loadLocations()
+        {
+            foreach (Dictionary<string, string> info in getCSVinfo("Locations"))
+            {
+                locations.Add(info["id"], new Location(
+                    info["name"]
+                ));
+            }
+        }
+
         public Hero getHeroById(string id)
         {
             return heroes[id];
@@ -60,6 +73,11 @@ namespace RaverSoft.YllisanSkies
         public Language getLanguageById(string id)
         {
             return languages[id];
+        }
+
+        public Location getLocationById(string id)
+        {
+            return locations[id];
         }
 
     }

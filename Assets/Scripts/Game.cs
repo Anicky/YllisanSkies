@@ -12,8 +12,7 @@ namespace RaverSoft.YllisanSkies
     public class Game : MonoBehaviour
     {
         private Database database;
-
-        public Hero[] heroes;
+        public Party party;
         public Menu menu;
         public Options options;
         private static bool gameExists = false;
@@ -21,8 +20,6 @@ namespace RaverSoft.YllisanSkies
         private IniFileHandler translationsFileHandler;
         private bool menuEnabled = true;
         public bool menuAllowed = true;
-        public int moneyCollected = 0;
-        public int currentMoney = 0;
         public string currentLocation;
         public bool isSaveAllowed = false;
         public string startingMapName;
@@ -56,7 +53,7 @@ namespace RaverSoft.YllisanSkies
             loadTranslationsTexts();
             menu.game = this;
             options = new Options();
-            heroes = new Hero[] { null, null, null, null };
+            party = new Party();
             initGame();
             if (!gameExists)
             {
@@ -75,10 +72,10 @@ namespace RaverSoft.YllisanSkies
 
         private void initGame()
         {
-            heroes[0] = database.getHeroById("cyril");
-            heroes[1] = database.getHeroById("max");
-            currentMoney = 1200;
-            currentLocation = "Forest of Hopes";
+            party.addHero(database.getHeroById("Cyril"));
+            party.addHero(database.getHeroById("Max"));
+            party.addMoney(1200);
+            party.changeLocation(database.getLocationById("Osarian"));
         }
 
         public void setStartingMap(string mapName)
@@ -139,19 +136,6 @@ namespace RaverSoft.YllisanSkies
                 stopEvents = true;
                 menu.open();
             }
-        }
-
-        public int getNumberOfHeroes()
-        {
-            int numberOfHeroes = 0;
-            for (int i = 0; i < heroes.Length; i++)
-            {
-                if (heroes[i] != null)
-                {
-                    numberOfHeroes++;
-                }
-            }
-            return numberOfHeroes;
         }
 
         public void GamePostRender(Camera currentCamera)

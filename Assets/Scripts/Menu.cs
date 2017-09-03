@@ -200,7 +200,7 @@ namespace RaverSoft.YllisanSkies
                 {
                     currentCursorIndex = 1;
                 }
-            } while (game.heroes[currentCursorIndex - 1] == null);
+            } while (game.party.getHeroByIndex(currentCursorIndex - 1) == null);
         }
 
         private void moveCursorUp()
@@ -212,7 +212,7 @@ namespace RaverSoft.YllisanSkies
                 {
                     currentCursorIndex = 4;
                 }
-            } while (game.heroes[currentCursorIndex - 1] == null);
+            } while (game.party.getHeroByIndex(currentCursorIndex - 1) == null);
         }
 
         private void checkIfCursorOrAction()
@@ -295,7 +295,7 @@ namespace RaverSoft.YllisanSkies
 
         private void displayMoney()
         {
-            GameObject.Find("Menu/Main/Block_Money/Money_Stats").GetComponent<Text>().text = game.currentMoney.ToString();
+            GameObject.Find("Menu/Main/Block_Money/Money_Stats").GetComponent<Text>().text = game.party.getCurrentMoney().ToString();
         }
 
         private void displayTime()
@@ -326,7 +326,7 @@ namespace RaverSoft.YllisanSkies
 
         private void displayLocation()
         {
-            GameObject.Find("Menu/Main/Block_Location/Location_Title").GetComponent<Text>().text = game.getTranslation("Location", "Forest of Hopes");
+            GameObject.Find("Menu/Main/Block_Location/Location_Title").GetComponent<Text>().text = game.getTranslation("Location", game.party.getCurrentLocation().getName());
         }
 
         private void displaySave()
@@ -341,9 +341,10 @@ namespace RaverSoft.YllisanSkies
 
         private void displayHeroes()
         {
-            for (int i = 0; i < game.heroes.Length; i++)
+            Hero[] heroes = game.party.getHeroes();
+            for (int i = 0; i < heroes.Length; i++)
             {
-                Hero hero = game.heroes[i];
+                Hero hero = heroes[i];
                 handleHeroBlock(i + 1, hero);
             }
         }
