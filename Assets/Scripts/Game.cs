@@ -2,13 +2,16 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using RaverSoft.YllisanSkies.Characters;
 using RaverSoft.YllisanSkies.Events;
 using RaverSoft.YllisanSkies.Pathfinding;
+using RaverSoft.YllisanSkies.Utils;
 
 namespace RaverSoft.YllisanSkies
 {
     public class Game : MonoBehaviour
     {
+        private Database database;
 
         public Hero[] heroes;
         public Menu menu;
@@ -41,10 +44,10 @@ namespace RaverSoft.YllisanSkies
         // Use this for initialization
         private void Start()
         {
-            Language languageEnglish = new Language("english", "English");
-            Language languageFrench = new Language("french", "Français");
-            defaultLanguage = languageEnglish;
-            currentLanguage = languageFrench;
+            database = new Database();
+            database.load();
+            defaultLanguage = database.getLanguageById("English");
+            currentLanguage = database.getLanguageById("French");
             canvas = GameObject.Find("Game/Canvas").GetComponent<Canvas>();
             fadeOverlay = GameObject.Find("Game/Canvas/FadeOverlay").GetComponent<RawImage>();
             canvas.enabled = false;
@@ -72,8 +75,8 @@ namespace RaverSoft.YllisanSkies
 
         private void initGame()
         {
-            heroes[0] = new Hero("Cyril", 1, 750, 750, 80, 80);
-            heroes[1] = new Hero("Max", 2, 830, 830, 60, 60);
+            heroes[0] = database.getHeroById("cyril");
+            heroes[1] = database.getHeroById("max");
             currentMoney = 1200;
             currentLocation = "Forest of Hopes";
         }

@@ -1,8 +1,7 @@
-﻿namespace RaverSoft.YllisanSkies
+﻿namespace RaverSoft.YllisanSkies.Characters
 {
     public class Character
     {
-
         public string name;
 
         // Attributes

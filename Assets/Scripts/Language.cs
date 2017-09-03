@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace RaverSoft.YllisanSkies
+﻿namespace RaverSoft.YllisanSkies
 {
     public class Language
     {

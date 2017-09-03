@@ -1,4 +1,6 @@
-﻿namespace RaverSoft.YllisanSkies
+﻿using RaverSoft.YllisanSkies.Characters;
+
+namespace RaverSoft.YllisanSkies
 {
     public class Battle
     {

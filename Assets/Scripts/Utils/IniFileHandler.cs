@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 using System.Text.RegularExpressions;
 
-namespace RaverSoft.YllisanSkies
+namespace RaverSoft.YllisanSkies.Utils
 {
     public class IniFileHandler
     {

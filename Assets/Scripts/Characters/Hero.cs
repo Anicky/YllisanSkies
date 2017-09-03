@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using RaverSoft.YllisanSkies.Items;
 
-namespace RaverSoft.YllisanSkies
+namespace RaverSoft.YllisanSkies.Characters
 {
+
     public class Hero : Character
     {
         // Level
@@ -24,13 +25,15 @@ namespace RaverSoft.YllisanSkies
         private const int POINTS_ATTRIBUTES_TO_ADD_FOR_EACH_LV = 10;
         private const int POINTS_ELEMENTS_TO_ADD_FOR_EACH_LV = 10;
 
-        public Hero(string name, int lv, int hp, int hpMax, int ap, int apMax)
+        public Hero(string name, int lv, int xpSlopeToIncreaseLevel, int xpVerticalInterceptToIncreaseLevel, int hpMax, int apMax)
         {
             this.name = name;
             this.lv = lv;
-            this.hp = hp;
+            this.xpSlopeToIncreaseLevel = xpSlopeToIncreaseLevel;
+            this.xpVerticalInterceptToIncreaseLevel = xpVerticalInterceptToIncreaseLevel;
+            hp = hpMax;
             this.hpMax = hpMax;
-            this.ap = ap;
+            ap = apMax;
             this.apMax = apMax;
             xpToNextLv = getXpNeededToNextLevel();
         }

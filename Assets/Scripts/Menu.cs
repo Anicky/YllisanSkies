@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using RaverSoft.YllisanSkies.Characters;
 
 namespace RaverSoft.YllisanSkies
 {
