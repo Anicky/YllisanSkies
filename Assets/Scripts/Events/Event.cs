@@ -27,7 +27,7 @@ namespace RaverSoft.YllisanSkies.Events
         // Update is called once per frame
         private void Update()
         {
-            if (isTriggered && checkSubmitButton() && checkDirection())
+            if (isTriggered && !game.stopEvents && checkSubmitButton() && checkDirection())
             {
                 isTriggered = false;
                 doActionWhenTriggered();
