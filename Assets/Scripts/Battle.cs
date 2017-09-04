@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using RaverSoft.YllisanSkies.Characters;
 
@@ -7,13 +9,32 @@ namespace RaverSoft.YllisanSkies
     public class Battle : MonoBehaviour
     {
 
+        public enum Commands
+        {
+            Attack,
+            Defense,
+            Abilities,
+            Items,
+            RunAway
+        }
+
         private Game game;
+        private Dictionary<Commands, string> commandsTitles;
 
         // Use this for initialization
         void Start()
         {
             game = GameObject.Find("Game").GetComponent<Game>();
             game.heroesTeam.initBattle();
+            commandsTitles = new Dictionary<Commands, string>();
+            commandsTitles.Add(Commands.Attack, game.getTranslation("Battles", "Attack"));
+            commandsTitles.Add(Commands.Defense, game.getTranslation("Battles", "Defense"));
+            commandsTitles.Add(Commands.Abilities, game.getTranslation("Battles", "Abilities"));
+            commandsTitles.Add(Commands.Items, game.getTranslation("Battles", "Items"));
+            commandsTitles.Add(Commands.RunAway, game.getTranslation("Battles", "Run away"));
+            GameObject.Find("Battle/Block_ATBBar/Text_Wait").GetComponent<Text>().text = game.getTranslation("Battles", "WAIT");
+            GameObject.Find("Battle/Block_ATBBar/Text_Command").GetComponent<Text>().text = game.getTranslation("Battles", "COM");
+            GameObject.Find("Battle/Block_ATBBar/Text_Action").GetComponent<Text>().text = game.getTranslation("Battles", "ACT");
             displayInterface();
             displayHeroes();
             displayEnemies();

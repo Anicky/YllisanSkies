@@ -4,7 +4,12 @@ namespace RaverSoft.YllisanSkies.Events
 {
     public class LoadMap : Event
     {
-        public enum TransitionsEffects { None, Fade, Battle_01 };
+        public enum TransitionsEffects
+        {
+            None,
+            Fade,
+            Battle_01
+        }
 
         public string mapToLoad;
         public Vector3 playerStartingPoint;

@@ -22,7 +22,19 @@ namespace RaverSoft.YllisanSkies.Menu
         private Sections currentSectionOpened = Sections.None;
         private bool isQuittingSection = false;
 
-        private enum Sections { None, Items, Status, Equipment, Abilities, Airship, Journal, Options, Save, Quit }
+        private enum Sections
+        {
+            None,
+            Items,
+            Status,
+            Equipment,
+            Abilities,
+            Airship,
+            Journal,
+            Options,
+            Save,
+            Quit
+        }
 
         // Use this for initialization
         private void Start()

@@ -75,3 +75,13 @@ Lone wolf = Loup solitaire
 [Behaviours]
 Cruel = Cruel
 Rancorous = Rancunier
+
+[Battles]
+WAIT = ATT
+COM = COM
+ACT = ACT
+Attack = Attaque
+Defense = Défense
+Abilities = Capacités
+Items = Inventaire
+Run away = Fuite
