@@ -42,6 +42,9 @@ namespace RaverSoft.YllisanSkies.Characters
         protected int elementDarkness;
         protected int elementDarknessMax;
 
+        // Battles
+        public int battleSpeed = 0;
+
         public Character(string name, int hp, int ap, int strength, int resistance, int potential, int spirit, int agility, int cp, int elementFire, int elementAir, int elementLightning, int elementLight, int elementWater, int elementEarth, int elementNature, int elementDarkness)
         {
             this.name = name;
@@ -98,6 +101,11 @@ namespace RaverSoft.YllisanSkies.Characters
         public int getApMax()
         {
             return apMax;
+        }
+
+        public int getAgility()
+        {
+            return agility;
         }
 
         private int changeStat(int currentValue, int max, int points, int multiplier)

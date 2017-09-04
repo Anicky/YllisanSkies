@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using RaverSoft.YllisanSkies.Characters;
 
-namespace RaverSoft.YllisanSkies
+namespace RaverSoft.YllisanSkies.Battles
 {
-    public class Battle : MonoBehaviour
+    public class BattleSystem : MonoBehaviour
     {
 
         public enum Commands
@@ -18,7 +18,8 @@ namespace RaverSoft.YllisanSkies
             RunAway
         }
 
-        private Game game;
+        public Game game;
+        private ATBManager aTBManager;
         private Dictionary<Commands, string> commandsTitles;
 
         // Use this for initialization
@@ -26,10 +27,12 @@ namespace RaverSoft.YllisanSkies
         {
             game = GameObject.Find("Game").GetComponent<Game>();
             game.heroesTeam.initBattle();
+            aTBManager = new ATBManager(this);
             initTexts();
             displayInterface();
             displayHeroes();
             displayEnemies();
+            aTBManager.init();
         }
 
         // Update is called once per frame
