@@ -3,10 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using RaverSoft.YllisanSkies.Characters;
+using RaverSoft.YllisanSkies.Sound;
 
-namespace RaverSoft.YllisanSkies
+namespace RaverSoft.YllisanSkies.Menu
 {
-    public class Menu : MonoBehaviour
+    public class MenuSystem : MonoBehaviour
     {
 
         public bool isOpened = false;
@@ -19,10 +20,7 @@ namespace RaverSoft.YllisanSkies
         private bool isAxisInUse = false;
         private bool isMenuOpeningOrClosing = false;
         private Sections currentSectionOpened = Sections.None;
-        public AudioClip soundCursor;
-        public AudioClip soundSubmit;
-        public AudioClip soundError;
-        public AudioClip soundCancel;
+        private bool isQuittingSection = false;
 
         private enum Sections { None, Items, Status, Equipment, Abilities, Airship, Journal, Options, Save, Quit }
 
@@ -49,76 +47,56 @@ namespace RaverSoft.YllisanSkies
             }
             if (isOpened && !inTransition)
             {
-                if (currentSectionOpened != Sections.None)
+                if (currentSectionOpened == Sections.None)
                 {
-                    if (Input.GetButtonDown("Cancel"))
+                    if (cursorEnabled)
                     {
-                        playSoundCancel();
-                        quitSection();
-                    }
-                }
-                else if (cursorEnabled)
-                {
-                    if (Input.GetAxisRaw("Vertical") != 0)
-                    {
-                        if (!isAxisInUse)
+                        if (Input.GetAxisRaw("Vertical") != 0)
                         {
-                            playSoundCursor();
-                            moveCursor();
-                            isAxisInUse = true;
+                            if (!isAxisInUse)
+                            {
+                                game.playSound(Sounds.Cursor);
+                                moveCursor();
+                                isAxisInUse = true;
+                            }
+                        }
+                        else if (Input.GetButtonDown("Submit"))
+                        {
+                            submitSection();
+                        }
+                        else if (Input.GetButtonDown("Cancel"))
+                        {
+                            game.playSound(Sounds.Cancel);
+                            disableCursor();
+                        }
+                        if (Input.GetAxisRaw("Vertical") == 0)
+                        {
+                            isAxisInUse = false;
                         }
                     }
-                    else if (Input.GetButtonDown("Submit"))
+                    else
                     {
-                        submitSection();
-                    }
-                    else if (Input.GetButtonDown("Cancel"))
-                    {
-                        playSoundCancel();
-                        disableCursor();
-                    }
-                    if (Input.GetAxisRaw("Vertical") == 0)
-                    {
-                        isAxisInUse = false;
-                    }
-                }
-                else
-                {
-                    if (Input.GetAxisRaw("Vertical") != 0)
-                    {
-                        playSoundCursor();
-                        moveSection();
-                    }
-                    else if (Input.GetButtonDown("Submit"))
-                    {
-                        checkIfCursorOrAction();
-                    }
-                    else if (Input.GetButtonDown("Cancel"))
-                    {
-                        close();
+                        if (Input.GetAxisRaw("Vertical") != 0)
+                        {
+                            game.playSound(Sounds.Cursor);
+                            moveSection();
+                        }
+                        else if (Input.GetButtonDown("Submit"))
+                        {
+                            checkIfCursorOrAction();
+                        }
+                        else if (Input.GetButtonDown("Cancel"))
+                        {
+                            close();
+                        }
                     }
                 }
             }
-        }
-
-        private void playSoundCursor()
-        {
-            game.GetComponent<AudioSource>().PlayOneShot(soundCursor);
-        }
-
-        private void playSoundSubmit()
-        {
-            game.GetComponent<AudioSource>().PlayOneShot(soundSubmit);
-        }
-
-        private void playSoundError()
-        {
-            game.GetComponent<AudioSource>().PlayOneShot(soundError);
-        }
-
-        private void playSoundCancel()
-        {
-            game.GetComponent<AudioSource>().PlayOneShot(soundCancel);
+            if (isQuittingSection)
+            {
+                currentSectionOpened = Sections.None;
+                isQuittingSection = false;
+            }
         }
 
         private void LateUpdate()
@@ -135,47 +113,72 @@ namespace RaverSoft.YllisanSkies
             switch (currentSectionIndex)
             {
                 case (int)Sections.Items:
-                case (int)Sections.Status:
-                case (int)Sections.Equipment:
-                case (int)Sections.Abilities:
-                case (int)Sections.Airship:
-                case (int)Sections.Journal:
-                case (int)Sections.Options:
-                    playSoundSubmit();
                     enterSection((Sections)currentSectionIndex);
+                    GameObject.Find("Menu/" + (Sections)currentSectionIndex).GetComponent<MenuSectionItems>().open();
+                    break;
+                case (int)Sections.Status:
+                    enterSection((Sections)currentSectionIndex);
+                    GameObject.Find("Menu/" + (Sections)currentSectionIndex).GetComponent<MenuSectionStatus>().open(getHeroFromCursorIndex());
+                    break;
+                case (int)Sections.Equipment:
+                    enterSection((Sections)currentSectionIndex);
+                    GameObject.Find("Menu/" + (Sections)currentSectionIndex).GetComponent<MenuSectionEquipment>().open(getHeroFromCursorIndex());
+                    break;
+                case (int)Sections.Abilities:
+                    enterSection((Sections)currentSectionIndex);
+                    GameObject.Find("Menu/" + (Sections)currentSectionIndex).GetComponent<MenuSectionAbilities>().open(getHeroFromCursorIndex());
+                    break;
+                case (int)Sections.Airship:
+                    enterSection((Sections)currentSectionIndex);
+                    GameObject.Find("Menu/" + (Sections)currentSectionIndex).GetComponent<MenuSectionAirship>().open();
+                    break;
+                case (int)Sections.Journal:
+                    enterSection((Sections)currentSectionIndex);
+                    GameObject.Find("Menu/" + (Sections)currentSectionIndex).GetComponent<MenuSectionJournal>().open();
+                    break;
+                case (int)Sections.Options:
+                    enterSection((Sections)currentSectionIndex);
+                    GameObject.Find("Menu/" + (Sections)currentSectionIndex).GetComponent<MenuSectionOptions>().open();
                     break;
                 case (int)Sections.Save:
                     if (game.isSaveAllowed)
                     {
-                        playSoundSubmit();
+                        game.playSound(Sounds.Submit);
                         // @TODO
                     }
                     else
                     {
-                        playSoundError();
+                        game.playSound(Sounds.Error);
                         // @TODO : play Error sound
                     }
                     break;
                 case (int)Sections.Quit:
                     // @TODO
-                    playSoundSubmit();
+                    game.playSound(Sounds.Submit);
                     break;
             }
         }
 
         private void enterSection(Sections section)
         {
+            game.playSound(Sounds.Submit);
             GameObject.Find("Menu/Main").GetComponent<Canvas>().enabled = false;
             GameObject.Find("Menu/" + section).GetComponent<Canvas>().enabled = true;
             currentSectionOpened = section;
         }
 
-        private void quitSection()
+        public void quitSection()
         {
+            game.playSound(Sounds.Cancel);
             disableCursor();
             GameObject.Find("Menu/" + currentSectionOpened).GetComponent<Canvas>().enabled = false;
             GameObject.Find("Menu/Main").GetComponent<Canvas>().enabled = true;
-            currentSectionOpened = Sections.None;
+            isQuittingSection = true;
+        }
+
+        private Hero getHeroFromCursorIndex()
+        {
+            return game.heroesTeam.getHeroByIndex(currentCursorIndex - 1);
         }
 
         private void moveCursor()
@@ -200,7 +203,7 @@ namespace RaverSoft.YllisanSkies
                 {
                     currentCursorIndex = 1;
                 }
-            } while (game.heroesTeam.getHeroByIndex(currentCursorIndex - 1) == null);
+            } while (getHeroFromCursorIndex() == null);
         }
 
         private void moveCursorUp()
@@ -212,7 +215,7 @@ namespace RaverSoft.YllisanSkies
                 {
                     currentCursorIndex = 4;
                 }
-            } while (game.heroesTeam.getHeroByIndex(currentCursorIndex - 1) == null);
+            } while (getHeroFromCursorIndex() == null);
         }
 
         private void checkIfCursorOrAction()
@@ -220,7 +223,7 @@ namespace RaverSoft.YllisanSkies
             List<int> sectionsWithCursor = new List<int> { 2, 3, 4 };
             if (sectionsWithCursor.Contains(currentSectionIndex))
             {
-                playSoundSubmit();
+                game.playSound(Sounds.Submit);
                 enableCursor();
             }
             else
@@ -273,7 +276,7 @@ namespace RaverSoft.YllisanSkies
 
         public void open()
         {
-            playSoundCancel();
+            game.playSound(Sounds.Cancel);
             if (!game.options.menuMemorizeSectionIndex)
             {
                 currentSectionIndex = 1;
@@ -289,7 +292,7 @@ namespace RaverSoft.YllisanSkies
 
         public void close()
         {
-            playSoundCancel();
+            game.playSound(Sounds.Cancel);
             StartCoroutine(closeMenu());
         }
 

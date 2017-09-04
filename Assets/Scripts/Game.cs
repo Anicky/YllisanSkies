@@ -6,6 +6,8 @@ using RaverSoft.YllisanSkies.Characters;
 using RaverSoft.YllisanSkies.Events;
 using RaverSoft.YllisanSkies.Pathfinding;
 using RaverSoft.YllisanSkies.Utils;
+using RaverSoft.YllisanSkies.Menu;
+using RaverSoft.YllisanSkies.Sound;
 
 namespace RaverSoft.YllisanSkies
 {
@@ -14,7 +16,7 @@ namespace RaverSoft.YllisanSkies
         private Database database;
         public HeroesTeam heroesTeam;
         public EnemiesTeam enemiesTeam;
-        public Menu menu;
+        public MenuSystem menu;
         public Options options;
         private static bool gameExists = false;
         public Player player;
@@ -81,6 +83,8 @@ namespace RaverSoft.YllisanSkies
         {
             heroesTeam.addHero(database.getHeroById(HeroList.Cyril));
             heroesTeam.addHero(database.getHeroById(HeroList.Max));
+            heroesTeam.addHero(database.getHeroById(HeroList.Yuna));
+            heroesTeam.addHero(database.getHeroById(HeroList.Leonard));
             heroesTeam.addMoney(1200);
             heroesTeam.changeLocation(database.getLocationById(LocationList.Osarian));
         }
@@ -118,6 +122,9 @@ namespace RaverSoft.YllisanSkies
             GameObject.Find("Menu/Airship/Block_Title/Section_Title").GetComponent<Text>().text = getTranslation("Menu", "Airship");
             GameObject.Find("Menu/Journal/Block_Title/Section_Title").GetComponent<Text>().text = getTranslation("Menu", "Journal");
             GameObject.Find("Menu/Options/Block_Title/Section_Title").GetComponent<Text>().text = getTranslation("Menu", "Options");
+            GameObject.Find("Menu/Status/Block_Lv/Lv_Title").GetComponent<Text>().text = getTranslation("Stats", "Lv");
+            GameObject.Find("Menu/Status/Block_NextLv/NextLv_Title").GetComponent<Text>().text = getTranslation("Stats", "Next lv") + " :";
+            GameObject.Find("Menu/Status/Block_NextLv/NextLv_TitleSuffix").GetComponent<Text>().text = getTranslation("Stats", "xp");
         }
 
         public string getTranslation(string type, string text)
@@ -252,6 +259,11 @@ namespace RaverSoft.YllisanSkies
                 stopEvents = false;
                 player.enableMovement();
             }
+        }
+
+        public void playSound(Sounds sound)
+        {
+            GetComponent<SoundManager>().playSound(sound);
         }
     }
 }

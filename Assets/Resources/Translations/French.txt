@@ -8,7 +8,7 @@ Potential = Potentiel
 Spirit = Esprit
 Agility = Agilité
 Cp = Pc
-Xp = Xp
+xp = xp
 Next lv = Nv suivant
 
 [Elements]
