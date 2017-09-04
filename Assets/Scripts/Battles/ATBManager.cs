@@ -9,11 +9,29 @@ namespace RaverSoft.YllisanSkies.Battles
         private int numberOfCharacters = 0;
         private float agilityAverage = 0;
         private Dictionary<int, SpeedSlice> speedSlices;
+        private List<Character> charactersByAgility;
 
         // Adjusting parameters
         private const int NUMBER_OF_SPEED_SLICES = 21;
         private const int AGILITY_MIN = 0;
         private const int AGILITY_MAX = 999999;
+        public Dictionary<BattleSystem.BattleStates, int> POSITIONS_ELEMENTS = new Dictionary<BattleSystem.BattleStates, int>()
+        {
+            { BattleSystem.BattleStates.Wait, 54 },
+            { BattleSystem.BattleStates.Command, 986 },
+            { BattleSystem.BattleStates.Action, 1352}
+        };
+        public Dictionary<int, int> POSITIONS_CHARACTERS_STARTS = new Dictionary<int, int>()
+        {
+            { 8, 54 },
+            { 7, 128 },
+            { 6, 182 },
+            { 5, 246 },
+            { 4, 310 },
+            { 3, 374 },
+            { 2, 438 },
+            { 1, 502 }
+        };
 
         private class SpeedSlice
         {
@@ -37,8 +55,9 @@ namespace RaverSoft.YllisanSkies.Battles
             numberOfCharacters = getNumberOfCharacters();
             agilityAverage = getAgilityAverage();
             speedSlices = getSpeedSlices();
-            setHeroesSpeeds();
-            setEnemiesSpeeds();
+            charactersByAgility = sortCharactersByAgility();
+            initHeroes();
+            initEnemies();
         }
 
         private int getNumberOfCharacters()
@@ -100,19 +119,51 @@ namespace RaverSoft.YllisanSkies.Battles
             return battleSpeed;
         }
 
-        private void setHeroesSpeeds()
+        private List<Character> sortCharactersByAgility()
+        {
+            List<Character> charactersByAgility = new List<Character>();
+            foreach (Hero hero in battle.game.heroesTeam.getHeroes())
+            {
+                charactersByAgility.Add(hero);
+            }
+            foreach (Enemy enemy in battle.game.enemiesTeam.getEnemies())
+            {
+                charactersByAgility.Add(enemy);
+            }
+            charactersByAgility.Sort(delegate (Character a, Character b)
+            {
+                return b.getAgility() - a.getAgility();
+            });
+            return charactersByAgility;
+        }
+
+        private int getStartPositionForCharacter(Character character)
+        {
+            int startPosition = 0;
+            for (int i = 0; i < charactersByAgility.Count; i++)
+            {
+                if (charactersByAgility[i] == character)
+                {
+                    startPosition = POSITIONS_CHARACTERS_STARTS[i + 1];
+                    break;
+                }
+            }
+            return startPosition;
+        }
+
+        private void initHeroes()
         {
             foreach (Hero hero in battle.game.heroesTeam.getHeroes())
             {
-                hero.battleSpeed = getSpeedForCharacter(hero);
+                hero.initBattle(getSpeedForCharacter(hero), getStartPositionForCharacter(hero));
             }
         }
 
-        private void setEnemiesSpeeds()
+        private void initEnemies()
         {
             foreach (Enemy enemy in battle.game.enemiesTeam.getEnemies())
             {
-                enemy.battleSpeed = getSpeedForCharacter(enemy);
+                enemy.initBattle(getSpeedForCharacter(enemy), getStartPositionForCharacter(enemy));
             }
         }
     }

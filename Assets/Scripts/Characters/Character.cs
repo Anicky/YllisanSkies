@@ -1,4 +1,5 @@
 ﻿using RaverSoft.YllisanSkies.Items;
+using RaverSoft.YllisanSkies.Battles;
 
 namespace RaverSoft.YllisanSkies.Characters
 {
@@ -43,7 +44,9 @@ namespace RaverSoft.YllisanSkies.Characters
         protected int elementDarknessMax;
 
         // Battles
-        public int battleSpeed = 0;
+        public int currentBattleSpeed = 0;
+        public BattleSystem.BattleStates currentBattleState = BattleSystem.BattleStates.Wait;
+        public int currentBattlePosition = 0;
 
         public Character(string name, int hp, int ap, int strength, int resistance, int potential, int spirit, int agility, int cp, int elementFire, int elementAir, int elementLightning, int elementLight, int elementWater, int elementEarth, int elementNature, int elementDarkness)
         {
@@ -225,6 +228,12 @@ namespace RaverSoft.YllisanSkies.Characters
             elementNatureMax += statItem.elementNatureMaxToIncrease * multiplier;
             elementDarkness += statItem.elementDarknessMaxToIncrease * multiplier;
             elementDarknessMax += statItem.elementDarknessMaxToIncrease * multiplier;
+        }
+
+        public virtual void initBattle(int battleSpeed, int battlePosition)
+        {
+            currentBattleSpeed = battleSpeed;
+            currentBattlePosition = battlePosition;
         }
     }
 }

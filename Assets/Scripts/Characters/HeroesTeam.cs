@@ -77,13 +77,5 @@ namespace RaverSoft.YllisanSkies.Characters
         {
             currentLocation = location;
         }
-
-        public void initBattle()
-        {
-            foreach (Hero hero in heroes)
-            {
-                hero.initBattle();
-            }
-        }
     }
 }

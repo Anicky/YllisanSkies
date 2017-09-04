@@ -18,6 +18,13 @@ namespace RaverSoft.YllisanSkies.Battles
             RunAway
         }
 
+        public enum BattleStates
+        {
+            Wait,
+            Command,
+            Action
+        }
+
         public Game game;
         private ATBManager aTBManager;
         private Dictionary<Commands, string> commandsTitles;
@@ -26,13 +33,12 @@ namespace RaverSoft.YllisanSkies.Battles
         void Start()
         {
             game = GameObject.Find("Game").GetComponent<Game>();
-            game.heroesTeam.initBattle();
             aTBManager = new ATBManager(this);
             initTexts();
+            aTBManager.init();
             displayInterface();
             displayHeroes();
             displayEnemies();
-            aTBManager.init();
         }
 
         // Update is called once per frame
@@ -165,13 +171,14 @@ namespace RaverSoft.YllisanSkies.Battles
 
         private void handleATBHero(int heroPosition, Hero hero)
         {
+            GameObject block = GameObject.Find("Canvas/Block_ATBBar/ATB_Hero" + heroPosition);
             bool enabled = false;
             if (hero != null)
             {
+                RectTransform blockRectTransform = block.GetComponent<RectTransform>();
+                blockRectTransform.anchoredPosition = new Vector2(hero.currentBattlePosition, blockRectTransform.anchoredPosition.y);
                 enabled = true;
             }
-
-            GameObject block = GameObject.Find("Canvas/Block_ATBBar/ATB_Hero" + heroPosition);
             Image blockRootImage = block.GetComponent<Image>();
             blockRootImage.enabled = enabled;
             RawImage[] rawImages = block.GetComponentsInChildren<RawImage>();
@@ -190,13 +197,14 @@ namespace RaverSoft.YllisanSkies.Battles
 
         private void handleATBEnemy(int enemyPosition, Enemy enemy)
         {
+            GameObject block = GameObject.Find("Canvas/Block_ATBBar/ATB_Enemy" + enemyPosition);
             bool enabled = false;
             if (enemy != null)
             {
+                RectTransform blockRectTransform = block.GetComponent<RectTransform>();
+                blockRectTransform.anchoredPosition = new Vector2(enemy.currentBattlePosition, blockRectTransform.anchoredPosition.y);
                 enabled = true;
             }
-
-            GameObject block = GameObject.Find("Canvas/Block_ATBBar/ATB_Enemy" + enemyPosition);
             Image blockRootImage = block.GetComponent<Image>();
             blockRootImage.enabled = enabled;
             RawImage[] rawImages = block.GetComponentsInChildren<RawImage>();
