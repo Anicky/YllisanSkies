@@ -66,6 +66,7 @@ namespace RaverSoft.YllisanSkies
             foreach (Dictionary<string, string> info in getCSVinfo("Heroes"))
             {
                 heroes.Add((HeroList)Enum.Parse(typeof(HeroList), info["id"]), new Hero(
+                    info["id"],
                     info["name"],
                     int.Parse(info["lv"]),
                     int.Parse(info["xpSlopeToIncreaseLevel"]),
@@ -106,6 +107,7 @@ namespace RaverSoft.YllisanSkies
             foreach (Dictionary<string, string> info in getCSVinfo("Locations"))
             {
                 locations.Add((LocationList)Enum.Parse(typeof(LocationList), info["id"]), new Location(
+                    info["id"],
                     info["name"]
                 ));
             }
@@ -116,6 +118,7 @@ namespace RaverSoft.YllisanSkies
             foreach (Dictionary<string, string> info in getCSVinfo("Behaviours"))
             {
                 behaviours.Add((BehaviourList)Enum.Parse(typeof(BehaviourList), info["id"]), new Behaviour(
+                    info["id"],
                     info["name"]
                 ));
             }
@@ -147,6 +150,7 @@ namespace RaverSoft.YllisanSkies
                 }
 
                 enemies.Add((EnemyList)Enum.Parse(typeof(EnemyList), info["id"]), new Enemy(
+                    info["id"],
                     info["name"],
                     int.Parse(info["hp"]),
                     int.Parse(info["ap"]),

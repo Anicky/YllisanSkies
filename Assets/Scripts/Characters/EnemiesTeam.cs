@@ -40,6 +40,5 @@ namespace RaverSoft.YllisanSkies.Characters
                 enemies.Add(enemy);
             }
         }
-
     }
 }

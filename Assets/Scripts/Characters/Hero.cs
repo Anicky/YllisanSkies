@@ -17,6 +17,8 @@ namespace RaverSoft.YllisanSkies.Characters
 
     public class Hero : Character
     {
+        private string id;
+
         // Level
         private int lv = 1;
         private int xpTotal = 0;
@@ -40,9 +42,10 @@ namespace RaverSoft.YllisanSkies.Characters
         private const int POINTS_ELEMENTS_TO_ADD_FOR_EACH_LV = 10;
         public const int BATTLE_MAX_ATTACK_POINTS = 8;
 
-        public Hero(string name, int lv, int xpSlopeToIncreaseLevel, int xpVerticalInterceptToIncreaseLevel, int hp, int ap, int strength, int resistance, int potential, int spirit, int agility, int cp, int elementFire, int elementAir, int elementLightning, int elementLight, int elementWater, int elementEarth, int elementNature, int elementDarkness) :
+        public Hero(string id, string name, int lv, int xpSlopeToIncreaseLevel, int xpVerticalInterceptToIncreaseLevel, int hp, int ap, int strength, int resistance, int potential, int spirit, int agility, int cp, int elementFire, int elementAir, int elementLightning, int elementLight, int elementWater, int elementEarth, int elementNature, int elementDarkness) :
             base(name, hp, ap, strength, resistance, potential, spirit, agility, cp, elementFire, elementAir, elementLightning, elementLight, elementWater, elementEarth, elementNature, elementDarkness)
         {
+            this.id = id;
             this.lv = lv;
             this.xpSlopeToIncreaseLevel = xpSlopeToIncreaseLevel;
             this.xpVerticalInterceptToIncreaseLevel = xpVerticalInterceptToIncreaseLevel;
@@ -75,6 +78,11 @@ namespace RaverSoft.YllisanSkies.Characters
             {
                 this.attackPoints = 0;
             }
+        }
+
+        public string getId()
+        {
+            return id;
         }
 
         public int getLv()

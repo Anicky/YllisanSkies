@@ -421,7 +421,7 @@ namespace RaverSoft.YllisanSkies.Menu
                 {
                     if (rawImage.name == "Hero_Sprite")
                     {
-                        rawImage.texture = Resources.Load<Texture>("UI/Sprite_Hero_" + hero.name);
+                        rawImage.texture = Resources.Load<Texture>("UI/Sprite_Hero_" + hero.getId());
                     }
                 }
             }
