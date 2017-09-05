@@ -30,5 +30,12 @@ namespace RaverSoft.YllisanSkies.Characters
             this.rareItem = rareItem;
         }
 
+        public Enemy clone()
+        {
+            return new Enemy(id, name, hpMax, apMax, money, xp, behaviour, strengthMax, resistanceMax, potentialMax, spiritMax, agilityMax, cpMax,
+                elementFireMax, elementAirMax, elementLightningMax, elementLightMax, elementWaterMax, elementEarthMax, elementNatureMax, elementDarknessMax,
+                commonItem, uncommonItem, rareItem);
+        }
+
     }
 }
