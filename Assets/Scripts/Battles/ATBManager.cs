@@ -11,6 +11,7 @@ namespace RaverSoft.YllisanSkies.Battles
         public List<Character> charactersSortedByPosition { get; private set; }
 
         // Adjusting parameters
+        private const float SPEED_COEFFICIENT = 0.3f;
         private const int NUMBER_OF_SPEED_SLICES = 21;
         private const int AGILITY_MIN = 0;
         private const int AGILITY_MAX = 999999;
@@ -176,8 +177,16 @@ namespace RaverSoft.YllisanSkies.Battles
         {
             charactersSortedByPosition.Sort(delegate (Character a, Character b)
             {
-                return a.currentBattlePosition - b.currentBattlePosition;
+                return (int)(a.currentBattlePosition - b.currentBattlePosition);
             });
+        }
+
+        public void changeCharactersPositions()
+        {
+            foreach (Character character in charactersSortedByPosition)
+            {
+                character.currentBattlePosition += character.currentBattleSpeed * SPEED_COEFFICIENT;
+            }
         }
     }
 }

@@ -46,7 +46,7 @@ namespace RaverSoft.YllisanSkies.Characters
         // Battles
         public int currentBattleSpeed = 0;
         public BattleSystem.BattleStates currentBattleState = BattleSystem.BattleStates.Wait;
-        public int currentBattlePosition = 0;
+        public float currentBattlePosition = 0;
 
         public Character(string name, int hp, int ap, int strength, int resistance, int potential, int spirit, int agility, int cp, int elementFire, int elementAir, int elementLightning, int elementLight, int elementWater, int elementEarth, int elementNature, int elementDarkness)
         {

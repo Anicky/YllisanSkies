@@ -49,6 +49,8 @@ namespace RaverSoft.YllisanSkies.Battles
         {
             if (battleInitialized)
             {
+                aTBManager.changeCharactersPositions();
+                displayATBBar();
                 changeATBCharactersIndex();
             }
         }
