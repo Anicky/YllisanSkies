@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using RaverSoft.YllisanSkies.Characters;
+using System;
+using UnityEngine;
 
 namespace RaverSoft.YllisanSkies.Battles
 {
@@ -10,6 +12,7 @@ namespace RaverSoft.YllisanSkies.Battles
         private float agilityAverage = 0;
         private Dictionary<int, SpeedSlice> speedSlices;
         private List<Character> charactersByAgility;
+        private System.Random ra = new System.Random();
 
         // Adjusting parameters
         private const int NUMBER_OF_SPEED_SLICES = 21;
@@ -20,17 +23,6 @@ namespace RaverSoft.YllisanSkies.Battles
             { BattleSystem.BattleStates.Wait, 54 },
             { BattleSystem.BattleStates.Command, 986 },
             { BattleSystem.BattleStates.Action, 1352}
-        };
-        public Dictionary<int, int> POSITIONS_CHARACTERS_STARTS = new Dictionary<int, int>()
-        {
-            { 8, 54 },
-            { 7, 128 },
-            { 6, 182 },
-            { 5, 246 },
-            { 4, 310 },
-            { 3, 374 },
-            { 2, 438 },
-            { 1, 502 }
         };
 
         private class SpeedSlice
@@ -137,14 +129,15 @@ namespace RaverSoft.YllisanSkies.Battles
             return charactersByAgility;
         }
 
-        private int getStartPositionForCharacter(Character character)
+        private int getStartPositionForCharacter(Character character, int battleSpeed)
         {
             int startPosition = 0;
             for (int i = 0; i < charactersByAgility.Count; i++)
             {
                 if (charactersByAgility[i] == character)
                 {
-                    startPosition = POSITIONS_CHARACTERS_STARTS[i + 1];
+                    int r = ra.Next(-10, 10);
+                    startPosition = POSITIONS_ELEMENTS[BattleSystem.BattleStates.Wait] + (battleSpeed * 16) + r;
                     break;
                 }
             }
@@ -155,7 +148,9 @@ namespace RaverSoft.YllisanSkies.Battles
         {
             foreach (Hero hero in battle.game.heroesTeam.getHeroes())
             {
-                hero.initBattle(getSpeedForCharacter(hero), getStartPositionForCharacter(hero));
+                int battleSpeed = getSpeedForCharacter(hero);
+                int startPosition = getStartPositionForCharacter(hero, battleSpeed);
+                hero.initBattle(battleSpeed, startPosition);
             }
         }
 
@@ -163,7 +158,9 @@ namespace RaverSoft.YllisanSkies.Battles
         {
             foreach (Enemy enemy in battle.game.enemiesTeam.getEnemies())
             {
-                enemy.initBattle(getSpeedForCharacter(enemy), getStartPositionForCharacter(enemy));
+                int battleSpeed = getSpeedForCharacter(enemy);
+                int startPosition = getStartPositionForCharacter(enemy, battleSpeed);
+                enemy.initBattle(battleSpeed, startPosition);
             }
         }
     }
