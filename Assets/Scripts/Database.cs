@@ -200,7 +200,10 @@ namespace RaverSoft.YllisanSkies
 
         public Enemy getEnemyById(EnemyList id)
         {
-            return enemies[id];
+            Enemy e = enemies[id];
+            return new Enemy(e.id, e.name, e.hpMax, e.apMax, e.money, e.xp, e.behaviour, e.strengthMax, e.resistanceMax, e.potentialMax, e.spiritMax, e.agilityMax, e.cpMax,
+                e.elementFireMax, e.elementAirMax, e.elementLightningMax, e.elementLightMax, e.elementWaterMax, e.elementEarthMax, e.elementNatureMax, e.elementDarknessMax,
+                e.commonItem, e.uncommonItem, e.rareItem);
         }
 
         public Item getItemById(ItemList id)
