@@ -29,6 +29,8 @@ namespace RaverSoft.YllisanSkies.Battles
         private ATBManager aTBManager;
         private Dictionary<Commands, string> commandsTitles;
         private bool battleInitialized = false;
+        private bool stopATB = false;
+        private Hero currentHeroAtCommand = null;
 
         // Use this for initialization
         void Start()
@@ -47,12 +49,29 @@ namespace RaverSoft.YllisanSkies.Battles
         // Update is called once per frame
         void Update()
         {
-            if (battleInitialized)
+            if (battleInitialized && !stopATB)
             {
                 aTBManager.changeCharactersPositions();
                 displayATBBar();
                 changeATBCharactersIndex();
+                foreach (Hero hero in game.heroesTeam.getHeroes())
+                {
+                    if ((hero.currentBattleState == BattleStates.Wait) && (hero.currentBattlePosition >= aTBManager.POSITIONS_ELEMENTS[BattleStates.Command]))
+                    {
+                        hero.currentBattleState = BattleStates.Command;
+                        currentHeroAtCommand = hero;
+                        stopATB = true;
+                        displayCommands();
+                        break;
+                    }
+                }
             }
+        }
+
+        private void displayCommands()
+        {
+            displayBlockCommands(true);
+            // @TODO
         }
 
         private void changeATBCharactersIndex()
@@ -94,7 +113,7 @@ namespace RaverSoft.YllisanSkies.Battles
         {
             GameObject block = GameObject.Find("Canvas/Block_Commands");
             Image blockRootImage = block.GetComponent<Image>();
-            blockRootImage.enabled = false;
+            blockRootImage.enabled = enabled;
             Text[] blockTexts = block.GetComponentsInChildren<Text>();
             RawImage[] rawImages = block.GetComponentsInChildren<RawImage>();
             foreach (Text blockText in blockTexts)
