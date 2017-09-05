@@ -8,40 +8,40 @@ namespace RaverSoft.YllisanSkies.Characters
         public string name;
 
         // Attributes
-        protected int hp;
-        protected int hpMax;
-        protected int ap;
-        protected int apMax;
-        protected int strength;
-        protected int strengthMax;
-        protected int resistance;
-        protected int resistanceMax;
-        protected int potential;
-        protected int potentialMax;
-        protected int spirit;
-        protected int spiritMax;
-        protected int agility;
-        protected int agilityMax;
-        protected int cp;
-        protected int cpMax;
+        public int hp { get; private set; }
+        public int hpMax { get; private set; }
+        public int ap { get; private set; }
+        public int apMax { get; private set; }
+        public int strength { get; private set; }
+        public int strengthMax { get; private set; }
+        public int resistance { get; private set; }
+        public int resistanceMax { get; private set; }
+        public int potential { get; private set; }
+        public int potentialMax { get; private set; }
+        public int spirit { get; private set; }
+        public int spiritMax { get; private set; }
+        public int agility { get; private set; }
+        public int agilityMax { get; private set; }
+        public int cp { get; private set; }
+        public int cpMax { get; private set; }
 
         // Elements
-        protected int elementFire;
-        protected int elementFireMax;
-        protected int elementAir;
-        protected int elementAirMax;
-        protected int elementLightning;
-        protected int elementLightningMax;
-        protected int elementLight;
-        protected int elementLightMax;
-        protected int elementWater;
-        protected int elementWaterMax;
-        protected int elementEarth;
-        protected int elementEarthMax;
-        protected int elementNature;
-        protected int elementNatureMax;
-        protected int elementDarkness;
-        protected int elementDarknessMax;
+        public int elementFire { get; private set; }
+        public int elementFireMax { get; private set; }
+        public int elementAir { get; private set; }
+        public int elementAirMax { get; private set; }
+        public int elementLightning { get; private set; }
+        public int elementLightningMax { get; private set; }
+        public int elementLight { get; private set; }
+        public int elementLightMax { get; private set; }
+        public int elementWater { get; private set; }
+        public int elementWaterMax { get; private set; }
+        public int elementEarth { get; private set; }
+        public int elementEarthMax { get; private set; }
+        public int elementNature { get; private set; }
+        public int elementNatureMax { get; private set; }
+        public int elementDarkness { get; private set; }
+        public int elementDarknessMax { get; private set; }
 
         // Battles
         public int currentBattleSpeed = 0;
@@ -84,31 +84,6 @@ namespace RaverSoft.YllisanSkies.Characters
             this.elementEarth = elementEarth;
             this.elementNature = elementNature;
             this.elementDarkness = elementDarkness;
-        }
-
-        public int getHp()
-        {
-            return hp;
-        }
-
-        public int getHpMax()
-        {
-            return hpMax;
-        }
-
-        public int getAp()
-        {
-            return ap;
-        }
-
-        public int getApMax()
-        {
-            return apMax;
-        }
-
-        public int getAgility()
-        {
-            return agility;
         }
 
         private int changeStat(int currentValue, int max, int points, int multiplier)

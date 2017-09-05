@@ -117,11 +117,11 @@ namespace RaverSoft.YllisanSkies.Battles
                     }
                     else if (blockText.name == "Hp_Stats")
                     {
-                        blockText.text = hero.getHp().ToString() + "/" + hero.getHpMax().ToString();
+                        blockText.text = hero.hp.ToString() + "/" + hero.hpMax.ToString();
                     }
                     else if (blockText.name == "Ap_Stats")
                     {
-                        blockText.text = hero.getAp().ToString() + "/" + hero.getApMax().ToString();
+                        blockText.text = hero.ap.ToString() + "/" + hero.apMax.ToString();
                     }
                 }
             }
@@ -132,11 +132,11 @@ namespace RaverSoft.YllisanSkies.Battles
                 {
                     if (blockImage.name == "Hp_Gauge")
                     {
-                        blockImage.fillAmount = (float)hero.getHp() / hero.getHpMax();
+                        blockImage.fillAmount = (float)hero.hp / hero.hpMax;
                     }
                     else if (blockImage.name == "Ap_Gauge")
                     {
-                        blockImage.fillAmount = (float)hero.getAp() / hero.getApMax();
+                        blockImage.fillAmount = (float)hero.ap / hero.apMax;
                     }
                     else if (blockImage.name == "AttackBar")
                     {
@@ -227,7 +227,7 @@ namespace RaverSoft.YllisanSkies.Battles
                 {
                     if (rawImage.name == "Enemy_Sprite")
                     {
-                        rawImage.texture = Resources.Load<Texture>("UI/Battles/Battles_Interface_ATB_Sprite_Enemy_" + enemy.getId());
+                        rawImage.texture = Resources.Load<Texture>("UI/Battles/Battles_Interface_ATB_Sprite_Enemy_" + enemy.id);
                     }
                 }
             }

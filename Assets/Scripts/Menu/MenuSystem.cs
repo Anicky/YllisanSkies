@@ -391,11 +391,11 @@ namespace RaverSoft.YllisanSkies.Menu
                     }
                     else if (blockText.name == "Hp_Stats")
                     {
-                        blockText.text = hero.getHp().ToString() + "/" + hero.getHpMax().ToString();
+                        blockText.text = hero.hp.ToString() + "/" + hero.hpMax.ToString();
                     }
                     else if (blockText.name == "Ap_Stats")
                     {
-                        blockText.text = hero.getAp().ToString() + "/" + hero.getApMax().ToString();
+                        blockText.text = hero.ap.ToString() + "/" + hero.apMax.ToString();
                     }
                 }
             }
@@ -406,11 +406,11 @@ namespace RaverSoft.YllisanSkies.Menu
                 {
                     if (blockImage.name == "Hp_Gauge")
                     {
-                        blockImage.fillAmount = (float)hero.getHp() / hero.getHpMax();
+                        blockImage.fillAmount = (float)hero.hp / hero.hpMax;
                     }
                     else if (blockImage.name == "Ap_Gauge")
                     {
-                        blockImage.fillAmount = (float)hero.getAp() / hero.getApMax();
+                        blockImage.fillAmount = (float)hero.ap / hero.apMax;
                     }
                 }
             }

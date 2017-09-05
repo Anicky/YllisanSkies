@@ -17,7 +17,7 @@ namespace RaverSoft.YllisanSkies.Characters
 
     public class Hero : Character
     {
-        private string id;
+        public string id { get; private set; }
 
         // Level
         private int lv = 1;

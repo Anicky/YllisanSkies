@@ -70,11 +70,11 @@ namespace RaverSoft.YllisanSkies.Battles
             int agilityAverage = 0;
             foreach (Hero hero in battle.game.heroesTeam.getHeroes())
             {
-                agilityAverage += hero.getAgility();
+                agilityAverage += hero.agility;
             }
             foreach (Enemy enemy in battle.game.enemiesTeam.getEnemies())
             {
-                agilityAverage += enemy.getAgility();
+                agilityAverage += enemy.agility;
             }
             return agilityAverage / numberOfCharacters;
         }
@@ -110,7 +110,7 @@ namespace RaverSoft.YllisanSkies.Battles
             int battleSpeed = 0;
             for (int i = 0; i < NUMBER_OF_SPEED_SLICES; i++)
             {
-                if ((character.getAgility() >= speedSlices[i].min) && (character.getAgility() < speedSlices[i].max))
+                if ((character.agility >= speedSlices[i].min) && (character.agility < speedSlices[i].max))
                 {
                     battleSpeed = i;
                     break;
@@ -132,7 +132,7 @@ namespace RaverSoft.YllisanSkies.Battles
             }
             charactersByAgility.Sort(delegate (Character a, Character b)
             {
-                return b.getAgility() - a.getAgility();
+                return b.agility - a.agility;
             });
             return charactersByAgility;
         }
