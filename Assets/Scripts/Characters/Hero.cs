@@ -52,10 +52,9 @@ namespace RaverSoft.YllisanSkies.Characters
             xpToNextLv = getXpNeededToNextLevel();
         }
 
-        public override void initBattle(int battleSpeed, int battlePosition)
+        public void initBattle()
         {
             attackPoints = 0;
-            base.initBattle(battleSpeed, battlePosition);
         }
 
         public int getAttackPoints()

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using RaverSoft.YllisanSkies.Characters;
-using System;
-using UnityEngine;
 
 namespace RaverSoft.YllisanSkies.Battles
 {
@@ -10,30 +8,55 @@ namespace RaverSoft.YllisanSkies.Battles
         public BattleSystem battle;
         private int numberOfCharacters = 0;
         private float agilityAverage = 0;
-        private Dictionary<int, SpeedSlice> speedSlices;
-        private List<Character> charactersByAgility;
-        private System.Random ra = new System.Random();
+        private List<SpeedSlice> speedSlices;
 
         // Adjusting parameters
         private const int NUMBER_OF_SPEED_SLICES = 21;
         private const int AGILITY_MIN = 0;
         private const int AGILITY_MAX = 999999;
+        private const int GAP_BETWEEN_STARTING_POSITIONS = 16;
         public Dictionary<BattleSystem.BattleStates, int> POSITIONS_ELEMENTS = new Dictionary<BattleSystem.BattleStates, int>()
         {
             { BattleSystem.BattleStates.Wait, 54 },
             { BattleSystem.BattleStates.Command, 986 },
             { BattleSystem.BattleStates.Action, 1352}
         };
+        private int[] adjustedStartingPositionsForSpeedSlice = new int[] { -2, 2, -6, 6, -4, 4, -8, 8 };
 
         private class SpeedSlice
         {
             public float min;
             public float max;
+            public int speed;
+            public int startingPosition;
+            public List<Character> characters;
 
-            public SpeedSlice(float min, float max)
+            public SpeedSlice(float min, float max, int speed, int startingPosition)
             {
                 this.min = min;
                 this.max = max;
+                this.speed = speed;
+                this.startingPosition = startingPosition;
+                characters = new List<Character>();
+            }
+
+            public void addCharacter(Character character)
+            {
+                characters.Add(character);
+            }
+
+            public void shuffleCharacters()
+            {
+                List<Character> randomList = new List<Character>();
+                System.Random random = new System.Random();
+                int randomIndex = 0;
+                while (characters.Count > 0)
+                {
+                    randomIndex = random.Next(0, characters.Count);
+                    randomList.Add(characters[randomIndex]);
+                    characters.RemoveAt(randomIndex);
+                }
+                characters = randomList;
             }
         }
 
@@ -47,9 +70,7 @@ namespace RaverSoft.YllisanSkies.Battles
             numberOfCharacters = getNumberOfCharacters();
             agilityAverage = getAgilityAverage();
             speedSlices = getSpeedSlices();
-            charactersByAgility = sortCharactersByAgility();
-            initHeroes();
-            initEnemies();
+            initCharacters();
         }
 
         private int getNumberOfCharacters()
@@ -76,91 +97,72 @@ namespace RaverSoft.YllisanSkies.Battles
             return 100 / ((NUMBER_OF_SPEED_SLICES - 1) / 2); ;
         }
 
-        private Dictionary<int, SpeedSlice> getSpeedSlices()
+        private List<SpeedSlice> getSpeedSlices()
         {
             float percentagePerSlice = getPercentagePerSlice();
-            Dictionary<int, SpeedSlice> speedSlices = new Dictionary<int, SpeedSlice>();
-            for (int i = 0; i < NUMBER_OF_SPEED_SLICES; i++)
+            List<SpeedSlice> speedSlices = new List<SpeedSlice>();
+            for (int i = 1; i <= NUMBER_OF_SPEED_SLICES; i++)
             {
                 float min = AGILITY_MIN;
                 float max = AGILITY_MAX;
-                if (i > 0)
+                if (i > 1)
                 {
-                    min = ((i * percentagePerSlice) / 100) * agilityAverage;
+                    min = (((i - 1) * percentagePerSlice) / 100) * agilityAverage;
                 }
-                if (i < NUMBER_OF_SPEED_SLICES - 1)
+                if (i < NUMBER_OF_SPEED_SLICES)
                 {
-                    max = (((i + 1) * percentagePerSlice) / 100) * agilityAverage;
+                    max = ((i * percentagePerSlice) / 100) * agilityAverage;
                 }
-                speedSlices.Add(i, new SpeedSlice(min, max));
+                int startingPosition = POSITIONS_ELEMENTS[BattleSystem.BattleStates.Wait] + (i * GAP_BETWEEN_STARTING_POSITIONS);
+                speedSlices.Add(new SpeedSlice(min, max, i, startingPosition));
             }
             return speedSlices;
         }
 
         private int getSpeedForCharacter(Character character)
         {
-            int battleSpeed = 0;
-            for (int i = 0; i < NUMBER_OF_SPEED_SLICES; i++)
+            int battleSpeed = 1;
+            foreach (SpeedSlice speedSlice in speedSlices)
             {
-                if ((character.agility >= speedSlices[i].min) && (character.agility < speedSlices[i].max))
+                if ((character.agility >= speedSlice.min) && (character.agility < speedSlice.max))
                 {
-                    battleSpeed = i;
+                    battleSpeed = speedSlice.speed;
+                    speedSlice.addCharacter(character);
                     break;
                 }
             }
             return battleSpeed;
         }
 
-        private List<Character> sortCharactersByAgility()
+        private void initCharacters()
         {
-            List<Character> charactersByAgility = new List<Character>();
             foreach (Hero hero in battle.game.heroesTeam.getHeroes())
             {
-                charactersByAgility.Add(hero);
+                hero.currentBattleSpeed = getSpeedForCharacter(hero);
             }
             foreach (Enemy enemy in battle.game.enemiesTeam.getEnemies())
             {
-                charactersByAgility.Add(enemy);
+                enemy.currentBattleSpeed = getSpeedForCharacter(enemy);
             }
-            charactersByAgility.Sort(delegate (Character a, Character b)
+            foreach (SpeedSlice speedSlice in speedSlices)
             {
-                return b.agility - a.agility;
-            });
-            return charactersByAgility;
-        }
-
-        private int getStartPositionForCharacter(Character character, int battleSpeed)
-        {
-            int startPosition = 0;
-            for (int i = 0; i < charactersByAgility.Count; i++)
-            {
-                if (charactersByAgility[i] == character)
+                speedSlice.shuffleCharacters();
+                int i = 0;
+                bool multipleCharactersInThisSpeedSlice = false;
+                if (speedSlice.characters.Count > 0)
                 {
-                    int r = ra.Next(-10, 10);
-                    startPosition = POSITIONS_ELEMENTS[BattleSystem.BattleStates.Wait] + (battleSpeed * 16) + r;
-                    break;
+                    multipleCharactersInThisSpeedSlice = true;
                 }
-            }
-            return startPosition;
-        }
-
-        private void initHeroes()
-        {
-            foreach (Hero hero in battle.game.heroesTeam.getHeroes())
-            {
-                int battleSpeed = getSpeedForCharacter(hero);
-                int startPosition = getStartPositionForCharacter(hero, battleSpeed);
-                hero.initBattle(battleSpeed, startPosition);
-            }
-        }
-
-        private void initEnemies()
-        {
-            foreach (Enemy enemy in battle.game.enemiesTeam.getEnemies())
-            {
-                int battleSpeed = getSpeedForCharacter(enemy);
-                int startPosition = getStartPositionForCharacter(enemy, battleSpeed);
-                enemy.initBattle(battleSpeed, startPosition);
+                foreach (Character character in speedSlice.characters)
+                {
+                    int characterPosition = speedSlice.startingPosition;
+                    if (multipleCharactersInThisSpeedSlice)
+                    {
+                        characterPosition += adjustedStartingPositionsForSpeedSlice[i];
+                        i++;
+                    }
+                    character.currentBattlePosition = characterPosition;
+                }
             }
         }
     }

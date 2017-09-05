@@ -33,6 +33,7 @@ namespace RaverSoft.YllisanSkies.Battles
         void Start()
         {
             game = GameObject.Find("Game").GetComponent<Game>();
+            game.heroesTeam.initBattle();
             aTBManager = new ATBManager(this);
             initTexts();
             aTBManager.init();

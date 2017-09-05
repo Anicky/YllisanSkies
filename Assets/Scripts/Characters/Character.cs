@@ -204,11 +204,5 @@ namespace RaverSoft.YllisanSkies.Characters
             elementDarkness += statItem.elementDarknessMaxToIncrease * multiplier;
             elementDarknessMax += statItem.elementDarknessMaxToIncrease * multiplier;
         }
-
-        public virtual void initBattle(int battleSpeed, int battlePosition)
-        {
-            currentBattleSpeed = battleSpeed;
-            currentBattlePosition = battlePosition;
-        }
     }
 }
