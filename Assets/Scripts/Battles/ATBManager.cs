@@ -17,9 +17,9 @@ namespace RaverSoft.YllisanSkies.Battles
         private const int GAP_BETWEEN_STARTING_POSITIONS = 16;
         public Dictionary<BattleSystem.BattleStates, int> POSITIONS_ELEMENTS = new Dictionary<BattleSystem.BattleStates, int>()
         {
-            { BattleSystem.BattleStates.Wait, 54 },
-            { BattleSystem.BattleStates.Command, 986 },
-            { BattleSystem.BattleStates.Action, 1352}
+            { BattleSystem.BattleStates.Wait, 0 },
+            { BattleSystem.BattleStates.Command, 934 },
+            { BattleSystem.BattleStates.Action, 1300 }
         };
         private int[] adjustedStartingPositionsForSpeedSlice = new int[] { -2, 2, -6, 6, -4, 4, -8, 8 };
 

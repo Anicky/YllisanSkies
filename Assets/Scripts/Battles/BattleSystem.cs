@@ -172,7 +172,7 @@ namespace RaverSoft.YllisanSkies.Battles
 
         private void handleATBHero(int heroPosition, Hero hero)
         {
-            GameObject block = GameObject.Find("Canvas/Block_ATBBar/ATB_Hero" + heroPosition);
+            GameObject block = GameObject.Find("Canvas/Block_ATBBar/ATB_Characters/Hero" + heroPosition);
             bool enabled = false;
             if (hero != null)
             {
@@ -198,7 +198,7 @@ namespace RaverSoft.YllisanSkies.Battles
 
         private void handleATBEnemy(int enemyPosition, Enemy enemy)
         {
-            GameObject block = GameObject.Find("Canvas/Block_ATBBar/ATB_Enemy" + enemyPosition);
+            GameObject block = GameObject.Find("Canvas/Block_ATBBar/ATB_Characters/Enemy" + enemyPosition);
             bool enabled = false;
             if (enemy != null)
             {
@@ -249,7 +249,7 @@ namespace RaverSoft.YllisanSkies.Battles
             {
                 enabled = true;
             }
-            GameObject heroObject = GameObject.Find("Hero" + heroPosition);
+            GameObject heroObject = GameObject.Find("Sprites/Hero" + heroPosition);
             heroObject.GetComponent<SpriteRenderer>().enabled = enabled;
             // @TODO : change sprite according to hero
         }
@@ -269,7 +269,7 @@ namespace RaverSoft.YllisanSkies.Battles
             {
                 enabled = true;
             }
-            GameObject enemyObject = GameObject.Find("Enemy" + heroPosition);
+            GameObject enemyObject = GameObject.Find("Sprites/Enemy" + heroPosition);
             enemyObject.GetComponent<SpriteRenderer>().enabled = enabled;
             // @TODO : change sprite according to enemy
         }
