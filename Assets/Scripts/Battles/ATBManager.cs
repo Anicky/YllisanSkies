@@ -6,9 +6,9 @@ namespace RaverSoft.YllisanSkies.Battles
     public class ATBManager
     {
         public BattleSystem battle;
-        private int numberOfCharacters = 0;
         private float agilityAverage = 0;
         private List<SpeedSlice> speedSlices;
+        public List<Character> charactersSortedByPosition { get; private set; }
 
         // Adjusting parameters
         private const int NUMBER_OF_SPEED_SLICES = 21;
@@ -63,33 +63,42 @@ namespace RaverSoft.YllisanSkies.Battles
         public ATBManager(BattleSystem battle)
         {
             this.battle = battle;
+            charactersSortedByPosition = new List<Character>();
         }
 
         public void init()
         {
-            numberOfCharacters = getNumberOfCharacters();
+            addCharacters();
             agilityAverage = getAgilityAverage();
             speedSlices = getSpeedSlices();
             initCharacters();
         }
 
+        private void addCharacters()
+        {
+            foreach (Hero hero in battle.game.heroesTeam.getHeroes())
+            {
+                charactersSortedByPosition.Add(hero);
+            }
+            foreach (Enemy enemy in battle.game.enemiesTeam.getEnemies())
+            {
+                charactersSortedByPosition.Add(enemy);
+            }
+        }
+
         private int getNumberOfCharacters()
         {
-            return battle.game.heroesTeam.getNumberOfHeroes() + battle.game.enemiesTeam.getNumberOfEnemies();
+            return charactersSortedByPosition.Count;
         }
 
         private int getAgilityAverage()
         {
             int agilityAverage = 0;
-            foreach (Hero hero in battle.game.heroesTeam.getHeroes())
+            foreach (Character character in charactersSortedByPosition)
             {
-                agilityAverage += hero.agility;
+                agilityAverage += character.agility;
             }
-            foreach (Enemy enemy in battle.game.enemiesTeam.getEnemies())
-            {
-                agilityAverage += enemy.agility;
-            }
-            return agilityAverage / numberOfCharacters;
+            return agilityAverage / charactersSortedByPosition.Count;
         }
 
         private float getPercentagePerSlice()
@@ -136,13 +145,9 @@ namespace RaverSoft.YllisanSkies.Battles
 
         private void initCharacters()
         {
-            foreach (Hero hero in battle.game.heroesTeam.getHeroes())
+            foreach (Character character in charactersSortedByPosition)
             {
-                hero.currentBattleSpeed = getSpeedForCharacter(hero);
-            }
-            foreach (Enemy enemy in battle.game.enemiesTeam.getEnemies())
-            {
-                enemy.currentBattleSpeed = getSpeedForCharacter(enemy);
+                character.currentBattleSpeed = getSpeedForCharacter(character);
             }
             foreach (SpeedSlice speedSlice in speedSlices)
             {
@@ -164,6 +169,15 @@ namespace RaverSoft.YllisanSkies.Battles
                     character.currentBattlePosition = characterPosition;
                 }
             }
+            sortCharactersByPosition();
+        }
+
+        private void sortCharactersByPosition()
+        {
+            charactersSortedByPosition.Sort(delegate (Character a, Character b)
+            {
+                return a.currentBattlePosition - b.currentBattlePosition;
+            });
         }
     }
 }

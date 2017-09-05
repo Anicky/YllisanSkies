@@ -28,6 +28,7 @@ namespace RaverSoft.YllisanSkies.Battles
         public Game game;
         private ATBManager aTBManager;
         private Dictionary<Commands, string> commandsTitles;
+        private bool battleInitialized = false;
 
         // Use this for initialization
         void Start()
@@ -40,12 +41,38 @@ namespace RaverSoft.YllisanSkies.Battles
             displayInterface();
             displayHeroes();
             displayEnemies();
+            battleInitialized = true;
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (battleInitialized)
+            {
+                changeATBCharactersIndex();
+            }
+        }
 
+        private void changeATBCharactersIndex()
+        {
+            for (int i = 0; i < HeroesTeam.MAXIMUM_NUMBER_OF_HEROES; i++)
+            {
+                Hero hero = game.heroesTeam.getHeroByIndex(i);
+                if (hero != null)
+                {
+                    int index = aTBManager.charactersSortedByPosition.IndexOf(hero);
+                    GameObject.Find("Canvas/Block_ATBBar/ATB_Characters/Hero" + (i + 1)).transform.SetSiblingIndex(index);
+                }
+            }
+            for (int i = 0; i < EnemiesTeam.MAXIMUM_NUMBER_OF_ENEMIES; i++)
+            {
+                Enemy enemy = game.enemiesTeam.getEnemyByIndex(i);
+                if (enemy != null)
+                {
+                    int index = aTBManager.charactersSortedByPosition.IndexOf(enemy);
+                    GameObject.Find("Canvas/Block_ATBBar/ATB_Characters/Enemy" + (i + 1)).transform.SetSiblingIndex(index);
+                }
+            }
         }
 
         private void initTexts()
