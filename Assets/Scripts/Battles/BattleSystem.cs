@@ -1,14 +1,14 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using RaverSoft.YllisanSkies.Characters;
+using RaverSoft.YllisanSkies.Sound;
 
 namespace RaverSoft.YllisanSkies.Battles
 {
     public class BattleSystem : MonoBehaviour
     {
-
         public enum Commands
         {
             Attack,
@@ -31,6 +31,9 @@ namespace RaverSoft.YllisanSkies.Battles
         private bool battleInitialized = false;
         private bool stopATB = false;
         private Hero currentHeroAtCommand = null;
+        private int currentCommandPosition = 0;
+        private int numberOfCommands;
+        private bool isAxisInUse = false;
 
         // Use this for initialization
         void Start()
@@ -43,41 +46,85 @@ namespace RaverSoft.YllisanSkies.Battles
             displayInterface();
             displayHeroes();
             displayEnemies();
+            numberOfCommands = Enum.GetValues(typeof(Commands)).Length;
             battleInitialized = true;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (battleInitialized && !stopATB)
+            if (battleInitialized)
             {
-                foreach (Hero hero in game.heroesTeam.getCharacters())
+                if (currentHeroAtCommand != null)
                 {
-                    if ((hero.currentBattleState == BattleStates.Wait) && (hero.currentBattlePosition >= aTBManager.POSITIONS_ELEMENTS[BattleStates.Command]))
+                    if (Input.GetAxisRaw("Horizontal") != 0)
                     {
-                        hero.currentBattleState = BattleStates.Command;
-                        currentHeroAtCommand = hero;
-                        stopATB = true;
-                        displayCommands();
-                        break;
+                        if (!isAxisInUse)
+                        {
+                            moveCommandPosition();
+                            isAxisInUse = true;
+                        }
+                    }
+                    else if (Input.GetButtonDown("Submit"))
+                    {
+                        // @TODO
+                    }
+                    if (Input.GetAxisRaw("Horizontal") == 0)
+                    {
+                        isAxisInUse = false;
                     }
                 }
                 if (!stopATB)
                 {
-                    aTBManager.changeCharactersPositions();
-                }
-                displayATBBar();
-                if (!stopATB)
-                {
-                    changeATBCharactersIndex();
+                    foreach (Hero hero in game.heroesTeam.getCharacters())
+                    {
+                        if ((hero.currentBattleState == BattleStates.Wait) && (hero.currentBattlePosition >= aTBManager.POSITIONS_ELEMENTS[BattleStates.Command]))
+                        {
+                            hero.currentBattleState = BattleStates.Command;
+                            currentHeroAtCommand = hero;
+                            stopATB = true;
+                            displayCommands();
+                            break;
+                        }
+                    }
+                    if (!stopATB)
+                    {
+                        aTBManager.changeCharactersPositions();
+                    }
+                    displayATBBar();
+                    if (!stopATB)
+                    {
+                        changeATBCharactersIndex();
+                    }
                 }
             }
         }
 
         private void displayCommands()
         {
+            currentCommandPosition = 0;
             displayBlockCommands(true);
-            // @TODO
+        }
+
+        private void moveCommandPosition()
+        {
+            if (Input.GetAxisRaw("Horizontal") < 0)
+            {
+                if (currentCommandPosition > 0)
+                {
+                    game.playSound(Sounds.Cursor);
+                    currentCommandPosition--;
+                }
+            }
+            else if (Input.GetAxisRaw("Horizontal") > 0)
+            {
+                if (currentCommandPosition < numberOfCommands - 1)
+                {
+                    game.playSound(Sounds.Cursor);
+                    currentCommandPosition++;
+                }
+            }
+            displayCommandInfo();
         }
 
         private void changeATBCharactersIndex()
@@ -130,6 +177,42 @@ namespace RaverSoft.YllisanSkies.Battles
             {
                 rawImage.enabled = enabled;
             }
+            if (enabled)
+            {
+                displayCommandInfo();
+            }
+        }
+
+        private void displayCommandInfo()
+        {
+            Commands[] commands = (Commands[])Enum.GetValues(typeof(Commands));
+            foreach (Commands command in commands)
+            {
+                GameObject.Find("Canvas/Block_Commands/Icon_" + command).GetComponent<RawImage>().texture = getCommandImage(command);
+            }
+            GameObject.Find("Canvas/Block_Commands/Command_Title").GetComponent<Text>().text = game.getTranslation("Battles", ((Commands)currentCommandPosition).ToString());
+            bool cursorLeftEnabled = false;
+            bool cursorRightEnabled = false;
+            if (currentCommandPosition > 0)
+            {
+                cursorLeftEnabled = true;
+            }
+            if (currentCommandPosition < numberOfCommands - 1)
+            {
+                cursorRightEnabled = true;
+            }
+            GameObject.Find("Canvas/Block_Commands/Cursor_Left").GetComponent<RawImage>().enabled = cursorLeftEnabled;
+            GameObject.Find("Canvas/Block_Commands/Cursor_Right").GetComponent<RawImage>().enabled = cursorRightEnabled;
+        }
+
+        private Texture getCommandImage(Commands command)
+        {
+            string textureName = "UI/Battles/Battles_Interface_Commands_" + command;
+            if (currentCommandPosition == (int)command)
+            {
+                textureName += "_Selected";
+            }
+            return Resources.Load(textureName) as Texture;
         }
 
         private void displayInterface()
