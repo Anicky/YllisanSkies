@@ -81,10 +81,10 @@ namespace RaverSoft.YllisanSkies
 
         private void initGame()
         {
-            heroesTeam.addHero(database.getHeroById(HeroList.Cyril));
-            heroesTeam.addHero(database.getHeroById(HeroList.Max));
-            heroesTeam.addHero(database.getHeroById(HeroList.Yuna));
-            heroesTeam.addHero(database.getHeroById(HeroList.Leonard));
+            heroesTeam.addCharacter(database.getHeroById(HeroList.Cyril));
+            heroesTeam.addCharacter(database.getHeroById(HeroList.Max));
+            heroesTeam.addCharacter(database.getHeroById(HeroList.Yuna));
+            heroesTeam.addCharacter(database.getHeroById(HeroList.Leonard));
             heroesTeam.addMoney(1200);
             heroesTeam.changeLocation(database.getLocationById(LocationList.Osarian));
         }

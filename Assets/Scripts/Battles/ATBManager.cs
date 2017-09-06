@@ -77,11 +77,11 @@ namespace RaverSoft.YllisanSkies.Battles
 
         private void addCharacters()
         {
-            foreach (Hero hero in battle.game.heroesTeam.getHeroes())
+            foreach (Hero hero in battle.game.heroesTeam.getCharacters())
             {
                 charactersSortedByPosition.Add(hero);
             }
-            foreach (Enemy enemy in battle.game.enemiesTeam.getEnemies())
+            foreach (Enemy enemy in battle.game.enemiesTeam.getCharacters())
             {
                 charactersSortedByPosition.Add(enemy);
             }

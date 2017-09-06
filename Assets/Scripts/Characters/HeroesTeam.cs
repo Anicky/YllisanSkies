@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace RaverSoft.YllisanSkies.Characters
 {
-    public class HeroesTeam
+    public class HeroesTeam : CharactersTeam
     {
-        private List<Hero> heroes;
         private int moneyCollected = 0;
         private int currentMoney = 0;
         private List<Item> items;
@@ -13,38 +12,9 @@ namespace RaverSoft.YllisanSkies.Characters
 
         public const int MAXIMUM_NUMBER_OF_HEROES = 4;
 
-        public HeroesTeam()
+        public HeroesTeam() : base(MAXIMUM_NUMBER_OF_HEROES)
         {
-            heroes = new List<Hero>();
             items = new List<Item>();
-        }
-
-        public List<Hero> getHeroes()
-        {
-            return heroes;
-        }
-
-        public int getNumberOfHeroes()
-        {
-            return heroes.Count;
-        }
-
-        public Hero getHeroByIndex(int i)
-        {
-            Hero hero = null;
-            if (i >= 0 && i < heroes.Count)
-            {
-                hero = heroes[i];
-            }
-            return hero;
-        }
-
-        public void addHero(Hero hero)
-        {
-            if (heroes.Count < MAXIMUM_NUMBER_OF_HEROES)
-            {
-                heroes.Add(hero);
-            }
         }
 
         public int getCurrentMoney()
@@ -80,7 +50,7 @@ namespace RaverSoft.YllisanSkies.Characters
 
         public void initBattle()
         {
-            foreach(Hero hero in heroes)
+            foreach (Hero hero in characters)
             {
                 hero.initBattle();
             }

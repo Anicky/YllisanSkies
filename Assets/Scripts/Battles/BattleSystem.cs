@@ -54,7 +54,7 @@ namespace RaverSoft.YllisanSkies.Battles
                 aTBManager.changeCharactersPositions();
                 displayATBBar();
                 changeATBCharactersIndex();
-                foreach (Hero hero in game.heroesTeam.getHeroes())
+                foreach (Hero hero in game.heroesTeam.getCharacters())
                 {
                     if ((hero.currentBattleState == BattleStates.Wait) && (hero.currentBattlePosition >= aTBManager.POSITIONS_ELEMENTS[BattleStates.Command]))
                     {
@@ -78,7 +78,7 @@ namespace RaverSoft.YllisanSkies.Battles
         {
             for (int i = 0; i < HeroesTeam.MAXIMUM_NUMBER_OF_HEROES; i++)
             {
-                Hero hero = game.heroesTeam.getHeroByIndex(i);
+                Hero hero = (Hero)game.heroesTeam.getCharacterByIndex(i);
                 if (hero != null)
                 {
                     int index = aTBManager.charactersSortedByPosition.IndexOf(hero);
@@ -87,7 +87,7 @@ namespace RaverSoft.YllisanSkies.Battles
             }
             for (int i = 0; i < EnemiesTeam.MAXIMUM_NUMBER_OF_ENEMIES; i++)
             {
-                Enemy enemy = game.enemiesTeam.getEnemyByIndex(i);
+                Enemy enemy = (Enemy)game.enemiesTeam.getCharacterByIndex(i);
                 if (enemy != null)
                 {
                     int index = aTBManager.charactersSortedByPosition.IndexOf(enemy);
@@ -137,7 +137,7 @@ namespace RaverSoft.YllisanSkies.Battles
         {
             for (int i = 0; i < HeroesTeam.MAXIMUM_NUMBER_OF_HEROES; i++)
             {
-                handleHeroBlock(i + 1, game.heroesTeam.getHeroByIndex(i));
+                handleHeroBlock(i + 1, (Hero)game.heroesTeam.getCharacterByIndex(i));
             }
         }
 
@@ -210,11 +210,11 @@ namespace RaverSoft.YllisanSkies.Battles
         {
             for (int i = 0; i < HeroesTeam.MAXIMUM_NUMBER_OF_HEROES; i++)
             {
-                handleATBHero(i + 1, game.heroesTeam.getHeroByIndex(i));
+                handleATBHero(i + 1, (Hero)game.heroesTeam.getCharacterByIndex(i));
             }
             for (int i = 0; i < EnemiesTeam.MAXIMUM_NUMBER_OF_ENEMIES; i++)
             {
-                handleATBEnemy(i + 1, game.enemiesTeam.getEnemyByIndex(i));
+                handleATBEnemy(i + 1, (Enemy)game.enemiesTeam.getCharacterByIndex(i));
             }
         }
 
@@ -286,7 +286,7 @@ namespace RaverSoft.YllisanSkies.Battles
         {
             for (int i = 0; i < HeroesTeam.MAXIMUM_NUMBER_OF_HEROES; i++)
             {
-                displayHero(i + 1, game.heroesTeam.getHeroByIndex(i));
+                displayHero(i + 1, (Hero)game.heroesTeam.getCharacterByIndex(i));
             }
         }
 
@@ -306,7 +306,7 @@ namespace RaverSoft.YllisanSkies.Battles
         {
             for (int i = 0; i < EnemiesTeam.MAXIMUM_NUMBER_OF_ENEMIES; i++)
             {
-                displayEnemy(i + 1, game.enemiesTeam.getEnemyByIndex(i));
+                displayEnemy(i + 1, (Enemy)game.enemiesTeam.getCharacterByIndex(i));
             }
         }
 

@@ -190,7 +190,7 @@ namespace RaverSoft.YllisanSkies.Menu
 
         private Hero getHeroFromCursorIndex()
         {
-            return game.heroesTeam.getHeroByIndex(currentCursorIndex - 1);
+            return (Hero)game.heroesTeam.getCharacterByIndex(currentCursorIndex - 1);
         }
 
         private void moveCursor()
@@ -358,7 +358,7 @@ namespace RaverSoft.YllisanSkies.Menu
         {
             for (int i = 0; i < HeroesTeam.MAXIMUM_NUMBER_OF_HEROES; i++)
             {
-                handleHeroBlock(i + 1, game.heroesTeam.getHeroByIndex(i));
+                handleHeroBlock(i + 1, (Hero)game.heroesTeam.getCharacterByIndex(i));
             }
         }
 
