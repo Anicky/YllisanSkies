@@ -51,9 +51,6 @@ namespace RaverSoft.YllisanSkies.Battles
         {
             if (battleInitialized && !stopATB)
             {
-                aTBManager.changeCharactersPositions();
-                displayATBBar();
-                changeATBCharactersIndex();
                 foreach (Hero hero in game.heroesTeam.getCharacters())
                 {
                     if ((hero.currentBattleState == BattleStates.Wait) && (hero.currentBattlePosition >= aTBManager.POSITIONS_ELEMENTS[BattleStates.Command]))
@@ -64,6 +61,15 @@ namespace RaverSoft.YllisanSkies.Battles
                         displayCommands();
                         break;
                     }
+                }
+                if (!stopATB)
+                {
+                    aTBManager.changeCharactersPositions();
+                }
+                displayATBBar();
+                if (!stopATB)
+                {
+                    changeATBCharactersIndex();
                 }
             }
         }

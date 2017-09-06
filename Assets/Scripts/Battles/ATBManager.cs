@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using RaverSoft.YllisanSkies.Characters;
+using UnityEngine;
 
 namespace RaverSoft.YllisanSkies.Battles
 {
@@ -185,7 +186,15 @@ namespace RaverSoft.YllisanSkies.Battles
         {
             foreach (Character character in charactersSortedByPosition)
             {
-                character.currentBattlePosition += character.currentBattleSpeed * SPEED_COEFFICIENT;
+                float newPosition = character.currentBattlePosition + (character.currentBattleSpeed * SPEED_COEFFICIENT);
+                if (character.currentBattleState == BattleSystem.BattleStates.Wait)
+                {
+                    character.currentBattlePosition = Mathf.Min(newPosition, POSITIONS_ELEMENTS[BattleSystem.BattleStates.Command]);
+                }
+                else if (character.currentBattleState == BattleSystem.BattleStates.Command)
+                {
+                    character.currentBattlePosition = Mathf.Min(newPosition, POSITIONS_ELEMENTS[BattleSystem.BattleStates.Action]);
+                }
             }
         }
     }
