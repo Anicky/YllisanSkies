@@ -41,6 +41,7 @@ namespace RaverSoft.YllisanSkies.Characters
         private const int POINTS_ATTRIBUTES_TO_ADD_FOR_EACH_LV = 10;
         private const int POINTS_ELEMENTS_TO_ADD_FOR_EACH_LV = 10;
         public const int BATTLE_MAX_ATTACK_POINTS = 8;
+        public const int BATTLE_ATTACK_POINTS_TO_ADD_WHEN_COMMAND = 2;
 
         public Hero(string id, string name, int lv, int xpSlopeToIncreaseLevel, int xpVerticalInterceptToIncreaseLevel, int hp, int ap, int strength, int resistance, int potential, int spirit, int agility, int cp, int elementFire, int elementAir, int elementLightning, int elementLight, int elementWater, int elementEarth, int elementNature, int elementDarkness) :
             base(name, hp, ap, strength, resistance, potential, spirit, agility, cp, elementFire, elementAir, elementLightning, elementLight, elementWater, elementEarth, elementNature, elementDarkness)
@@ -60,6 +61,11 @@ namespace RaverSoft.YllisanSkies.Characters
         public int getAttackPoints()
         {
             return attackPoints;
+        }
+
+        public void initBattleCommand()
+        {
+            addAttackPoints(BATTLE_ATTACK_POINTS_TO_ADD_WHEN_COMMAND);
         }
 
         public void addAttackPoints(int attackPoints)

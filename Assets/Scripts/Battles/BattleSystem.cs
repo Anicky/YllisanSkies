@@ -83,6 +83,8 @@ namespace RaverSoft.YllisanSkies.Battles
                             hero.currentBattleState = BattleStates.Command;
                             currentHeroAtCommand = hero;
                             stopATB = true;
+                            hero.initBattleCommand();
+                            displayHeroesBlocks();
                             displayCommands();
                             break;
                         }
