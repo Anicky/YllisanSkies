@@ -190,7 +190,7 @@ namespace RaverSoft.YllisanSkies.Battles
             {
                 GameObject.Find("Canvas/Block_Commands/Icon_" + command).GetComponent<RawImage>().texture = getCommandImage(command);
             }
-            GameObject.Find("Canvas/Block_Commands/Command_Title").GetComponent<Text>().text = game.getTranslation("Battles", ((Commands)currentCommandPosition).ToString());
+            GameObject.Find("Canvas/Block_Commands/Command_Title").GetComponent<Text>().text = commandsTitles[((Commands)currentCommandPosition)];
             bool cursorLeftEnabled = false;
             bool cursorRightEnabled = false;
             if (currentCommandPosition > 0)
