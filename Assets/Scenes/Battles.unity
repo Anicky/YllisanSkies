@@ -2093,6 +2093,7 @@ GameObject:
   m_Component:
   - component: {fileID: 442122052}
   - component: {fileID: 442122053}
+  - component: {fileID: 442122054}
   m_Layer: 0
   m_Name: Hero1
   m_TagString: Untagged
@@ -2155,6 +2156,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!95 &442122054
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 442122051}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 30d9efa9a8737944d8cbd5fc1bb950a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &453468517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2957,6 +2975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 725435917}
   - component: {fileID: 725435916}
+  - component: {fileID: 725435918}
   m_Layer: 0
   m_Name: Enemy3
   m_TagString: Untagged
@@ -3019,6 +3038,23 @@ Transform:
   m_Father: {fileID: 323668111}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &725435918
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 725435915}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63852a276cb2a9548941b4215f0942f5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &732349428
 GameObject:
   m_ObjectHideFlags: 0
@@ -3194,6 +3230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 763971256}
   - component: {fileID: 763971255}
+  - component: {fileID: 763971257}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Untagged
@@ -3256,6 +3293,23 @@ Transform:
   m_Father: {fileID: 323668111}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &763971257
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 763971254}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63852a276cb2a9548941b4215f0942f5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &765290929
 GameObject:
   m_ObjectHideFlags: 0
@@ -5240,6 +5294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1499002729}
   - component: {fileID: 1499002728}
+  - component: {fileID: 1499002730}
   m_Layer: 0
   m_Name: Hero4
   m_TagString: Untagged
@@ -5302,6 +5357,23 @@ Transform:
   m_Father: {fileID: 323668111}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1499002730
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1499002727}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 30d9efa9a8737944d8cbd5fc1bb950a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1512097022
 GameObject:
   m_ObjectHideFlags: 0
@@ -5311,6 +5383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1512097024}
   - component: {fileID: 1512097023}
+  - component: {fileID: 1512097025}
   m_Layer: 0
   m_Name: Hero3
   m_TagString: Untagged
@@ -5373,6 +5446,23 @@ Transform:
   m_Father: {fileID: 323668111}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1512097025
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1512097022}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 30d9efa9a8737944d8cbd5fc1bb950a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1525842321
 GameObject:
   m_ObjectHideFlags: 0
@@ -6076,6 +6166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1682359041}
   - component: {fileID: 1682359040}
+  - component: {fileID: 1682359042}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Untagged
@@ -6138,6 +6229,23 @@ Transform:
   m_Father: {fileID: 323668111}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1682359042
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1682359039}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63852a276cb2a9548941b4215f0942f5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1696250407
 GameObject:
   m_ObjectHideFlags: 0
@@ -7122,6 +7230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2026457271}
   - component: {fileID: 2026457270}
+  - component: {fileID: 2026457272}
   m_Layer: 0
   m_Name: Enemy4
   m_TagString: Untagged
@@ -7184,6 +7293,23 @@ Transform:
   m_Father: {fileID: 323668111}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2026457272
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2026457269}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63852a276cb2a9548941b4215f0942f5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &2046930340
 GameObject:
   m_ObjectHideFlags: 0
@@ -7529,6 +7655,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2125610940}
   - component: {fileID: 2125610939}
+  - component: {fileID: 2125610941}
   m_Layer: 0
   m_Name: Hero2
   m_TagString: Untagged
@@ -7591,3 +7718,20 @@ Transform:
   m_Father: {fileID: 323668111}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2125610941
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2125610938}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 30d9efa9a8737944d8cbd5fc1bb950a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
