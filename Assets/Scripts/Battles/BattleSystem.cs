@@ -30,10 +30,11 @@ namespace RaverSoft.YllisanSkies.Battles
         private Dictionary<Commands, string> commandsTitles;
         private bool battleInitialized = false;
         private bool stopATB = false;
-        private Hero currentHeroAtCommand = null;
+        private Character currentCharacterAtCommand = null;
         private int currentCommandPosition = 0;
         private int numberOfCommands;
         private bool isAxisInUse = false;
+        private bool inPause = false;
 
         // Use this for initialization
         void Start()
@@ -55,7 +56,11 @@ namespace RaverSoft.YllisanSkies.Battles
         {
             if (battleInitialized)
             {
-                if (currentHeroAtCommand != null)
+                if (Input.GetButtonDown("Cancel"))
+                {
+                    // @TODO : handle pause
+                }
+                if ((currentCharacterAtCommand != null) && (!inPause))
                 {
                     if (Input.GetAxisRaw("Horizontal") != 0)
                     {
@@ -67,7 +72,7 @@ namespace RaverSoft.YllisanSkies.Battles
                     }
                     else if (Input.GetButtonDown("Submit"))
                     {
-                        // @TODO
+                        handleCommand();
                     }
                     if (Input.GetAxisRaw("Horizontal") == 0)
                     {
@@ -76,16 +81,17 @@ namespace RaverSoft.YllisanSkies.Battles
                 }
                 if (!stopATB)
                 {
-                    foreach (Hero hero in game.heroesTeam.getCharacters())
+                    // @TODO : resolve equalities by comparing agility
+                    foreach (Character character in aTBManager.charactersSortedByPosition)
                     {
-                        if ((hero.currentBattleState == BattleStates.Wait) && (hero.currentBattlePosition >= aTBManager.POSITIONS_ELEMENTS[BattleStates.Command]))
+                        if ((character.currentBattleState == BattleStates.Wait) && (character.currentBattlePosition >= aTBManager.POSITIONS_ELEMENTS[BattleStates.Command]))
                         {
-                            hero.currentBattleState = BattleStates.Command;
-                            currentHeroAtCommand = hero;
-                            stopATB = true;
-                            hero.initBattleCommand();
-                            displayHeroesBlocks();
-                            displayCommands();
+                            characterAtCommandPoint(character);
+                            break;
+                        }
+                        else if ((character.currentBattleState == BattleStates.Command) && (character.currentBattlePosition >= aTBManager.POSITIONS_ELEMENTS[BattleStates.Action]))
+                        {
+                            characterAtActionPoint(character);
                             break;
                         }
                     }
@@ -102,10 +108,83 @@ namespace RaverSoft.YllisanSkies.Battles
             }
         }
 
+        private void handleCommand()
+        {
+            switch (currentCommandPosition)
+            {
+                case (int)Commands.Attack:
+                    // @TODO
+                    break;
+                case (int)Commands.Defense:
+                    game.playSound(Sounds.Submit);
+                    currentCharacterAtCommand.currentBattleCommand = new BattleDefenseCommand();
+                    characterCommandFinished();
+                    break;
+                case (int)Commands.Abilities:
+                    // @TODO
+                    break;
+                case (int)Commands.Items:
+                    // @TODO
+                    break;
+                case (int)Commands.RunAway:
+                    // @TODO
+                    break;
+            }
+        }
+
+        private void characterCommandFinished()
+        {
+            if (currentCharacterAtCommand is Hero)
+            {
+                hideCommands();
+            }
+            currentCharacterAtCommand = null;
+            stopATB = false;
+        }
+
+        private void characterAtCommandPoint(Character character)
+        {
+            character.currentBattleState = BattleStates.Command;
+            currentCharacterAtCommand = character;
+            stopATB = true;
+            if (character is Hero)
+            {
+                Hero hero = (Hero)character;
+                hero.initBattleCommand();
+                displayHeroesBlocks();
+                displayCommands();
+            }
+            else if (character is Enemy)
+            {
+                // @TODO : create AI for enemy
+                characterCommandFinished();
+            }
+        }
+
+        private void characterAtActionPoint(Character character)
+        {
+            character.currentBattleState = BattleStates.Action;
+            stopATB = true;
+            // @TODO : Do action
+            characterActionFinished(character);
+        }
+
+        private void characterActionFinished(Character character)
+        {
+            character.currentBattleState = BattleStates.Wait;
+            character.currentBattlePosition = aTBManager.POSITIONS_ELEMENTS[BattleStates.Wait];
+            stopATB = false;
+        }
+
         private void displayCommands()
         {
             currentCommandPosition = 0;
             displayBlockCommands(true);
+        }
+
+        private void hideCommands()
+        {
+            displayBlockCommands(false);
         }
 
         private void moveCommandPosition()
