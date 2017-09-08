@@ -117,9 +117,7 @@ namespace RaverSoft.YllisanSkies.Battles
                 Hero hero = (Hero)game.heroesTeam.getCharacterByIndex(i);
                 if (hero != null)
                 {
-                    Animator animator = GameObject.Find("Sprites/Hero" + (i + 1)).GetComponent<Animator>();
-                    animator.runtimeAnimatorController = Resources.Load("Animations/Characters/Heroes/" + hero.id + "/Hero_" + hero.id + "_BattleController") as RuntimeAnimatorController;
-                    animator.Play(AnimationUtils.getCurrentAnimationNameFromAnimator(animator), 0, (i * 0.1f));
+                    initSpriteAnimation(i, "Hero", "Heroes", hero);
                 }
             }
             for (int i = 0; i < EnemiesTeam.MAXIMUM_NUMBER_OF_ENEMIES; i++)
@@ -127,11 +125,16 @@ namespace RaverSoft.YllisanSkies.Battles
                 Enemy enemy = (Enemy)game.enemiesTeam.getCharacterByIndex(i);
                 if (enemy != null)
                 {
-                    Animator animator = GameObject.Find("Sprites/Enemy" + (i + 1)).GetComponent<Animator>();
-                    animator.runtimeAnimatorController = Resources.Load("Animations/Characters/Enemies/" + enemy.id + "/Enemy_" + enemy.id + "_BattleController") as RuntimeAnimatorController;
-                    animator.Play(AnimationUtils.getCurrentAnimationNameFromAnimator(animator), 0, (i * 0.1f));
+                    initSpriteAnimation(i, "Enemy", "Enemies", enemy);
                 }
             }
+        }
+
+        private void initSpriteAnimation(int i, string characterType, string charactersTeamType, Character character)
+        {
+            Animator animator = GameObject.Find("Sprites/" + characterType + (i + 1)).GetComponent<Animator>();
+            animator.runtimeAnimatorController = Resources.Load("Animations/Characters/" + charactersTeamType + "/" + character.id + "/" + characterType + "_" + character.id + "_BattleController") as RuntimeAnimatorController;
+            animator.Play(AnimationUtils.getCurrentAnimationNameFromAnimator(animator), 0, (i * 0.1f));
         }
 
         private void handleCommand()
@@ -271,29 +274,11 @@ namespace RaverSoft.YllisanSkies.Battles
 
         private void displayBlockCommands(bool enabled)
         {
-            GameObject block = GameObject.Find("Canvas/Block_Commands");
-            Image blockRootImage = block.GetComponent<Image>();
-            blockRootImage.enabled = enabled;
-            Text[] blockTexts = block.GetComponentsInChildren<Text>();
-            RawImage[] rawImages = block.GetComponentsInChildren<RawImage>();
-            foreach (Text blockText in blockTexts)
-            {
-                blockText.enabled = enabled;
-            }
-            foreach (RawImage rawImage in rawImages)
-            {
-                rawImage.enabled = enabled;
-                if (enabled)
-                {
-                    Hero hero = (Hero) currentCharacterAtCommand;
-                    if (rawImage.name == "Hero_Sprite")
-                    {
-                        rawImage.texture = Resources.Load<Texture>("UI/Battles/Battles_Interface_Commands_Sprite_" + hero.getId());
-                    }
-                }
-            }
+            GameObject.Find("Canvas/Block_Commands").GetComponent<Canvas>().enabled = enabled;
             if (enabled)
             {
+                Hero hero = (Hero)currentCharacterAtCommand;
+                GameObject.Find("Canvas/Block_Commands/Hero_Sprite").GetComponent<RawImage>().texture = Resources.Load<Texture>("UI/Battles/Battles_Interface_Commands_Sprite_" + hero.id);
                 displayCommandInfo();
             }
         }
@@ -352,61 +337,17 @@ namespace RaverSoft.YllisanSkies.Battles
             {
                 enabled = true;
             }
-
-            GameObject block = GameObject.Find("Canvas/Block_Hero" + heroPosition);
-            Image blockRootImage = block.GetComponent<Image>();
-            blockRootImage.enabled = enabled;
-            Text[] blockTexts = block.GetComponentsInChildren<Text>();
-            Image[] blockImages = block.GetComponentsInChildren<Image>();
-            RawImage[] rawImages = block.GetComponentsInChildren<RawImage>();
-            foreach (Text blockText in blockTexts)
+            string elementsGroupName = "Canvas/Block_Hero" + heroPosition;
+            GameObject.Find(elementsGroupName).GetComponent<Canvas>().enabled = enabled;
+            if (enabled)
             {
-                blockText.enabled = enabled;
-                if (enabled)
-                {
-                    if (blockText.name == "Hero_Name")
-                    {
-                        blockText.text = hero.name;
-                    }
-                    else if (blockText.name == "Hp_Stats")
-                    {
-                        blockText.text = hero.hp.ToString() + "/" + hero.hpMax.ToString();
-                    }
-                    else if (blockText.name == "Ap_Stats")
-                    {
-                        blockText.text = hero.ap.ToString() + "/" + hero.apMax.ToString();
-                    }
-                }
-            }
-            foreach (Image blockImage in blockImages)
-            {
-                blockImage.enabled = enabled;
-                if (enabled)
-                {
-                    if (blockImage.name == "Hp_Gauge")
-                    {
-                        blockImage.fillAmount = (float)hero.hp / hero.hpMax;
-                    }
-                    else if (blockImage.name == "Ap_Gauge")
-                    {
-                        blockImage.fillAmount = (float)hero.ap / hero.apMax;
-                    }
-                    else if (blockImage.name == "AttackBar")
-                    {
-                        blockImage.fillAmount = (float)hero.getAttackPoints() / Hero.BATTLE_MAX_ATTACK_POINTS;
-                    }
-                }
-            }
-            foreach (RawImage rawImage in rawImages)
-            {
-                rawImage.enabled = enabled;
-                if (enabled)
-                {
-                    if (rawImage.name == "Hero_Sprite")
-                    {
-                        rawImage.texture = Resources.Load<Texture>("UI/Battles/Battles_Interface_Hero_" + hero.getId());
-                    }
-                }
+                GameObject.Find(elementsGroupName + "/Hero_Name").GetComponent<Text>().text = hero.name;
+                GameObject.Find(elementsGroupName + "/Hp_Stats").GetComponent<Text>().text = hero.hp.ToString() + "/" + hero.hpMax.ToString();
+                GameObject.Find(elementsGroupName + "/Ap_Stats").GetComponent<Text>().text = hero.ap.ToString() + "/" + hero.apMax.ToString();
+                GameObject.Find(elementsGroupName + "/Hp_Gauge").GetComponent<Image>().fillAmount = (float)hero.hp / hero.hpMax;
+                GameObject.Find(elementsGroupName + "/Ap_Gauge").GetComponent<Image>().fillAmount = (float)hero.ap / hero.apMax;
+                GameObject.Find(elementsGroupName + "/AttackBar").GetComponent<Image>().fillAmount = (float)hero.getAttackPoints() / Hero.BATTLE_MAX_ATTACK_POINTS;
+                GameObject.Find(elementsGroupName + "/Hero_Sprite").GetComponent<RawImage>().texture = Resources.Load<Texture>("UI/Battles/Battles_Interface_Hero_" + hero.id);
             }
         }
 
@@ -424,65 +365,36 @@ namespace RaverSoft.YllisanSkies.Battles
 
         private void handleATBHero(int heroPosition, Hero hero)
         {
-            GameObject block = GameObject.Find("Canvas/Block_ATBBar/ATB_Characters/Hero" + heroPosition);
             bool enabled = false;
             if (hero != null)
             {
-                RectTransform blockRectTransform = block.GetComponent<RectTransform>();
-                blockRectTransform.anchoredPosition = new Vector2(hero.currentBattlePosition, blockRectTransform.anchoredPosition.y);
                 enabled = true;
             }
-            Image blockRootImage = block.GetComponent<Image>();
-            blockRootImage.enabled = enabled;
-            RawImage[] rawImages = block.GetComponentsInChildren<RawImage>();
-            foreach (RawImage rawImage in rawImages)
+            string elementsGroupName = "Canvas/Block_ATBBar/ATB_Characters/Hero" + heroPosition;
+            GameObject.Find(elementsGroupName).GetComponent<Canvas>().enabled = enabled;
+            if (enabled)
             {
-                rawImage.enabled = enabled;
-                if (enabled)
-                {
-                    if (rawImage.name == "Hero_Sprite")
-                    {
-                        rawImage.texture = Resources.Load<Texture>("UI/Battles/Battles_Interface_ATB_Sprite_Hero_" + hero.getId());
-                    }
-                }
+                RectTransform blockRectTransform = GameObject.Find(elementsGroupName).GetComponent<RectTransform>();
+                blockRectTransform.anchoredPosition = new Vector2(hero.currentBattlePosition, blockRectTransform.anchoredPosition.y);
+                GameObject.Find(elementsGroupName + "/Hero_Sprite").GetComponent<RawImage>().texture = Resources.Load<Texture>("UI/Battles/Battles_Interface_ATB_Sprite_Hero_" + hero.id);
             }
         }
 
         private void handleATBEnemy(int enemyPosition, Enemy enemy)
         {
-            GameObject block = GameObject.Find("Canvas/Block_ATBBar/ATB_Characters/Enemy" + enemyPosition);
             bool enabled = false;
             if (enemy != null)
             {
-                RectTransform blockRectTransform = block.GetComponent<RectTransform>();
-                blockRectTransform.anchoredPosition = new Vector2(enemy.currentBattlePosition, blockRectTransform.anchoredPosition.y);
                 enabled = true;
             }
-            Image blockRootImage = block.GetComponent<Image>();
-            blockRootImage.enabled = enabled;
-            RawImage[] rawImages = block.GetComponentsInChildren<RawImage>();
-            Text[] texts = block.GetComponentsInChildren<Text>();
-            foreach (Text text in texts)
+            string elementsGroupName = "Canvas/Block_ATBBar/ATB_Characters/Enemy" + enemyPosition;
+            GameObject.Find(elementsGroupName).GetComponent<Canvas>().enabled = enabled;
+            if (enabled)
             {
-                text.enabled = enabled;
-                if (enabled)
-                {
-                    if (text.name == "Enemy_Number")
-                    {
-                        text.text = enemyPosition.ToString();
-                    }
-                }
-            }
-            foreach (RawImage rawImage in rawImages)
-            {
-                rawImage.enabled = enabled;
-                if (enabled)
-                {
-                    if (rawImage.name == "Enemy_Sprite")
-                    {
-                        rawImage.texture = Resources.Load<Texture>("UI/Battles/Battles_Interface_ATB_Sprite_Enemy_" + enemy.id);
-                    }
-                }
+                RectTransform blockRectTransform = GameObject.Find(elementsGroupName).GetComponent<RectTransform>();
+                blockRectTransform.anchoredPosition = new Vector2(enemy.currentBattlePosition, blockRectTransform.anchoredPosition.y);
+                GameObject.Find(elementsGroupName + "/Enemy_Sprite").GetComponent<RawImage>().texture = Resources.Load<Texture>("UI/Battles/Battles_Interface_ATB_Sprite_Enemy_" + enemy.id);
+                GameObject.Find(elementsGroupName + "/Enemy_Number").GetComponent<Text>().text = enemyPosition.ToString();
             }
         }
 
@@ -501,9 +413,7 @@ namespace RaverSoft.YllisanSkies.Battles
             {
                 enabled = true;
             }
-            GameObject heroObject = GameObject.Find("Sprites/Hero" + heroPosition);
-            heroObject.GetComponent<SpriteRenderer>().enabled = enabled;
-            // @TODO : change sprite according to hero
+            GameObject.Find("Sprites/Hero" + heroPosition).GetComponent<SpriteRenderer>().enabled = enabled;
         }
 
         private void displayEnemies()
@@ -521,9 +431,7 @@ namespace RaverSoft.YllisanSkies.Battles
             {
                 enabled = true;
             }
-            GameObject enemyObject = GameObject.Find("Sprites/Enemy" + heroPosition);
-            enemyObject.GetComponent<SpriteRenderer>().enabled = enabled;
-            // @TODO : change sprite according to enemy
+            GameObject.Find("Sprites/Enemy" + heroPosition).GetComponent<SpriteRenderer>().enabled = enabled;
         }
     }
 }
