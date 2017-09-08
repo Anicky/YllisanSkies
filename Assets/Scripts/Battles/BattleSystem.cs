@@ -283,6 +283,14 @@ namespace RaverSoft.YllisanSkies.Battles
             foreach (RawImage rawImage in rawImages)
             {
                 rawImage.enabled = enabled;
+                if (enabled)
+                {
+                    Hero hero = (Hero) currentCharacterAtCommand;
+                    if (rawImage.name == "Hero_Sprite")
+                    {
+                        rawImage.texture = Resources.Load<Texture>("UI/Battles/Battles_Interface_Commands_Sprite_" + hero.getId());
+                    }
+                }
             }
             if (enabled)
             {
