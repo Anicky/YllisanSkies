@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 16617387}
   - component: {fileID: 16617389}
   - component: {fileID: 16617388}
+  - component: {fileID: 16617390}
   m_Layer: 5
   m_Name: Block_Hero4
   m_TagString: Untagged
@@ -430,6 +431,26 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 16617386}
+--- !u!223 &16617390
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 16617386}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &19425511
 GameObject:
   m_ObjectHideFlags: 0
@@ -5113,6 +5134,7 @@ GameObject:
   - component: {fileID: 989520456}
   - component: {fileID: 989520458}
   - component: {fileID: 989520457}
+  - component: {fileID: 989520459}
   m_Layer: 5
   m_Name: Block_Hero3
   m_TagString: Untagged
@@ -5184,6 +5206,26 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 989520455}
+--- !u!223 &989520459
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 989520455}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &997185220
 GameObject:
   m_ObjectHideFlags: 0
@@ -9583,6 +9625,7 @@ GameObject:
   - component: {fileID: 2019335998}
   - component: {fileID: 2019336000}
   - component: {fileID: 2019335999}
+  - component: {fileID: 2019336001}
   m_Layer: 5
   m_Name: Block_Hero2
   m_TagString: Untagged
@@ -9654,6 +9697,26 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2019335997}
+--- !u!223 &2019336001
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2019335997}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &2031005841
 GameObject:
   m_ObjectHideFlags: 0
@@ -9999,6 +10062,7 @@ GameObject:
   - component: {fileID: 2147164929}
   - component: {fileID: 2147164931}
   - component: {fileID: 2147164930}
+  - component: {fileID: 2147164932}
   m_Layer: 5
   m_Name: Block_Hero1
   m_TagString: Untagged
@@ -10070,3 +10134,23 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2147164928}
+--- !u!223 &2147164932
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2147164928}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0

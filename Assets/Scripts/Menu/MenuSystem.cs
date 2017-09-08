@@ -369,61 +369,17 @@ namespace RaverSoft.YllisanSkies.Menu
             {
                 enabled = true;
             }
-
-            GameObject block = GameObject.Find("Menu/Main/Block_Hero" + heroPosition);
-            Image blockRootImage = block.GetComponent<Image>();
-            blockRootImage.enabled = enabled;
-            Text[] blockTexts = block.GetComponentsInChildren<Text>();
-            Image[] blockImages = block.GetComponentsInChildren<Image>();
-            RawImage[] rawImages = block.GetComponentsInChildren<RawImage>();
-            foreach (Text blockText in blockTexts)
+            string elementsGroupName = "Menu/Main/Block_Hero" + heroPosition;
+            GameObject.Find(elementsGroupName).GetComponent<Canvas>().enabled = enabled;
+            if (enabled)
             {
-                blockText.enabled = enabled;
-                if (enabled)
-                {
-                    if (blockText.name == "Hero_Name")
-                    {
-                        blockText.text = hero.name;
-                    }
-                    else if (blockText.name == "Lv_Stats")
-                    {
-                        blockText.text = hero.getLv().ToString();
-                    }
-                    else if (blockText.name == "Hp_Stats")
-                    {
-                        blockText.text = hero.hp.ToString() + "/" + hero.hpMax.ToString();
-                    }
-                    else if (blockText.name == "Ap_Stats")
-                    {
-                        blockText.text = hero.ap.ToString() + "/" + hero.apMax.ToString();
-                    }
-                }
-            }
-            foreach (Image blockImage in blockImages)
-            {
-                blockImage.enabled = enabled;
-                if (enabled)
-                {
-                    if (blockImage.name == "Hp_Gauge")
-                    {
-                        blockImage.fillAmount = (float)hero.hp / hero.hpMax;
-                    }
-                    else if (blockImage.name == "Ap_Gauge")
-                    {
-                        blockImage.fillAmount = (float)hero.ap / hero.apMax;
-                    }
-                }
-            }
-            foreach (RawImage rawImage in rawImages)
-            {
-                rawImage.enabled = enabled;
-                if (enabled)
-                {
-                    if (rawImage.name == "Hero_Sprite")
-                    {
-                        rawImage.texture = Resources.Load<Texture>("UI/Sprite_Hero_" + hero.getId());
-                    }
-                }
+                GameObject.Find(elementsGroupName + "/Hero_Name").GetComponent<Text>().text = hero.name;
+                GameObject.Find(elementsGroupName + "/Lv_Stats").GetComponent<Text>().text = hero.getLv().ToString();
+                GameObject.Find(elementsGroupName + "/Hp_Stats").GetComponent<Text>().text = hero.hp.ToString() + "/" + hero.hpMax.ToString();
+                GameObject.Find(elementsGroupName + "/Ap_Stats").GetComponent<Text>().text = hero.ap.ToString() + "/" + hero.apMax.ToString();
+                GameObject.Find(elementsGroupName + "/Hp_Gauge").GetComponent<Image>().fillAmount = (float)hero.hp / hero.hpMax;
+                GameObject.Find(elementsGroupName + "/Ap_Gauge").GetComponent<Image>().fillAmount = (float)hero.ap / hero.apMax;
+                GameObject.Find(elementsGroupName + "/Hero_Sprite").GetComponent<RawImage>().texture = Resources.Load<Texture>("UI/Sprite_Hero_" + hero.id);
             }
         }
 
