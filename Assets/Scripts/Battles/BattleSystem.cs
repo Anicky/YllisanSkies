@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using RaverSoft.YllisanSkies.Characters;
 using RaverSoft.YllisanSkies.Sound;
+using RaverSoft.YllisanSkies.Utils;
 
 namespace RaverSoft.YllisanSkies.Battles
 {
@@ -48,6 +49,7 @@ namespace RaverSoft.YllisanSkies.Battles
             displayHeroes();
             displayEnemies();
             numberOfCommands = Enum.GetValues(typeof(Commands)).Length;
+            initSpriteAnimations();
             battleInitialized = true;
         }
 
@@ -104,6 +106,28 @@ namespace RaverSoft.YllisanSkies.Battles
                     {
                         changeATBCharactersIndex();
                     }
+                }
+            }
+        }
+
+        private void initSpriteAnimations()
+        {
+            for (int i = 0; i < HeroesTeam.MAXIMUM_NUMBER_OF_HEROES; i++)
+            {
+                Hero hero = (Hero)game.heroesTeam.getCharacterByIndex(i);
+                if (hero != null)
+                {
+                    Animator animator = GameObject.Find("Sprites/Hero" + (i + 1)).GetComponent<Animator>();
+                    animator.Play(AnimationUtils.getCurrentAnimationNameFromAnimator(animator), 0, (i * 0.1f));
+                }
+            }
+            for (int i = 0; i < EnemiesTeam.MAXIMUM_NUMBER_OF_ENEMIES; i++)
+            {
+                Enemy enemy = (Enemy)game.enemiesTeam.getCharacterByIndex(i);
+                if (enemy != null)
+                {
+                    Animator animator = GameObject.Find("Sprites/Enemy" + (i + 1)).GetComponent<Animator>();
+                    animator.Play(AnimationUtils.getCurrentAnimationNameFromAnimator(animator), 0, (i * 0.1f));
                 }
             }
         }
