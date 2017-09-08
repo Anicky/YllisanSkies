@@ -118,6 +118,7 @@ namespace RaverSoft.YllisanSkies.Battles
                 if (hero != null)
                 {
                     Animator animator = GameObject.Find("Sprites/Hero" + (i + 1)).GetComponent<Animator>();
+                    animator.runtimeAnimatorController = Resources.Load("Animations/Characters/Heroes/" + hero.id + "/Hero_" + hero.id + "_BattleController") as RuntimeAnimatorController;
                     animator.Play(AnimationUtils.getCurrentAnimationNameFromAnimator(animator), 0, (i * 0.1f));
                 }
             }
@@ -127,6 +128,7 @@ namespace RaverSoft.YllisanSkies.Battles
                 if (enemy != null)
                 {
                     Animator animator = GameObject.Find("Sprites/Enemy" + (i + 1)).GetComponent<Animator>();
+                    animator.runtimeAnimatorController = Resources.Load("Animations/Characters/Enemies/" + enemy.id + "/Enemy_" + enemy.id + "_BattleController") as RuntimeAnimatorController;
                     animator.Play(AnimationUtils.getCurrentAnimationNameFromAnimator(animator), 0, (i * 0.1f));
                 }
             }
