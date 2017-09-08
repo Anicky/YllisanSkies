@@ -6,6 +6,7 @@ namespace RaverSoft.YllisanSkies.Characters
     public abstract class Character
     {
         public string name;
+        public string id { get; protected set; }
 
         // Attributes
         public int hp { get; private set; }

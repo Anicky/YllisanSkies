@@ -10,7 +10,6 @@ namespace RaverSoft.YllisanSkies.Characters
 
     public class Enemy : Character
     {
-        public string id { get; private set; }
         public Behaviour behaviour { get; private set; }
         public int money { get; private set; }
         public int xp { get; private set; }

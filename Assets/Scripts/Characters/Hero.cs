@@ -17,8 +17,6 @@ namespace RaverSoft.YllisanSkies.Characters
 
     public class Hero : Character
     {
-        public string id { get; private set; }
-
         // Level
         private int lv = 1;
         private int xpTotal = 0;
@@ -84,11 +82,6 @@ namespace RaverSoft.YllisanSkies.Characters
             {
                 this.attackPoints = 0;
             }
-        }
-
-        public string getId()
-        {
-            return id;
         }
 
         public int getLv()
