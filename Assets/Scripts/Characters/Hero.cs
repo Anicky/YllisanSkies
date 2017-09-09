@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using RaverSoft.YllisanSkies.Items;
+using System;
 
 namespace RaverSoft.YllisanSkies.Characters
 {
@@ -15,6 +16,7 @@ namespace RaverSoft.YllisanSkies.Characters
         Natsuky
     }
 
+    [Serializable]
     public class Hero : Character
     {
         // Level

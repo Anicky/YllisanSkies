@@ -1,19 +1,20 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using System.Collections;
-using RaverSoft.YllisanSkies.Characters;
+﻿using RaverSoft.YllisanSkies.Characters;
 using RaverSoft.YllisanSkies.Events;
-using RaverSoft.YllisanSkies.Pathfinding;
-using RaverSoft.YllisanSkies.Utils;
 using RaverSoft.YllisanSkies.Menu;
+using RaverSoft.YllisanSkies.Pathfinding;
 using RaverSoft.YllisanSkies.Sound;
+using RaverSoft.YllisanSkies.Utils;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace RaverSoft.YllisanSkies
 {
     public class Game : MonoBehaviour
     {
         private Database database;
+        private SaveSystem saveSystem;
         public HeroesTeam heroesTeam;
         public EnemiesTeam enemiesTeam;
         public MenuSystem menu;
@@ -46,6 +47,7 @@ namespace RaverSoft.YllisanSkies
         {
             database = new Database();
             database.load();
+            saveSystem = new SaveSystem();
             defaultLanguage = database.getLanguageById(LanguageList.English);
             currentLanguage = database.getLanguageById(LanguageList.French);
             canvas = GameObject.Find("Game/Canvas").GetComponent<Canvas>();
@@ -72,6 +74,20 @@ namespace RaverSoft.YllisanSkies
             Camera.onPostRender += GamePostRender;
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.sceneUnloaded += OnSceneUnloaded;
+        }
+
+        public void save()
+        {
+            SaveData saveData = new SaveData(heroesTeam, SceneManager.GetActiveScene().name, player);
+            saveSystem.save("save1", saveData);
+        }
+
+        public void load()
+        {
+            SaveData saveData = saveSystem.load("save1");
+            heroesTeam = saveData.heroesTeam;
+            player.transform.position = new Vector2(saveData.playerX, saveData.playerY);
+            StartCoroutine(changeScene(saveData.scene, player.transform.position, LoadMap.TransitionsEffects.None, LoadMap.TransitionsEffects.None));
         }
 
         public Database getDatabase()
@@ -141,6 +157,15 @@ namespace RaverSoft.YllisanSkies
         private void Update()
         {
             checkMenu();
+            // SaveSystem tests
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                save();
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                load();
+            }
         }
 
         private void checkMenu()
@@ -167,6 +192,7 @@ namespace RaverSoft.YllisanSkies
 
         public IEnumerator changeScene(string mapToLoad, Vector3 playerStartingPoint, LoadMap.TransitionsEffects transitionEffectIn, LoadMap.TransitionsEffects transitionEffectOut)
         {
+            Debug.Log(mapToLoad);
             string currentScene = SceneManager.GetActiveScene().name;
             bool needScreenshot = false;
             if (transitionEffectIn == LoadMap.TransitionsEffects.None && transitionEffectOut != LoadMap.TransitionsEffects.None)

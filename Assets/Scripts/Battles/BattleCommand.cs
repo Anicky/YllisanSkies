@@ -1,5 +1,8 @@
-﻿namespace RaverSoft.YllisanSkies.Battles
+﻿using System;
+
+namespace RaverSoft.YllisanSkies.Battles
 {
+    [Serializable]
     public class BattleCommand
     {
 

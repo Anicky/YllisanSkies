@@ -1,8 +1,10 @@
 ﻿using RaverSoft.YllisanSkies.Items;
 using RaverSoft.YllisanSkies.Battles;
+using System;
 
 namespace RaverSoft.YllisanSkies.Characters
 {
+    [Serializable]
     public abstract class Character
     {
         public string name;

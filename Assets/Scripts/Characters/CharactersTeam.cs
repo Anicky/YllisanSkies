@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace RaverSoft.YllisanSkies.Characters
 {
+    [Serializable]
     public class CharactersTeam
     {
         protected List<Character> characters;

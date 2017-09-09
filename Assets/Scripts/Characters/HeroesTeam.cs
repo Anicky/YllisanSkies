@@ -1,8 +1,10 @@
 ﻿using RaverSoft.YllisanSkies.Items;
 using System.Collections.Generic;
+using System;
 
 namespace RaverSoft.YllisanSkies.Characters
 {
+    [Serializable]
     public class HeroesTeam : CharactersTeam
     {
         private int moneyCollected = 0;

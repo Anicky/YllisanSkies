@@ -1,4 +1,6 @@
-﻿namespace RaverSoft.YllisanSkies
+﻿using System;
+
+namespace RaverSoft.YllisanSkies
 {
     public enum LocationList
     {
@@ -6,6 +8,7 @@
         Osarian
     }
 
+    [Serializable]
     public class Location
     {
         private string id;
