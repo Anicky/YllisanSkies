@@ -7,6 +7,9 @@ namespace RaverSoft.YllisanSkies
         // Game
         private Game game;
 
+        // Map
+        private Tiled2Unity.TiledMap map;
+
         // Object components
         private Renderer backgroundRenderer;
 
@@ -22,6 +25,9 @@ namespace RaverSoft.YllisanSkies
         {
             game = GameObject.Find("Game").GetComponent<Game>();
             backgroundRenderer = GetComponent<Renderer>();
+            map = GameObject.Find("Map").GetComponent<Tiled2Unity.TiledMap>();
+            float ratio = map.GetMapWidthInPixelsScaled() / backgroundRenderer.material.mainTexture.width;
+            backgroundRenderer.material.mainTextureScale = new Vector2(ratio, ratio);
         }
 
         // Update is called once per frame
