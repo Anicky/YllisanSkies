@@ -2301,6 +2301,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 978301302}
+  currentHero:
+    name: 
+    currentBattleSpeed: 0
+    currentBattleState: 0
+    currentBattlePosition: 0
+    pointsAttributesToAdd: 0
+    pointsElementsToAdd: 0
 --- !u!1 &484724628
 GameObject:
   m_ObjectHideFlags: 0
@@ -4952,6 +4959,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 978301302}
+  currentHero:
+    name: 
+    currentBattleSpeed: 0
+    currentBattleState: 0
+    currentBattlePosition: 0
+    pointsAttributesToAdd: 0
+    pointsElementsToAdd: 0
 --- !u!1 &978301301
 GameObject:
   m_ObjectHideFlags: 0
@@ -7006,6 +7020,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 978301302}
+  currentHero:
+    name: 
+    currentBattleSpeed: 0
+    currentBattleState: 0
+    currentBattlePosition: 0
+    pointsAttributesToAdd: 0
+    pointsElementsToAdd: 0
 --- !u!1 &1386176590
 GameObject:
   m_ObjectHideFlags: 0

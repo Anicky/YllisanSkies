@@ -79,12 +79,12 @@ namespace RaverSoft.YllisanSkies
         public void save()
         {
             SaveData saveData = new SaveData(heroesTeam, SceneManager.GetActiveScene().name, player);
-            saveSystem.save("save1", saveData);
+            saveSystem.save(1, saveData);
         }
 
         public void load()
         {
-            SaveData saveData = saveSystem.load("save1");
+            SaveData saveData = saveSystem.load(1);
             heroesTeam = saveData.heroesTeam;
             player.transform.position = new Vector2(saveData.playerX, saveData.playerY);
             StartCoroutine(changeScene(saveData.scene, player.transform.position, LoadMap.TransitionsEffects.None, LoadMap.TransitionsEffects.None));
