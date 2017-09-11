@@ -98,6 +98,8 @@ namespace RaverSoft.YllisanSkies
                     {
                         soundManager.playSound(Sounds.Submit);
                         // @TODO
+                        // TESTS
+                        game.load();
                     }
                     else
                     {

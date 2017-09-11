@@ -74,6 +74,11 @@ namespace RaverSoft.YllisanSkies
             }
         }
 
+        public void displayPlayer(bool enabled)
+        {
+            spriteRenderer.enabled = enabled;
+        }
+
         private void OnSceneChange(Scene previousScene, Scene currentScene)
         {
             initialize(currentScene.GetRootGameObjects());
@@ -81,7 +86,7 @@ namespace RaverSoft.YllisanSkies
             {
                 if (this && map)
                 {
-                    spriteRenderer.enabled = true;
+                    displayPlayer(true);
                 }
                 GameObject playerStartingPoint = GameObject.Find("PlayerStartingPoint");
                 if (this && playerStartingPoint != null)

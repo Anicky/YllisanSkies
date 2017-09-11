@@ -75,7 +75,7 @@ namespace RaverSoft.YllisanSkies
 
         public void save()
         {
-            SaveData saveData = new SaveData(heroesTeam, SceneManager.GetActiveScene().name, player);
+            SaveData saveData = new SaveData(heroesTeam, SceneManager.GetActiveScene().name, player, menuEnabled);
             saveSystem.save(1, saveData);
         }
 
@@ -84,6 +84,8 @@ namespace RaverSoft.YllisanSkies
             SaveData saveData = saveSystem.load(1);
             heroesTeam = saveData.heroesTeam;
             player.transform.position = new Vector2(saveData.playerX, saveData.playerY);
+            player.displayPlayer(true);
+            menuEnabled = saveData.menuEnabled;
             StartCoroutine(changeScene(saveData.scene, player.transform.position, LoadMap.TransitionsEffects.None, LoadMap.TransitionsEffects.None));
         }
 
