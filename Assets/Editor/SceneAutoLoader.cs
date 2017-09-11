@@ -25,7 +25,7 @@ public class SceneAutoLoader : MonoBehaviour
 
     private static string previousScene
     {
-        get { return EditorPrefs.GetString(editorPrefPreviousScene, EditorSceneManager.GetActiveScene().name); }
+        get { return EditorPrefs.GetString(editorPrefPreviousScene, EditorSceneManager.GetActiveScene().path); }
         set { EditorPrefs.SetString(editorPrefPreviousScene, value); }
     }
 
@@ -109,7 +109,7 @@ public class SceneAutoLoader : MonoBehaviour
 
         if (EditorApplication.isPlaying && EditorApplication.isPlayingOrWillChangePlaymode)
         {
-            GameObject.Find("Game").GetComponent<Game>().setStartingMap(previousScene);
+            GameObject.Find("Game").GetComponent<Game>().setTestStartingMap(previousScene);
         }
     }
 }

@@ -4710,7 +4710,7 @@ MonoBehaviour:
   menuAllowed: 1
   currentLocation: 
   isSaveAllowed: 0
-  startingMapName: Osarian_Outside_01
+  startingMapName: 
   stopEvents: 0
   debugMode: 0
   inBattle: 0
@@ -4865,10 +4865,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 563b6c966df520247bbdf0ff4229b70a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 8300000, guid: 62d092515b28f1b45adf70788ee17c96, type: 3}
-  submit: {fileID: 8300000, guid: 76e1076f22801ea48a138da8fd65ad5d, type: 3}
-  error: {fileID: 8300000, guid: 7a526826d41e4b4429ca5a6b372d2ea2, type: 3}
-  cancel: {fileID: 8300000, guid: 8d0f92fa86a08f849a09a82dd6c02881, type: 3}
 --- !u!1 &978064035
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,10 @@
+[TitleScreen]
+New game = Commencer
+Continue = Continuer
+Options = Options
+Bonus = Bonus
+Quit = Quitter le jeu
+
 [Stats]
 Lv = Nv
 Hp = Pv

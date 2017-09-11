@@ -8,9 +8,9 @@ namespace RaverSoft.YllisanSkies
 {
     public class TitleScreen : MonoBehaviour
     {
-        private SaveSystem saveSystem;
         private SoundManager soundManager;
         private Animation anim;
+        private Game game;
 
         private bool hasGameSaves;
         private int currentSectionIndex = 0;
@@ -32,13 +32,23 @@ namespace RaverSoft.YllisanSkies
         // Use this for initialization
         void Start()
         {
-            saveSystem = GetComponent<SaveSystem>();
+            game = GameObject.Find("Game").GetComponent<Game>();
             soundManager = GetComponent<SoundManager>();
             anim = GetComponent<Animation>();
-            hasGameSaves = saveSystem.hasGameSaves();
+            hasGameSaves = game.saveSystem.hasGameSaves();
+            setTranslations();
             displaySectionAvailability("Continue", hasGameSaves);
             soundManager.fadeOut(1.5f);
             StartCoroutine(playAnimation("FadeOut"));
+        }
+
+        private void setTranslations()
+        {
+            GameObject.Find("Canvas/Sections/NewGame/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "New game");
+            GameObject.Find("Canvas/Sections/Continue/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Continue");
+            GameObject.Find("Canvas/Sections/Options/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Options");
+            GameObject.Find("Canvas/Sections/Bonus/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Bonus");
+            GameObject.Find("Canvas/Sections/Quit/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Quit");
         }
 
         // Update is called once per frame
@@ -81,7 +91,7 @@ namespace RaverSoft.YllisanSkies
             switch (currentSectionIndex)
             {
                 case (int)Sections.NewGame:
-                    // @TODO
+                    StartCoroutine(newGame());
                     break;
                 case (int)Sections.Continue:
                     if (hasGameSaves)
@@ -171,6 +181,14 @@ namespace RaverSoft.YllisanSkies
             currentSection.transform.localPosition = new Vector2(currentSection.transform.localPosition.x - PIXELS_TO_MOVE_IN_ONE_UPDATE, currentSection.transform.localPosition.y);
             previousSection.transform.localPosition = new Vector2(previousSection.transform.localPosition.x + PIXELS_TO_MOVE_IN_ONE_UPDATE, previousSection.transform.localPosition.y);
             pixelsToMove -= PIXELS_TO_MOVE_IN_ONE_UPDATE;
+        }
+
+        private IEnumerator newGame()
+        {
+            soundManager.fadeIn(1.5f);
+            soundManager.playSound(Sounds.Submit);
+            yield return playAnimation("FadeIn");
+            game.setTestStartingMap("Osarian_Outside_01");
         }
 
         private IEnumerator quit()

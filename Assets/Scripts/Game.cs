@@ -14,7 +14,7 @@ namespace RaverSoft.YllisanSkies
     public class Game : MonoBehaviour
     {
         private Database database;
-        private SaveSystem saveSystem;
+        public SaveSystem saveSystem { get; private set; }
         public HeroesTeam heroesTeam;
         public EnemiesTeam enemiesTeam;
         public MenuSystem menu;
@@ -26,7 +26,6 @@ namespace RaverSoft.YllisanSkies
         public bool menuAllowed = true;
         public string currentLocation;
         public bool isSaveAllowed = false;
-        public string startingMapName;
         public bool stopEvents = false;
         public bool debugMode = false;
         private bool takeScreen = false;
@@ -60,7 +59,6 @@ namespace RaverSoft.YllisanSkies
             options = new Options();
             heroesTeam = new HeroesTeam();
             enemiesTeam = new EnemiesTeam();
-            initGame();
             if (!gameExists)
             {
                 gameExists = true;
@@ -70,7 +68,6 @@ namespace RaverSoft.YllisanSkies
             {
                 Destroy(gameObject);
             }
-            setStartingMap(startingMapName);
             Camera.onPostRender += GamePostRender;
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.sceneUnloaded += OnSceneUnloaded;
@@ -95,7 +92,7 @@ namespace RaverSoft.YllisanSkies
             return database;
         }
 
-        private void initGame()
+        public void initTestGame()
         {
             heroesTeam.addCharacter(database.getHeroById(HeroList.Cyril));
             heroesTeam.addCharacter(database.getHeroById(HeroList.Max));
@@ -105,10 +102,19 @@ namespace RaverSoft.YllisanSkies
             heroesTeam.changeLocation(database.getLocationById(LocationList.Osarian));
         }
 
-        public void setStartingMap(string mapName)
+        public void setTestStartingMap(string mapName)
         {
-            player.firstInit = true;
-            firstMap = true;
+            if (mapName == "Assets/Scenes/TitleScreen.unity")
+            {
+                menuEnabled = false;
+            }
+            else
+            {
+                initTestGame();
+                player.firstInit = true;
+                firstMap = true;
+                menuEnabled = true;
+            }
             SceneManager.LoadScene(mapName);
         }
 
@@ -192,7 +198,6 @@ namespace RaverSoft.YllisanSkies
 
         public IEnumerator changeScene(string mapToLoad, Vector3 playerStartingPoint, LoadMap.TransitionsEffects transitionEffectIn, LoadMap.TransitionsEffects transitionEffectOut)
         {
-            Debug.Log(mapToLoad);
             string currentScene = SceneManager.GetActiveScene().name;
             bool needScreenshot = false;
             if (transitionEffectIn == LoadMap.TransitionsEffects.None && transitionEffectOut != LoadMap.TransitionsEffects.None)
