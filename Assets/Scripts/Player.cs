@@ -155,6 +155,17 @@ namespace RaverSoft.YllisanSkies
             }
         }
 
+        public void setPosition(Vector2 position)
+        {
+            transform.position = position;
+        }
+
+        public void setDirection(Vector2 direction)
+        {
+            anim.SetFloat("input_x", direction.x);
+            anim.SetFloat("input_y", direction.y);
+        }
+
         private float numberOfPixelsToMoveInOneFrame()
         {
             return speed * Time.deltaTime;

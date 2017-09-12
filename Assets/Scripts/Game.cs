@@ -15,14 +15,11 @@ namespace RaverSoft.YllisanSkies
     {
         private Database database;
         public SaveSystem saveSystem { get; private set; }
-        public HeroesTeam heroesTeam;
-        public EnemiesTeam enemiesTeam;
         public MenuSystem menu;
         public Options options;
         private static bool gameExists = false;
         public Player player;
         private IniFileHandler translationsFileHandler;
-        private bool menuEnabled = true;
         public bool menuAllowed = true;
         public string currentLocation;
         public bool isSaveAllowed = false;
@@ -40,6 +37,11 @@ namespace RaverSoft.YllisanSkies
         public bool inBattle = false;
         private Language defaultLanguage;
         private Language currentLanguage;
+
+        // Saved data
+        public HeroesTeam heroesTeam;
+        public EnemiesTeam enemiesTeam;
+        private bool menuEnabled = true;
 
         // Use this for initialization
         private void Start()
@@ -83,8 +85,9 @@ namespace RaverSoft.YllisanSkies
         {
             SaveData saveData = saveSystem.load(1);
             heroesTeam = saveData.heroesTeam;
-            player.transform.position = new Vector2(saveData.playerX, saveData.playerY);
+            player.setPosition(saveData.getPlayerPosition());
             player.displayPlayer(true);
+            player.setDirection(saveData.getPlayerDirection());
             menuEnabled = saveData.menuEnabled;
             StartCoroutine(changeScene(saveData.scene, player.transform.position, LoadMap.TransitionsEffects.None, LoadMap.TransitionsEffects.None));
         }
