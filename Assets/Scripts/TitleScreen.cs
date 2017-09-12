@@ -44,11 +44,11 @@ namespace RaverSoft.YllisanSkies
 
         private void setTranslations()
         {
-            GameObject.Find("Canvas/Sections/NewGame/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "New game");
-            GameObject.Find("Canvas/Sections/Continue/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Continue");
-            GameObject.Find("Canvas/Sections/Options/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Options");
-            GameObject.Find("Canvas/Sections/Bonus/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Bonus");
-            GameObject.Find("Canvas/Sections/Quit/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Quit");
+            GameObject.Find("Canvas/Main/Sections/NewGame/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "New game");
+            GameObject.Find("Canvas/Main/Sections/Continue/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Continue");
+            GameObject.Find("Canvas/Main/Sections/Options/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Options");
+            GameObject.Find("Canvas/Main/Sections/Bonus/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Bonus");
+            GameObject.Find("Canvas/Main/Sections/Quit/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Quit");
         }
 
         // Update is called once per frame
@@ -130,7 +130,7 @@ namespace RaverSoft.YllisanSkies
             {
                 saveColor = Color.gray;
             }
-            GameObject.Find("Canvas/Sections/" + sectionName + "/Section_Title").GetComponent<Text>().color = saveColor;
+            GameObject.Find("Canvas/Main/Sections/" + sectionName + "/Section_Title").GetComponent<Text>().color = saveColor;
         }
 
         private void moveSection()
@@ -178,8 +178,8 @@ namespace RaverSoft.YllisanSkies
 
         private void displaySectionMoving()
         {
-            GameObject currentSection = GameObject.Find("Canvas/Sections/" + (Sections)currentSectionIndex);
-            GameObject previousSection = GameObject.Find("Canvas/Sections/" + (Sections)previousSectionIndex);
+            GameObject currentSection = GameObject.Find("Canvas/Main/Sections/" + (Sections)currentSectionIndex);
+            GameObject previousSection = GameObject.Find("Canvas/Main/Sections/" + (Sections)previousSectionIndex);
             currentSection.transform.localPosition = new Vector2(currentSection.transform.localPosition.x - PIXELS_TO_MOVE_IN_ONE_UPDATE, currentSection.transform.localPosition.y);
             previousSection.transform.localPosition = new Vector2(previousSection.transform.localPosition.x + PIXELS_TO_MOVE_IN_ONE_UPDATE, previousSection.transform.localPosition.y);
             pixelsToMove -= PIXELS_TO_MOVE_IN_ONE_UPDATE;
