@@ -43,6 +43,15 @@ namespace RaverSoft.YllisanSkies.TitleScreen
             setTranslations();
             GameObject.Find("Canvas/Continue").GetComponent<TitleScreenSectionContinue>().loadSaves();
             displaySectionAvailability("Continue", hasGameSaves);
+            if (hasGameSaves)
+            {
+                previousSectionIndex = (int)Sections.NewGame;
+                currentSectionIndex = (int)Sections.Continue;
+                GameObject previousSection = GameObject.Find("Canvas/Main/Sections/" + (Sections)previousSectionIndex);
+                GameObject currentSection = GameObject.Find("Canvas/Main/Sections/" + (Sections)currentSectionIndex);
+                currentSection.transform.localPosition = new Vector2(currentSection.transform.localPosition.x - PIXELS_TO_MOVE_FOR_SELECTED_SECTION, currentSection.transform.localPosition.y);
+                previousSection.transform.localPosition = new Vector2(previousSection.transform.localPosition.x + PIXELS_TO_MOVE_FOR_SELECTED_SECTION, previousSection.transform.localPosition.y);
+            }
             soundManager.fadeOut(1.5f);
             StartCoroutine(playAnimation("FadeOut"));
         }
