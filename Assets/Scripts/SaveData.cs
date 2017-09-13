@@ -25,7 +25,7 @@ namespace RaverSoft.YllisanSkies
             playerPositionX = player.transform.position.x;
             playerPositionY = player.transform.position.y;
             playerDirectionX = player.lastMove.x;
-            playerDirectionX = player.lastMove.y;
+            playerDirectionY = player.lastMove.y;
             this.menuEnabled = menuEnabled;
             this.chapter = chapter;
             date = DateTime.Now;
