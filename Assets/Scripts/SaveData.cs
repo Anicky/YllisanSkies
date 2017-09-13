@@ -17,8 +17,9 @@ namespace RaverSoft.YllisanSkies
         public int chapter { get; private set; }
         public DateTime date { get; private set; }
         public int playtime { get; private set; }
+        public Texture screenshot { get; private set; }
 
-        public SaveData(HeroesTeam heroesTeam, string scene, Player player, bool menuEnabled, int chapter, int playtime)
+        public SaveData(HeroesTeam heroesTeam, string scene, Player player, bool menuEnabled, int chapter, int playtime, Texture screenshot)
         {
             this.heroesTeam = heroesTeam;
             this.scene = scene;
@@ -30,6 +31,7 @@ namespace RaverSoft.YllisanSkies
             this.chapter = chapter;
             date = DateTime.Now;
             this.playtime = playtime;
+            this.screenshot = screenshot;
         }
 
         public Vector2 getPlayerPosition()

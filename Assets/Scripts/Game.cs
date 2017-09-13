@@ -39,6 +39,7 @@ namespace RaverSoft.YllisanSkies
         private Language currentLanguage;
         private int currentChapter = 1;
         private int playtime = 0;
+        private bool takeScreenForSave = false;
 
         // Saved data
         public HeroesTeam heroesTeam;
@@ -89,7 +90,17 @@ namespace RaverSoft.YllisanSkies
 
         public void save(int saveNumber)
         {
-            SaveData saveData = new SaveData(heroesTeam, SceneManager.GetActiveScene().name, player, menuEnabled, currentChapter, getPlaytime());
+            StartCoroutine(saveRoutine(saveNumber));
+        }
+
+        private IEnumerator saveRoutine(int saveNumber)
+        {
+            takeScreenForSave = true;
+            do
+            {
+                yield return null;
+            } while (takeScreenForSave);
+            SaveData saveData = new SaveData(heroesTeam, SceneManager.GetActiveScene().name, player, menuEnabled, currentChapter, getPlaytime(), screenshot);
             saveSystem.save(saveNumber, saveData);
         }
 
@@ -211,6 +222,13 @@ namespace RaverSoft.YllisanSkies
                 takeScreen = false;
                 fadeOverlay.texture = screenshot;
                 canvas.enabled = true;
+            }
+            if (takeScreenForSave)
+            {
+                screenshot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+                screenshot.ReadPixels(currentCamera.pixelRect, 0, 0);
+                screenshot.Apply();
+                takeScreenForSave = false;
             }
         }
 
