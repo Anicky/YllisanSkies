@@ -4,24 +4,27 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RaverSoft.YllisanSkies
+namespace RaverSoft.YllisanSkies.TitleScreen
 {
-    public class TitleScreen : MonoBehaviour
+    public class TitleScreenSystem : MonoBehaviour
     {
         private SoundManager soundManager;
         private Animation anim;
         private Game game;
 
         private bool hasGameSaves;
-        private int currentSectionIndex = 0;
+        private int currentSectionIndex = 1;
         private int previousSectionIndex = 0;
         private const int PIXELS_TO_MOVE_FOR_SELECTED_SECTION = 64;
         private const int PIXELS_TO_MOVE_IN_ONE_UPDATE = 4;
         private float pixelsToMove = 0;
         private bool inTransition = true;
+        private Sections currentSectionOpened = Sections.None;
+        private bool isQuittingSection = false;
 
         private enum Sections
         {
+            None,
             NewGame,
             Continue,
             Options,
@@ -60,7 +63,7 @@ namespace RaverSoft.YllisanSkies
                 {
                     displaySectionMoving();
                 }
-                else
+                else if (currentSectionOpened == Sections.None)
                 {
                     if (Input.GetAxisRaw("Vertical") != 0)
                     {
@@ -96,10 +99,8 @@ namespace RaverSoft.YllisanSkies
                 case (int)Sections.Continue:
                     if (hasGameSaves)
                     {
-                        soundManager.playSound(Sounds.Submit);
-                        // @TODO
-                        // TESTS
-                        game.load();
+                        GameObject.Find("Canvas/" + (Sections)currentSectionIndex).GetComponent<TitleScreenSectionContinue>().open();
+                        enterSection((Sections)currentSectionIndex);
                     }
                     else
                     {
@@ -118,9 +119,17 @@ namespace RaverSoft.YllisanSkies
             }
         }
 
+        private void enterSection(Sections section)
+        {
+            game.playSound(Sounds.Submit);
+            GameObject.Find("Canvas/Main").GetComponent<Canvas>().enabled = false;
+            GameObject.Find("Canvas/" + section).GetComponent<Canvas>().enabled = true;
+            currentSectionOpened = section;
+        }
+
         private int getNumberOfSections()
         {
-            return Enum.GetNames(typeof(Sections)).Length;
+            return Enum.GetNames(typeof(Sections)).Length - 1;
         }
 
         private void displaySectionAvailability(string sectionName, bool isAvailable)
@@ -138,17 +147,17 @@ namespace RaverSoft.YllisanSkies
             if (Input.GetAxisRaw("Vertical") < 0)
             {
                 currentSectionIndex++;
-                if (currentSectionIndex >= getNumberOfSections())
+                if (currentSectionIndex > getNumberOfSections())
                 {
-                    currentSectionIndex = 0;
+                    currentSectionIndex = 1;
                 }
             }
             else if (Input.GetAxisRaw("Vertical") > 0)
             {
                 currentSectionIndex--;
-                if (currentSectionIndex < 0)
+                if (currentSectionIndex < 1)
                 {
-                    currentSectionIndex = getNumberOfSections() - 1;
+                    currentSectionIndex = getNumberOfSections();
                 }
             }
             pixelsToMove = PIXELS_TO_MOVE_FOR_SELECTED_SECTION;
@@ -160,17 +169,17 @@ namespace RaverSoft.YllisanSkies
             if (Input.GetAxisRaw("Vertical") < 0)
             {
                 previousSectionIndex = currentSectionIndex - 1;
-                if (currentSectionIndex == 0)
+                if (currentSectionIndex == 1)
                 {
-                    previousSectionIndex = getNumberOfSections() - 1;
+                    previousSectionIndex = getNumberOfSections();
                 }
             }
             else if (Input.GetAxisRaw("Vertical") > 0)
             {
                 previousSectionIndex = currentSectionIndex + 1;
-                if (currentSectionIndex == getNumberOfSections() - 1)
+                if (currentSectionIndex == getNumberOfSections())
                 {
-                    previousSectionIndex = 0;
+                    previousSectionIndex = 1;
                 }
             }
             return previousSectionIndex;
@@ -199,6 +208,14 @@ namespace RaverSoft.YllisanSkies
             soundManager.playSound(Sounds.Submit);
             yield return playAnimation("FadeIn");
             Application.Quit();
+        }
+
+        public void quitSection()
+        {
+            game.playSound(Sounds.Cancel);
+            GameObject.Find("Canvas/" + currentSectionOpened).GetComponent<Canvas>().enabled = false;
+            GameObject.Find("Canvas/Main").GetComponent<Canvas>().enabled = true;
+            isQuittingSection = true;
         }
     }
 }

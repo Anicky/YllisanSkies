@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using RaverSoft.YllisanSkies.Characters;
+using RaverSoft.YllisanSkies.Sound;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using RaverSoft.YllisanSkies.Characters;
-using RaverSoft.YllisanSkies.Sound;
 
 namespace RaverSoft.YllisanSkies.Menu
 {
@@ -14,7 +15,6 @@ namespace RaverSoft.YllisanSkies.Menu
         public Game game;
         public bool inTransition = false;
         private int currentSectionIndex = 1;
-        private int numberOfSections = 9;
         private bool cursorEnabled = false;
         private int currentCursorIndex = 0;
         private bool isAxisInUse = false;
@@ -249,7 +249,7 @@ namespace RaverSoft.YllisanSkies.Menu
             if (Input.GetAxisRaw("Vertical") < 0)
             {
                 currentSectionIndex++;
-                if (currentSectionIndex > numberOfSections)
+                if (currentSectionIndex > getNumberOfSections())
                 {
                     currentSectionIndex = 1;
                 }
@@ -259,7 +259,7 @@ namespace RaverSoft.YllisanSkies.Menu
                 currentSectionIndex--;
                 if (currentSectionIndex < 1)
                 {
-                    currentSectionIndex = numberOfSections;
+                    currentSectionIndex = getNumberOfSections();
                 }
 
             }
@@ -427,13 +427,13 @@ namespace RaverSoft.YllisanSkies.Menu
                 previousSectionIndex = currentSectionIndex - 1;
                 if (currentSectionIndex == 1)
                 {
-                    previousSectionIndex = numberOfSections;
+                    previousSectionIndex = getNumberOfSections();
                 }
             }
             else if (axis > 0)
             {
                 previousSectionIndex = currentSectionIndex + 1;
-                if (currentSectionIndex == numberOfSections)
+                if (currentSectionIndex == getNumberOfSections())
                 {
                     previousSectionIndex = 1;
                 }
@@ -447,6 +447,11 @@ namespace RaverSoft.YllisanSkies.Menu
                 yield return null;
             } while (anim.isPlaying);
             inTransition = false;
+        }
+
+        private int getNumberOfSections()
+        {
+            return Enum.GetNames(typeof(Sections)).Length - 1;
         }
 
     }
