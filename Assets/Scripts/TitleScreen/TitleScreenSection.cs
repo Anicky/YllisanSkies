@@ -13,7 +13,7 @@ namespace RaverSoft.YllisanSkies.TitleScreen
             isOpened = true;
         }
 
-        protected void quitSection()
+        protected virtual void quitSection()
         {
             if (isOpened)
             {

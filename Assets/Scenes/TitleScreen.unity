@@ -425,6 +425,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 33187567}
+  - component: {fileID: 33187568}
   m_Layer: 5
   m_Name: Hero4
   m_TagString: Untagged
@@ -453,6 +454,26 @@ RectTransform:
   m_AnchoredPosition: {x: 324, y: -52}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &33187568
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 33187566}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &62710586
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +727,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 103198080}
+  - component: {fileID: 103198081}
   m_Layer: 5
   m_Name: Hero2
   m_TagString: Untagged
@@ -734,6 +756,26 @@ RectTransform:
   m_AnchoredPosition: {x: 324, y: 4}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &103198081
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 103198079}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &104473929
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,6 +1023,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 126890312}
+  - component: {fileID: 126890313}
   m_Layer: 5
   m_Name: ChapterBlock
   m_TagString: Untagged
@@ -1009,6 +1052,26 @@ RectTransform:
   m_AnchoredPosition: {x: 512, y: 0}
   m_SizeDelta: {x: 384, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &126890313
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 126890311}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &129301805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,7 +1932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95ab701c04760e14a9018553415bb094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleScreen: {fileID: 0}
+  titleScreen: {fileID: 1859194573}
 --- !u!223 &235574166
 Canvas:
   m_ObjectHideFlags: 0
@@ -2022,6 +2085,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 291522795}
+  - component: {fileID: 291522796}
   m_Layer: 5
   m_Name: GameInfoBlock
   m_TagString: Untagged
@@ -2054,6 +2118,26 @@ RectTransform:
   m_AnchoredPosition: {x: 1184, y: 0}
   m_SizeDelta: {x: 960, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &291522796
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 291522794}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &297763725
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,6 +2235,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 299854114}
+  - component: {fileID: 299854115}
   m_Layer: 5
   m_Name: Hero1
   m_TagString: Untagged
@@ -2179,6 +2264,26 @@ RectTransform:
   m_AnchoredPosition: {x: 132, y: 4}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &299854115
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 299854113}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 1
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &314403087
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,6 +2292,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 314403088}
+  - component: {fileID: 314403089}
   m_Layer: 5
   m_Name: Hero3
   m_TagString: Untagged
@@ -2215,6 +2321,26 @@ RectTransform:
   m_AnchoredPosition: {x: 132, y: -52}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &314403089
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 314403087}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &345754177
 GameObject:
   m_ObjectHideFlags: 0
@@ -2290,6 +2416,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 356168025}
+  - component: {fileID: 356168026}
   m_Layer: 5
   m_Name: Hero3
   m_TagString: Untagged
@@ -2318,6 +2445,26 @@ RectTransform:
   m_AnchoredPosition: {x: 132, y: -52}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &356168026
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 356168024}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &358516996
 GameObject:
   m_ObjectHideFlags: 0
@@ -2399,6 +2546,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 393760939}
+  - component: {fileID: 393760940}
   m_Layer: 5
   m_Name: ChapterBlock
   m_TagString: Untagged
@@ -2427,6 +2575,26 @@ RectTransform:
   m_AnchoredPosition: {x: 512, y: 0}
   m_SizeDelta: {x: 384, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &393760940
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 393760938}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &419429272
 GameObject:
   m_ObjectHideFlags: 0
@@ -3009,7 +3177,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 3
 --- !u!222 &477267053
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3291,6 +3459,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 542120284}
+  - component: {fileID: 542120285}
   m_Layer: 5
   m_Name: Hero2
   m_TagString: Untagged
@@ -3319,6 +3488,26 @@ RectTransform:
   m_AnchoredPosition: {x: 324, y: 4}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &542120285
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 542120283}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &569201842
 GameObject:
   m_ObjectHideFlags: 0
@@ -3666,6 +3855,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 601151860}
+  - component: {fileID: 601151861}
   m_Layer: 5
   m_Name: Hero3
   m_TagString: Untagged
@@ -3694,6 +3884,26 @@ RectTransform:
   m_AnchoredPosition: {x: 132, y: -52}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &601151861
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 601151859}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &629218463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3791,6 +4001,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 667455540}
+  - component: {fileID: 667455541}
   m_Layer: 5
   m_Name: Hero2
   m_TagString: Untagged
@@ -3819,6 +4030,26 @@ RectTransform:
   m_AnchoredPosition: {x: 324, y: 4}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &667455541
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 667455539}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &689767979
 GameObject:
   m_ObjectHideFlags: 0
@@ -3916,6 +4147,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 714509666}
+  - component: {fileID: 714509667}
   m_Layer: 5
   m_Name: GameInfoBlock
   m_TagString: Untagged
@@ -3948,6 +4180,26 @@ RectTransform:
   m_AnchoredPosition: {x: 1184, y: 0}
   m_SizeDelta: {x: 960, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &714509667
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 714509665}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &749308882
 GameObject:
   m_ObjectHideFlags: 0
@@ -4113,6 +4365,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 768469172}
+  - component: {fileID: 768469173}
   m_Layer: 5
   m_Name: Hero2
   m_TagString: Untagged
@@ -4141,6 +4394,26 @@ RectTransform:
   m_AnchoredPosition: {x: 324, y: 4}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &768469173
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 768469171}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &782689251
 GameObject:
   m_ObjectHideFlags: 0
@@ -5113,7 +5386,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 4
 --- !u!222 &929015719
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5569,6 +5842,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 991494754}
+  - component: {fileID: 991494755}
   m_Layer: 5
   m_Name: Hero1
   m_TagString: Untagged
@@ -5597,6 +5871,26 @@ RectTransform:
   m_AnchoredPosition: {x: 132, y: 4}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &991494755
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 991494753}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1042288293
 GameObject:
   m_ObjectHideFlags: 0
@@ -5872,6 +6166,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1054192833}
+  - component: {fileID: 1054192834}
   m_Layer: 5
   m_Name: Hero4
   m_TagString: Untagged
@@ -5900,6 +6195,26 @@ RectTransform:
   m_AnchoredPosition: {x: 324, y: -52}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1054192834
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1054192832}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1055051860
 GameObject:
   m_ObjectHideFlags: 0
@@ -5975,6 +6290,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1079301846}
+  - component: {fileID: 1079301847}
   m_Layer: 5
   m_Name: GameInfoBlock
   m_TagString: Untagged
@@ -6007,6 +6323,26 @@ RectTransform:
   m_AnchoredPosition: {x: 1184, y: 0}
   m_SizeDelta: {x: 960, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1079301847
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1079301845}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1133264649
 GameObject:
   m_ObjectHideFlags: 0
@@ -6178,7 +6514,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 2
 --- !u!222 &1148787527
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6452,6 +6788,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1178493741}
+  - component: {fileID: 1178493742}
   m_Layer: 5
   m_Name: Hero1
   m_TagString: Untagged
@@ -6480,6 +6817,26 @@ RectTransform:
   m_AnchoredPosition: {x: 132, y: 4}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1178493742
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1178493740}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1226355011
 GameObject:
   m_ObjectHideFlags: 0
@@ -6711,6 +7068,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1295926656}
+  - component: {fileID: 1295926657}
   m_Layer: 5
   m_Name: ChapterBlock
   m_TagString: Untagged
@@ -6739,6 +7097,26 @@ RectTransform:
   m_AnchoredPosition: {x: 512, y: 0}
   m_SizeDelta: {x: 384, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1295926657
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1295926655}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1312954637
 GameObject:
   m_ObjectHideFlags: 0
@@ -7514,6 +7892,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1432003556}
+  - component: {fileID: 1432003557}
   m_Layer: 5
   m_Name: Hero4
   m_TagString: Untagged
@@ -7542,6 +7921,26 @@ RectTransform:
   m_AnchoredPosition: {x: 324, y: -52}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1432003557
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1432003555}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1434277485
 GameObject:
   m_ObjectHideFlags: 0
@@ -7731,7 +8130,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 162, y: 2}
-  m_SizeDelta: {x: 292, y: 160}
+  m_SizeDelta: {x: 300, y: 168}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1455074980
 MonoBehaviour:
@@ -7745,7 +8144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8177,7 +8576,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 162, y: 2}
-  m_SizeDelta: {x: 292, y: 160}
+  m_SizeDelta: {x: 300, y: 168}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1582136554
 MonoBehaviour:
@@ -8191,7 +8590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8737,6 +9136,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1682756811}
+  - component: {fileID: 1682756812}
   m_Layer: 5
   m_Name: Hero1
   m_TagString: Untagged
@@ -8765,6 +9165,26 @@ RectTransform:
   m_AnchoredPosition: {x: 132, y: 4}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1682756812
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1682756810}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1711551606
 GameObject:
   m_ObjectHideFlags: 0
@@ -9091,6 +9511,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1741072746}
+  - component: {fileID: 1741072747}
   m_Layer: 5
   m_Name: Hero3
   m_TagString: Untagged
@@ -9119,6 +9540,26 @@ RectTransform:
   m_AnchoredPosition: {x: 132, y: -52}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1741072747
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1741072745}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1764610402
 GameObject:
   m_ObjectHideFlags: 0
@@ -9187,7 +9628,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 162, y: 2}
-  m_SizeDelta: {x: 292, y: 160}
+  m_SizeDelta: {x: 300, y: 168}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767561228
 MonoBehaviour:
@@ -9201,7 +9642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -9742,6 +10183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fefe32e36ac2a419e542601b0fb8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  game: {fileID: 0}
 --- !u!114 &1859194574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10141,6 +10583,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1917761795}
+  - component: {fileID: 1917761796}
   m_Layer: 5
   m_Name: Hero4
   m_TagString: Untagged
@@ -10169,6 +10612,26 @@ RectTransform:
   m_AnchoredPosition: {x: 324, y: -52}
   m_SizeDelta: {x: 192, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1917761796
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1917761794}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1918132212
 GameObject:
   m_ObjectHideFlags: 0
@@ -10311,6 +10774,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1937763110}
+  - component: {fileID: 1937763111}
   m_Layer: 5
   m_Name: GameInfoBlock
   m_TagString: Untagged
@@ -10343,6 +10807,26 @@ RectTransform:
   m_AnchoredPosition: {x: 1184, y: 0}
   m_SizeDelta: {x: 960, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1937763111
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1937763109}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1949778790
 GameObject:
   m_ObjectHideFlags: 0
@@ -10520,7 +11004,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 162, y: 2}
-  m_SizeDelta: {x: 292, y: 160}
+  m_SizeDelta: {x: 300, y: 168}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1994302463
 MonoBehaviour:
@@ -10534,7 +11018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -10829,6 +11313,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2061349059}
+  - component: {fileID: 2061349060}
   m_Layer: 5
   m_Name: ChapterBlock
   m_TagString: Untagged
@@ -10857,6 +11342,26 @@ RectTransform:
   m_AnchoredPosition: {x: 512, y: 0}
   m_SizeDelta: {x: 384, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &2061349060
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2061349058}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &2077474043
 GameObject:
   m_ObjectHideFlags: 0

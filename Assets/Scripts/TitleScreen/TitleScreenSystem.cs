@@ -1,4 +1,5 @@
 ﻿using RaverSoft.YllisanSkies.Sound;
+using RaverSoft.YllisanSkies.Characters;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace RaverSoft.YllisanSkies.TitleScreen
     {
         private SoundManager soundManager;
         private Animation anim;
-        private Game game;
+        public Game game;
 
         private bool hasGameSaves;
         private int currentSectionIndex = 1;
@@ -40,6 +41,7 @@ namespace RaverSoft.YllisanSkies.TitleScreen
             anim = GetComponent<Animation>();
             hasGameSaves = game.saveSystem.hasGameSaves();
             setTranslations();
+            GameObject.Find("Canvas/Continue").GetComponent<TitleScreenSectionContinue>().loadSaves();
             displaySectionAvailability("Continue", hasGameSaves);
             soundManager.fadeOut(1.5f);
             StartCoroutine(playAnimation("FadeOut"));
@@ -52,6 +54,15 @@ namespace RaverSoft.YllisanSkies.TitleScreen
             GameObject.Find("Canvas/Main/Sections/Options/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Options");
             GameObject.Find("Canvas/Main/Sections/Bonus/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Bonus");
             GameObject.Find("Canvas/Main/Sections/Quit/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Quit");
+            GameObject.Find("Canvas/Continue/Section_Block/Section_Title").GetComponent<Text>().text = game.getTranslation("TitleScreen", "Continue");
+            for (int i = 1; i <= SaveSystem.MAX_NUMBER_OF_SAVES; i++)
+            {
+                GameObject.Find("Canvas/Continue/Save" + i + "/ChapterBlock/Title").GetComponent<Text>().text = game.getTranslation("Menu", "Chapter");
+                for (int j = 1; j <= HeroesTeam.MAXIMUM_NUMBER_OF_HEROES; j++)
+                {
+                    GameObject.Find("Canvas/Continue/Save" + i + "/GameInfoBlock/Hero" + j + "/Lv_Title").GetComponent<Text>().text = game.getTranslation("Stats", "Lv");
+                }
+            }
         }
 
         // Update is called once per frame
@@ -75,6 +86,11 @@ namespace RaverSoft.YllisanSkies.TitleScreen
                         submitSection();
                     }
                 }
+            }
+            if (isQuittingSection)
+            {
+                currentSectionOpened = Sections.None;
+                isQuittingSection = false;
             }
         }
 

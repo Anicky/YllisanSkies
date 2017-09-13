@@ -9,7 +9,7 @@ namespace RaverSoft.YllisanSkies
     {
         private const string SAVE_DIRECTORY_NAME = "";
         private const string SAVE_NAME = "Save";
-        private const int MAX_NUMBER_OF_SAVES = 10;
+        public const int MAX_NUMBER_OF_SAVES = 4;
 
         private string getSaveDirectoryPath()
         {

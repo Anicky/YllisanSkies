@@ -1,4 +1,5 @@
 ﻿using RaverSoft.YllisanSkies.Characters;
+using RaverSoft.YllisanSkies.Utils;
 using RaverSoft.YllisanSkies.Sound;
 using System;
 using System.Collections;
@@ -315,28 +316,7 @@ namespace RaverSoft.YllisanSkies.Menu
 
         private void displayTime()
         {
-            int time = (int)Time.time;
-            int hours = time / (60 * 60);
-            int minutes = time / 60;
-            int seconds = time % 60;
-
-            string hoursToString = hours.ToString();
-            if (hours < 10)
-            {
-                hoursToString = "0" + hoursToString;
-            }
-            string minutesToString = minutes.ToString();
-            if (minutes < 10)
-            {
-                minutesToString = "0" + minutesToString;
-            }
-            string secondsToString = seconds.ToString();
-            if (seconds < 10)
-            {
-                secondsToString = "0" + secondsToString;
-            }
-
-            GameObject.Find("Menu/Main/Block_Time/Time_Stats").GetComponent<Text>().text = hoursToString + ":" + minutesToString + ":" + secondsToString;
+            GameObject.Find("Menu/Main/Block_Time/Time_Stats").GetComponent<Text>().text = DateTimeUtils.formatTimeFromSeconds(game.getPlaytime());
         }
 
         private void displayLocation()

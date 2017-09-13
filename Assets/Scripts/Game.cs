@@ -37,6 +37,8 @@ namespace RaverSoft.YllisanSkies
         public bool inBattle = false;
         private Language defaultLanguage;
         private Language currentLanguage;
+        private int currentChapter = 1;
+        private int playtime = 0;
 
         // Saved data
         public HeroesTeam heroesTeam;
@@ -75,15 +77,26 @@ namespace RaverSoft.YllisanSkies
             SceneManager.sceneUnloaded += OnSceneUnloaded;
         }
 
-        public void save()
+        public int getPlaytime()
         {
-            SaveData saveData = new SaveData(heroesTeam, SceneManager.GetActiveScene().name, player, menuEnabled);
-            saveSystem.save(1, saveData);
+            return (int)Time.time + playtime;
         }
 
-        public void load()
+        public void setPlaytime(int playtime)
         {
-            SaveData saveData = saveSystem.load(1);
+            this.playtime = playtime;
+        }
+
+        public void save(int saveNumber)
+        {
+            SaveData saveData = new SaveData(heroesTeam, SceneManager.GetActiveScene().name, player, menuEnabled, currentChapter, getPlaytime());
+            saveSystem.save(saveNumber, saveData);
+        }
+
+        public void load(int saveNumber)
+        {
+            SaveData saveData = saveSystem.load(saveNumber);
+            playtime = saveData.playtime;
             heroesTeam = saveData.heroesTeam;
             player.setPosition(saveData.getPlayerPosition());
             player.displayPlayer(true);
@@ -171,11 +184,11 @@ namespace RaverSoft.YllisanSkies
             // SaveSystem tests
             if (Input.GetKeyDown(KeyCode.S))
             {
-                save();
+                save(1);
             }
             if (Input.GetKeyDown(KeyCode.L))
             {
-                load();
+                load(1);
             }
         }
 
