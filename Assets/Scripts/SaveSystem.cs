@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
@@ -35,7 +36,7 @@ namespace RaverSoft.YllisanSkies
                             SaveData saveData = load(i);
                             hasGameSaves = true;
                         }
-                        catch (SerializationException e)
+                        catch (Exception e)
                         {
                         }
                         break;
@@ -64,7 +65,7 @@ namespace RaverSoft.YllisanSkies
                 {
                     saveData = (SaveData)bf.Deserialize(file);
                 }
-                catch (SerializationException e)
+                catch (Exception e)
                 {
                     throw e;
                 }
