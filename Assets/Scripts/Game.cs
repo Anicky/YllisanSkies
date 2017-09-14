@@ -136,6 +136,7 @@ namespace RaverSoft.YllisanSkies
             else
             {
                 initTestGame();
+                playtime = 0;
                 player.firstInit = true;
                 firstMap = true;
                 menuEnabled = true;
