@@ -316,7 +316,7 @@ namespace RaverSoft.YllisanSkies.Menu
 
         private void displayTime()
         {
-            GameObject.Find("Menu/Main/Block_Time/Time_Stats").GetComponent<Text>().text = DateTimeUtils.formatTimeFromSeconds(game.getPlaytime());
+            GameObject.Find("Menu/Main/Block_Time/Time_Stats").GetComponent<Text>().text = DateTimeUtils.formatTimeFromSeconds((int)game.playtime);
         }
 
         private void displayLocation()

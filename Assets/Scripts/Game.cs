@@ -38,7 +38,7 @@ namespace RaverSoft.YllisanSkies
         private Language defaultLanguage;
         private Language currentLanguage;
         private int currentChapter = 1;
-        private int playtime = 0;
+        public float playtime { get; private set; }
         private bool takeScreenForSave = false;
 
         // Saved data
@@ -76,11 +76,7 @@ namespace RaverSoft.YllisanSkies
             Camera.onPostRender += GamePostRender;
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.sceneUnloaded += OnSceneUnloaded;
-        }
-
-        public int getPlaytime()
-        {
-            return (int)Time.time + playtime;
+            playtime = 0;
         }
 
         public void setPlaytime(int playtime)
@@ -100,7 +96,7 @@ namespace RaverSoft.YllisanSkies
             {
                 yield return null;
             } while (takeScreenForSave);
-            SaveData saveData = new SaveData(heroesTeam, SceneManager.GetActiveScene().name, player, menuEnabled, currentChapter, getPlaytime());
+            SaveData saveData = new SaveData(heroesTeam, SceneManager.GetActiveScene().name, player, menuEnabled, currentChapter, (int)playtime);
             saveSystem.save(saveNumber, saveData, screenshot);
         }
 
@@ -191,6 +187,7 @@ namespace RaverSoft.YllisanSkies
         // Update is called once per frame
         private void Update()
         {
+            playtime += Time.deltaTime;
             checkMenu();
             // SaveSystem tests
             if (Input.GetKeyDown(KeyCode.S))
