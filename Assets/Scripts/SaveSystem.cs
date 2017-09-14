@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
@@ -20,6 +19,11 @@ namespace RaverSoft.YllisanSkies
         private string getSavePath(int saveNumber)
         {
             return getSaveDirectoryPath() + "/" + SAVE_NAME + saveNumber.ToString() + ".dat";
+        }
+
+        private string getScreeshotSavePath(int saveNumber)
+        {
+            return getSaveDirectoryPath() + "/" + SAVE_NAME + saveNumber.ToString() + ".jpg";
         }
 
         public bool hasGameSaves()
@@ -46,8 +50,10 @@ namespace RaverSoft.YllisanSkies
             return hasGameSaves;
         }
 
-        public void save(int saveNumber, SaveData saveData)
+        public void save(int saveNumber, SaveData saveData, Texture2D screenshot)
         {
+            saveData.setScreenshotPath(getScreeshotSavePath(saveNumber));
+            File.WriteAllBytes(getScreeshotSavePath(saveNumber), screenshot.EncodeToJPG());
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(getSavePath(saveNumber));
             bf.Serialize(file, saveData);

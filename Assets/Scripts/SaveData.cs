@@ -1,5 +1,6 @@
 ﻿using RaverSoft.YllisanSkies.Characters;
 using System;
+using System.IO;
 using UnityEngine;
 
 namespace RaverSoft.YllisanSkies
@@ -17,9 +18,9 @@ namespace RaverSoft.YllisanSkies
         public int chapter { get; private set; }
         public DateTime date { get; private set; }
         public int playtime { get; private set; }
-        public Texture screenshot { get; private set; }
+        private string screenshotPath;
 
-        public SaveData(HeroesTeam heroesTeam, string scene, Player player, bool menuEnabled, int chapter, int playtime, Texture screenshot)
+        public SaveData(HeroesTeam heroesTeam, string scene, Player player, bool menuEnabled, int chapter, int playtime)
         {
             this.heroesTeam = heroesTeam;
             this.scene = scene;
@@ -31,7 +32,6 @@ namespace RaverSoft.YllisanSkies
             this.chapter = chapter;
             date = DateTime.Now;
             this.playtime = playtime;
-            this.screenshot = screenshot;
         }
 
         public Vector2 getPlayerPosition()
@@ -42,6 +42,20 @@ namespace RaverSoft.YllisanSkies
         public Vector2 getPlayerDirection()
         {
             return new Vector2(playerDirectionX, playerDirectionY);
+        }
+
+        public void setScreenshotPath(string screenshotPath)
+        {
+            this.screenshotPath = screenshotPath;
+        }
+
+        public Texture getScreenshot()
+        {
+            Texture2D screenShotTexture = new Texture2D(1, 1);
+            byte[] textureData = File.ReadAllBytes(screenshotPath);
+            screenShotTexture.LoadImage(textureData);
+            screenShotTexture.Apply();
+            return screenShotTexture;
         }
     }
 }

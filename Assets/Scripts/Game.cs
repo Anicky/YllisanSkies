@@ -100,8 +100,8 @@ namespace RaverSoft.YllisanSkies
             {
                 yield return null;
             } while (takeScreenForSave);
-            SaveData saveData = new SaveData(heroesTeam, SceneManager.GetActiveScene().name, player, menuEnabled, currentChapter, getPlaytime(), screenshot);
-            saveSystem.save(saveNumber, saveData);
+            SaveData saveData = new SaveData(heroesTeam, SceneManager.GetActiveScene().name, player, menuEnabled, currentChapter, getPlaytime());
+            saveSystem.save(saveNumber, saveData, screenshot);
         }
 
         public void load(int saveNumber)
