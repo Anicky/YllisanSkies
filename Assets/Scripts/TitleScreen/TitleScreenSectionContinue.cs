@@ -4,6 +4,7 @@ using RaverSoft.YllisanSkies.Characters;
 using RaverSoft.YllisanSkies.Sound;
 using RaverSoft.YllisanSkies.Utils;
 using System;
+using System.Collections.Generic;
 
 namespace RaverSoft.YllisanSkies.TitleScreen
 {
@@ -15,7 +16,7 @@ namespace RaverSoft.YllisanSkies.TitleScreen
 
         public override void open()
         {
-            currentCursorIndex = 1;
+            currentCursorIndex = getMostRecentSaveDataNumber();
             displayBlockSelectionAtCurrentCursorPosition();
             displayCursor(true);
             displaySaves();
@@ -50,7 +51,21 @@ namespace RaverSoft.YllisanSkies.TitleScreen
                 }
             }
         }
-        
+
+        private int getMostRecentSaveDataNumber()
+        {
+            List<KeyValuePair<int, SaveData>> savesOrderedByDateDescending = new List<KeyValuePair<int, SaveData>>();
+            for (int i = 0; i < saves.Length; i++)
+            {
+                if (saves[i] != null)
+                {
+                    savesOrderedByDateDescending.Add(new KeyValuePair<int, SaveData>(i + 1, saves[i]));
+                }
+            }
+            savesOrderedByDateDescending.Sort((x, y) => y.Value.date.CompareTo(x.Value.date));
+            return savesOrderedByDateDescending[0].Key;
+        }
+
         protected override void quitSection()
         {
             displayCursor(false);
