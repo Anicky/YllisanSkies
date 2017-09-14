@@ -97,7 +97,8 @@ namespace RaverSoft.YllisanSkies
             {
                 languages.Add((LanguageList)Enum.Parse(typeof(LanguageList), info["id"]), new Language(
                     info["id"],
-                    info["name"]
+                    info["name"],
+                    info["locale"]
                 ));
             }
         }

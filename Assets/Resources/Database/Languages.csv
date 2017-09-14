@@ -1,3 +1,3 @@
-id;name
-English;English
-French;Français
+id;name;locale
+English;English;en-US
+French;Français;fr-FR

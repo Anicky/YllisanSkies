@@ -36,7 +36,7 @@ namespace RaverSoft.YllisanSkies
         private bool firstMap = true;
         public bool inBattle = false;
         private Language defaultLanguage;
-        private Language currentLanguage;
+        public Language currentLanguage { get; private set; }
         private int currentChapter = 1;
         public float playtime { get; private set; }
         private bool takeScreenForSave = false;

@@ -110,7 +110,7 @@ namespace RaverSoft.YllisanSkies.TitleScreen
             {
                 GameObject.Find("Canvas/Continue/Save" + saveNumber + "/ScreenshotBlock").GetComponent<RawImage>().texture = saveData.getScreenshot();
                 GameObject.Find("Canvas/Continue/Save" + saveNumber + "/ChapterBlock/Number").GetComponent<Text>().text = saveData.chapter.ToString();
-                GameObject.Find("Canvas/Continue/Save" + saveNumber + "/ChapterBlock/Date").GetComponent<Text>().text = saveData.date.ToString(); // @TODO : improve date format
+                GameObject.Find("Canvas/Continue/Save" + saveNumber + "/ChapterBlock/Date").GetComponent<Text>().text = saveData.date.ToString("g", titleScreen.game.currentLanguage.getCultureInfo());
                 GameObject.Find("Canvas/Continue/Save" + saveNumber + "/GameInfoBlock/Location").GetComponent<Text>().text = saveData.heroesTeam.getCurrentLocation().getName();
                 for (int i = 0; i < HeroesTeam.MAXIMUM_NUMBER_OF_HEROES; i++)
                 {
