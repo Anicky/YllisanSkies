@@ -191,9 +191,7 @@ namespace RaverSoft.YllisanSkies.TitleScreen
             SaveData saveData = saves[currentCursorIndex - 1];
             if (saveData != null)
             {
-                titleScreen.game.playSound(Sounds.Submit);
-                // @TODO : add fade
-                titleScreen.game.load(currentCursorIndex);
+                titleScreen.continueGame(currentCursorIndex);
             }
             else
             {

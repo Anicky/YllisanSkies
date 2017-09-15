@@ -110,7 +110,7 @@ namespace RaverSoft.YllisanSkies
             player.displayPlayer(true);
             player.setDirection(saveData.getPlayerDirection());
             menuEnabled = saveData.menuEnabled;
-            StartCoroutine(changeScene(saveData.scene, player.transform.position, LoadMap.TransitionsEffects.None, LoadMap.TransitionsEffects.None));
+            StartCoroutine(changeScene(saveData.scene, player.transform.position, LoadMap.TransitionsEffects.Fade, LoadMap.TransitionsEffects.Fade));
         }
 
         public Database getDatabase()
@@ -141,6 +141,9 @@ namespace RaverSoft.YllisanSkies
                 player.firstInit = true;
                 firstMap = true;
                 menuEnabled = true;
+                fadeOverlay.texture = Resources.Load<Texture>("Transitions/" + LoadMap.TransitionsEffects.Fade);
+                canvas.enabled = true;
+                StartCoroutine(transition(LoadMap.TransitionsEffects.Fade, "Out"));
             }
             SceneManager.LoadScene(mapName);
         }

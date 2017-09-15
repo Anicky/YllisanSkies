@@ -52,7 +52,7 @@ namespace RaverSoft.YllisanSkies.TitleScreen
                 currentSection.transform.localPosition = new Vector2(currentSection.transform.localPosition.x - PIXELS_TO_MOVE_FOR_SELECTED_SECTION, currentSection.transform.localPosition.y);
                 previousSection.transform.localPosition = new Vector2(previousSection.transform.localPosition.x + PIXELS_TO_MOVE_FOR_SELECTED_SECTION, previousSection.transform.localPosition.y);
             }
-            soundManager.fadeOut(1.5f);
+            soundManager.fadeOut(0.5f);
             StartCoroutine(playAnimation("FadeOut"));
         }
 
@@ -227,9 +227,22 @@ namespace RaverSoft.YllisanSkies.TitleScreen
             game.setTestStartingMap("Osarian_Outside_01");
         }
 
-        private IEnumerator quit()
+        public void continueGame(int saveNumber)
+        {
+            StartCoroutine(load(saveNumber));
+        }
+
+        private IEnumerator load(int saveNumber)
         {
             soundManager.fadeIn(1.5f);
+            soundManager.playSound(Sounds.Submit);
+            yield return playAnimation("FadeIn");
+            game.load(saveNumber);
+        }
+
+        private IEnumerator quit()
+        {
+            soundManager.fadeIn(0.5f);
             soundManager.playSound(Sounds.Submit);
             yield return playAnimation("FadeIn");
             Application.Quit();
