@@ -25,7 +25,7 @@ namespace RaverSoft.YllisanSkies.TitleScreen
 
         void Update()
         {
-            if (isOpened)
+            if (isOpened && titleScreen.inputEnabled)
             {
                 if (Input.GetAxisRaw("Vertical") != 0)
                 {

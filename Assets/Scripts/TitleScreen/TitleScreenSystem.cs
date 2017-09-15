@@ -22,6 +22,7 @@ namespace RaverSoft.YllisanSkies.TitleScreen
         private bool inTransition = true;
         private Sections currentSectionOpened = Sections.None;
         private bool isQuittingSection = false;
+        public bool inputEnabled { get; private set; }
 
         private enum Sections
         {
@@ -36,6 +37,7 @@ namespace RaverSoft.YllisanSkies.TitleScreen
         // Use this for initialization
         void Start()
         {
+            inputEnabled = true;
             game = GameObject.Find("Game").GetComponent<Game>();
             soundManager = GetComponent<SoundManager>();
             anim = GetComponent<Animation>();
@@ -83,7 +85,7 @@ namespace RaverSoft.YllisanSkies.TitleScreen
                 {
                     displaySectionMoving();
                 }
-                else if (currentSectionOpened == Sections.None)
+                else if (currentSectionOpened == Sections.None && inputEnabled)
                 {
                     if (Input.GetAxisRaw("Vertical") != 0)
                     {
@@ -221,6 +223,7 @@ namespace RaverSoft.YllisanSkies.TitleScreen
 
         private IEnumerator newGame()
         {
+            inputEnabled = false;
             soundManager.fadeIn(1.5f);
             soundManager.playSound(Sounds.Submit);
             yield return playAnimation("FadeIn");
@@ -229,6 +232,7 @@ namespace RaverSoft.YllisanSkies.TitleScreen
 
         public void continueGame(int saveNumber)
         {
+            inputEnabled = false;
             StartCoroutine(load(saveNumber));
         }
 
