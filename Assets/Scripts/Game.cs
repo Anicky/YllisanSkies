@@ -77,6 +77,7 @@ namespace RaverSoft.YllisanSkies
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.sceneUnloaded += OnSceneUnloaded;
             playtime = 0;
+            setTestStartingMap("TitleScreen");
         }
 
         public void setPlaytime(int playtime)
