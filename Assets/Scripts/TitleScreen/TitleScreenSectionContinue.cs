@@ -108,10 +108,10 @@ namespace RaverSoft.YllisanSkies.TitleScreen
             SaveData saveData = saves[saveNumber - 1];
             if (saveData != null)
             {
-                GameObject.Find("Canvas/Continue/Save" + saveNumber + "/ScreenshotBlock").GetComponent<RawImage>().texture = saveData.getScreenshot();
-                GameObject.Find("Canvas/Continue/Save" + saveNumber + "/ChapterBlock/Number").GetComponent<Text>().text = saveData.chapter.ToString();
-                GameObject.Find("Canvas/Continue/Save" + saveNumber + "/ChapterBlock/Date").GetComponent<Text>().text = saveData.date.ToString("g", titleScreen.game.currentLanguage.getCultureInfo());
-                GameObject.Find("Canvas/Continue/Save" + saveNumber + "/GameInfoBlock/Location").GetComponent<Text>().text = saveData.heroesTeam.getCurrentLocation().getName();
+                GameObject.Find("Canvas/SaveSystem/Save" + saveNumber + "/ScreenshotBlock").GetComponent<RawImage>().texture = saveData.getScreenshot();
+                GameObject.Find("Canvas/SaveSystem/Save" + saveNumber + "/ChapterBlock/Number").GetComponent<Text>().text = saveData.chapter.ToString();
+                GameObject.Find("Canvas/SaveSystem/Save" + saveNumber + "/ChapterBlock/Date").GetComponent<Text>().text = saveData.date.ToString("g", titleScreen.game.currentLanguage.getCultureInfo());
+                GameObject.Find("Canvas/SaveSystem/Save" + saveNumber + "/GameInfoBlock/Location").GetComponent<Text>().text = saveData.heroesTeam.getCurrentLocation().getName();
                 for (int i = 0; i < HeroesTeam.MAXIMUM_NUMBER_OF_HEROES; i++)
                 {
                     Hero hero = (Hero)saveData.heroesTeam.getCharacterByIndex(i);
@@ -119,13 +119,13 @@ namespace RaverSoft.YllisanSkies.TitleScreen
                     if (hero != null)
                     {
                         heroEnabled = true;
-                        GameObject.Find("Canvas/Continue/Save" + saveNumber + "/GameInfoBlock/Hero" + (i + 1) + "/Sprite").GetComponent<RawImage>().texture = Resources.Load<Texture>("UI/Battles/Battles_Interface_Hero_" + hero.id);
-                        GameObject.Find("Canvas/Continue/Save" + saveNumber + "/GameInfoBlock/Hero" + (i + 1) + "/Lv_Stats").GetComponent<Text>().text = hero.getLv().ToString();
+                        GameObject.Find("Canvas/SaveSystem/Save" + saveNumber + "/GameInfoBlock/Hero" + (i + 1) + "/Sprite").GetComponent<RawImage>().texture = Resources.Load<Texture>("UI/Battles/Battles_Interface_Hero_" + hero.id);
+                        GameObject.Find("Canvas/SaveSystem/Save" + saveNumber + "/GameInfoBlock/Hero" + (i + 1) + "/Lv_Stats").GetComponent<Text>().text = hero.getLv().ToString();
                     }
-                    GameObject.Find("Canvas/Continue/Save" + saveNumber + "/GameInfoBlock/Hero" + (i + 1)).GetComponent<Canvas>().enabled = heroEnabled;
+                    GameObject.Find("Canvas/SaveSystem/Save" + saveNumber + "/GameInfoBlock/Hero" + (i + 1)).GetComponent<Canvas>().enabled = heroEnabled;
                 }
-                GameObject.Find("Canvas/Continue/Save" + saveNumber + "/GameInfoBlock/MoneyBlock/Stats").GetComponent<Text>().text = saveData.heroesTeam.getCurrentMoney().ToString();
-                GameObject.Find("Canvas/Continue/Save" + saveNumber + "/GameInfoBlock/TimeBlock/Stats").GetComponent<Text>().text = DateTimeUtils.formatTimeFromSeconds(saveData.playtime);
+                GameObject.Find("Canvas/SaveSystem/Save" + saveNumber + "/GameInfoBlock/MoneyBlock/Stats").GetComponent<Text>().text = saveData.heroesTeam.getCurrentMoney().ToString();
+                GameObject.Find("Canvas/SaveSystem/Save" + saveNumber + "/GameInfoBlock/TimeBlock/Stats").GetComponent<Text>().text = DateTimeUtils.formatTimeFromSeconds(saveData.playtime);
                 displaySaveDataInfo(saveNumber, true);
             }
             else
@@ -137,11 +137,11 @@ namespace RaverSoft.YllisanSkies.TitleScreen
 
         private void displaySaveDataInfo(int saveNumber, bool enabled)
         {
-            GameObject.Find("Canvas/Continue/Save" + saveNumber + "/ChapterBlock").GetComponent<Canvas>().enabled = enabled;
-            GameObject.Find("Canvas/Continue/Save" + saveNumber + "/GameInfoBlock").GetComponent<Canvas>().enabled = enabled;
+            GameObject.Find("Canvas/SaveSystem/Save" + saveNumber + "/ChapterBlock").GetComponent<Canvas>().enabled = enabled;
+            GameObject.Find("Canvas/SaveSystem/Save" + saveNumber + "/GameInfoBlock").GetComponent<Canvas>().enabled = enabled;
             for (int i = 0; i < HeroesTeam.MAXIMUM_NUMBER_OF_HEROES; i++)
             {
-                GameObject.Find("Canvas/Continue/Save" + saveNumber + "/GameInfoBlock/Hero" + (i + 1)).GetComponent<Canvas>().enabled = enabled;
+                GameObject.Find("Canvas/SaveSystem/Save" + saveNumber + "/GameInfoBlock/Hero" + (i + 1)).GetComponent<Canvas>().enabled = enabled;
             }
         }
 
@@ -178,12 +178,12 @@ namespace RaverSoft.YllisanSkies.TitleScreen
 
         private void displayBlockSelectionAtCurrentCursorPosition()
         {
-            GameObject.Find("Canvas/Continue/SaveSelection").transform.position = GameObject.Find("Canvas/Continue/Save" + currentCursorIndex).transform.position;
+            GameObject.Find("Canvas/SaveSystem/SaveSelection").transform.position = GameObject.Find("Canvas/SaveSystem/Save" + currentCursorIndex).transform.position;
         }
 
         private void displayCursor(bool enabled)
         {
-            GameObject.Find("Canvas/Continue/SaveSelection").GetComponent<Canvas>().enabled = enabled;
+            GameObject.Find("Canvas/SaveSystem/SaveSelection").GetComponent<Canvas>().enabled = enabled;
         }
 
         private void submitSection()
