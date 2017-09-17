@@ -334,5 +334,19 @@ namespace RaverSoft.YllisanSkies
         {
             GetComponent<SoundManager>().playSound(sound);
         }
+
+        public void stopAllEvents()
+        {
+            menuAllowed = false;
+            player.disableMovement();
+            stopEvents = true;
+        }
+
+        public void resumeAllEvents()
+        {
+            menuAllowed = true;
+            stopEvents = false;
+            player.enableMovement();
+        }
     }
 }

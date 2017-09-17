@@ -36,6 +36,8 @@ namespace RaverSoft.YllisanSkies.Events
 
         protected abstract void doActionWhenTriggered();
 
+        protected abstract void doActionWhenExitTrigger();
+
         private bool checkSubmitButton()
         {
             return (!submitButtonNeeded || (submitButtonNeeded && Input.GetButton("Submit")));
@@ -71,6 +73,7 @@ namespace RaverSoft.YllisanSkies.Events
             if (collision.gameObject.name == "Player")
             {
                 isTriggered = false;
+                doActionWhenExitTrigger();
             }
         }
 
